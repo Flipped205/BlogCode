@@ -273,10 +273,10 @@ google_anaylytics:
 tencent_analytics:
 
 ## ICON配置 (不配则启用本地Font Icon)
-fontAwesome: //cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css
+fontAwesome: 
 
 ## 网站主题配置
-since: 2017  //建站时间
+since: 2018  //建站时间
 robot: 'all'  //控制搜索引擎的抓取和索引编制行为，默认为all
 version: 1.2.1  //当前主题版本号
 ```
