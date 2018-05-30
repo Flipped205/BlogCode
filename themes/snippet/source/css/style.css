@@ -635,10 +635,10 @@ pre {
   margin-top: 0;
   margin-bottom: 0;
   margin-left: 14px;
-  list-style-type: disc;
+  list-style-type: circle;
 }
 .post-content li ul ul {
-  list-style-type: circle;
+  list-style-type: disc;
 }
 .post-content li ol {
   margin-top: 0;
@@ -998,7 +998,7 @@ pre {
   border-bottom: 1px solid #ccc;
 }
 .widget #search-form #result-wrap #search-result .item .content b {
-  color: #6B6B6B;
+  color: #f90808;
   margin: 0 2px;
 }
 /*====================================================
@@ -1289,4 +1289,15 @@ pre .javascript .function {
     content: "";
     margin-bottom: 10px;
   }
+}
+span.reprint {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 50%;
+    color: #ca0c16;
+    border: 1px solid #FF0000;
 }

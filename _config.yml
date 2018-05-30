@@ -81,3 +81,8 @@ deploy:
   type: git
   repository: https://github.com/Flipped205/flipped205.github.io.git
   branch: master
+
+
+search:
+  path: search.xml
+  field: post
