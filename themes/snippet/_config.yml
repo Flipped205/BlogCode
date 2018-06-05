@@ -51,7 +51,7 @@ about: |-
       <div style="float:left; clear: both;" align="center">
       <img src="/img/about.jpg" style="width: 80%;">
       </div>
-      <p style="align:center;line-height: 25px;font-size: 13.6px">The higher I got, the more amazed I was by the view.Some of us get dipped in flat, some in satin, some in gloss. But every once in a while you find someone who's iridescent, and when you do, nothing will ever compare.And I realized Garrett was right about one thing: I had flipped. Completely.人性的美具有纷繁的多面性，无论是男女之爱还是亲人之情，所有的美都会令人向往和感动!</p>
+      <p style="align:center;line-height: 25px;font-size: 13.6px;min-height:250px">The higher I got, the more amazed I was by the view.Some of us get dipped in flat, some in satin, some in gloss. But every once in a while you find someone who's iridescent, and when you do, nothing will ever compare.And I realized Garrett was right about one thing: I had flipped. Completely.人性的美具有纷繁的多面性，无论是男女之爱还是亲人之情，所有的美都会令人向往和感动!</p>
       </div>
 
 ## 搜索
@@ -122,7 +122,7 @@ defaultImgs:
 excerptLength: 120
 
 ## 代码高亮配置
-highlightTheme:
+highlightTheme: 
 
 ## ICON配置
 fontAwesome: 

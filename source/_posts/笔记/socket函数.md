@@ -9,7 +9,7 @@ other: note_04
 ---
 
 bits/socket.h
-```
+```c
 /* Protocol families.  */
 #define PF_UNSPEC   0   /* Unspecified.  */
 #define PF_LOCAL    1   /* Local to host (pipes and file-domain).  */
@@ -130,7 +130,7 @@ int socket(int domain, int type, int protocol);
 `protocol`是指其送交的上层的协议好，如IP为0x0800.当其为htons(ETH_P_ALL)（其宏定义为0）时表示收发所有协议。
 
 创建好套接字后，就可以通过UDP一样的recvform和sendto函数进行数据的收发，其目的的地址结构sockaddr_ll。这与传输层的地址结构定义是不一样的，其长度为20字节。（在TCP/IP的链路层地址中使用18字节），而传输层额结构长度为16字节。
-```
+```c
 struct sockaddr_ll
 {
     unsigned short sll_family; // 总是AF_INET
@@ -144,7 +144,7 @@ struct sockaddr_ll
 ```
 
 eg:
-```
+```c
 #define MAC_BCAST_ADDR (unsigned char *) "\xff\xff\xff\xff\xff\xff"
 
 // dhcp discover
