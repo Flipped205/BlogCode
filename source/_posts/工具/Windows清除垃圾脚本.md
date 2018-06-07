@@ -33,4 +33,4 @@ echo. & pause
 ```
 [clear.bat脚本下载][1]
 
-[1]:/bat/clear.bat
+[1]:/bat/clear.bat 

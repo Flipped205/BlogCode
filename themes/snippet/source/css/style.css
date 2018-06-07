@@ -549,6 +549,10 @@ pre {
 .post-content a {
   word-wrap: break-word;
 }
+.post-content div a {
+  padding: 10px 10px;
+  margin: 5px 5px;
+}
 .post-content a img {
   border: none;
 }
@@ -864,6 +868,7 @@ pre {
   margin: 0 7px 7px 0;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+  border-radius: 2px; 
 }
 .widget .tag-cloud a:hover {
   color: #fff;
@@ -1396,4 +1401,94 @@ u{
 .box_close img{
   float: right;
   cursor: pointer;
+}
+.post-content p{
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.post-content a{
+    text-decoration : none
+}
+.post-content a code{
+    border: 1px solid #333333;
+    background: #333333;
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+    padding: 7px 14px;
+    border-radius: 2px;
+    text-align: center;
+    border-radius: 5px; 
+    margin-top: 10px;
+}
+.post-content a code:hover{
+    background: #ccc;
+    border: 1px solid #ccc;
+    color: #333333;
+}
+.link_div{
+    line-height: 3em;
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+.link_bk_line{
+    width: 0;
+    position: absolute;
+    height: 100%;
+    
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+
+}
+.link_active{
+  background: #ccc;
+  transition:background-color 0.1s linear
+}
+.link_div a{
+    position: relative;
+    border: 1px solid transparent;
+    color: #000;
+    padding: 10px 10px;
+    margin: 5px 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.link_div a:hover{
+    border: 1px solid #333;
+    background-color: #333;
+    color: #fff;
+}
+.main-content>h3{
+    border: 1px solid #333;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 10px;
+    position: relative;
+    margin: 0px 0px;
+    margin-bottom: 10px;
+}
+.grumble {
+    position:absolute;
+    top:50px;
+    left:50%;
+    max-width:500px;
+    border-radius:5px;
+    line-height:20px;
+    padding:10px;
+    background:rgba(0, 0, 0, .8);
+    color:#fff;
+    transform:translateX(-50%);
+    z-index:1
+}
+.grumble::before {
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-20px;
+    transform:translateX(-50%);
+    border-top:10px solid rgba(0, 0, 0, .8);
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-bottom:10px solid transparent
 }
