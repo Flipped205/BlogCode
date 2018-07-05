@@ -273,8 +273,6 @@ $(document).ready(function() {
 	var host = "http://"+window.location.host+'/';
 	var filter = 'color';  // threshold, color
 	var imagePath = host+"img/qrcode.jpg";
-	console.log(href);
-	console.log(host);
 	function makeQArt() {
 		new QArt({
 			value: href,
