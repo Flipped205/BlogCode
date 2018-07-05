@@ -267,3 +267,22 @@ $(document).ready(function(){
 	});
 	$(".post-content").mousemove();
 });
+
+$(document).ready(function() {
+	var href = window.location.href;
+	var host = "http://"+window.location.host+'/';
+	var filter = 'color';  // threshold, color
+	var imagePath = host+"img/qrcode.jpg";
+	console.log(href);
+	console.log(host);
+	function makeQArt() {
+		new QArt({
+			value: href,
+			imagePath: imagePath,
+			filter: filter,
+		}).make(document.getElementById('combine'));
+	}
+	if($("#combine").length>0){
+		makeQArt();
+	}
+});
