@@ -1496,11 +1496,14 @@ u{
     margin-top:40px; 
 }
 #combine{
-
     text-align: center;
     border: 1px solid #777777;
     border-radius:5px; 
     width: 200px;
     height: 200px;
     margin: 0 auto;
+}
+
+.table_center th,.table_center td{
+    text-align: center;
 }
