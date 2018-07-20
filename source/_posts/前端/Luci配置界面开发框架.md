@@ -4,7 +4,7 @@ categories:
 - 前端
 tags:
 - Luci
-other: web_02
+other: web_01
 ---
 
 Luci配置界面开发框架

@@ -585,6 +585,9 @@ pre {
   outline: 0;
   margin: 10px 0;
 }
+.js,.c{
+  max-height: 500px;/**/
+} 
 .post-content figure img {
   display: block;
   max-width: 100%;
@@ -1505,5 +1508,28 @@ u{
 }
 
 .table_center th,.table_center td{
+    text-align: center;
+} 
+
+#clock {
+    max-height: 900px;
+    background-color: #000;
+}
+#clock canvas{
+    margin: 0 auto;
+    display: block;
+}
+.copy{
+    position: absolute;
+    top:2px;
+    right: 2px;
+    background: #fff;
+    width: 50px;
+    height: 25px;
+    cursor: pointer;
+    border-radius: 5px; 
+    display: none;
+    line-height: 25px;
+    color: #000;
     text-align: center;
 }
