@@ -997,7 +997,7 @@ pre {
 }
 .widget #search-form #result-wrap #search-result .item .title b {
   margin: 0 2px;
-  color: #6B6B6B;
+  color: #f90808;
 }
 .widget #search-form #result-wrap #search-result .item .content {
   font-size: 14px;
@@ -1532,4 +1532,36 @@ u{
     line-height: 25px;
     color: #000;
     text-align: center;
+}
+
+.v{
+    background: #fff;
+    padding-top: 10px;
+    margin-bottom: 20px; 
+}
+.v .vwrap{
+    margin:10px;
+}
+.info {
+    margin-right: 20px;
+}
+.vinput{
+    border: 0px;
+}
+.v .vlist .vcard{
+    border-bottom:1px dashed #6B6B6B;
+    margin: 20px;
+
+}
+span.vat{
+    border: 1px solid #ebebeb;
+    border-radius: 1.9rem; 
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #6B6B6B;
+    background: #ebebeb;
+}
+span.vat:hover{
+    background: #fff;
+    border: 1px solid #ef2f11;
 }

@@ -147,8 +147,8 @@ gitment:
   enable: false
   owner: 
   repo: 
-  client_id: 
-  client_secret: 
+  client_id: 8db683fb3a65aed0f21a
+  client_secret: 66440463937806d17b8f0016a5f8201e9a9b0237
   perPage: 10
 
 ### 来必力
