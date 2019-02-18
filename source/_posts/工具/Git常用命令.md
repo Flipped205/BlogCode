@@ -5,6 +5,7 @@ categories:
 tags:
 - linux工具
 other: tools_01
+date: 2018-05-15
 ---
 
 > 安装Git

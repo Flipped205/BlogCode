@@ -5,6 +5,7 @@ categories:
 tags:
 - linux工具
 other: tools_02
+date: 2018-05-23
 ---
 
 ** minicom **

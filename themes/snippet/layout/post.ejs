@@ -11,8 +11,12 @@
         <%- partial('_partial/article-meta', {post: page}) %>
             <%
                 var diffDays = moment(new Date()).diff(moment(page.date), 'day');
+                if(page.updated)
+                    diffDays = moment(new Date()).diff(moment(page.updated), 'day');
                 var warningTextArr = theme.warning.text.split("%d");
             %>
+
+           
             <% if((theme.warning.days!=0) && diffDays > (theme.warning.days || 300)){ %>
             <p class="fa fa-exclamation-triangle warning">
                 <%- warningTextArr[0]%><strong><%= diffDays %></strong><%- warningTextArr[1]%>

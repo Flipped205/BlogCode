@@ -31,12 +31,21 @@
 
     <% if(is_post()) {%>
         <%
+            var c = date(page.date, 'YYYYMMDD');
+            var n = date(page.updated, 'YYYYMMDD');
             var format = 'YYYY/MM/DD';
             if (is_archive()) format = "MM/DD";
+
         %>
         <span class="fa-wrap">
-            <i class="fa fa-clock-o"></i>
-            <span class="date-meta"><%- date(post.date, format) %></span>
+            <i class="fa fa-calendar-o"></i>
+            <span class="date-meta">发表于:&nbsp;<%- date(post.date, format) %></span>
+        </span>
+        <span class="fa-wrap">
+            <% if(n-c>0){%>
+            <i class="fa fa-calendar-check-o"></i>
+            <span class="date-meta">更新于:&nbsp;<%- date(page.updated, format) %></span>
+            <%}%>
         </span>
     <% } %>
 </div>

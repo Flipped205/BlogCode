@@ -5,6 +5,7 @@ categories:
 tags:
 - linux工具
 other: tools_04
+date: 2018-05-25
 ---
 
 ## Ubuntu下json-c安装与使用

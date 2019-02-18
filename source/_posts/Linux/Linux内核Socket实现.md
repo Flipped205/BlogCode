@@ -5,6 +5,7 @@ categories:
 tags:
 - socket
 other: linux_01
+date: 2018-05-30
 ---
 
 内核版本2.6.36

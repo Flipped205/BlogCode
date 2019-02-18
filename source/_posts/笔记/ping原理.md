@@ -5,6 +5,7 @@ categories:
 tags:
 - ping
 other: note_01  
+date: 2018-07-05
 ---
 <div align="center">
 ![](/img/note_01/01.png)

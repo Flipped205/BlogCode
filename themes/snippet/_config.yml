@@ -26,6 +26,9 @@ menu:
 - page: 工具
   url: /categories/工具/
   icon: 
+# page: 工作
+#  url: /categories/工作/
+#  icon: 
 
 ## favicon 
 favicon: /favicon.ico

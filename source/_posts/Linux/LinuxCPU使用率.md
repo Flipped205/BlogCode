@@ -5,6 +5,7 @@ categories:
 tags:
 - cpu
 other: linux_02
+date: 2018-06-26
 ---
 内核版本
 ```bash

@@ -3,7 +3,8 @@ title: KMP算法代码案例
 categories:
 tags:
 - 算法
-other: code_01  
+other: code_01 
+date: 2018-05-14 
 ---
 
 ```c

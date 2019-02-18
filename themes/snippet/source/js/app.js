@@ -300,3 +300,17 @@ $(document).ready(function(){
     });
 
 });
+
+
+// img 添加图片标注
+$(function(){
+    $("img").each(function(){
+        var alt=$(this).attr("alt");
+        var img_width = $(this).width();
+        if(alt!=undefined){
+            console.log(alt);
+            var html = '<span class="img_alt" style="width:'+img_width+'px;">'+alt+'</span>'
+            $(this).after(html);
+        }
+    });
+});

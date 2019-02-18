@@ -1565,3 +1565,10 @@ span.vat:hover{
     background: #fff;
     border: 1px solid #ef2f11;
 }
+
+.img_alt{
+    display: block;
+    text-align: center;
+    margin: 10px;
+    color: #337ab7;
+}
