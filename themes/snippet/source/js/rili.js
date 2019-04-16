@@ -1127,7 +1127,7 @@ $(function(){
 		if(day>m_day)
 			day = m_day;
 		drawRili(year,month,day);
-		console.log('左滑手势');
+		console.log(' 左滑手势');
 	},function (e) {
 		var year = Number($("#m_year").attr("value"));
 		var month = Number($("#m_moth").attr("value"));
