@@ -9,7 +9,7 @@ date: 2018-06-26
 ---
 内核版本
 ```bash
-car /proc/version
+cat /proc/version
 ```
 <div align="left">![](/img/linux_02/00.png)
 </div>

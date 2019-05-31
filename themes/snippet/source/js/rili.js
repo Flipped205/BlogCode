@@ -837,7 +837,7 @@ function get_month_days(year,month) {
 	var m_days=new Array(31,28+is_leap(year),31,30,31,30,31,31,30,31,30,31); //各月份的总天数
 	return m_days[month];
 } 
-   
+
 
 function drawRili(year,month,day)
 {
@@ -864,96 +864,96 @@ function drawRili(year,month,day)
 		time = 0-time;
 		switch(time){
 			case 1:
-				m_day_text +="明天";
-				break;
-			case 2:
-				m_day_text +="后天";
-				break;
-			case 3:
-				m_day_text +="大后天";
-				break;
-			default:
-				if(today_day == day)
-				{
-					if(today_year==year)
-					{
-						m_day_text = (month-today_month)+"个月后";
-					}
-					else{
-						if(month == today_month)
-							m_day_text = (year-today_year)+"年后";
-						else{
-							var t_year = (year-today_year);
-							if(month<today_month)
-							{
-								t_year -=1;
-							}
-							if(t_year>0)
-							{
-								var t_month = 0; 
-								if(month>today_month){
-									t_month = month-today_month;
-								}
-								else{
-									t_month = (month+12-today_month);
-								}
-								m_day_text = t_year+"年零"+t_month+"个月后";
-							}
-							else
-								m_day_text = (month+12-today_month)+"个月后";
-							
-						}
-					}
-				}
-				else if(time%7==0)
-				{
-					m_day_text = ""+(time/7)+"周后";
-				}
-				else{
-					m_day_text=""+(time)+"天后";
-				}
-				break;
+            m_day_text +="明天";
+            break;
+            case 2:
+            m_day_text +="后天";
+            break;
+            case 3:
+            m_day_text +="大后天";
+            break;
+            default:
+            if(today_day == day)
+            {
+               if(today_year==year)
+               {
+                  m_day_text = (month-today_month)+"个月后";
+              }
+              else{
+                  if(month == today_month)
+                     m_day_text = (year-today_year)+"年后";
+                 else{
+                     var t_year = (year-today_year);
+                     if(month<today_month)
+                     {
+                        t_year -=1;
+                    }
+                    if(t_year>0)
+                    {
+                        var t_month = 0; 
+                        if(month>today_month){
+                           t_month = month-today_month;
+                       }
+                       else{
+                           t_month = (month+12-today_month);
+                       }
+                       m_day_text = t_year+"年零"+t_month+"个月后";
+                   }
+                   else
+                    m_day_text = (month+12-today_month)+"个月后";
 
-		}
-		
-	}
-	else if(time>0){
-		switch(time){
-			case 1:
-				m_day_text +="昨天";
-				break;
-			case 2:
-				m_day_text +="前天";
-				break;
-			default:
-				if(time%7==0)
-				{
-					m_day_text = ""+(time/7)+"周前";
-				}
-				else{
-					m_day_text=""+(time)+"天前";
-				}
-				break;
+            }
+        }
+    }
+    else if(time%7==0)
+    {
+       m_day_text = ""+(time/7)+"周后";
+   }
+   else{
+       m_day_text=""+(time)+"天后";
+   }
+   break;
 
-		}
-	}
-	else{
-		m_day_text="今天";
-	}
+}
+
+}
+else if(time>0){
+  switch(time){
+     case 1:
+     m_day_text +="昨天";
+     break;
+     case 2:
+     m_day_text +="前天";
+     break;
+     default:
+     if(time%7==0)
+     {
+       m_day_text = ""+(time/7)+"周前";
+   }
+   else{
+       m_day_text=""+(time)+"天前";
+   }
+   break;
+
+}
+}
+else{
+  m_day_text="今天";
+}
 
 
-	$("#m_moth").html((month+1)+"月");
-	$("#m_day").html(m_day_text);
-	$("#m_year").html(year+"年");
+$("#m_moth").html((month+1)+"月");
+$("#m_day").html(m_day_text);
+$("#m_year").html(year+"年");
 
-	$("#m_day").attr("value",day);
-	$("#m_moth").attr("value",month);
-	$("#m_year").attr("value",year);
-	
-	var today=new Date();
-	var today_year = today.getFullYear();
-	var today_month = today.getMonth();
-	var today_day = today.getDate();
+$("#m_day").attr("value",day);
+$("#m_moth").attr("value",month);
+$("#m_year").attr("value",year);
+
+var today=new Date();
+var today_year = today.getFullYear();
+var today_month = today.getMonth();
+var today_day = today.getDate();
 
 	var n1str=new Date(year,month,1); //当月第一天Date资讯
 	var firstday=n1str.getDay(); //当月第一天星期几
@@ -973,10 +973,10 @@ function drawRili(year,month,day)
 	}
 	var no_month_day_flag = 0;
 	var str = 0;
-  	for(i=0;i<tr_str;i++)
-    {
-    	str+="<tr>";
-		for(k=0;k<7;k++) 
+ for(i=0;i<tr_str;i++)
+ {
+   str+="<tr>";
+   for(k=0;k<7;k++) 
 		{ //表格每行的单元格
 			idx=i*7+k; //单元格自然序列号
             cur_day=idx-firstday+1; //计算日期
@@ -1032,58 +1032,58 @@ function drawRili(year,month,day)
             {
             	if(k==0||k==6){
             	//	str+="style='color:#ff0000;'";
-            	}
             }
-            var jia = getJiaQi(cur_year,cur_month+1,cur_day);
-           
-            str += ("><i>" + cur_day +"</i>" );
-            if(jia==1)
-            {
-            	str+='<span class="jiaqi">休</span>';	
-            }
-            else if(jia == 2)
-            {
-            	str+='<span class="work">班</span>';
-            }
-            var nl = calendar.solar2lunar(cur_year,cur_month+1,cur_day);
-            var jieqi = nl.vacation;
-            if(!jieqi)
-            	jieqi = nl.Term;
+        }
+        var jia = getJiaQi(cur_year,cur_month+1,cur_day);
+
+        str += ("><i>" + cur_day +"</i>" );
+        if(jia==1)
+        {
+           str+='<span class="jiaqi">休</span>';	
+       }
+       else if(jia == 2)
+       {
+           str+='<span class="work">班</span>';
+       }
+       var nl = calendar.solar2lunar(cur_year,cur_month+1,cur_day);
+       var jieqi = nl.vacation;
+       if(!jieqi)
+           jieqi = nl.Term;
             //console.log(nl);
            // console.log(cur_year+'-'+(cur_month+1)+'-'+cur_day);
-            if(jieqi)	
-            	str+=("<em class='jieqi'>"+jieqi+"</em>");
-            else{
-            	if(today_flag==1)
-            		str +=("<em style='color:#fff'>"+nl.IDayCn+"</em>");
-            	else
-            		str +=("<em>"+nl.IDayCn+"</em>");
-            }
-            str+="</td>";
+           if(jieqi)	
+               str+=("<em class='jieqi'>"+jieqi+"</em>");
+           else{
+               if(today_flag==1)
+                  str +=("<em style='color:#fff'>"+nl.IDayCn+"</em>");
+              else
+                  str +=("<em>"+nl.IDayCn+"</em>");
+          }
+          str+="</td>";
 
-        }
-        str+="</tr>";
-    }
-    $("#rili").find("table").html(str);
+      }
+      str+="</tr>";
+  }
+  $("#rili").find("table").html(str);
 
-    $("#rili").find("table").find("td").click(function(){
-		var year = Number($(this).attr("year"));
-		var month = Number($(this).attr("month"));
-		console.log(month);
-		var day = Number($(this).children("i").text());
-		drawRili(year,month,day);
-	});
-	var str1 = new String($("#m_day").text());
-	console.log($("#m_day").text());
-	if(str1.indexOf("今天") ==0)
-	{
-		console.log("1");
-		$("#ret_jt").hide();
-	}
-	else{
-		$("#ret_jt").show();
-		console.log("0");
-	}
+  $("#rili").find("table").find("td").click(function(){
+      var year = Number($(this).attr("year"));
+      var month = Number($(this).attr("month"));
+      console.log(month);
+      var day = Number($(this).children("i").text());
+      drawRili(year,month,day);
+  });
+  var str1 = new String($("#m_day").text());
+  console.log($("#m_day").text());
+  if(str1.indexOf("今天") ==0)
+  {
+      console.log("1");
+      $("#ret_jt").hide();
+  }
+  else{
+      $("#ret_jt").show();
+      console.log("0");
+  }
 	//$("#rili").show(1000);
 
 }
@@ -1156,3 +1156,172 @@ $(function(){
 		drawRili(today_year,today_month,today_day);
 	});
 });
+
+$(function(){
+    var Base64 = 
+    {
+    // private property
+    _keyStr : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", // public method for encoding
+    encode : function (input) 
+    {
+        var output = "";
+        var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+        var i = 0;
+        input = Base64._utf8_encode(input);
+        while (i < input.length) 
+        {
+            chr1 = input.charCodeAt(i++);
+            chr2 = input.charCodeAt(i++);
+            chr3 = input.charCodeAt(i++);
+            enc1 = chr1 >> 2;
+            enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+            enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+            enc4 = chr3 & 63;
+            if (isNaN(chr2)) {
+                enc3 = enc4 = 64;
+            }
+            else if (isNaN(chr3)) {
+                enc4 = 64;
+            }
+            output = output + this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) + this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
+        }
+        return output;
+    },
+    // public method for decoding
+    decode : function (input) 
+    {
+        var output = "";
+        var chr1, chr2, chr3;
+        var enc1, enc2, enc3, enc4;
+        var i = 0;
+        input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+        while (i < input.length) 
+        {
+            enc1 = this._keyStr.indexOf(input.charAt(i++));
+            enc2 = this._keyStr.indexOf(input.charAt(i++));
+            enc3 = this._keyStr.indexOf(input.charAt(i++));
+            enc4 = this._keyStr.indexOf(input.charAt(i++));
+            chr1 = (enc1 << 2) | (enc2 >> 4);
+            chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+            chr3 = ((enc3 & 3) << 6) | enc4;
+            output = output + String.fromCharCode(chr1);
+            if (enc3 != 64) {
+                output = output + String.fromCharCode(chr2);
+            }
+            if (enc4 != 64) {
+                output = output + String.fromCharCode(chr3);
+            }
+        }
+        output = Base64._utf8_decode(output);
+        return output;
+    },
+    // private method for UTF-8 encoding
+    _utf8_encode : function (string) 
+    {
+        string = string.replace(/\r\n/g, "\n");
+        var utftext = "";
+        for (var n = 0; n < string.length; n++) 
+        {
+            var c = string.charCodeAt(n);
+            if (c < 128) {
+                utftext += String.fromCharCode(c);
+            }
+            else if ((c > 127) && (c < 2048)) 
+            {
+                utftext += String.fromCharCode((c >> 6) | 192);
+                utftext += String.fromCharCode((c & 63) | 128);
+            }
+            else 
+            {
+                utftext += String.fromCharCode((c >> 12) | 224);
+                utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+                utftext += String.fromCharCode((c & 63) | 128);
+            }
+        }
+        return utftext;
+    },
+    // private method for UTF-8 decoding
+    _utf8_decode : function (utftext) 
+    {
+        var string = "";
+        var i = 0;
+        var c = c1 = c2 = 0;
+        while (i < utftext.length) 
+        {
+            c = utftext.charCodeAt(i);
+            if (c < 128) {
+                string += String.fromCharCode(c);
+                i++;
+            }
+            else if ((c > 191) && (c < 224)) 
+            {
+                c2 = utftext.charCodeAt(i + 1);
+                string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+                i += 2;
+            }
+            else 
+            {
+                c2 = utftext.charCodeAt(i + 1);
+                c3 = utftext.charCodeAt(i + 2);
+                string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+                i += 3;
+            }
+        }
+        return string;
+    }
+}
+
+});
+
+
+jQuery.support.cors = true;
+$(function() {
+    var htmlobj=$.ajax({url:"http://blog.flipped205.top/rili.data",async:false});
+    console.log(htmlobj.responseText);
+
+/*
+
+
+    $.ajax({
+        xhrFields: {
+            withCredentials: true
+        },
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('Authorization', 'Basic ZmxpcHBlZDIwNUBzaW5hLmNvbTpmeDMyNjQ5NDY=');
+        },
+        crossDomain:true,
+        url: "https://api.github.com/repos/Flipped205/flipped205.github.io/contents/rili.data",
+        type: "PUT",
+        dataType: "json",
+        contentType: 'application/x-www-form-urlencoded',
+        data: JSON.stringify({
+            "message": "my commit message",
+            "committer": {
+                "name": "flipped205",
+                "email": "flipped205@sina.com"
+            },
+            "content": "bXklMjB1cGRhdGVkJTIwZmlsZSUyMGNvbnRlbnRzJTIwdGVzdA==",
+            "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+        }),
+        success: function(result) {
+            alert("发送成功!");
+        },
+        error: function() {
+            alert("数据发送失败!");
+        }
+    });*/
+});
+
+
+$(function(){
+    $.ajax({
+        url:"https://api.github.com/users",
+        type: "GET",
+        success: function(result){
+            console.log(result);
+        }
+
+    })
+
+})
+
