@@ -95,7 +95,7 @@ java -jar gerrit.2.15.2.war init --batch --dev -d ~/gerrittest
 [sshd]
     listenAddress = *:29418
 [httpd]
-    listenUrl = proxy-http://10.48.100.182:8081/ # 修改proxy-http://ip:8081
+    listenUrl = proxy-http://192.168.40.130:8081/ # 修改proxy-http://ip:8081
 [cache]
     directory = cache
 [plugins]
@@ -251,7 +251,7 @@ vim ~/gerrittest/etc/secure.config
 随后设置`gerrit1`的`user.email`,`user.name`
 ```sh
 git config --global user.email "gerrit205@163.com"
-fxin@ubuntu:~/code/demo$ git config --global user.name "gerrit1"
+git config --global user.name "gerrit1"
 ```
 
 ```sh
