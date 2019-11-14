@@ -8,15 +8,6 @@ menu:
 - page: 主页
   url: /
   icon: 
-- page: 前端
-  url: /categories/前端/
-  icon: 
-- page: Linux
-  url: /categories/Linux/
-  icon: 
-- page: 书籍
-  url: /categories/书籍/
-  icon: 
 - page: 笔记
   url: /categories/笔记/
   icon: 
@@ -26,9 +17,12 @@ menu:
 - page: 工具
   url: /categories/工具/
   icon: 
-# page: 工作
-#  url: /categories/工作/
-#  icon: 
+- page: 前端
+  url: /categories/前端/
+  icon: 
+- page: 心记
+  url: /categories/心记/
+  icon: 
 
 ## favicon 
 favicon: /favicon.ico
