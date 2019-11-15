@@ -462,8 +462,8 @@ pre {
   overflow: hidden;
 }
 .post .post-body p {
-  font-size: 1em;
-  line-height: 1.5;
+  font-size: 1.1em;
+  line-height:2em;
 }
 .post .post-body p img {
   max-width: 100%;
