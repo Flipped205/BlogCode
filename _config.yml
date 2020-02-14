@@ -13,8 +13,8 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://flipped205.top
-root: /
+url: http://Flipped205.github.io/BlogCode/
+root: /BlogCode/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
