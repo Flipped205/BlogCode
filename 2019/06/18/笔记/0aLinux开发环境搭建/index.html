@@ -1,0 +1,382 @@
+<!DOCTYPE HTML>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Flipped205">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://Flipped205.github.io/BlogCode">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+
+<title>Linux系统开发环境搭建 | Flipped205</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Flipped205" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/BlogCode/css/bootstrap.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/font-awesome.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/style.css?rev=2020-02-14[09]">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <div class="box_bk"></div>
+<div class="box_center">
+    <div class="box_i"><img src=""></div>
+    <div class="box_close"><img src="/img/close.png"></div>
+</div>
+<button class="btn" style="display:none"></button>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/笔记/"><i class="fa "></i>笔记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/杂读/"><i class="fa "></i>杂读</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/心记/"><i class="fa "></i>心记</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Linux系统开发环境搭建">
+            
+	            Linux系统开发环境搭建
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/笔记">
+            笔记
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/samba" title='samba'>
+                        samba
+                    </a>
+                
+                    <a href="/tags/ssh" title='ssh'>
+                        ssh
+                    </a>
+                
+                    <a href="/tags/tmux" title='tmux'>
+                        tmux
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-calendar-o"></i>
+            <span class="date-meta">发表于:&nbsp;2019/06/18</span>
+        </span>
+        <span class="fa-wrap">
+            
+        </span>
+    
+</div>
+
+            
+
+           
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>&emsp;&emsp;经常使用linux系统(Ubuntu),默认都会安装一些软件，方便开发。记录一下常用的一些软件配置和开发环境搭建。包括<code>samba</code>,<code>ssh</code>,<code>tmux</code>等</p>
+<h3 id="一、PS1"><a href="#一、PS1" class="headerlink" title="一、PS1"></a>一、PS1</h3><p>修改<code>PS1</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>添加以下内容</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS1=<span class="string">"╔║<span class="variable">$&#123;debian_chroot:+($debian_chroot)&#125;</span>\[\033[1;35m\]\w\[\033[00m\]\n╚═&gt;&gt;"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="二-vim-bundle"><a href="#二-vim-bundle" class="headerlink" title="二.vim,bundle"></a>二.vim,bundle</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br><span class="line">sudo apt-get install git</span><br><span class="line">sudo apt-get install ctags</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/gmarik/vundle.git ~/.vim/bundle/Vundle.vim</span><br></pre></td></tr></table></figure>
+
+<p>新建文件<code>.vimrc</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.vimrc</span><br></pre></td></tr></table></figure>
+
+<p>添加以下内容</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> nu</span><br><span class="line"><span class="built_in">set</span> ts=4</span><br><span class="line"><span class="built_in">set</span> noexpandtab</span><br><span class="line">%retab!</span><br><span class="line"><span class="built_in">set</span> list</span><br><span class="line"><span class="built_in">set</span> listchars=tab:&gt;-,trail:-</span><br><span class="line"><span class="built_in">set</span> listchars=tab:&gt;-,trail:-</span><br><span class="line"><span class="built_in">set</span> tags=tags;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">" 定义快捷键的前缀，即&lt;Leader&gt;</span></span><br><span class="line"><span class="string">let mapleader="</span>;<span class="string">"</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span> 开启文件类型侦测</span><br><span class="line">filetype on</span><br><span class="line"><span class="string">" 根据侦测到不同类型加载对应插件</span></span><br><span class="line"><span class="string">filetype plugin on</span></span><br><span class="line"><span class="string">"</span> 定义快捷键到行首和行尾</span><br><span class="line">nmap LB 0</span><br><span class="line">nmap LE $</span><br><span class="line"><span class="string">" 设置快捷将选中文本块复制到系统剪贴板</span></span><br><span class="line"><span class="string">vnoremap &lt;Leader&gt;y "</span>+y</span><br><span class="line"><span class="string">" 设置快捷键将系统剪贴板内容粘贴至vim</span></span><br><span class="line"><span class="string">nmap &lt;Leader&gt;p "</span>+p</span><br><span class="line"><span class="string">" 定义快捷键关闭当前分割窗口</span></span><br><span class="line"><span class="string">nmap &lt;Leader&gt;q :q&lt;CR&gt;</span></span><br><span class="line"><span class="string">"</span> 定义快捷键保存当前窗口内容</span><br><span class="line">nmap &lt;Leader&gt;w :w&lt;CR&gt;</span><br><span class="line"><span class="string">" 定义快捷键保存所有窗口内容并退出vim</span></span><br><span class="line"><span class="string">nmap &lt;Leader&gt;WQ :wa&lt;CR&gt;:q&lt;CR&gt;</span></span><br><span class="line"><span class="string">"</span> 不做任何保存，直接退出</span><br><span class="line">nmap &lt;Leader&gt;Q :qa!&lt;CR&gt;</span><br><span class="line"><span class="string">" 依次遍历子窗口</span></span><br><span class="line"><span class="string">nnoremap nw &lt;C-W&gt;&lt;C-W&gt;</span></span><br><span class="line"><span class="string">"</span> 跳转至右方窗口</span><br><span class="line">nnoremap &lt;Leader&gt;lw &lt;C-W&gt;l</span><br><span class="line"><span class="string">" 跳转至左方窗口</span></span><br><span class="line"><span class="string">nnoremap &lt;Leader&gt;hw &lt;C-W&gt;h</span></span><br><span class="line"><span class="string">"</span> 跳转至上方窗口</span><br><span class="line">nnoremap &lt;Leader&gt;kw &lt;C-W&gt;k</span><br><span class="line"><span class="string">" 跳转至下方窗口</span></span><br><span class="line"><span class="string">nnoremap &lt;Leader&gt;jw &lt;C-W&gt;j</span></span><br><span class="line"><span class="string">"</span> 定义快捷键在结对符之间跳转</span><br><span class="line">nmap &lt;Leader&gt;M %</span><br><span class="line"></span><br><span class="line"><span class="string">" 开启实时搜索功能</span></span><br><span class="line"><span class="string">set incsearch</span></span><br><span class="line"><span class="string">"</span> 搜索时大小写不敏感</span><br><span class="line"><span class="built_in">set</span> ignorecase</span><br><span class="line"><span class="string">" 关闭兼容模式</span></span><br><span class="line"><span class="string">set nocompatible</span></span><br><span class="line"><span class="string">"</span> vim 自身命令行模式智能补全</span><br><span class="line"><span class="built_in">set</span> wildmenu</span><br><span class="line"></span><br><span class="line"><span class="string">" 将外部命令 wmctrl 控制窗口最大化的命令行参数封装成一个 vim 的函数</span></span><br><span class="line"><span class="string">fun! ToggleFullscreen()</span></span><br><span class="line"><span class="string">		call system("</span>wmctrl -ir <span class="string">" . v:windowid . "</span> -b toggle,fullscreen<span class="string">")</span></span><br><span class="line"><span class="string">endf</span></span><br><span class="line"><span class="string">"</span> 全屏开/关快捷键</span><br><span class="line">map &lt;silent&gt; &lt;F11&gt; :call ToggleFullscreen()&lt;CR&gt;</span><br><span class="line"><span class="string">" 启动 vim 时自动全屏</span></span><br><span class="line"><span class="string">autocmd VimEnter * call ToggleFullscreen()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span>总是显示状态栏</span><br><span class="line"><span class="built_in">set</span> laststatus=2</span><br><span class="line"><span class="string">" 显示光标当前位置</span></span><br><span class="line"><span class="string">set ruler</span></span><br><span class="line"><span class="string">"</span> 高亮当前行/列</span><br><span class="line"><span class="built_in">set</span> cursorline</span><br><span class="line"><span class="string">"set cursorcolumn</span></span><br><span class="line"><span class="string">"</span> 高亮显示搜索结果</span><br><span class="line"><span class="built_in">set</span> hlsearch</span><br><span class="line"></span><br><span class="line"><span class="string">" 禁止折行</span></span><br><span class="line"><span class="string">set nowrap</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span> 开启语法高亮功能</span><br><span class="line">syntax <span class="built_in">enable</span></span><br><span class="line"><span class="string">" 允许用指定语法高亮配色方案替换默认方案</span></span><br><span class="line"><span class="string">syntax on</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span> 自适应不同语言的只能缩进</span><br><span class="line">filetype indent on</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">" vundle 环境设置</span></span><br><span class="line"><span class="string">filetype off</span></span><br><span class="line"><span class="string">set rtp+=~/.vim/bundle/Vundle.vim</span></span><br><span class="line"><span class="string">"</span> vundle管理的插件列表必须位于vundle<span class="comment">#begin()和vundle#end()之间</span></span><br><span class="line">call vundle<span class="comment">#begin()</span></span><br><span class="line"></span><br><span class="line">Plugin <span class="string">'taglist.vim'</span></span><br><span class="line">Bundle <span class="string">'majutsushi/tagbar'</span></span><br><span class="line">Plugin <span class="string">'OmniCppComplete'</span></span><br><span class="line">Plugin <span class="string">'AutoComplPop'</span></span><br><span class="line">Plugin <span class="string">'a.vim'</span></span><br><span class="line">Bundle <span class="string">'gabrielelana/vim-Markdown'</span></span><br><span class="line">Bundle <span class="string">'iamcco/Markdown-preview.vim'</span></span><br><span class="line"><span class="string">" Markdown</span></span><br><span class="line"><span class="string">Bundle 'jszakmeister/Markdown2ctags'</span></span><br><span class="line"><span class="string">"</span> Add support <span class="keyword">for</span> Markdown files <span class="keyword">in</span> tagbar.</span><br><span class="line"><span class="built_in">let</span> g:tagbar_type_Markdown = &#123;</span><br><span class="line">    \ <span class="string">'ctagstype'</span>: <span class="string">'Markdown'</span>,</span><br><span class="line">    \ <span class="string">'ctagsbin'</span> : <span class="string">'/home/***/.vim/bundle/Markdown2ctags/Markdown2ctags.py'</span>,</span><br><span class="line">    \ <span class="string">'ctagsargs'</span> : <span class="string">'-f - --sort=yes'</span>,</span><br><span class="line">    \ <span class="string">'kinds'</span> : [</span><br><span class="line">    \ <span class="string">'s:sections'</span>,</span><br><span class="line">    \ <span class="string">'i:images'</span></span><br><span class="line">    \ ],</span><br><span class="line">    \ <span class="string">'sro'</span> : <span class="string">'|'</span>,</span><br><span class="line">    \ <span class="string">'kind2scope'</span> : &#123;</span><br><span class="line">    \ <span class="string">'s'</span> : <span class="string">'section'</span>,</span><br><span class="line">    \ &#125;,</span><br><span class="line">    \ <span class="string">'sort'</span>: 0,</span><br><span class="line">\ &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">let</span> g:Markdown_enable_spell_cheking=0</span><br><span class="line"><span class="built_in">let</span> g:Markdown_enable_mappings=0</span><br><span class="line"></span><br><span class="line"><span class="string">" 插件列表结束</span></span><br><span class="line"><span class="string">call vundle#end()</span></span><br><span class="line"><span class="string">filetype plugin indent on</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">let Tlist_Show_One_File=1</span></span><br><span class="line"><span class="string">let Tlist_Exit_OnlyWindow=1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span> 设置tagbar使用的ctags的插件，必须要设置对</span><br><span class="line"><span class="built_in">let</span> g:tagbar_ctags_bin=<span class="string">'/usr/bin/ctags'</span></span><br><span class="line"><span class="string">" 设置tagbar的窗口宽度</span></span><br><span class="line"><span class="string">let g:tagbar_width=30</span></span><br><span class="line"><span class="string">"</span> 设置tagbar的窗口显示的位置，为右边</span><br><span class="line"><span class="built_in">let</span> g:tagbar_left=1</span><br><span class="line"><span class="string">" 打开文件自动 打开tagbar</span></span><br><span class="line"><span class="string">autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">set nocompatible</span></span><br><span class="line"><span class="string">set backspace=indent,eol,start</span></span><br><span class="line"><span class="string">set completeopt=longest,menu</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span> 头文件/源文件切换 </span><br><span class="line">nnoremap &lt;silent&gt; &lt;F12&gt; :A&lt;CR&gt;</span><br><span class="line"><span class="string">" 切换至光标所在文件</span></span><br><span class="line"><span class="string">nnoremap &lt;silent&gt; &lt;F11&gt; :IHV&lt;CR&gt; </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">autocmd BufWritePost <span class="variable">$MYVIMRC</span> source <span class="variable">$MYVIMRC</span></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">set nopaste</span></span><br><span class="line"><span class="string">set noautoindent</span></span><br><span class="line"><span class="string">set nosmartindent</span></span><br></pre></td></tr></table></figure>
+
+<p>随后使用安装插件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim</span><br><span class="line">:BundleInstall</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、tmux"><a href="#三、tmux" class="headerlink" title="三、tmux"></a>三、tmux</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install tmux</span><br><span class="line">vim ~/.tmux.conf</span><br></pre></td></tr></table></figure>
+
+<p>添加以下内容</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">######################</span></span><br><span class="line"><span class="comment"># general</span></span><br><span class="line"><span class="comment">######################</span></span><br><span class="line"><span class="built_in">set</span> -g xterm-keys on</span><br><span class="line"><span class="built_in">set</span> -g display-panes-time 3000</span><br><span class="line"><span class="built_in">set</span> -g base-index 1</span><br><span class="line"><span class="built_in">set</span> -g pane-base-index 1</span><br><span class="line"><span class="built_in">set</span> -g mouse-resize-pane on</span><br><span class="line"><span class="built_in">set</span> -g mouse-select-pane on</span><br><span class="line"><span class="built_in">set</span> -g mouse-select-window on</span><br><span class="line"><span class="built_in">set</span> -g pane-active-border-fg white</span><br><span class="line"><span class="built_in">set</span> -g pane-active-border-bg white</span><br><span class="line"><span class="built_in">set</span> -g pane-border-fg blue</span><br><span class="line"><span class="built_in">set</span> -g pane-border-bg black</span><br><span class="line">setw -g mode-mouse on</span><br><span class="line"><span class="built_in">bind</span> r <span class="built_in">source</span>-file ~/.tmux.conf \; display-message <span class="string">"Config reloaded..."</span></span><br><span class="line"><span class="built_in">set</span> -g renumber-windows on</span><br><span class="line"><span class="built_in">set</span> -g <span class="built_in">history</span>-limit 20000</span><br><span class="line"></span><br><span class="line"><span class="comment"># it is terrible for using vim</span></span><br><span class="line"><span class="built_in">set</span> -g escape-time 0</span><br><span class="line"></span><br><span class="line"><span class="comment">######################</span></span><br><span class="line"><span class="comment"># status bar</span></span><br><span class="line"><span class="comment">######################</span></span><br><span class="line"><span class="built_in">set</span> -g status-position bottom</span><br><span class="line"><span class="built_in">set</span> -g status on</span><br><span class="line"><span class="built_in">set</span> -g status-bg colour103</span><br><span class="line"><span class="built_in">set</span> -g status-fg colour232</span><br><span class="line"><span class="built_in">set</span> -g status-key vi</span><br><span class="line"><span class="built_in">set</span> -g status-interval 1</span><br><span class="line"><span class="built_in">set</span> -g status-utf8 on</span><br><span class="line"><span class="built_in">set</span> -g status-justify <span class="string">"centre"</span></span><br><span class="line"><span class="built_in">set</span> -g status-left-length 60</span><br><span class="line"><span class="built_in">set</span> -g status-right-length 90</span><br><span class="line"><span class="built_in">set</span> -g status-left <span class="string">"#(~/.tmux-pl-src/powerline.sh left)"</span><span class="string">'#&#123;?client_prefix,  #[reverse bold] PREFIX ,          &#125;'</span></span><br><span class="line"><span class="built_in">set</span> -g status-right <span class="string">"#(~/.tmux-pl-src/powerline.sh right)"</span></span><br><span class="line">setw -g window-status-current-bg colour15</span><br><span class="line">setw -g window-status-current-fg colour124</span><br><span class="line">setw -g window-status-current-attr italics,bold</span><br><span class="line">setw -g window-status-current-format <span class="string">' #I '</span></span><br><span class="line">setw -g window-status-format <span class="string">' #I '</span></span><br><span class="line"></span><br><span class="line"><span class="comment">######################</span></span><br><span class="line"><span class="comment"># vim</span></span><br><span class="line"><span class="comment">######################</span></span><br><span class="line">setw -g mode-keys vi</span><br><span class="line"><span class="built_in">bind</span> -t vi-copy v begin-selection</span><br><span class="line"><span class="built_in">bind</span> -t vi-copy y copy-selection</span><br><span class="line"><span class="built_in">bind</span> -t vi-copy = end-of-line</span><br><span class="line"><span class="built_in">bind</span> -t vi-copy - start-of-line</span><br><span class="line"></span><br><span class="line"><span class="comment">######################</span></span><br><span class="line"><span class="comment"># general key map</span></span><br><span class="line"><span class="comment">######################</span></span><br><span class="line"><span class="built_in">set</span> -g repeat-time 1500</span><br><span class="line"><span class="built_in">set</span> -g prefix M<span class="_">-e</span></span><br><span class="line">unbind-key C-b</span><br><span class="line"><span class="built_in">bind</span> M<span class="_">-e</span> send-prefix</span><br><span class="line"><span class="built_in">bind</span> -n M-2 display-panes</span><br><span class="line"><span class="built_in">bind</span> -n M-3 <span class="built_in">command</span>-prompt <span class="string">"select-window -t :'%%'"</span></span><br><span class="line"><span class="built_in">bind</span> -n M-Right next-window</span><br><span class="line"><span class="built_in">bind</span> -n M-Left previous-window</span><br><span class="line"><span class="built_in">bind</span> -n M-\ last-window</span><br><span class="line"><span class="built_in">bind</span> -n M-= new-window -c <span class="string">"#&#123;pane_current_path&#125;"</span></span><br><span class="line"><span class="built_in">bind</span> -n M-- <span class="built_in">kill</span>-window</span><br><span class="line"><span class="built_in">bind</span> -n M-x <span class="built_in">kill</span>-pane</span><br><span class="line"><span class="built_in">bind</span> -n M-c copy-mode</span><br><span class="line"><span class="built_in">bind</span> -n M-] paste-buffer</span><br><span class="line"><span class="built_in">bind</span> c new-windows -c <span class="string">"#&#123;pane_current_path&#125;"</span></span><br><span class="line"><span class="built_in">bind</span> _ split-window -v -c <span class="string">"#&#123;pane_current_path&#125;"</span></span><br><span class="line"><span class="built_in">bind</span> | split-window -h -c <span class="string">"#&#123;pane_current_path&#125;"</span></span><br><span class="line"><span class="built_in">bind</span> <span class="string">'"'</span> select-layout tiled</span><br><span class="line"><span class="built_in">bind</span> -r h select-layout main-horizontal \; swap-pane -D</span><br><span class="line"><span class="built_in">bind</span> -r v select-layout main-vertical \; swap-pane -D</span><br><span class="line"><span class="built_in">bind</span> -n F1 save-buffer -b 0 ~/.sdbuf \; run <span class="string">"cat ~/.sdbuf | sdcv"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">bind</span> k select-pane -U           <span class="comment">#选择上窗口</span></span><br><span class="line"><span class="built_in">bind</span> j select-pane -D           <span class="comment">#选择下窗口</span></span><br><span class="line"><span class="built_in">bind</span> h select-pane -L           <span class="comment">#选择左窗口</span></span><br><span class="line"><span class="built_in">bind</span> l select-pane -R           <span class="comment">#选择右窗口</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># rename window</span></span><br><span class="line">setw -g automatic-rename on</span><br><span class="line"><span class="built_in">set</span>-window-option -g window-status-format <span class="string">'#[dim]#I:#[default]#W#[fg=grev,dim]'</span></span><br><span class="line"><span class="built_in">set</span>-window-option -g window-status-current-format <span class="string">'#[fg=red,bold]#I#[fg=red]:#[fg=red]#W#[fg=dim]'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#List of plugins</span></span><br><span class="line"><span class="built_in">set</span> -g @plugin <span class="string">'tmux-plugins/tpm'</span></span><br><span class="line"><span class="built_in">set</span> -g @plugin <span class="string">'tmux-plugins/tmux-sensible'</span></span><br><span class="line"><span class="built_in">set</span> -g @plugin <span class="string">'tmux-plugins/tmux-resurrect'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># tmux-resurrect</span></span><br><span class="line"><span class="built_in">set</span> -g @resurrect-save-bash-history <span class="string">'on'</span></span><br><span class="line"><span class="built_in">set</span> -g @resurrect-capture-pane-contents <span class="string">'on'</span></span><br><span class="line"><span class="built_in">set</span> -g @resurrect-strategy-vim <span class="string">'session'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> -g @resurrect-save <span class="string">'S'</span></span><br><span class="line"><span class="built_in">set</span> -g @resurrect-restore <span class="string">'R'</span></span><br><span class="line"><span class="comment">#Initialize TMUX plugin manager (keep this line at the bottom)</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">bind</span> K <span class="built_in">kill</span>-server</span><br><span class="line"></span><br><span class="line">run <span class="string">'~/.tmux/plugins/tpm/tpm'</span></span><br></pre></td></tr></table></figure>
+
+<p><code>tmux</code>常用操作</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">alt+e  <span class="comment">#快捷前缀 prefix</span></span><br><span class="line">prefix new <span class="comment">#新建会话</span></span><br><span class="line">prefix s <span class="comment">#列出会话，切换会话</span></span><br><span class="line">prefix $ <span class="comment">#重命名会话</span></span><br><span class="line">prefix | <span class="comment">#分割窗口</span></span><br><span class="line">prefix c <span class="comment">#新建窗口</span></span><br><span class="line">prefix num <span class="comment">#切换窗口</span></span><br><span class="line">prefix , <span class="comment">#重命名窗口</span></span><br><span class="line"><span class="built_in">exit</span> <span class="comment">#退出</span></span><br></pre></td></tr></table></figure>
+
+<p>其他快捷键，查看配置</p>
+<h3 id="四、samba-ssh"><a href="#四、samba-ssh" class="headerlink" title="四、samba,ssh"></a>四、samba,ssh</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install samba samba-common</span><br><span class="line">sudo vim /etc/samba/smb.conf</span><br></pre></td></tr></table></figure>
+
+<p>添加以下内容</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">test</span>]</span><br><span class="line">  path = /home/<span class="built_in">test</span></span><br><span class="line">  valid users = <span class="built_in">test</span></span><br><span class="line">  browseable = yes</span><br><span class="line">  writable = yes</span><br><span class="line">  public = no</span><br></pre></td></tr></table></figure>
+
+<p>为此用户<code>test</code>设置密码</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo smbpasswd -a <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<p>重启服务器</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/samba restart</span><br></pre></td></tr></table></figure>
+        <div class="div_qrcode">
+            <div id="combine"></div>
+        </div>
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/BlogCode/2019/07/07/心记/20190707心记/" class="pre-post btn btn-default" title='失业调整'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">失业调整</span>
+        </a>
+    
+    
+        <a href="/BlogCode/2019/05/31/笔记/09Gerrit服务器搭建/" class="next-post btn btn-default" title='Gerrit服务器的搭建与使用'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Gerrit服务器的搭建与使用</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+<div id="vcomments"></div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+  <div class="widget">
+    <div >
+        <h3>FLIPPED</h3>
+<div>
+<div style="float:left; clear: both;" align="center">
+<img src="/img/about.jpg" style="width: 80%;">
+</div>
+<p style="align:center;line-height: 25px;font-size: 13.6px;min-height:250px">The higher I got, the more amazed I was by the view.Some of us get dipped in flat, some in satin, some in gloss. But every once in a while you find someone who's iridescent, and when you do, nothing will ever compare.And I realized Garrett was right about one thing: I had flipped. Completely.人性的美具有纷繁的多面性，无论是男女之爱还是亲人之情，所有的美都会令人向往和感动!</p>
+</div>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/心记/"><i class="fa" aria-hidden="true">心记</i></a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/杂读/"><i class="fa" aria-hidden="true">杂读</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/笔记/"><i class="fa" aria-hidden="true">笔记</i></a><span class="category-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/12/"><i class="fa" aria-hidden="true">December 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/11/"><i class="fa" aria-hidden="true">November 2019</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/07/"><i class="fa" aria-hidden="true">July 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/06/"><i class="fa" aria-hidden="true">June 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/05/"><i class="fa" aria-hidden="true">May 2019</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/09/"><i class="fa" aria-hidden="true">September 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/08/"><i class="fa" aria-hidden="true">August 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/07/"><i class="fa" aria-hidden="true">July 2018</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/06/"><i class="fa" aria-hidden="true">June 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/05/"><i class="fa" aria-hidden="true">May 2018</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/BlogCode/tags/Gerrit/" style="font-size: 15px;">Gerrit</a> <a href="/BlogCode/tags/Luci/" style="font-size: 10px;">Luci</a> <a href="/BlogCode/tags/cpu/" style="font-size: 10px;">cpu</a> <a href="/BlogCode/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/BlogCode/tags/linux工具/" style="font-size: 20px;">linux工具</a> <a href="/BlogCode/tags/netfilter/" style="font-size: 10px;">netfilter</a> <a href="/BlogCode/tags/ping/" style="font-size: 10px;">ping</a> <a href="/BlogCode/tags/samba/" style="font-size: 10px;">samba</a> <a href="/BlogCode/tags/shell脚本/" style="font-size: 10px;">shell脚本</a> <a href="/BlogCode/tags/socket/" style="font-size: 15px;">socket</a> <a href="/BlogCode/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/BlogCode/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/BlogCode/tags/win工具/" style="font-size: 10px;">win工具</a> <a href="/BlogCode/tags/win脚本/" style="font-size: 10px;">win脚本</a> <a href="/BlogCode/tags/前端/" style="font-size: 10px;">前端</a> <a href="/BlogCode/tags/套接字/" style="font-size: 10px;">套接字</a> <a href="/BlogCode/tags/技术书/" style="font-size: 10px;">技术书</a> <a href="/BlogCode/tags/文件/" style="font-size: 10px;">文件</a> <a href="/BlogCode/tags/文章/" style="font-size: 10px;">文章</a> <a href="/BlogCode/tags/电影/" style="font-size: 10px;">电影</a> <a href="/BlogCode/tags/算法/" style="font-size: 10px;">算法</a> <a href="/BlogCode/tags/线程/" style="font-size: 10px;">线程</a> <a href="/BlogCode/tags/网站/" style="font-size: 10px;">网站</a> <a href="/BlogCode/tags/网络/" style="font-size: 15px;">网络</a> <a href="/BlogCode/tags/转载/" style="font-size: 15px;">转载</a> <a href="/BlogCode/tags/进程控制/" style="font-size: 10px;">进程控制</a> <a href="/BlogCode/tags/锁/" style="font-size: 10px;">锁</a>
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/BlogCode/js/jquery-3.3.1.js?rev=@@hash"></script>
+
+	<script src="/BlogCode/js/search.js?rev=@@hash"></script>
+
+
+<script src="/BlogCode/js/app.js?rev=@@hash"></script>
+<script src="/BlogCode/js/menu.js?rev=@@hash"></script>
+<script src="/BlogCode/js/qart.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/clipboard.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/av-min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/Valine.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/web_tools.js?rev=@@hash"></script>
+
+
+
+</body>
+</html>

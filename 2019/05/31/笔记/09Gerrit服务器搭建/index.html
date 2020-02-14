@@ -1,0 +1,462 @@
+<!DOCTYPE HTML>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Flipped205">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://Flipped205.github.io/BlogCode">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+
+<title>Gerrit服务器的搭建与使用 | Flipped205</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Flipped205" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/BlogCode/css/bootstrap.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/font-awesome.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/style.css?rev=2020-02-14[09]">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <div class="box_bk"></div>
+<div class="box_center">
+    <div class="box_i"><img src=""></div>
+    <div class="box_close"><img src="/img/close.png"></div>
+</div>
+<button class="btn" style="display:none"></button>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/笔记/"><i class="fa "></i>笔记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/杂读/"><i class="fa "></i>杂读</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/心记/"><i class="fa "></i>心记</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Gerrit服务器的搭建与使用">
+            
+	            Gerrit服务器的搭建与使用
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/笔记">
+            笔记
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/Gerrit" title='Gerrit'>
+                        Gerrit
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-calendar-o"></i>
+            <span class="date-meta">发表于:&nbsp;2019/05/31</span>
+        </span>
+        <span class="fa-wrap">
+            
+        </span>
+    
+</div>
+
+            
+
+           
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="一、前期准备"><a href="#一、前期准备" class="headerlink" title="一、前期准备"></a>一、前期准备</h2><h3 id="1、java"><a href="#1、java" class="headerlink" title="1、java"></a>1、java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:openjdk-r/ppa</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line">sudo apt-get install openjdk-8-jdk</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、git"><a href="#2、git" class="headerlink" title="2、git"></a>2、git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、apache2"><a href="#3、apache2" class="headerlink" title="3、apache2"></a>3、apache2</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apache2</span><br><span class="line"></span><br><span class="line">sudo /etc/init.d/apach2 start  <span class="comment">#是否可正常启动</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4、下载gerrit"><a href="#4、下载gerrit" class="headerlink" title="4、下载gerrit"></a>4、下载gerrit</h3><p><a href="https://pan.baidu.com/s/1GwVTqH_YVLO38_PYUpusXw" target="_blank" rel="noopener">gerrit.2.15.2百度盘</a> 提取码：otlq<br><a href="https://www.gerritcodereview.com/2.15.html" target="_blank" rel="noopener">官方下载地址</a></p>
+<h2 id="二、搭建Gerrit"><a href="#二、搭建Gerrit" class="headerlink" title="二、搭建Gerrit"></a>二、搭建Gerrit</h2><h3 id="1、新建用户"><a href="#1、新建用户" class="headerlink" title="1、新建用户"></a>1、新建用户</h3><p>使用独立的账户，来配置gerrit</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser gerrit</span><br></pre></td></tr></table></figure>
+
+<p>将<code>gerrit</code>加入到<code>sudo</code>权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 777 /etc/sudoers</span><br><span class="line">sudo vim /etc/sudoers</span><br></pre></td></tr></table></figure>
+
+<p>添加下面一句</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gerrit  ALL=(ALL:ALL)ALL</span><br></pre></td></tr></table></figure>
+
+<p>切换用户为<code>gerrit</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su gerrit</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、安装gerrit"><a href="#2、安装gerrit" class="headerlink" title="2、安装gerrit"></a>2、安装gerrit</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar gerrit.2.15.2.war init --batch --dev -d ~/gerrittest</span><br></pre></td></tr></table></figure>
+
+<p>出现<code>Starting Gerrit Code Review: OK</code>，表示<code>Gerrit</code>服务正在运行。</p>
+<h3 id="3、反向代理"><a href="#3、反向代理" class="headerlink" title="3、反向代理"></a>3、反向代理</h3><h4 id="3-1、修改gerrit配置"><a href="#3-1、修改gerrit配置" class="headerlink" title="3.1、修改gerrit配置"></a>3.1、修改gerrit配置</h4><p><code>vim gerrittest/etc/gerrit.config</code>:<br>修改为以下内容<br><code>192.168.40.130</code>为本机ip地址，通过<code>ifconfig</code>可查看</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">[gerrit]</span><br><span class="line">    basePath = git</span><br><span class="line">    serverId = c5447167-daf0-49e2-a79f-e154d0841461</span><br><span class="line">    canonicalWebUrl = http://192.168.40.130:8081/  <span class="comment"># 修改为ip:8081</span></span><br><span class="line">[database]</span><br><span class="line">    <span class="built_in">type</span> = h2</span><br><span class="line">    database = /home/gerrittest/gerrit/db/ReviewDB</span><br><span class="line">[noteDb <span class="string">"changes"</span>]</span><br><span class="line">    disableReviewDb = <span class="literal">true</span></span><br><span class="line">    primaryStorage = note db</span><br><span class="line">    <span class="built_in">read</span> = <span class="literal">true</span></span><br><span class="line">    sequence = <span class="literal">true</span></span><br><span class="line">    write = <span class="literal">true</span></span><br><span class="line">[index]</span><br><span class="line">    <span class="built_in">type</span> = LUCENE</span><br><span class="line">[auth]</span><br><span class="line">    <span class="built_in">type</span> = HTTP <span class="comment">#DEVELOPMENT_BECOME_ANY_ACCOUNT # 修改为HTTP</span></span><br><span class="line">[receive]</span><br><span class="line">    enableSignedPush = <span class="literal">false</span></span><br><span class="line">[sendemail]</span><br><span class="line">    smtpServer = localhost</span><br><span class="line">[container]</span><br><span class="line">    user = gerrittest</span><br><span class="line">    javaHome = /usr/lib/jvm/java-8-oracle/jre</span><br><span class="line">[sshd]</span><br><span class="line">    listenAddress = *:29418</span><br><span class="line">[httpd]</span><br><span class="line">    listenUrl = proxy-http://192.168.40.130:8081/ <span class="comment"># 修改proxy-http://ip:8081</span></span><br><span class="line">[cache]</span><br><span class="line">    directory = cache</span><br><span class="line">[plugins]</span><br><span class="line">    allowRemoteAdmin = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-Apacge2配置"><a href="#3-2-Apacge2配置" class="headerlink" title="3.2 Apacge2配置"></a>3.2 Apacge2配置</h4><p>需要使能必要的Apache2模块：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a2enmod proxy_http</span><br><span class="line">a2dissite 000-default</span><br><span class="line">a2enmod ssl          ; <span class="comment"># 可选，HTTPS或SSL需要</span></span><br></pre></td></tr></table></figure>
+
+<p><code>sudo vim /etc/apache2/apache2.conf</code><br>最后面，添加一下内容：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:8080&gt;</span><br><span class="line">    ServerName 192.168.40.130</span><br><span class="line">    ProxyRequests Off</span><br><span class="line">    ProxyVia Off</span><br><span class="line">    ProxyPreserveHost On</span><br><span class="line">    &lt;Proxy *&gt;</span><br><span class="line">        Require all granted</span><br><span class="line">    &lt;/Proxy&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Location <span class="string">"/"</span>&gt;</span><br><span class="line">        AuthType Basic</span><br><span class="line">        AuthName <span class="string">"Gerrit Code Review"</span></span><br><span class="line">        Require valid-user</span><br><span class="line">    AuthBasicProvider file</span><br><span class="line">        AuthUserFile /etc/apache2/passwords</span><br><span class="line">    &lt;/Location&gt;</span><br><span class="line"></span><br><span class="line">    AllowEncodedSlashes On</span><br><span class="line">    ProxyPass /  http://192.168.40.130:8081/ nocanon</span><br><span class="line">    ProxyPassReverse / http://192.168.40.130:8081/ nocanon</span><br><span class="line"></span><br><span class="line">    ErrorLog /var/<span class="built_in">log</span>/apache2/gerrit.error.log</span><br><span class="line">    CustomLog /var/<span class="built_in">log</span>/apache2/gerrit.access.log combined</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>sudo vim /etc/apache2/ports.conf</code><br>添加：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Listen 8080</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-设置Gerrit账户和密码"><a href="#3-3-设置Gerrit账户和密码" class="headerlink" title="3.3 设置Gerrit账户和密码"></a>3.3 设置Gerrit账户和密码</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo touch /etc/apache2/passwords</span><br><span class="line">sudo htpasswd -b /etc/apache2/passwords admin 123456 <span class="comment"># administrator</span></span><br><span class="line">sudo htpasswd -b /etc/apache2/passwords gerrit1 123456 <span class="comment"># general usr</span></span><br></pre></td></tr></table></figure>
+
+<p>启动gerrit &amp; apache2</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ~/gerrittest/bin/gerrit.sh restart</span><br><span class="line">sudo /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、使用Gerrit"><a href="#4、使用Gerrit" class="headerlink" title="4、使用Gerrit"></a>4、使用Gerrit</h3><p>使用浏览器登录<code>http:192.168.40.130:8080</code><br>登录<code>admin</code></p>
+<p>登录成功后，该用户为管理员</p>
+<h4 id="1、SSH登录"><a href="#1、SSH登录" class="headerlink" title="1、SSH登录"></a>1、SSH登录</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> </span><br><span class="line">ssh-keygen -t rsa   <span class="comment">#生成ssk key </span></span><br><span class="line">cat ~/.ssh/id_rsa.pub  <span class="comment">#查看ssh key</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDBlBpZtMRBI/O077EM0fqrhUrzCRP7yxLMrSfKXMO2BK5pb5ITnnyiEMdurxo31iD9uaF3y/+Yr/H8K4IRtBdHM4ZQseAqmz9Z/X7Q97PkrI8rwocIbs4BUSYap2j/lUzHGcRdzYGR/8XpXCSIwO4OFjsBJZluOKpuNNJUq8o5ZAS7NTQTi83JwgiKQrByuUYPpVqzgf6RGEI0lmesLxRNIbA5FMxfDuKyPIGPvuz4BRayREcwdkeBrJyKVgQf16lPlvJxzCOgnY01xsdCMXEF5Ri2MLYfysYlhehs+UCabLwmTi+Xpe3ioDOe6YnYx7QQzvi/YuXXew8SYwRGKxod gerrit@ubuntu</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>其他</code>浏览器登录<code>gerrit1</code>账户</p>
+<div align="left">
+
+<p><img src="/img/note_08/01.png" alt></p></div><p></p>
+<p>验证ssh key是否配置成功</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh gerrit1@192.168.40.130 -p 29418</span><br></pre></td></tr></table></figure>
+
+<p>出现下面内容表示成功：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> ****    Welcome to Gerrit Code Review    ****</span><br><span class="line"></span><br><span class="line">  Hi gerrit1, you have successfully connected over SSH.</span><br><span class="line"></span><br><span class="line">  Unfortunately, interactive shells are disabled.</span><br><span class="line">  To <span class="built_in">clone</span> a hosted Git repository, use:</span><br><span class="line"></span><br><span class="line">  git <span class="built_in">clone</span> ssh://gerrit1@192.168.40.130:29418/REPOSITORY_NAME.git</span><br><span class="line"></span><br><span class="line">Connection to 192.168.40.130 closed.</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、添加项目"><a href="#2、添加项目" class="headerlink" title="2、添加项目"></a>2、添加项目</h4><p>使用<code>admin</code>账户，在gerrit管理页面进行添加账户</p>
+<div align="left">
+
+<p><img src="/img/note_08/02.png" alt></p></div><p></p>
+<h4 id="3、代码修改"><a href="#3、代码修改" class="headerlink" title="3、代码修改"></a>3、代码修改</h4><p>拉取代码</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir code</span><br><span class="line"><span class="built_in">cd</span> code</span><br><span class="line">git <span class="built_in">clone</span> ssh://gerrit1@192.168.40.130:29418/demo</span><br></pre></td></tr></table></figure>
+
+<div align="left">
+
+<p><img src="/img/note_08/03.png" alt></p></div><p></p>
+<p>更新git hooks</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitdir=$(git rev-parse --git-dir); scp -p -P 29418 gerrit1@192.168.40.130:hooks/commit-msg <span class="variable">$&#123;gitdir&#125;</span>/hooks/</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span>  <span class="string">"init code"</span>&gt;ReadMe.txt  <span class="comment"># 创建新文件</span></span><br><span class="line">git add ReadMe.txt  <span class="comment"># 添加新文件</span></span><br><span class="line">git commit -m <span class="string">"init code commit"</span></span><br></pre></td></tr></table></figure>
+
+<p><code>git commit</code>出错，提示需要设置<code>user.email</code>,<code>user.name</code>这里需要注意，先设置<code>gerrit.config</code>的<code>sendemail</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/gerrittest/etc/gerrit.config</span><br></pre></td></tr></table></figure>
+
+<p>修改<code>sendemail</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[sendemail]</span><br><span class="line">        <span class="built_in">enable</span> = <span class="literal">true</span></span><br><span class="line">        smtpServer = smtp.163.com</span><br><span class="line">        smtpServerPort = 465</span><br><span class="line">        smtpEncryption = ssl</span><br><span class="line">        smtpUser = 【邮箱账号】</span><br><span class="line">        smtpPass = 【授权密码】  <span class="comment">#授权密码</span></span><br><span class="line">        sslVerify = <span class="literal">false</span></span><br><span class="line">        from = 【邮箱账号】</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/gerrittest/etc/secure.config</span><br></pre></td></tr></table></figure>
+
+<p>添加<code>sendemail</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[sendemail]</span><br><span class="line">        smtpPass = 【授权密码】</span><br></pre></td></tr></table></figure>
+
+<p>之后重启<code>gerrit</code>，<code>apache</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~/gerrittest/bin/gerrit.sh restart</span><br><span class="line">/etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure>
+
+<p>随后设置<code>gerrit1</code>的<code>user.email</code>,<code>user.name</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email <span class="string">"gerrit205@163.com"</span></span><br><span class="line">git config --global user.name <span class="string">"gerrit1"</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit</span><br><span class="line">git push origin HEAD:refs/<span class="keyword">for</span>/master</span><br></pre></td></tr></table></figure>
+
+<p><code>git push</code>出现错误,这里需要<code>gerrit1</code>登录gerrit管理页面，设置<code>name</code>和<code>email</code></p>
+<div align="left">
+
+<p><img src="/img/note_08/07.png" alt></p></div><p></p>
+<div align="left">
+
+<p><img src="/img/note_08/08.png" alt></p></div><br>随后会收到通过<code>gerrit.config</code>中添加的邮箱发送的邮件，复制收到的链接，在<code>gerrit1</code>所登录的浏览器，进行验证。随后就可看到上图中显示的邮箱。<p></p>
+<p>随后通过<code>admin</code>将<code>gerrit1</code>添加到<code>Administrators</code>组:</p>
+<div align="left">
+
+<p><img src="/img/note_08/04.png" alt></p></div><p></p>
+<p>之后重新<code>git push</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin HEAD:refs/<span class="keyword">for</span>/master</span><br></pre></td></tr></table></figure>
+
+<p>成功如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Counting objects: 3, <span class="keyword">done</span>.</span><br><span class="line">Writing objects: 100% (3/3), 284 bytes | 0 bytes/s, <span class="keyword">done</span>.</span><br><span class="line">Total 3 (delta 0), reused 0 (delta 0)</span><br><span class="line">remote: Processing changes: new: 1, <span class="keyword">done</span>    </span><br><span class="line">remote: </span><br><span class="line">remote: New Changes:</span><br><span class="line">remote:   http://192.168.40.130:8081/<span class="comment">#/c/demo/+/21 init code commit</span></span><br><span class="line">remote: </span><br><span class="line">To ssh://gerrit1@192.168.40.130:29418/demo</span><br><span class="line"> * [new branch]      HEAD -&gt; refs/<span class="keyword">for</span>/master</span><br></pre></td></tr></table></figure>
+
+<p>通过<code>gerrit1</code>进入gerrit管理页面</p>
+<div align="left">
+
+<p><img src="/img/note_08/05.png" alt></p></div><p></p>
+<div align="left">
+
+<p><img src="/img/note_08/06.png" alt></p></div><br>添加<code>Reviewers</code><p></p>
+<div align="left">
+
+<p><img src="/img/note_08/09.png" alt></p></div><p></p>
+<p><code>gerrit1</code>整个代码就提交完成了，剩下的就是Reviewers人员进行代码评审和入库。<br>这里是<code>admin</code>用户进行入库</p>
+<div align="left">
+
+<p><img src="/img/note_08/10.png" alt></p></div><p></p>
+<div align="left">
+
+<p><img src="/img/note_08/11.png" alt></p></div><p></p>
+<p>整个代码就入库完成。</p>
+
+        <div class="div_qrcode">
+            <div id="combine"></div>
+        </div>
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/BlogCode/2019/06/18/笔记/0aLinux开发环境搭建/" class="pre-post btn btn-default" title='Linux系统开发环境搭建'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Linux系统开发环境搭建</span>
+        </a>
+    
+    
+        <a href="/BlogCode/2019/05/31/笔记/08Gerrit服务器搭建/" class="next-post btn btn-default" title='Gerrit服务器的搭建与使用'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Gerrit服务器的搭建与使用</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+<div id="vcomments"></div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+  <div class="widget">
+    <div >
+        <h3>FLIPPED</h3>
+<div>
+<div style="float:left; clear: both;" align="center">
+<img src="/img/about.jpg" style="width: 80%;">
+</div>
+<p style="align:center;line-height: 25px;font-size: 13.6px;min-height:250px">The higher I got, the more amazed I was by the view.Some of us get dipped in flat, some in satin, some in gloss. But every once in a while you find someone who's iridescent, and when you do, nothing will ever compare.And I realized Garrett was right about one thing: I had flipped. Completely.人性的美具有纷繁的多面性，无论是男女之爱还是亲人之情，所有的美都会令人向往和感动!</p>
+</div>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/心记/"><i class="fa" aria-hidden="true">心记</i></a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/杂读/"><i class="fa" aria-hidden="true">杂读</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/笔记/"><i class="fa" aria-hidden="true">笔记</i></a><span class="category-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/12/"><i class="fa" aria-hidden="true">December 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/11/"><i class="fa" aria-hidden="true">November 2019</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/07/"><i class="fa" aria-hidden="true">July 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/06/"><i class="fa" aria-hidden="true">June 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/05/"><i class="fa" aria-hidden="true">May 2019</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/09/"><i class="fa" aria-hidden="true">September 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/08/"><i class="fa" aria-hidden="true">August 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/07/"><i class="fa" aria-hidden="true">July 2018</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/06/"><i class="fa" aria-hidden="true">June 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/05/"><i class="fa" aria-hidden="true">May 2018</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/BlogCode/tags/Gerrit/" style="font-size: 15px;">Gerrit</a> <a href="/BlogCode/tags/Luci/" style="font-size: 10px;">Luci</a> <a href="/BlogCode/tags/cpu/" style="font-size: 10px;">cpu</a> <a href="/BlogCode/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/BlogCode/tags/linux工具/" style="font-size: 20px;">linux工具</a> <a href="/BlogCode/tags/netfilter/" style="font-size: 10px;">netfilter</a> <a href="/BlogCode/tags/ping/" style="font-size: 10px;">ping</a> <a href="/BlogCode/tags/samba/" style="font-size: 10px;">samba</a> <a href="/BlogCode/tags/shell脚本/" style="font-size: 10px;">shell脚本</a> <a href="/BlogCode/tags/socket/" style="font-size: 15px;">socket</a> <a href="/BlogCode/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/BlogCode/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/BlogCode/tags/win工具/" style="font-size: 10px;">win工具</a> <a href="/BlogCode/tags/win脚本/" style="font-size: 10px;">win脚本</a> <a href="/BlogCode/tags/前端/" style="font-size: 10px;">前端</a> <a href="/BlogCode/tags/套接字/" style="font-size: 10px;">套接字</a> <a href="/BlogCode/tags/技术书/" style="font-size: 10px;">技术书</a> <a href="/BlogCode/tags/文件/" style="font-size: 10px;">文件</a> <a href="/BlogCode/tags/文章/" style="font-size: 10px;">文章</a> <a href="/BlogCode/tags/电影/" style="font-size: 10px;">电影</a> <a href="/BlogCode/tags/算法/" style="font-size: 10px;">算法</a> <a href="/BlogCode/tags/线程/" style="font-size: 10px;">线程</a> <a href="/BlogCode/tags/网站/" style="font-size: 10px;">网站</a> <a href="/BlogCode/tags/网络/" style="font-size: 15px;">网络</a> <a href="/BlogCode/tags/转载/" style="font-size: 15px;">转载</a> <a href="/BlogCode/tags/进程控制/" style="font-size: 10px;">进程控制</a> <a href="/BlogCode/tags/锁/" style="font-size: 10px;">锁</a>
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/BlogCode/js/jquery-3.3.1.js?rev=@@hash"></script>
+
+	<script src="/BlogCode/js/search.js?rev=@@hash"></script>
+
+
+<script src="/BlogCode/js/app.js?rev=@@hash"></script>
+<script src="/BlogCode/js/menu.js?rev=@@hash"></script>
+<script src="/BlogCode/js/qart.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/clipboard.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/av-min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/Valine.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/web_tools.js?rev=@@hash"></script>
+
+
+
+</body>
+</html>

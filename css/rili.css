@@ -1,0 +1,159 @@
+html{
+	font-size: 100px;
+	overflow:hidden;overflow-y:auto;
+}
+body{
+	font-family: Arial,microsoft yahei,微软雅黑;
+    -webkit-font-smoothing: antialiased;
+    font-size: .16rem;
+    height: 100%;
+    margin: 0;
+    overflow:hidden;overflow-y:auto;
+}
+em, i {
+    font-style: normal;
+}
+.head
+{
+	background-color: #FFFFFF;
+	padding: 0.08rem;
+	padding-left: .2rem; 
+}
+.month{
+	font-size: .4rem;
+	display: inline;
+}
+.day{
+	position: relative;
+	padding-left: 0.03rem;
+	font-size: .14rem;
+}
+.year{
+	position: relative;
+	top:.04rem;
+	padding-left: 0.03rem;
+	font-size: .14rem;
+}
+
+#rili_title{
+	padding: 0.08rem;
+	padding-top:0rem; 
+	border-bottom: 1px solid #cccccc;
+	margin-left: 0.08rem;
+	margin-right: 0.08rem;
+	
+}
+#rili_title >table{
+	text-align: center;
+	width: 100%;
+	font-size: 0.14rem;
+    color: rgb(102, 102, 102);
+    font-family: 微软雅黑;
+
+	border-collapse: collapse;
+	border-spacing: 0;
+	table-layout: fixed;
+
+}
+
+#rili{
+	padding: 0.08rem;
+	position: relative;
+}
+
+#rili >table{
+	text-align: center;
+	width: 100%;
+	font-size: 0.14rem;
+    color: #000000;
+    font-family: 微软雅黑;
+	
+
+}
+#rili tr{
+	height: 0.53rem;
+}
+#rili tr td{
+	
+	position: relative;
+}
+
+#rili td{
+	border-radius: 50%;
+	width: 14.28%;
+	
+}
+.td_default{
+	border: 2px solid #FFF;
+	
+}
+
+#rili em {
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    font-size: .1rem;
+    color: #a3a1a1;
+    justify-content: center
+}
+#rili i {
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    font-size: .20rem;
+    justify-content: center;
+}
+.jieqi{
+	color: #30A9ED;
+}
+.today{	
+    border: 2px solid #2b90d9;
+    background-color: #2b90d9;
+    color: #FFF;
+}
+.select_day{
+    border: 2px solid #2b90d9;
+    
+}
+.jiaqi{
+	font-size: 0.1rem;
+	position: absolute;
+	top: 14%;
+	left: 72%;
+	color:#58c9b9;
+}
+.work{
+	font-size: 0.1rem;
+	position: absolute;
+	top:14%;
+	left: 72%;
+	color:#f94e3f;
+}
+#ret_jt{
+	position: fixed;
+	border-radius: 50%; 
+    bottom: 0px;
+    height: 0.55rem;
+    width: 0.55rem;
+    background: #2b90d9;
+    right: 0.7rem;
+    margin: 0.15rem;
+    text-align: center;
+    color:#ffffff;
+    line-height: 0.55rem;
+    font-size: 0.2rem;
+}
+#add_event{
+	border-radius: 50%; 
+	position: fixed;
+    bottom: 0px;
+    height: 0.55rem;
+    width: 0.55rem;
+    background: #cccccc;
+    right: 0rem;
+    margin: 0.15rem;
+    color:#ffffff;
+    text-align: center;
+    font-size: 0.3rem;
+    line-height: 0.55rem
+}

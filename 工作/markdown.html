@@ -1,0 +1,343 @@
+<!DOCTYPE HTML>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Flipped205">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://Flipped205.github.io/BlogCode">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+
+<title>使用Markdown撰写文档的解决方案 | Flipped205</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Flipped205" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/BlogCode/css/bootstrap.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/font-awesome.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/style.css?rev=2020-02-14[09]">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <div class="box_bk"></div>
+<div class="box_center">
+    <div class="box_i"><img src=""></div>
+    <div class="box_close"><img src="/img/close.png"></div>
+</div>
+<button class="btn" style="display:none"></button>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/笔记/"><i class="fa "></i>笔记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/杂读/"><i class="fa "></i>杂读</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/心记/"><i class="fa "></i>心记</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content ">
+                    <div class="about">
+	
+	    <article class="post">
+	        <h1 class="post-head">关于我</h1>
+	        <div class="post-body">
+	            <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a><strong>1 前言</strong></h2><p>最近看到有些人在用Markdown来写文档，所以这里分享一下我的解决方案。</p>
+<p>介绍工具之前，我先谈谈对使用Markdown的优劣的思考：</p>
+<p><strong>优势</strong></p>
+<ul>
+<li><ol>
+<li>轻量<ul>
+<li>使用相对简单。随便打开一个文本编辑器你就可以开始干活了，也不像word有这么多的选项，减少你很多排版的时间。这里加了一个“相对”，原因是如果使用Markdown扩展的话，其实语法逐渐开始有一些复杂了。</li>
+<li>由于是纯文本的，有利于查看历史修订，有利于跟版本控制集成，便于维护。</li>
+<li>易于部署。除了渲染需要专门的工具，编辑和查看不依赖复杂的工具，甚至你不需要将Markdown渲染成html，也能完全看得懂</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>由于轻量，让Markdown非常适合跟随代码，作为工程/模块的README</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>算是一项技能。目前越来越多的地方支持类Markdown的标记语言，例如github、一些主流的RESTful API接口文档撰写工具（API Blueprint、swagger editor）、有道云笔记、锤子笔记以及我们之前用的代码评审工具phabricator等等</li>
+</ol>
+</li>
+</ul>
+<p><strong>劣势</strong></p>
+<ul>
+<li><ol>
+<li>标准Markdown语法太简单，不太好用，导致各种Markdown变体的产生，所以现在最大的问题就是没有标准。记得14年看到过一篇文章《Standard Flavored Markdown》，现在再去看看，发现进展并不是很顺利，看来Markdown离大一统还有很长的路要走orz</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>word和Markdown的学习曲线是刚好颠倒的，Markdown上手前需要了解的一些基础的语法，甚至是一些扩展语法，导致很多人一开始就是排斥的，这也导致Markdown并不适合大团队作为标准的文档格式，因为总有人（特别是非研发岗）用不好甚至是不会写Markdown，那么文档的传承和维护就成了大问题</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>作图不方便，如果用visio之类的工具转成图片又不利于维护，所以除非你已经非常擅长画ascii图，否则尽量不要用Markdown来写复杂的文档<br>所以现在的我并不十分推崇将Markdown作为整个团队的文档标准，我更倾向于将它用在随代码的README以及一些非正式的文档中</li>
+</ol>
+</li>
+</ul>
+<h2 id="2-vim插件"><a href="#2-vim插件" class="headerlink" title="2 vim插件"></a><strong>2 vim插件</strong></h2><p>我使用vim作为编辑器，编写Markdown文本时需要一些插件，插件均使用vundle来管理</p>
+<h3 id="2-1-gabrielelana-vim-Markdown"><a href="#2-1-gabrielelana-vim-Markdown" class="headerlink" title="2.1 gabrielelana/vim-Markdown"></a><strong>2.1 gabrielelana/vim-Markdown</strong></h3><p><strong>2.1.1 作用</strong><br>完善了vim的Markdown语法高亮，标准的Markdown的语法高亮早以无法满足大部分扩展Markdown语法，导致你用vim默认的 Markdown syntax 文件查看Markdown文本的时候经常会看到一些错误的高亮内容</p>
+<div align="center">![Markdown Preview](/img/work_06/01.gif)</div>
+
+<p><strong>2.1.2 vim配置</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Bundle 'gabrielelana/vim-Markdown'</span><br><span class="line">let g:Markdown_enable_spell_checking = 0</span><br><span class="line">let g:Markdown_enable_mappings = 0</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-iamcco-Markdown-preview-vim"><a href="#2-2-iamcco-Markdown-preview-vim" class="headerlink" title="2.2 iamcco/Markdown-preview.vim"></a><strong>2.2 iamcco/Markdown-preview.vim</strong></h3><p><strong>2.2.1 作用</strong><br>能帮助那些初学Markdown的童鞋写文档，但要注意一点，这个工具的Markdown渲染器与我最终要使用的渲染器是不同的，所以语法有细微差别</p>
+<p><strong>2.2.2 vim配置</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Bundle 'iamcco/Markdown-preview.vim'</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-jszakmeister-Markdown2ctags"><a href="#2-3-jszakmeister-Markdown2ctags" class="headerlink" title="2.3 jszakmeister/Markdown2ctags"></a><strong>2.3 jszakmeister/Markdown2ctags</strong></h3><p><strong>2.3.1 作用</strong><br>需要配合ctag一起使用，让ctag识别Markdown文本中的标签</p>
+<p><strong>2.3.2 vim配置</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&quot; Markdown</span><br><span class="line">Bundle &apos;jszakmeister/Markdown2ctags&apos;</span><br><span class="line">&quot; Add support for Markdown files in tagbar.</span><br><span class="line">let g:tagbar_type_Markdown = &#123;</span><br><span class="line">    \ &apos;ctagstype&apos;: &apos;Markdown&apos;,</span><br><span class="line">    \ &apos;ctagsbin&apos; : &apos;/home/oyxy/.vim/bundle/Markdown2ctags/Markdown2ctags.py&apos;,</span><br><span class="line">    \ &apos;ctagsargs&apos; : &apos;-f - --sort=yes&apos;,</span><br><span class="line">    \ &apos;kinds&apos; : [</span><br><span class="line">        \ &apos;s:sections&apos;,</span><br><span class="line">        \ &apos;i:images&apos;</span><br><span class="line">    \ ],</span><br><span class="line">    \ &apos;sro&apos; : &apos;|&apos;,</span><br><span class="line">    \ &apos;kind2scope&apos; : &#123;</span><br><span class="line">        \ &apos;s&apos; : &apos;section&apos;,</span><br><span class="line">    \ &#125;,</span><br><span class="line">    \ &apos;sort&apos;: 0,</span><br><span class="line">\ &#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意示例配置中的路径要改一下</p>
+<h2 id="3-学习-pandoc-Markdown-语法"><a href="#3-学习-pandoc-Markdown-语法" class="headerlink" title="3 学习 pandoc Markdown 语法"></a><strong>3 学习 pandoc Markdown 语法</strong></h2><blockquote>
+<p>pandoc是什么? pandoc is a universal document converter.</p>
+<p>pandoc可以渲染很多类型的标记语言文档，Markdown只是其中一种。我看重它的原因有：</p>
+<ul>
+<li>它对Markdown的语法支持很全，支持多种主流Markdown变体（Markdown的语法扩展）</li>
+<li>开放了很多定制，所以非常灵活，能方便我实现完整的文档渲染方案</li>
+<li>支持图片的”self-contained”，能让包含图片的Markdown也能生成单一的html文件，极大地方便了发布</li>
+</ul>
+</blockquote>
+<p>学习pandoc Markdown语法，需要阅读官方<a href="http://pandoc.org/MANUAL.pdf" target="_blank" rel="noopener">手册</a></p>
+<h2 id="4-使用我定制的模板和pandoc命令封装"><a href="#4-使用我定制的模板和pandoc命令封装" class="headerlink" title="4 使用我定制的模板和pandoc命令封装"></a><strong>4 使用我定制的模板和pandoc命令封装</strong></h2><ul>
+<li>安装pandoc（附件是ubuntu 64bit的安装包，你也可以从 <a href="https://github.com/jgm/pandoc/releases" target="_blank" rel="noopener">https://github.com/jgm/pandoc/releases</a> 下载）</li>
+</ul>
+<blockquote>
+<p>【注意】一定不要使用apt-get安装pandoc，因为那个版本太老了，缺失一些重要特性</p>
+</blockquote>
+<ul>
+<li>解压 xpandoc.tgz，并执行<code>install4ubuntu64.sh</code>一键加载环境</li>
+</ul>
+<h2 id="5-如何使用"><a href="#5-如何使用" class="headerlink" title="5 如何使用"></a><strong>5 如何使用</strong></h2><p>假如你的Markdown文件名为a.md，执行命令和结果如下，生成的a.html的文件即为最终文件，如果需要发布pdf的版本，可以直接用浏览器的打印功能</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pandoc_md.sh a.md</span></span><br><span class="line">converting a.md</span><br><span class="line">pandoc -f markdown+ignore_line_breaks -t html a.md &gt; a.html -c /home/xiongyi.ouyang/.pandoc/pandoc_css/ie7unnel.css -c /home/xiongyi.ouyang/.pandoc/pandoc_css/nav.css -c /home/xiongyi.ouyang/.pandoc/pandoc_css/tplink_accondion.css --toc --template=phicomm.html --number-sections --highlight-style=haddock --self-contained</span><br><span class="line">output: create a.html</span><br></pre></td></tr></table></figure>
+
+<p>附件有两个示例文件，其中<code>a.md</code>即为本贴的Markdown源文件，供参考</p>
+<p><a href="/file/work_05/pandoc_MANUAL.pdf">pandoc_MANUAL.pdf</a></p>
+<p><a href="/file/work_05/a.tgz">a.tgz</a></p>
+<p><a href="/file/work_05/示例2.tgz">示例2.tgz</a></p>
+<p><a href="/file/work_05/xpandoc.tgz">xpandoc.tgz</a></p>
+
+	        </div>
+	    </article>
+	
+</div>
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+  <div class="widget">
+    <div >
+        <h3>FLIPPED</h3>
+<div>
+<div style="float:left; clear: both;" align="center">
+<img src="/img/about.jpg" style="width: 80%;">
+</div>
+<p style="align:center;line-height: 25px;font-size: 13.6px;min-height:250px">The higher I got, the more amazed I was by the view.Some of us get dipped in flat, some in satin, some in gloss. But every once in a while you find someone who's iridescent, and when you do, nothing will ever compare.And I realized Garrett was right about one thing: I had flipped. Completely.人性的美具有纷繁的多面性，无论是男女之爱还是亲人之情，所有的美都会令人向往和感动!</p>
+</div>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/心记/"><i class="fa" aria-hidden="true">心记</i></a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/杂读/"><i class="fa" aria-hidden="true">杂读</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/笔记/"><i class="fa" aria-hidden="true">笔记</i></a><span class="category-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/12/"><i class="fa" aria-hidden="true">December 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/11/"><i class="fa" aria-hidden="true">November 2019</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/07/"><i class="fa" aria-hidden="true">July 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/06/"><i class="fa" aria-hidden="true">June 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/05/"><i class="fa" aria-hidden="true">May 2019</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/09/"><i class="fa" aria-hidden="true">September 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/08/"><i class="fa" aria-hidden="true">August 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/07/"><i class="fa" aria-hidden="true">July 2018</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/06/"><i class="fa" aria-hidden="true">June 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/05/"><i class="fa" aria-hidden="true">May 2018</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/BlogCode/tags/Gerrit/" style="font-size: 15px;">Gerrit</a> <a href="/BlogCode/tags/Luci/" style="font-size: 10px;">Luci</a> <a href="/BlogCode/tags/cpu/" style="font-size: 10px;">cpu</a> <a href="/BlogCode/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/BlogCode/tags/linux工具/" style="font-size: 20px;">linux工具</a> <a href="/BlogCode/tags/netfilter/" style="font-size: 10px;">netfilter</a> <a href="/BlogCode/tags/ping/" style="font-size: 10px;">ping</a> <a href="/BlogCode/tags/samba/" style="font-size: 10px;">samba</a> <a href="/BlogCode/tags/shell脚本/" style="font-size: 10px;">shell脚本</a> <a href="/BlogCode/tags/socket/" style="font-size: 15px;">socket</a> <a href="/BlogCode/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/BlogCode/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/BlogCode/tags/win工具/" style="font-size: 10px;">win工具</a> <a href="/BlogCode/tags/win脚本/" style="font-size: 10px;">win脚本</a> <a href="/BlogCode/tags/前端/" style="font-size: 10px;">前端</a> <a href="/BlogCode/tags/套接字/" style="font-size: 10px;">套接字</a> <a href="/BlogCode/tags/技术书/" style="font-size: 10px;">技术书</a> <a href="/BlogCode/tags/文件/" style="font-size: 10px;">文件</a> <a href="/BlogCode/tags/文章/" style="font-size: 10px;">文章</a> <a href="/BlogCode/tags/电影/" style="font-size: 10px;">电影</a> <a href="/BlogCode/tags/算法/" style="font-size: 10px;">算法</a> <a href="/BlogCode/tags/线程/" style="font-size: 10px;">线程</a> <a href="/BlogCode/tags/网站/" style="font-size: 10px;">网站</a> <a href="/BlogCode/tags/网络/" style="font-size: 15px;">网络</a> <a href="/BlogCode/tags/转载/" style="font-size: 15px;">转载</a> <a href="/BlogCode/tags/进程控制/" style="font-size: 10px;">进程控制</a> <a href="/BlogCode/tags/锁/" style="font-size: 10px;">锁</a>
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/BlogCode/js/jquery-3.3.1.js?rev=@@hash"></script>
+
+	<script src="/BlogCode/js/search.js?rev=@@hash"></script>
+
+
+<script src="/BlogCode/js/app.js?rev=@@hash"></script>
+<script src="/BlogCode/js/menu.js?rev=@@hash"></script>
+<script src="/BlogCode/js/qart.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/clipboard.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/av-min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/Valine.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/web_tools.js?rev=@@hash"></script>
+
+
+
+</body>
+</html>

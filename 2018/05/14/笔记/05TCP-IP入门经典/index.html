@@ -1,0 +1,1574 @@
+<!DOCTYPE HTML>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Flipped205">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://Flipped205.github.io/BlogCode">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+
+<title>TCP/IP入门经典 | Flipped205</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Flipped205" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/BlogCode/css/bootstrap.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/font-awesome.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/style.css?rev=2020-02-14[09]">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <div class="box_bk"></div>
+<div class="box_center">
+    <div class="box_i"><img src=""></div>
+    <div class="box_close"><img src="/img/close.png"></div>
+</div>
+<button class="btn" style="display:none"></button>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/笔记/"><i class="fa "></i>笔记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/杂读/"><i class="fa "></i>杂读</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/心记/"><i class="fa "></i>心记</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="TCP/IP入门经典">
+            
+	            TCP/IP入门经典
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/笔记">
+            笔记
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/网络" title='网络'>
+                        网络
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-calendar-o"></i>
+            <span class="date-meta">发表于:&nbsp;2018/05/14</span>
+        </span>
+        <span class="fa-wrap">
+            
+            <i class="fa fa-calendar-check-o"></i>
+            <span class="date-meta">更新于:&nbsp;2020/02/14</span>
+            
+        </span>
+    
+</div>
+
+            
+
+           
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="TCP-IP入门经典"><a href="#TCP-IP入门经典" class="headerlink" title="TCP/IP入门经典"></a>TCP/IP入门经典</h1><h2 id="第1章-TCP-IP基础"><a href="#第1章-TCP-IP基础" class="headerlink" title="第1章 TCP/IP基础"></a>第1章 TCP/IP基础</h2><p>3、TCP/IP特性：</p>
+<blockquote>
+<p>逻辑编址;<br>路由选择<br>名称解析<br>错误控制和流量控制<br>应用支持</p>
+</blockquote>
+<p>（1）、逻辑编址<br>&emsp;&emsp;当传输介质随计算机越来越普及时，物理地址模式不能有效地发挥作用，网络管理员经常使用设备（比如路由器）将网络分段，以减少网络的拥堵。TCP/IP通过逻辑编址提供了这样的子网化能力。逻辑地址是一个通过网络软件来配置的地址。在TCP/IP中，计算机的逻辑地址称为IP地址。<br>&emsp;&emsp;一个IP地址包括：</p>
+<blockquote>
+<p>一个识别网络的网络ID数值<br>一个识别网络中子网的子网ID数值<br>一个识别子网中计算机的主机ID数值</p>
+</blockquote>
+<p>通过ARP和RARP进行逻辑地址和物理地址之间的转换。</p>
+<h2 id="第2章-TCP-IP的工作方式"><a href="#第2章-TCP-IP的工作方式" class="headerlink" title="第2章 TCP/IP的工作方式"></a>第2章 TCP/IP的工作方式</h2><h4 id="2-1、TCP-IP协议系统"><a href="#2-1、TCP-IP协议系统" class="headerlink" title="2.1、TCP/IP协议系统"></a><strong>2.1、TCP/IP协议系统</strong></h4><p>&emsp;&emsp;TCP/IP协议必须负责完成以下任务：</p>
+<blockquote>
+<ul>
+<li>把消息分解为可管理的数据块，并且这些数据块能够有效地通过传输介质</li>
+<li>与网络适配器硬件连接。</li>
+<li>寻址，即发送端计算机必须能够定位到接收数据的计算机，接收计算机必须能够是被自己要接收的数据</li>
+<li>将数据路由到目的的计算机所在的子网，即使源子网和目的子网分处不同的物理网络。</li>
+<li>执行错误控制、流量控制和确认：对可靠的通信而言，发送和接收计算机必须能够发现并纠正传输错误，并控制数据流。</li>
+<li>从应用程序接收数据并传输到网络</li>
+<li>从网络接收数据并传输到应用程序。</li>
+</ul>
+</blockquote>
+<p>&emsp;&emsp;为了实现上述功能，TCP/IP的创建者使用模块化的设计。TCP/IP协议系统划分为不同的组件。这些组件从理论上来说是能够相互独立地是实现自己的功能。每个组件分别负责通信过程的一个步骤。<br>&emsp;&emsp;TCP/IP模型的协议层:</p>
+<table>
+<thead>
+<tr>
+<th align="center">应用层</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>传输层</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>网际层</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>网络访问层</strong></td>
+</tr>
+</tbody></table>
+<blockquote>
+<ul>
+<li><strong>网络访问层：</strong>提供了与物理网络连接的接口。针对传输介质设置<code>数据格式</code>，根据硬件的<code>物理地址</code>实现<code>数据的寻址</code>，对数据在物理网络中的传输提供<code>错误控制</code>。</li>
+<li><strong>网际层：</strong>提供独立与硬件的<code>逻辑寻址</code>，从而让数据能够在具有不同物理结构的子网之间传力，提供路由功能来降低流量，支持网间的数据传递（术语“网间”（internetwork）指的是多个局域网互相连接而形成的较大的网络，比如大公司的网络或Internet）。实现物理地址（问你过来访问层使用的地址）和逻辑地址的转换。</li>
+<li><strong>传输层：</strong>为网络提供了<code>流量控制</code>，<code>错误控制</code>和<code>确认服务</code>。从到网络应用程序的接口。</li>
+<li><strong>应用层：</strong>为网络<code>排错</code>，<code>文件传输</code>，<code>远程控制</code>和Internet操作提供了应用程序，还支持应用编程<code>接口</code>（API），从而使得针对特定操作系统编写的程序能够提供访问网络。</li>
+</ul>
+</blockquote>
+<h4 id="2-2、TCP-IP和OSI模型"><a href="#2-2、TCP-IP和OSI模型" class="headerlink" title="2.2、TCP/IP和OSI模型"></a><strong>2.2、TCP/IP和OSI模型</strong></h4><p>&emsp;&emsp;<code>OSI(开放系统互连)</code>是<code>ISO(国际标准化组织)</code>为了标准化网络协议系统做出的规范，旨在提高网络互连性，并且方便软件开发人员以一种开放方式来使用协议标准。</p>
+<table>
+<thead>
+<tr>
+<th align="center">TCP/IP</th>
+<th align="center">OSI</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">应用层</td>
+<td align="center">应用层</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">表示层</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">会话层</td>
+</tr>
+<tr>
+<td align="center">传输层</td>
+<td align="center">传输层</td>
+</tr>
+<tr>
+<td align="center">网际层</td>
+<td align="center">网络层</td>
+</tr>
+<tr>
+<td align="center">网络访问层</td>
+<td align="center">数据链路层</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">物理层</td>
+</tr>
+<tr>
+<td align="center">&emsp;&emsp;OSI模型7层:</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<blockquote>
+<ul>
+<li><strong>物理层：</strong>把数据转换为传输介质上的电子流或模拟脉冲，并且监听数据的传输。</li>
+<li><strong>数据链路层：</strong>提供与网络适配器相连的接口，维护子网的逻辑连接。</li>
+<li><strong>网络层：</strong>支持逻辑寻址与路由选择</li>
+<li><strong>传输层：</strong>为网络提供错误控控制和数据流控制</li>
+<li><strong>会话层：</strong>在计算机的通信应用程序之间建立会话</li>
+<li><strong>表示层：</strong>把数据转换为标准格式，管理数据加密和压缩。</li>
+<li><strong>应用层：</strong>为应用程序提供网络接口，支持文件传输、通信等功能的网络应用。</li>
+</ul>
+</blockquote>
+<p><strong>注</strong>：TCP/IP模型和OSI模型都是标准，而不是实现。<br>TCP/IP的具体实现没有严格遵守上述两个表格模型。</p>
+<p>TCP/IP协议族按照层次由上到下，层层包装。最上面的是应用层，这里面有http，ftp,等等我们熟悉的协议。而第二层则是传输层，著名的TCP和UDP协议就在这个层次。第三层是网络层，IP协议就在这里，它负责对数据加上IP地址和其他的数据以确定传输的目标。第四层是数据链路层，这个层次为待传送的数据加入一个以太网协议头，并进行CRC编码，为最后的数据传输做准备。</p>
+<h4 id="2-3、数据包"><a href="#2-3、数据包" class="headerlink" title="2.3、数据包"></a><strong>2.3、数据包</strong></h4><p>&emsp;&emsp;数据包在每一层具有不用的形式和名称<br>&emsp;&emsp;数据包在每层的名称：</p>
+<blockquote>
+<ul>
+<li>在应用层生产的数据包被称为<strong><code>消息</code></strong>。</li>
+<li>在传输层生产的数据包封装了应用层得消息，如果它来自于传输层的TCP协议，就被称为<strong><code>分段</code></strong>；如果来自传输层的UDP协议，就被称为<strong><code>数据报</code></strong>。</li>
+<li>在网际层的数据包封装了传输层的片段，被称为<strong><code>数据报</code></strong>。</li>
+<li>在网络访问层的数据包封装数据包（而且可能对其进行再分解），被称为<strong><code>帧</code></strong>。帧被访问层里的最低子层转化为<strong><code>比特流</code></strong>。</li>
+</ul>
+</blockquote>
+<h4 id="2-4-TCP-IP网络概述"><a href="#2-4-TCP-IP网络概述" class="headerlink" title="2.4 TCP/IP网络概述"></a><strong>2.4 TCP/IP网络概述</strong></h4><p>&emsp;&emsp;图2.4描述了基本的TCP/IP协议连网系统。当然，在完整的数据包里还包括其他的协议和服务，图中展示的是最主要的部分。</p>
+<p>基本场景如下：</p>
+<blockquote>
+<ol>
+<li>数据从工作于应用层的协议、网络服务或应用编程接口（API）通过TCP或UDP端口传递到两个传输层协议（TCP或UDP）中的一个。程序可以根据需要通过TCP或UDP访问网络。</li>
+</ol>
+<ul>
+<li>TCP是面向连接的协议。TCP能够确保数据的发送指令，必UDP更可靠，但由于需要进行额外的错误检测和流量控制，必UDP的速度慢。(详见第6章)<ul>
+<li>UDP是面向无连接的协议，比TCP快，但是不可靠，它把错误控制的责任推给了应用。</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>数据分段传递到网际层，IP协议在此提供逻辑寻址信息，并且把数据封装为数据报。</li>
+<li>IP数据报进入网络访问层，传递到与物理网络相连接的软件组件。网络访问层创建额一个或多个数据帧，从而进入到物理网络。在像一台网这样的额局域网系统中，帧可以包含从表格里获取物理地址信息，而这些表格是由网际层的ARP维护的（ARP是地址解析协议，IP地址转换为物理地址。）</li>
+<li>数据帧被转化为比特流，通过网络介质进行传输。</li>
+</ol>
+</blockquote>
+<p>&emsp;&emsp;ARP(地址解析协议)，将逻辑地址IP解析成物理地址的协议<br>&emsp;&emsp;DNS(Domain Name System，域名系统)</p>
+<h2 id="第3章-网络访问层"><a href="#第3章-网络访问层" class="headerlink" title="第3章 网络访问层"></a>第3章 网络访问层</h2><p>&emsp;&emsp;网络访问层是最神秘、最不统一的TCP/IP层，它管理为物理网络准备数据所必须的服务于功能，包括：</p>
+<blockquote>
+<ul>
+<li>与计算机网络适配器的连接</li>
+<li>根据合适的访问方式调整数据传输，</li>
+<li>把数据转化为电子流或模拟脉冲的形式，以在传输介质上进行传输。</li>
+<li>对接收到的数据进行错误检查；</li>
+<li>给发送的数据添加错误检查信息，从而让接收端计算机能够对数据进行错误检查。</li>
+</ul>
+</blockquote>
+<p>&emsp;&emsp;TCP/IP<code>数据访问层</code>对应OSI<code>数据链路层</code>和<code>物理层</code>。</p>
+<h4 id="3-2-网络访问层与OIS模型"><a href="#3-2-网络访问层与OIS模型" class="headerlink" title="3.2 网络访问层与OIS模型"></a><strong>3.2 网络访问层与OIS模型</strong></h4><p>&emsp;&emsp;如图3.1所示,TCP/IP网络访问层大致对应OSI的物理成和数据链路层。OSI的物理层负责把数据帧转换为适合与传输介质的比特流，也就是说，OSI物理层管理和同步实际传输的电子或模拟脉冲。在接收端，物理层把这些脉冲重新组合为数据帧。<br>&emsp;&emsp;OSI数据链路层执行两个独立的任务，相应地划分为两个子层。</p>
+<blockquote>
+<ul>
+<li><strong>介质访问控制（MAC）：</strong>这个子层提供与网络适配器连接的接口。实际上，网络适配器驱动程序通常被称为MAC驱动，而网卡在工厂固化的硬件地址通常称为MAC地址。</li>
+<li><strong>逻辑链路控制（LLC）：</strong>这个子层经过子网传递的帧进行错误检查，并且管理子网上通信设备之间的链路。</li>
+</ul>
+</blockquote>
+<p><strong>注意：</strong> NDIS和ODI</p>
+<blockquote>
+<p>在实际的网络协议实现中没忘了驱动程序接口规范（NDIS）和开发数据链路接口（ODI）规范的存在进一步复杂了TCP/IP层与OSI系统之间的区别。NDIS(有Microsoft和3Com公司开发)和ODI(由Apple和Novell开发)的设计目的在于让单个协议栈（比如TCP/IP）使用多个网络是配资，并让单个网络适配器使用多个上传协议，这样可以让上传协议彻底独立于网络访问系统，从而为网络增加了很强的功能，但同时也增加了复杂性，也让系统地介绍软件组件在底层如何交互变得更加困难。</p>
+</blockquote>
+<h4 id="3-3-网络体系"><a href="#3-3-网络体系" class="headerlink" title="3.3 网络体系"></a><strong>3.3 网络体系</strong></h4><p>&emsp;&emsp;网络体系（比如以太网）具有一系列的规范来管理介质访问、物理寻址、计算机与传输介质的交互。在决定网络体系时，实际上是在决定如何设计网络访问层。<br>&emsp;&emsp;网络体系包含对物理网络的定义，以及该物理网络上定义的通信规范。通信细节基于物理细节，所以这些规范通常以一个完整的包出现。这些规范包含以下几个方面。</p>
+<blockquote>
+<ul>
+<li><strong>访问控制：</strong>访问方法是定义了计算机如何共享传输介质的一组规则。为了避免数据的冲突，计算机在传输数据时必须遵守这些规则。</li>
+<li><strong>数据帧格式：</strong>来自于网际层的IP几倍的数据报以预定义的格式封装为数据帧，封装在包头中的数据必须提供在物理网络上传输数据所需要的信息。</li>
+<li><strong>布线类型：</strong>网络锁使用的线缆类型对于其他设计参数具有一定的影响，比如适配器的传递的比特流的电子特性。</li>
+<li><strong>布线规则：</strong>协议、线缆类型和传输的电子特性影响着线缆的最大和最小长度、电缆连接诶器的规范。</li>
+</ul>
+</blockquote>
+<p>&emsp;&emsp;最终要的是，网络访问层以上的协议层不必关心硬件设计的问题。TCP/IP协议栈的设计保证了与硬件交互相关的细节发生在网络访问层，使得TCP/IP能够工作于多种不同的传输介质。</p>
+<p>&emsp;&emsp;网络访问层如下的一些体系：</p>
+<blockquote>
+<ul>
+<li><strong>IEEE 802.3(以太网)：</strong>在大多数办公室和家庭使用的基于线缆的网络。</li>
+<li><strong>IEEE 802.11(无线网络)：</strong>办公室、家庭和咖啡厅使用的无线网络技术</li>
+<li><strong>IEEE 802.16(WiMAX)：</strong>用于移动通信长距离无线连接技术。</li>
+<li><strong>点到点协议（PPP）：</strong> Modem通过电话线进行连接的技术。</li>
+</ul>
+</blockquote>
+<p>&emsp;&emsp;TCP/IP还支持其他一些网络体系。如图3.2所示，协议栈的模块化特性使得在网络访问层里与硬件打交道的软件组件能够为和硬件无关操作的上层提供接口。</p>
+<h4 id="3-4、物理地址"><a href="#3-4、物理地址" class="headerlink" title="3.4、物理地址"></a><strong>3.4、物理地址</strong></h4><p>&emsp;&emsp;ARP和RARP为用户提供了逻辑IP地址与<strong>局域网</strong>上使用的硬件地址建立了一个对应关系。(详见第4章)。<br>&emsp;&emsp;以太网软件使用的地址并不是逻辑IP地址，但这个地址在网际层的接口上与IP地址有映射关系。</p>
+<h4 id="3-5、以太网-802-3"><a href="#3-5、以太网-802-3" class="headerlink" title="3.5、以太网(802.3)"></a><strong>3.5、以太网(802.3)</strong></h4><p>&emsp;&emsp;以太网是目前使用最广泛的<strong><code>局域网</code></strong>技术。以太网使用称为<strong><code>载波监听多路访问/冲突检测（CSMA/CD）</code></strong>的方法，来判断计算机何时可以把数据发送到访问介质。</p>
+<p>&emsp;&emsp;通过使用CSMA/CD，所有计算机都监视传输介质的状态，在传输之前等待线路空闲。如果两台计算机尝试同时发送数据，就会发送冲突，计算机就会停止发送，等待一个随机的时间间隔，然后再次尝试发送。<br>&emsp;&emsp;传统以太网经常使用连续的通走电缆作为传输介质。<br>&emsp;&emsp;现代以太网的形式都是把计算机连接到一个网络设备上（eg 交换机）。</p>
+<h4 id="3-6、剖析以太网帧"><a href="#3-6、剖析以太网帧" class="headerlink" title="3.6、剖析以太网帧"></a><strong>3.6、剖析以太网帧</strong></h4><p>&emsp;&emsp;网络访问层的软件从网际层接收数据包，把它转化符合物理网络规则的形式。在以太网中，网络访问层的软件必须把数据转换成能够通过网络适配器硬件进行转化的形式。</p>
+<p>&emsp;&emsp;以太网软件从网际层接收到数据包之后，执行以下操作：</p>
+<blockquote>
+<ul>
+<li>1、根据需要报网际层的数据分解为较小的块，已复核以太网帧数据段的要求。以太网帧的整体大小必须在64字节与1518字节之间（不包括前导码）。有些系统支持醉倒的帧，最大可以到9000字节。这种大型帧能够改变效率，但存在着兼容性问题，而且并没有得到广泛支持。</li>
+<li>2、把数据块打包成帧。每一帧都包含数据及其他信息，这些信息是以太网网络适配器处理帧所需要的。IEEE802.3以太网帧包含以下内容。<ul>
+<li><strong>前导码：</strong>表示帧起始的一系列比特（共8字节，最后一个字节是帧起始符）。</li>
+<li><strong>目标地址：</strong>接收帧的网络适配器的6字节（48bit）物理地址。</li>
+<li><strong>源地址：</strong>发送帧的网络适配器的6字节（48bit）物理地址。</li>
+<li><strong>可选VLAN标记：</strong>这个可选的16bit字段在802.1q标准中有讲解，其目的是允许多个虚拟LAN可通过同一网络交换机运行。 </li>
+</ul>
+  <strong>长度：</strong>另个字节，表示数据段的长度。 <ul>
+<li><strong>数据：</strong>帧中传输的数据。</li>
+<li><strong>帧校验序列（FCS）：</strong>帧的4字节(32bit)校验和，FCS是校验数据传输的常见方式。发送方计算帧的循环冗余码校验（CRC）值，把这个值写到帧里。接收方计算机重新计算CRC，与FCS字段的值进行比较，如果两个值不想用，就表示传输过程中发送了数据丢失或改变，这时就需要重新传输这一帧。</li>
+</ul>
+</li>
+<li>3、把数据帧传递给对应于OSI模型物理层的底层组件，后者把帧转换为比特流，并且通过传输介质发送出去。</li>
+</ul>
+</blockquote>
+<p>&emsp;&emsp;以太网上其他网络适配器接收到这个帧，检查其中的目的地址，如果目的地址与网络适配器的地址相匹配，适配器软件就会处理接收到的帧 ，把数据传递给协议栈中较高的层。</p>
+<h2 id="第4章-网际层"><a href="#第4章-网际层" class="headerlink" title="第4章 网际层"></a>第4章 网际层</h2><p>&emsp;&emsp;网际层提供的协议就负责局域网<code>网段之外的传递</code>，其中重要的协议包括<code>IP</code>、<code>ARP</code>和<code>ICMP</code>。</p>
+<h4 id="4-1、寻址与发送"><a href="#4-1、寻址与发送" class="headerlink" title="4.1、寻址与发送"></a><strong>4.1、寻址与发送</strong></h4><p>&emsp;&emsp;上一章中，以太网卡的物理寻址方式适合<code>单个局域网网段</code>。有不间断介质连接在一起的若干台计算机利用物理地址就可以实现所需的功能。只需使用网络访问层的低级协议就可以把数据从网络适配器直接传递给另一个网络适配器。</p>
+<p>使用ARP</p>
+<div align="center">
+
+<p><img src="/img/note_05/01.png" alt="图4.1 网关接收去往其他网络的数据报"></p>
+</div>    
+1. 如果目的地址与源地址在同一个网段，源计算机就把数据包直接发送给目的计算机。IP地址呗ARP即系为物理地址，数据被直接发送到目的网络适配器。
+2. 如果目的地址与源地址不在一个网段上，就执行如下过程：
+> a)、直接将数据报发送给网关。网关是位于局域网网段上的一个设备，能够把数据报转发到其他网段（网关基本算路由器）。网关地址呗ARP解析为物理地址，数据被发送到网关的适配器。
+> b)、数据报通过网关被路由到较高级别的网段（如上图4.1）,再次重复上述过程。如果目的地址在这个新网段里，数据就被发送到目的，否则数据报就会被发送到另一网关。
+> c)、数据报经过一系列网关被转发到目的网段，目的IP地址被ARP解析为物理地址，数据被发送到目的网络适配器。
+
+<p>  为了在复杂的路由式网络中传输数据，网际层协议必须具有以下功能：</p>
+<blockquote>
+<ul>
+<li>识别网络值班费所以计算机；</li>
+<li>提供一种方式来判断何时需要通过网关来传递消息。</li>
+<li>提供一种与硬件无关的方式来是被目的网关，从而让数据报能够高效率地经过路由器到达正确的网段；</li>
+<li>提供一种方式把目标计算机的逻辑IP地址转化为物理地址，让数据能够传输给目的计算机的网络适配器。</li>
+</ul>
+</blockquote>
+<h4 id="4-2、网际协议（IP）"><a href="#4-2、网际协议（IP）" class="headerlink" title="4.2、网际协议（IP）"></a><strong>4.2、网际协议（IP）</strong></h4><p>&emsp;&emsp;IP协议提供了一种分层的、与硬件无关的寻址系统，具有在复杂的路由式网络中传递数据所需的服务。TCP/IP网络上的每一网络适配器都有一个唯一的IP。</p>
+<p>IP地址分为两个部分:</p>
+<blockquote>
+<ul>
+<li>网络ID</li>
+<li>主机ID</li>
+</ul>
+</blockquote>
+<p>分类的寻址系统和CIDR（无类别域间路由选择）寻址。<br>子网划分</p>
+<p>&emsp;&emsp;每一个IP数据报都以一个IP报头开始。源TCP/IP软件构造这个IP报头。目的计算机的TCP/IP软件利用IP报头中封装的信息处理数据。IP报头包含大量信息。包括<code>源IP地址</code>、<code>目的IP地址</code>、<code>数据报长度</code>、<code>IP版本号</code>和对<code>路由器</code>的<code>特殊指令</code>。</p>
+<p>&emsp;&emsp;IP报头的最小长度是20字节，图4.3所示为IP报头的内容。</p>
+<blockquote>
+<ul>
+<li><strong>版本：</strong>这个4位字段表示所使用的IP版本。目前IP版本是4，相应的二进制是0100</li>
+<li><strong>网际报头长度(IHL)：</strong>这4位自读表示IP报头以32位字为单位的长度。IP报头的最小长度是5个32比特字，相应的二进制表示0101。</li>
+<li><strong>服务类型：</strong>源IP能够指定特殊的而路由信息。有些路由器会忽略这个字段的信息。但随着服务质量（Qos）技术的出现，这个字段得到了更多的重视，这个8位字段的主要用途是对等待通过路由器的数据报区分优先级，而目前大多数IP实现把是这个字段全填为0</li>
+<li><strong>总长度：</strong>这个16位的字段表示IP数据报的长度，单位是字节，这个长度包含了IP报头和数据载荷。</li>
+<li><strong>标识：</strong>这个16位的字段是一个依序变大的数值，分配给源IP发出的消息。当传递到IP层的消息太大而不能放到一个数据报里时，IP会把消息查分到多个数据报，并对这些数据报排序分配相同的标识号。接收端利用这些数值重组为原始消息。</li>
+<li><strong>标记：</strong>这个字段表示分段可能性。第1位未使用，其值应该为0.第2位为DF(不分段)，表示是否允许分段，0表示分段，1表示不允许。第3位是MF（更多分段），表示是否还有分段正在传输，设置为0表示没有更多分段需要发送，或是数据报根本没有分段。</li>
+<li><strong>分段位移：</strong>这个13位的字段是一个数值，被赋予每个连续的分段。目的设备IP利用这个值以正确的次序重组分段。这个数值使用的单位是8字节。</li>
+<li><strong>生存时间（TTL）：</strong>这个字段表示数据报在被抛弃之前能够保留的时间（以秒为单位）或路由器跳数。每个路由器都会检查这个字段，并且至少把它减去1，或数据报在路由器中延迟的秒数。当这个字段的值为0时，数据报就会被抛弃。<br>跳数：代表数据报到达目的之前必须经过的路由器的数量。如果数据报在到达目的之前经过了5个路由器，我们就说距离目的有5跳。</li>
+<li><strong>协议：</strong>这个8位的字段表示接收数据载荷的协议，比如协议标识为6（二进制00000110）的数据报会被传递到TCP模块，下面为一些常见的协议标识值。ICMP:1，TCP:6，UDP:17。</li>
+<li><strong>报头校验和：</strong>这个字段包含16位的校验和，只用于检验报头本身的有效性，数据报经过的每个路由器都会对这个值进行重新计算，因为TTL字段的值是在不断变化的。</li>
+<li><strong>源IP地址：</strong>这个32位字段包含了数据报的源IP地址。</li>
+<li><strong>目的IP地址：</strong>这个32位的字段包含了数据报的目的IP地址。目的IP根据这个值检验发送的正确性。</li>
+<li><strong>IP选项：</strong>这个字段支持一些可选的报头设置，主要用于测试、调试和安全的目的。这些选项包括严格源路由（数据报必须经过指定的路由器）、网际时间戳（经过每个路由器时的时间戳记录）和安全限制。</li>
+<li><strong>填充：</strong> IP选项字段的长度不是固定的。填充字段可以提供一些额外的0，从而保证这个报头的长度是32位的整数倍（报头长度必须是32位字的整数倍，因为“网际头长度IHL”字段以32位字为单位表示报头的长度。）</li>
+<li><strong>IP数据载荷：</strong>这个字段一般用于保存传输给TCP或UDP(在传输层)、ICMP或IGMP的数据。数据块的长度不定，可以包含数千字节。</li>
+</ul>
+</blockquote>
+<p>IP寻址：<br>&emsp;&emsp;地址分类：</p>
+<blockquote>
+<ul>
+<li><strong>A类地址：</strong> IP地址的前8位表示网络ID，后24位表示主机ID。32位地址以0开头。</li>
+<li><strong>B类地址：</strong> IP地址的前16位表示网络ID，后16位表示主机ID。32位地址以10开头。</li>
+<li><strong>C类地址：</strong> IP地址的前24位表示网络ID，后8位表示主机ID。32位地址以110开头。</li>
+</ul>
+</blockquote>
+<p>&emsp;&emsp;使用的位数越多，包含的组合就越多。显而易见，A类地址提供了较少的网络ID，但每个网络都具有大量可用的主机ID。计算机和路由器如何判断一个IP地址是A类、B类或C类？TCP/IP地址规则使得地址本身就可以说明其分类，以32为地址的起始。</p>
+<blockquote>
+<p><strong>注意：</strong> D类和E类<br>&emsp;&emsp;Internet规范还定义了特殊用途的D类地址和E类地址，D类地址用于多播。多播是把一个消息发送给网络的子网，这与广播是不同的，后者需要网络上全部节点都进行处理，D类地址最前面4位是1110，对应十进制数值是224<del>249，E类网络是实验性质的，一般不用于生产环境。E类网络地址最前面的5位是11110，对应十进制数值240</del>247。</p>
+</blockquote>
+<p>&emsp;&emsp;网络管理员可以把网络划分为更小的次级网络，这被称为子网。话费子网的是指就是借用主机ID中的一些位，在网络内创建额外的网络。根据前面的分类介绍，我们很容易想到具有大量主机ID的A类和B类地址会广泛使用子网划分技术。当前C类网络也会使用子网划分技术。详见第5章。</p>
+<blockquote>
+<p><strong>注意：</strong>地址是否唯一<br>&emsp;&emsp;从理论上将，Internet上每台计算机都必须有一个唯一的IP地址。在实际应用中，代理服务器软件和NAT设备的使用让未注册和非唯一的地址也可以连接Internet。第12章讲解NAT设备。</p>
+</blockquote>
+<h4 id="4-3、ARP"><a href="#4-3、ARP" class="headerlink" title="4.3、ARP"></a><strong>4.3、ARP</strong></h4><p>&emsp;&emsp;网段上的没太注记在内存中都保存着一个被称为ARP表或ARP缓存的表格，其中包含网段上其他主机IP地址与物理地址对应关系。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">当主机需要向网段上的其他啊主机发送数据时，它会查看ARP缓存来获取目的的物理地址，ARP缓存是动态变化。如果要接收数据的地址当前并不存在与ARP缓存，主机就会发送名为ARP请求帧的广播。</span><br><span class="line">ARP请求帧包含未解析的IP地址，还包含发送这个请求的主机IP地址和物理地址。网段上的其他主机接收到这个ARP请求，拥有这个未解析IP地址的主机会向发出请求的主机发送自己的物理地址。这个新的IP地址和物理地址的对应关系就会添加到请求主机的ARP缓存里。</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-4、RARP"><a href="#4-4、RARP" class="headerlink" title="4.4、RARP"></a><strong>4.4、RARP</strong></h4><p>&emsp;&emsp;RARP的含义是逆向ARP，当知道IP地址而不知道物理地址使用ARP；而在知道物理地址而不知道IP地址时，则使用RARP。<br>RARP经常与BOOTP协议共同使用来启动无盘工作站。</p>
+<p><strong>注：</strong> BOOTP(启动PROM)</p>
+<blockquote>
+<p>很多网络适配器具有一个空的插槽，支持被称为“启动PROM”的集成电路。计算机一加电，PROM固件就会启动，从网络服务器而不是本地硬盘来读取并加载操作系统，下载到BOOTP设备的操作系统被预配置为特定的IP地址。</p>
+</blockquote>
+<h4 id="4-5、Internet控制消息协议（ICMP）"><a href="#4-5、Internet控制消息协议（ICMP）" class="headerlink" title="4.5、Internet控制消息协议（ICMP）"></a><strong>4.5、Internet控制消息协议（ICMP）</strong></h4><p>&emsp;&emsp;发送到远程计算机的数据通常会经过一个或多个路由器，这些路由器在把数据传输到最终目的地的过程中可能发生多种问题。路由器利用Internet控制消息协议（ICMP）消息把问题通知给源IP，ICMP还有用于其他调试和排错的功能。<br>常见的ICMP消息：</p>
+<blockquote>
+<ul>
+<li><strong>Echo Request（回显请求）和Echo Reply（回显应答）：</strong> ICMP经常被用于测试，比如测试连接的ping命令实际就是在使用ICMP。</li>
+<li><strong>Source Quench（源抑制）：</strong>如果以太告诉计算机向远程计算机发送大量数据，可能会使路由器产生过载。这时路由器可以利用ICMO向源IP发送Source Quench消息，让它降低发送数据的速度。如果必要，还可以向源IP发送额外的源抑制消息。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>Destination Unreachable（目的不可到达）：</strong>如果路由器收到一个不能传递的数据报，ICMP就会向源IP返回一个Destination Unreachable消息。路由器不能传递消息的原因之一是网络由于设备故障或维修而关闭。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>Time Exceeded（超时）：</strong>当数据报由于TTL为0而被抛弃时，ICMP就会向源IP发送这个消息。这表示对于当前TTL值来说，到达目标需要经过大多路由器；或者是说明路由表出了问题，导致数据报在同一路由器上连续循环。</li>
+<li>当数据报无线循环且永远不能到达目的地时，就会发生路由环路。3台路由器A,B,C，A-&gt;B发送一个数据报，B-&gt;C，C-&gt;A就会形成路由环路，数据报陷入其中，不断在3台路由器之间循环，知道TTL为0。还有一种是当网络管理员在路由表中设置一条静态路由时，有时就可能导致环路路由。</li>
+<li><strong>Fragmentation Needed（需要分段）：</strong>如果一个数据报的“Don’t Dragment（不可分解）”位被设置为1，而路由器必须要对数据报进行分段才能把它转发到下一台路由器或目的地，这时ICMP就会发出这条消息。</li>
+</ul>
+</blockquote>
+<h4 id="4-6、网际层其他协议"><a href="#4-6、网际层其他协议" class="headerlink" title="4.6、网际层其他协议"></a><strong>4.6、网际层其他协议</strong></h4><p>&emsp;&emsp;用于路由进程的<code>边界网关协议（GBP）</code>和<code>路由信息协议（RIP）</code>。<br>&emsp;&emsp;IPSec协议在IPv4里是可选的，但在IPv6里是必需的。它也工作于网际层，提供一个安全的加密通信。</p>
+<p>&emsp;&emsp;IP提供了一种与硬件无关的寻址系统。<br>&emsp;&emsp;ARP是把IP地址解析为物理地址的协议，RARP是ARP的逆过程。<br>&emsp;&emsp;ICMP是用于诊断和测试的协议。</p>
+<h2 id="第5章-子网划分和CIDR"><a href="#第5章-子网划分和CIDR" class="headerlink" title="第5章 子网划分和CIDR"></a>第5章 子网划分和CIDR</h2><h4 id="5-1、子网"><a href="#5-1、子网" class="headerlink" title="5.1、子网"></a><strong>5.1、子网</strong></h4><p>&emsp;&emsp;子网划分可以将网络分解为被称位子网的较小单元。子网的概念最最早是源自于地址分类系统的。 然后，硬件厂商和Internet社区建立了一种解析地址的新系统，名为CIDR(无类别域间路由)，它需要关心地址类别。</p>
+<h4 id="5-2、划分网络"><a href="#5-2、划分网络" class="headerlink" title="5.2、划分网络"></a><strong>5.2、划分网络</strong></h4><p>&emsp;&emsp;第4章介绍地址分类系统让所有的主机能够识别IP地址中的网络ID，从而把数据包发送个正确的网络。但是根据A类B类C类网络ID来识别网段具有一些局限性。主要是在网络级别之下不能对地址控件进行任何逻辑细分。<br>eg：</p>
+<div align="center">
+
+<p><img src="/img/note_05/02.png" alt="图5.1 将数据发送到A类网络"></p>
+</div>  
+&emsp;&emsp;如上图所示，数据报到达网关，然后传输到99.0.0.0地址控件，但如何要考虑它在这个地址控件中是如何传递的，图示会非常复杂，因为A累网络能够容纳超过1600万台主机。为了在大型网络里实现更高效的数据传输，地址空被话划分为较小的网段（如图5.2）。把网络划分为独立的物理网络能够增加网络的整体性能，也就能够让网络使用更大的地址空间。在这种情况下，地址空间里划分网段的路由器需要适当的指示来决定数据传输到哪里，不能使用网络ID，因为传输到这个网络的数据报具有相同的网络ID（99.0.0.0）,非常麻烦而且不灵活、不实用。唯一可行的解决方法是在网络标ID下，对地址空间进行细分，让注记和路由器能够根据IP地址判断应该把数据发送到哪个网段。子网划分就是在网络ID之下提供了第二层逻辑组织，路由器机能够把数据报发送给网络里的某个子网地址（一般对应于一个网段），而当数据报到达子网自后，就会被ARP解析成物理地址。那么`子网地址`从何而来，32位IP地址已经被划分为`网络ID`和`主机ID`。TCP/IP的设计者借用了主机ID里的一些位来形成子网地址。一个名为`子网掩码`的参数指定地址中的多少位用于`子网ID`，保留多个为作为实际的主机ID。`子网掩码`也是32位二进制值，它的形式能够说明与之相关的`IP地址`的`子网ID`。
+&emsp;&emsp;在子网网络上，路由器和主机所使用的`路由表`包含了与每个IP地址相关的子网掩码信息（有关路由信息，详见第8章）。
+&emsp;&emsp;由图5.5可看出，数据报根据网络ID被路由到目标网络，而这个`网络ID`是由`地址类别`决定。当数据报达到目标网络之后，它根据`子网ID`路由到合适的`网段`。在到达这个网段之后，再根据主机ID传输到正确的计算机。
+
+<h4 id="5-3、将子网掩码转化为点分十进制标记"><a href="#5-3、将子网掩码转化为点分十进制标记" class="headerlink" title="5.3、将子网掩码转化为点分十进制标记"></a><strong>5.3、将子网掩码转化为点分十进制标记</strong></h4><p>&emsp;&emsp;网络管理员通常把子网掩码作为TCP/IP配置的参数分配给每个主机。如果主机通过DHCP（详见12章）获取IP地址，DHCP服务器就会同时分配一个子网掩码。<br>一个子网内的所有主机应该具有相同的子网ID和子网掩码。为了便于人们使用，子网掩码通常以点分十进制表示。<br>&emsp;&emsp;相比IP地址，<code>子网掩码</code>的转换通常比较简单，对应于地址中的<code>网络ID</code>和<code>子网ID</code>的<code>掩码位是1</code>，代表<code>IP地址</code>里的<code>主机ID</code>掩码位0`。这就意味着1都在掩码的左侧，0都在掩码的右侧（除了极少的例外）。</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">子网掩码：</span><br><span class="line">    11111111 11111111 11111111 00000000</span><br><span class="line">    以点分十进制表示：255.255.255.0</span><br><span class="line"></span><br><span class="line">子网掩码：</span><br><span class="line">   11111111 11111111 00000000 00000000</span><br><span class="line">    以点分十进制表示：255.255.0.0</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-4、使用子网"><a href="#5-4、使用子网" class="headerlink" title="5.4、使用子网"></a><strong>5.4、使用子网</strong></h4><p>&emsp;&emsp;子网掩码决定了网络ID之后又多少位是作为子网ID的，<strong>子网ID的长度不是国定的，取决于子网掩码的值</strong>。子网ID越长，留给主机的ID位数越少。换句话，如果网络上有很多子网，每个自网上的主机容量就会很少。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">地址分类：</span><br><span class="line">A类地址：“0”开头  1.0.0.0~126.0.0.0</span><br><span class="line">即：01000000 00000000 00000000 00000000 ~ 01111110 00000000 00000000 00000000</span><br><span class="line">可用的A类网络有126个，每个网络能容纳1亿多个主机</span><br><span class="line">B类地址：“10”开头 128.0.0.0~191.255.255.255</span><br><span class="line">即：10000000 00000000 00000000 00000000 ~ 10111111 11111111 11111111 11111111</span><br><span class="line">可用的B类网络有16382个，每个网络能容纳6万多个主机</span><br><span class="line">C类地址 “110”开头 192.0.0.0~223.255.255.255</span><br><span class="line">即：11000000 00000000 00000000 00000000 ~ 11011111 11111111 11111111 11111111</span><br><span class="line">C类网络可达209万余个，每个网络能容纳254个主机</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>类与掩码</p>
+<blockquote>
+<p>地址类别也决定了子网ID占用使用多少位。比如掩码：<br>11111111 11111111 11100000 00000000<br>指定了网络ID与子网ID一共占19位。如果这个掩码用于一个B类地址（网络ID 16位），那么子网就只有3位。如果它是A类地址（网络ID 8位），子网ID就有11位。<br>子网ID的分配（以及子网掩码的分配），取决于网络的配置。最好的方案，是先规划网络，确定全部网段的数论与位置，然后为每个网段分配一个子网ID。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>描述</th>
+<th>点分十进制形式</th>
+<th>二进制形式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>A类地址</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>默认掩码</td>
+<td>255.0.0.0</td>
+<td>11111111 00000000 00000000 00000000</td>
+</tr>
+<tr>
+<td>1个子网位</td>
+<td>255.128.0.0</td>
+<td>11111111 10000000 00000000 00000000</td>
+</tr>
+<tr>
+<td>2个子网位</td>
+<td>255.192.0.0</td>
+<td>11111111 11000000 00000000 00000000</td>
+</tr>
+<tr>
+<td>3个子网位</td>
+<td>255.224.0.0</td>
+<td>11111111 11100000 00000000 00000000</td>
+</tr>
+<tr>
+<td>4个子网位</td>
+<td>255.240.0.0</td>
+<td>11111111 11110000 00000000 00000000</td>
+</tr>
+<tr>
+<td>5个子网位</td>
+<td>255.248.0.0</td>
+<td>11111111 11111000 00000000 00000000</td>
+</tr>
+<tr>
+<td>6个子网位</td>
+<td>255.252.0.0</td>
+<td>11111111 11111100 00000000 00000000</td>
+</tr>
+<tr>
+<td>7个子网位</td>
+<td>255.254.0.0</td>
+<td>11111111 11111110 00000000 00000000</td>
+</tr>
+<tr>
+<td>8个子网位</td>
+<td>255.255.0.0</td>
+<td>11111111 11111111 00000000 00000000</td>
+</tr>
+<tr>
+<td>9个子网位</td>
+<td>255.255.128.0</td>
+<td>11111111 11111111 10000000 00000000</td>
+</tr>
+<tr>
+<td>10个子网位</td>
+<td>255.255.192.0</td>
+<td>11111111 11111111 11000000 00000000</td>
+</tr>
+<tr>
+<td>11个子网位</td>
+<td>255.255.224.0</td>
+<td>11111111 11111111  11100000 00000000</td>
+</tr>
+<tr>
+<td>12个子网位</td>
+<td>255.255.240.0</td>
+<td>11111111 11111111 11110000 00000000</td>
+</tr>
+<tr>
+<td>13个子网位</td>
+<td>255.255.248.0</td>
+<td>11111111 11111111 11111000 00000000</td>
+</tr>
+<tr>
+<td>14个子网位</td>
+<td>255.255.252.0</td>
+<td>11111111 11111111 11111100 00000000</td>
+</tr>
+<tr>
+<td>15个子网位</td>
+<td>255.255.254.0</td>
+<td>11111111 11111111 11111110 00000000</td>
+</tr>
+<tr>
+<td>16个子网位</td>
+<td>255.255.255.0</td>
+<td>11111111 11111111 11111111 00000000</td>
+</tr>
+<tr>
+<td>17个子网位</td>
+<td>255.255.255.128</td>
+<td>11111111 11111111 11111111 10000000</td>
+</tr>
+<tr>
+<td>18个子网位</td>
+<td>255.255.255.192</td>
+<td>11111111 11111111 11111111 11000000</td>
+</tr>
+<tr>
+<td>19个子网位</td>
+<td>255.255.255.224</td>
+<td>11111111 11111111 11111111 11100000</td>
+</tr>
+<tr>
+<td>20个子网位</td>
+<td>255.255.255.240</td>
+<td>11111111 11111111 11111111 11110000</td>
+</tr>
+<tr>
+<td>21个子网位</td>
+<td>255.255.255.248</td>
+<td>11111111 11111111 11111111 11111000</td>
+</tr>
+<tr>
+<td>22个子网位</td>
+<td>255.255.255.252</td>
+<td>11111111 11111111 11111111 11111100</td>
+</tr>
+<tr>
+<td><strong>B类地址</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>默认掩码</td>
+<td>255.255.0.0</td>
+<td>11111111 11111111 00000000 00000000</td>
+</tr>
+<tr>
+<td>1个子网位</td>
+<td>255.255.128.0</td>
+<td>11111111 11111111 10000000 00000000</td>
+</tr>
+<tr>
+<td>2个子网位</td>
+<td>255.255.192.0</td>
+<td>11111111 11111111 11000000 00000000</td>
+</tr>
+<tr>
+<td>3个子网位</td>
+<td>255.255.224.0</td>
+<td>11111111 11111111 11100000 00000000</td>
+</tr>
+<tr>
+<td>4个子网位</td>
+<td>255.255.240.0</td>
+<td>11111111 11111111 11110000 00000000</td>
+</tr>
+<tr>
+<td>5个子网位</td>
+<td>255.255.248.0</td>
+<td>11111111 11111111 11111000 00000000</td>
+</tr>
+<tr>
+<td>6个子网位</td>
+<td>255.255.252.0</td>
+<td>11111111 11111111 11111100 00000000</td>
+</tr>
+<tr>
+<td>7个子网位</td>
+<td>255.255.254.0</td>
+<td>11111111 11111111 11111110 00000000</td>
+</tr>
+<tr>
+<td>8个子网位</td>
+<td>255.255.255.0</td>
+<td>11111111 11111111 11111111 00000000</td>
+</tr>
+<tr>
+<td>9个子网位</td>
+<td>255.255.255.128</td>
+<td>11111111 11111111 11111111 10000000</td>
+</tr>
+<tr>
+<td>10个子网位</td>
+<td>255.255.255.192</td>
+<td>11111111 11111111 11111111 11000000</td>
+</tr>
+<tr>
+<td>11个子网位</td>
+<td>255.255.255.224</td>
+<td>11111111 11111111 11111111 11111100</td>
+</tr>
+<tr>
+<td>12个子网位</td>
+<td>255.255.255.240</td>
+<td>11111111 11111111 11111111 11111100</td>
+</tr>
+<tr>
+<td>13个子网位</td>
+<td>255.255.255.248</td>
+<td>11111111 11111111 11111111 11111100</td>
+</tr>
+<tr>
+<td>14个子网位</td>
+<td>255.255.255.252</td>
+<td>11111111 11111111 11111111 11111100</td>
+</tr>
+<tr>
+<td><strong>C类地址</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>默认掩码</td>
+<td>255.255.255.0</td>
+<td>11111111 11111111 11111111 00000000</td>
+</tr>
+<tr>
+<td>1个子网位</td>
+<td>255.255.255.128</td>
+<td>11111111 11111111 11111111 10000000</td>
+</tr>
+<tr>
+<td>2个子网位</td>
+<td>255.255.255.192</td>
+<td>11111111 11111111 11111111 11000000</td>
+</tr>
+<tr>
+<td>3个子网位</td>
+<td>255.255.255.224</td>
+<td>11111111 11111111 11111111 11100000</td>
+</tr>
+<tr>
+<td>4个子网位</td>
+<td>255.255.255.240</td>
+<td>11111111 11111111 11111111 11110000</td>
+</tr>
+<tr>
+<td>5个子网位</td>
+<td>255.255.255.248</td>
+<td>11111111 11111111 11111111 11111000</td>
+</tr>
+<tr>
+<td>6个子网位</td>
+<td>255.255.255.252</td>
+<td>11111111 11111111 11111111 11111100</td>
+</tr>
+</tbody></table>
+<p><strong>注</strong>： </p>
+<blockquote>
+<p>主机ID不能为全1(保留用于广播)或全0（同城不使用）。</p>
+</blockquote>
+<h4 id="5-5、无类别域间路由（CIDR）"><a href="#5-5、无类别域间路由（CIDR）" class="headerlink" title="5.5、无类别域间路由（CIDR）"></a><strong>5.5、无类别域间路由（CIDR）</strong></h4><p>&emsp;&emsp;地址分类系统相对而言不够灵活，需要使用子网划分系统来更细致地控制地址控件。而无类别域路由（CIDR）在<strong>路由表</strong>中定义地址块时容易修改，更具有灵活性。这种技术不依赖于预定义的8位、16位或24位网络ID，而是使用一个名为CIDR前缀值指定地址中作为网络ID的位数。这个前缀有时也被称为<strong>变长子网掩码（VLSM）</strong>。这个前缀可以位于地址空间的任何位置，让管理者能够以更灵活的方式定义子网，以简便的形式指定地址中网络ID部分与主机ID部分。CIDR标记使用一个斜线（/）分隔符，后面跟一个十进制数值表示地址中网络部分所占的位数。例如CIDR地址205.123.196.183/25中，/25表示地址中25位用于网络ID，相应的子网掩码就是255.255.255.128。</p>
+<p>&emsp;&emsp;CIDR前缀表明了IP地址中前面的多少位对于网络里的全部主机说是一样的。CIDR强大的特性不仅仅能够对网络划分子网，还让ISP或管理员能够把多个连续C类网络聚合或组合为一个实体。这种也行极大的简化了网际路由表。</p>
+<p>&emsp;&emsp;例如：一个ISP可以分配204.21.128.0（11001100 00010101 10000000 00000000）~204.21.255.255（11001100 00010101 11111111 11111111）的全部C类地址，这些网络地址的前17位是一样的，因此，超网掩码是11111111 11111111 10000000 0000000即255.255.128.0。<strong>超网掩码</strong>中0对应的为确定了地址块的范围。因此，支持CIDR路由表只是用一条CIDR条目204.21.128.0/17来引用这些地址的全部范围。</p>
+<p><strong><code>超网掩码：</code></strong>一个32位的二进制值，能够把多个连续网络ID聚合为一个整体。</p>
+<h2 id="第6章-传输层"><a href="#第6章-传输层" class="headerlink" title="第6章 传输层"></a>第6章 传输层</h2><p>&emsp;&emsp;TCP/IP传输层包含很多有用的协议，能够提供数据在网络传输所需要的必要<strong>寻址</strong>信息。但<strong>寻址</strong>和<strong>路由</strong>只是传输层的部分功能。网际层上添加另一层，这层提供的额外必须要特性来使用IP。<br>传输层协议需要提供以下功能：</p>
+<blockquote>
+<ul>
+<li><strong>为网络应用程序提供接口：</strong>也就是为应用程序提供访问网络的途径。设计者希望不仅能够向目的计算机传递数据，还能够向目的计算机上的<code>特定应用</code>传递数据。</li>
+<li><strong>多路复用/多路分解机制：</strong>这里的多路复用表示从不同的应用程序和计算机接收数据，再把数据传递到目的计算机上的接收程序。换句话说，传输层必须 能够同时支持多个网络程序和管理传递给网际层的数据流。在接收端，传输层必须能够从网际层几首数据，把它转发给多个程序，这种功能被吃呢改为多路分解，它可以让一台计算机同时支持多个网络程序，比如一个Web浏览器、一个Email客户端和一个文件共享应用程序。多路复用/多路分解的另一个作用是可以让一个应用程序同时保持与多台计算机的连接。</li>
+<li><strong>错误检查、流量控制和验证：</strong>协议系统需要一种全面机制来确保发送端与接收端之间的数据传输。</li>
+<li><strong>传输控制协议（TCP）：</strong> TCP提供了完善的错误控制和流量控制，能够确保数据正确传输，它是一个面向连接的协议。</li>
+<li><strong>用户数据报协议（UDP）：</strong> UDP只提供了非常基本的错误检查，用于不锈奥TCP精细控制功能的场合，它是一个无连接的协议。</li>
+</ul>
+</blockquote>
+<h4 id="6-2、传输层概念"><a href="#6-2、传输层概念" class="headerlink" title="6.2、传输层概念"></a><strong>6.2、传输层概念</strong></h4><p><strong>6.2.1 面向连接的协议和无连接协议</strong><br>&emsp;&emsp;针对不同情况提供不同程度的质量保证，传输层提供了两种不同的协议原型。</p>
+<ul>
+<li><strong>面向连接的协议：</strong>会在通信计算机之间建立并维护一个连接，并且在通信过程中监视连接状态。换句话说，通过网络传输的每个数据包都会有一个确认，发送端就是那几会记录状态信息来确保每个数据包都被正确无误的接收，并且在需要时会重发数据。当数据传输结束之后，发送端和接收端计算机会已适当的方式关闭连接。</li>
+<li><strong>无连接的协议：</strong>以单向方式向目的发送数据报，不承担通知目的计算机关于数据发送的职责。目的计算机接收到数据后也不需要向源计算机返回状态信息。</li>
+</ul>
+<p><strong>6.2.2、端口和套接字</strong><br>&emsp;&emsp;传输层冲到了网络应用程序与网络之间的接口，并且能够网络数据传递给特定的应用程序。<br>在TCP/IP系统中，应用程序可以使用端口号通过TCP或UDP指定数据目的地。<strong><code>端口</code></strong>是一个预定义的内部地址，充当从<code>应用程序到传输层</code>或是<code>传输层到应用程序</code>之间的通路（如图6.3）。例如，客户端计算机通常利用TCP端口21来访问服务器上的FTP程序。</p>
+<p>&emsp;&emsp;进一步观察传输层这种鱼应用程序相关的寻址体制，就会发现TCP和UDP数据实际是被发送到一个套接字上的。<strong><code>套接字</code></strong>是一个由<code>IP地址和端口号</code>组成的地址。例如，套接字地址111.121.131.141:21指向IP地址为111.121.131.141的计算机端口21.<br>图6.4所示TCP的计算机在建立连接时如何交换套接字信息。</p>
+<p>下例展示一台计算机如何通过套接字访问目的计算机上的一个应用程序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.计算机A通过一个熟知的端口向计算机B上的一个应用程序发起连接，熟知端口是互联网数字分配机构（IANA）分配给特定程序的端口。表6.1和6.2列出一些熟知的TCP和UDP端口。熟知的端口与IP地址组合之后就构成了计算机A的目的套接字。连接请求包含着一个数据字段，告诉计算机B使用什么套接字程序计算机A返回信息，这也就是计算机A的源套接字地址。</span><br><span class="line">2.计算机B通过熟知端口接收来自计算机A的请求，向作为计算机A源地址的套接字发送一个响应。这个套接字就称为计算机B上的应用程序向计算机A上的应用程序发送消息的目的地址。</span><br></pre></td></tr></table></figure>
+
+<p>表6.1熟知的TCP端口</p>
+<table>
+<thead>
+<tr>
+<th>服务</th>
+<th>TCP端口</th>
+<th>简要描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tcpmux</td>
+<td>1</td>
+<td>TCP端口服务多路复用</td>
+</tr>
+<tr>
+<td>compressnet</td>
+<td>2</td>
+<td>管理工具</td>
+</tr>
+<tr>
+<td>echo</td>
+<td>3</td>
+<td>压缩工具</td>
+</tr>
+<tr>
+<td>discard</td>
+<td>7</td>
+<td>回显</td>
+</tr>
+<tr>
+<td>systat</td>
+<td>11</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>daytime</td>
+<td>13</td>
+<td>时间</td>
+</tr>
+<tr>
+<td>netstat</td>
+<td>15</td>
+<td>网络状态</td>
+</tr>
+<tr>
+<td>qotd</td>
+<td>17</td>
+<td>每日引用</td>
+</tr>
+<tr>
+<td>chargen</td>
+<td>19</td>
+<td>字符说呢过程器</td>
+</tr>
+<tr>
+<td>ftp-data</td>
+<td>20</td>
+<td>文件传输协议数据</td>
+</tr>
+<tr>
+<td>ftp</td>
+<td>21</td>
+<td>文件传输协议控制</td>
+</tr>
+<tr>
+<td>ssh</td>
+<td>22</td>
+<td>安全Shell</td>
+</tr>
+<tr>
+<td>telnet</td>
+<td>23</td>
+<td>终端网络连接</td>
+</tr>
+<tr>
+<td>smtp</td>
+<td>25</td>
+<td>简单邮件传输协议</td>
+</tr>
+<tr>
+<td>new-fe</td>
+<td>27</td>
+<td>NSW用户系统</td>
+</tr>
+<tr>
+<td>time</td>
+<td>37</td>
+<td>时间服务程序</td>
+</tr>
+<tr>
+<td>name</td>
+<td>42</td>
+<td>主机名称服务程序</td>
+</tr>
+<tr>
+<td>domain</td>
+<td>53</td>
+<td>域名服务程序（DNS）</td>
+</tr>
+<tr>
+<td>gopher</td>
+<td>70</td>
+<td>Gopher服务</td>
+</tr>
+<tr>
+<td>finger</td>
+<td>79</td>
+<td>Finger</td>
+</tr>
+<tr>
+<td>http</td>
+<td>80</td>
+<td>WWW服务</td>
+</tr>
+<tr>
+<td>link</td>
+<td>87</td>
+<td>TTY链接</td>
+</tr>
+<tr>
+<td>supdup</td>
+<td>95</td>
+<td>SUPDUP协议</td>
+</tr>
+<tr>
+<td>pop2</td>
+<td>109</td>
+<td>邮局协议2</td>
+</tr>
+<tr>
+<td>pop3</td>
+<td>110</td>
+<td>邮局协议3</td>
+</tr>
+<tr>
+<td>auth</td>
+<td>113</td>
+<td>身份验证服务</td>
+</tr>
+<tr>
+<td>uucp-path</td>
+<td>117</td>
+<td>UUCP路径服务</td>
+</tr>
+<tr>
+<td>nntp</td>
+<td>119</td>
+<td>USENET网络新闻传输协议</td>
+</tr>
+<tr>
+<td>nbsession</td>
+<td>139</td>
+<td>NetBIOS会话</td>
+</tr>
+</tbody></table>
+<p>表6.2 熟知的UDP端口</p>
+<table>
+<thead>
+<tr>
+<th>服务</th>
+<th>UDP端口号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>echo</td>
+<td>7</td>
+<td>回显</td>
+</tr>
+<tr>
+<td>discard</td>
+<td>9</td>
+<td>抛弃或空</td>
+</tr>
+<tr>
+<td>systat</td>
+<td>11</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>daytime</td>
+<td>13</td>
+<td>时间</td>
+</tr>
+<tr>
+<td>qotd</td>
+<td>17</td>
+<td>每日引用</td>
+</tr>
+<tr>
+<td>chargen</td>
+<td>19</td>
+<td>字符生成器</td>
+</tr>
+<tr>
+<td>time</td>
+<td>37</td>
+<td>时间服务程序</td>
+</tr>
+<tr>
+<td>domain</td>
+<td>53</td>
+<td>域名服务程序(DNS）</td>
+</tr>
+<tr>
+<td>bootps</td>
+<td>67</td>
+<td>引导程序协议服务DCHP</td>
+</tr>
+<tr>
+<td>bootpc</td>
+<td>68</td>
+<td>引导程序协议客户端DCHP</td>
+</tr>
+<tr>
+<td>tftp</td>
+<td>69</td>
+<td>简单文件传输协议</td>
+</tr>
+<tr>
+<td>ntp</td>
+<td>123</td>
+<td>网络时间服务</td>
+</tr>
+<tr>
+<td>nbname</td>
+<td>137</td>
+<td>NetBIOS名称</td>
+</tr>
+<tr>
+<td>snmp</td>
+<td>161</td>
+<td>简单网络管理协议</td>
+</tr>
+<tr>
+<td>snmp-trap</td>
+<td>162</td>
+<td>简单网络管理协议trap</td>
+</tr>
+<tr>
+<td><strong>6.2.3、多路复用/多路分解</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&emsp;&emsp;套接字寻址系统使用TCP和UDP能够执行传输层另一重要任务：<strong><code>多路复用</code></strong>和<strong><code>多路寻址</code></strong>;<code>多路复用</code>是指多个来源的数据导向一个输出，而<code>多路分解</code>是把从一个来源接收的数据发送多个输出。</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;<code>多路传输/多路分解</code>让TCP/IP协议栈较低层的协议不必关系哪个程序在传输数据。与应用程序相关的操作都由传输层完成了，数据通过一个与应用程序无关的管道在传输层与网际成传递。<br>&emsp;&emsp;多路复用和多路分解的关键在于<code>套接字地址</code>。套接字地址包含了IP地址与端口号，为特定计算机上的特定应用程序提供了已个唯一的标识。参见图6.6中FTP服务器。所有客户端计算机使用熟知的TCP端口21连接到FTP服务器，但针对没太个人计算机的目的套接字是不同的。类似地，运行于这台FTP服务器上全部网络应用程序都使用服务器的IP地址，但只有FTP服务程序使用由IP地址和TCP端口号21组成的套接字地址。</p>
+<h4 id="6-3、理解TCP和UDP"><a href="#6-3、理解TCP和UDP" class="headerlink" title="6.3、理解TCP和UDP"></a><strong>6.3、理解TCP和UDP</strong></h4><p><strong>6.3.1、TCP：面向连接的传输协议</strong><br>包括以下重要特性：</p>
+<blockquote>
+<ul>
+<li><strong>面向流的处理：</strong> TCP以流的方式处理数据。换句话说，TCP可以一个字节一个字节地接收数据，而不是一次接收一个预定义格式的数据块.TCP把接收到的数据组成长度不定的段，再传递到网际层。</li>
+<li><strong>重新排序：</strong>如果数据以错误的顺序到达目的，TCP模块能够对数据重新排序来恢复原始恢复。</li>
+<li><strong>流量控制：</strong> TCP的流量控制特性能够确保传输不会超过目的计算机接收能力。由于现实世界里会有各种不同的应用环境，处理器速度和缓存区大小的差别也可能很大，所以这种流控制能力是非常重要的。</li>
+<li><strong>优先级与安全：</strong>国防部对TCP的规范要求可以为TCP连接设置可选的安全级别和优先级，但很多TCP实现并没有提供这些安全和优先级特性。</li>
+<li><strong>适当的关闭：</strong> TCP像重视建立连接一样重视关闭连接的工作，以确保在连接被关闭之前，所有的数据段都被发送和接收了。</li>
+</ul>
+</blockquote>
+<p>&emsp;&emsp;仔细观察TCP，就会发现它是一个由通告和确认组成的复杂系统，用以支持TCP面向连接的功能。</p>
+<p>&emsp;&emsp;TCP/IP这样的分层协议系统在发送端计算机上某一层与接收端计算机<code>相应的层进行数据交换</code>;换句话就说，发送端计算机的网络访问层与接收端计算机的网络访问层进行通信，发送端计算机上的网际层和接收端计算机上的网际层通信，以此类推。</p>
+<p>&emsp;&emsp;典型的网络环境中（图6.7），数据从源子网经过路由器传递到目的子网。这些路由器通常工作于网际层，也就是传输层下面的层。这其中的重点在于路由器不关心传输层的消息，他们只是把传输层数据当做IP数据报的内容进行传递。封装在TCP分段中的这些控制和校验信息支队目的的计算机上的TCP软件有意义。这种工作方式能够加快TCP/IP网络之间的路由过程（因为路由器不参与TCP细致的质量保证），同时让TCP能够满足由端节点进行校验的要求。</p>
+<ol>
+<li><p><strong>TCP数据格式</strong><br> TCP数据格式如图6.8。其复杂的结构揭示了TCP的复杂性和功能多样性。TCP格式中的字段如下：</p>
+<blockquote>
+<ul>
+<li><strong>源端口（16位）：</strong>分配给源计算机上的应用程序的端口号</li>
+<li><strong>目的端口（16位）：</strong>分配给目的计算机上的应用程序的端口号。</li>
+<li><strong>序列号（32位）：</strong>当SYN标记不为1时，这是当前数据分段第一个字节的序列号；如果SYN的值是1，这个字段的值就是初始序列值(ISN),用于对序列号进行同步，这时第一个字节的序列号比这个字段的值大1（也就是ISN+1）</li>
+<li><strong>确认好（32位）：</strong>用于确认已经接收到的数据分段，其值是接收计算机即可接收下一个序列号，也就是下一个接收到的字节的序列号+1</li>
+<li><strong>数据偏移（4位）：</strong>这个字段表示报头的长度，也就是告诉接收端的TCP软件数据从何开始，这个值得单位是32位的字</li>
+<li><strong>保留（6位）：</strong>保留字段，为TCP将来的发展预留空间，目前全部为0</li>
+<li><strong>控制标记（分别占用1位）：</strong>控制标记用于表示数据分段的特殊消息。</li>
+<li><strong>URG：</strong>为1时表示当前数据分段是紧急的，也会让“紧急指针”字段值有意义。</li>
+<li><strong>ACK：</strong>为1时表示“确认号”字段是有意义的。</li>
+<li><strong>PSH：</strong>为1时让TCP软件把目前收到的全部数据都通过管道传递给接收应用程序。</li>
+<li><strong>RST：</strong>为1时会重置连接。</li>
+<li><strong>SYN：</strong>为1时表示序列号将被同步，说明这是一个连接的开始，详见三次握手</li>
+<li><strong>FIN：</strong>为1时表示发送端计算机已经没有数据需要发送了，这个标记用于关闭一个连接。</li>
+<li><strong>窗口（16位）：</strong>用于流量控制的参数。它定义了发送端计算机的发送序列号可以超过最后一个已确认序列号的数量。也就是说，发送方不必等待每个数据段被确认接收之后才发送下一个数据分段，允许已经确认接收的序列号与正在发送的序列号有一定差别，但必须在适当范围之内。</li>
+<li><strong>校验和（16位）：</strong>用于校验数据分段的完整性，接收端计算机会根据接收到的数据分段计算校验和，并且把结构与这个字段的值进行比较。TCP和UDP在计算校验和时包含一个具有IP地址的伪报头。</li>
+<li><strong>紧急指针（16位）：</strong>这是一个偏移量指针，指向标记紧急信息开始的序列号。</li>
+<li><strong>选项：</strong>指定一些可选设置中的某一项</li>
+<li><strong>数据：</strong>数据分段中的数据</li>
+</ul>
+</blockquote>
+</li>
+<li><p><strong>TCP连接</strong><br>TCP的一切连接操作都是在一个连接上下文的环境中完成的。TCP通过连接发送和接收数据，而这个连接必须根据TCP的规则进行请求、打开和关闭。<br> TCP的功能之一是为应用程序提供访问网络的接口。这个接口是通过TCP端口提供的，而为了通过端口提供连接，必须打开TCP与应用程序的接口。TCP支持以下两种打开状态。</p>
+<blockquote>
+<ul>
+<li><strong>被动打开：</strong>某个应用程序进程通知TCP转呗通过TCP端口接收连接，这样就会打开TCP到应用程序的连接，从而为参与连接的请求做准备。</li>
+<li><strong>主动打开：</strong>程序要求TCP发起与另一台计算机（处于被动打开状态）的连接，这就是主动打开状态（实际上，TCP可以对一个处于主动打开状态的计算机触发起连接，以解决两台计算机可能同时尝试建立连接的问题。）</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<p>&emsp;&emsp;在通常情况下，想接收连接的应用程序（比如FTP服务器）会把自身及其TCP端口置于被动打开状态。在客户端计算机上，FTP客户端的TCP状态一般是关闭的，直到用户发起一个从FTP客户端到FTP服务器的连接，这对于客户端来说就是主动打开。处于主动打开状态的计算机（比如客户端）上的TCP软件就会开始一些用于建立连接诶的信息交换，这种信息交换被称为“三次握手”。</p>
+<p>&emsp;&emsp;TCP发送的数据分段是不定长的。一个数据分段内，每字节数据都分哦诶一个序列号，接收端必须为接收到的每一个字节数据都发送一个确认号。</p>
+<p>&emsp;&emsp;实际中，数据分段中并不是为每个字节都单独编了一个序列号，而是在报文的“序列号”字段制定了数据分段的第一个字节的序列号。<br>这个规则有个例外，如果数据分段是连接初期使用，“序列号”字段里面包含的ISN，它的值比数据分段中第一个字节序列号小1。</p>
+<p>&emsp;&emsp;“确认号”字段中的值是计算机准备接收的下一个序列号。<br>如果发送端计算机没有在指定时间内收到确认消息，它就从已确认的下一个字节重新发送数据。</p>
+<ol start="3">
+<li><strong>建立连接</strong><br> &emsp;&emsp;为了让序列/确认系统正常工作，计算机必须对序列号进行同步。换句话说，计算机B必须知道计算机A的初始序列号（ISN），计算机A也必须知道计算机B使用什么ISN开始传输数据。<br>这个序列号同步的过程被称为<code>三次握手</code>。三次握手总是发送在TCP建立初期。<blockquote>
+<ol>
+<li>计算机A发送一个数据分段,其中的参数是：<br>SYN=1<br>ACK=0<br>序列号=X(X是计算机A的ISN)<br>处于主动打开状态的计算机（计算机A）发送一个数据分段，其中的SYN为1，ACK位0，SUN是（同步synchronize）。它表示在尝试建立一个连接，第一个数据分段的报头中还包含舒适序列号（ISN），标记了计算机将传输的第一个字节的序列号。也就是说，要发送给计算机B的第1个字节的序列号是ISN+1。</li>
+<li>计算机B接收到计算机A的数据分段，返回一个数据分段，其中的参数是：<br>SYN=1(仍热在同步阶段)<br>ACK=1（“确认号”字段将包含一个值）<br>序列号=Y（Y为计算机B的ISN）<br>确认号=M+1(M是从计算机A接收到的最后一个序列号)</li>
+<li>计算机A向计算机B发送一个数据分段，确认收到计算机B的ISN<br>SYN=0<br>ACK=1<br>序列号=序列中下一个号码（M+1）<br>确认号=N+1(其中N是从计算机B接收到的最后一个序列号)</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<p>&emsp;&emsp;在这三次握手完成之后，连接就被打开了，TCP模块就利用序列号和确认机制发送和接收数据。</p>
+<ol start="4">
+<li><strong>TCP流量控制</strong><br>&emsp;&emsp;TCP使用的流量控制方法称为“滑动窗口”方法，TCP报头中“窗口”字段（也被称为“缓存大小”），接收客户端利用“窗口”这个字段来定义一个超过最后一个已确认序列号的序列号“窗口”，只有这个范围内的序列号才被允许发送端计算机发送。发送端在没有接收到下一个确认消息之前，不能发送超过这个窗口的序列号。</li>
+<li><strong>关闭连接</strong><br>&emsp;&emsp;当需要关闭连接时，计算机开始关闭过程，A(FIN:1)-&gt;B，之后进入“结束-等待（fin-wait）”状态，A的TCP软件继续接收数据分段，并处理意见在序列中的数据分段，但不在从应用程序接收数据了。当B接收到FIN数据分段时，它返回对FIN的确认信息，然后发送剩余的数据分段，通知本地应用程序接收到了FIN消息,B(FIN)-&gt;A，A返回确认消息，连接就被关闭了。</li>
+</ol>
+<p><strong>6.3.2、UDP:无连接传输协议</strong><br>&emsp;&emsp;UDP具有有限的错误检验功能，数据报中包含一个校验和，接收端计算机利用它来校验数据的完整性。（一般，这个校验和是可选的，而且能被接收端禁用以加快接收数据处理）。UDP数据报中有一个伪报头，包含数据报的目的地址，从而提供了发送数据报的错误传输手段。 另外，如果UDP接收模块接收到一个发给未激活或未定义的UDP端口的数据报，它会返回一个ICMP消息。通知源计算机这个端口不可达。<br>&emsp;&emsp;UDP没有重新排序的功能，但一般不会导致不可靠的接收。</p>
+<p><strong>注意：</strong> UDP和广播</p>
+<blockquote>
+<p>UDP的简单、无连接设计让它成为网络广播所使用的协议，广播是会被子网全部计算机接收和处理的单个消息。</p>
+</blockquote>
+<p>&emsp;&emsp;UDP协议的主要用途是<code>把数据报传递给应用层</code>。<br>&emsp;&emsp;UDP头包含4个16位字段，如图6.9</p>
+<blockquote>
+<ul>
+<li><strong>源端口：</strong>占UDP报头的前16位，通常包含发送数据报的应用程序所使用的UDP端口。接收端应用程序利用该字段作为发送响应的目的地址，这个字段可选，不写其端口号，字段全部置0。这种情况适用于单向消息，无需响应。</li>
+<li><strong>目的端口：</strong>这16位子弹包含的端口地址，是接收端计算机上UDP软件使用的端口。</li>
+<li><strong>长度：</strong>这16字段以字节为单位表示UDP数据报的长度。这个长度包含UDP报头和UDP数据载荷。因为UDP报头长度是8字节，所以这个值最小8</li>
+<li><strong>校验和：</strong>这16为字段可以检验数据在传输过程中是否损坏。校验和是对二进制数据串指向特殊计算而得到的结果。对于UDP来说，校验和是基于伪报头、UDP报头、UDP数据和填充的0而计算。源计算机生成校验和，目的计算机对它进行校验，让可客户端用用程序能够判断数据报是否完整。<br>由于UDP报头中不包含源IP或目标IP地址，数据报可能会被传输到错误的计算机或服务。校验和使用的部分数据来自于从IP报头（被称为伪报头）提取的值，这个伪报头包含了目的IP地址的信息。让接收端计算机能够判断UDP数据报是否被错误交付。</li>
+</ul>
+</blockquote>
+<p><strong>注意：</strong>其他传输层协议</p>
+<blockquote>
+<p>DCCP(数据报拥塞控制协议)  SCTP（流控制传输协议）提供TCP和UDP不具备的增强特性。<br>RTP(实时传输协议)提供了传输实时硬盘和视频的结构。</p>
+</blockquote>
+<p><strong>问：</strong>为什么路由器不向发起连接的计算机发送TCP连接确认？<br><strong>答：</strong>路由器工作于网际层（传输层之下），因此不处理TCP信息。</p>
+<h2 id="第8章-路由选择"><a href="#第8章-路由选择" class="headerlink" title="第8章 路由选择"></a>第8章 路由选择</h2><p>IP转发<br>直接路由和间接路由<br>路由协议<br>本章将介绍网络上的路由器如何经过一个复杂的通信过程来决定数据传递到目的地址的最佳路径，内容包括<code>路由器</code>、<code>路由表</code>和<code>路由协议</code>;</p>
+<h4 id="8-1-TCP-IP中的路由选择"><a href="#8-1-TCP-IP中的路由选择" class="headerlink" title="8.1 TCP/IP中的路由选择"></a><strong>8.1 TCP/IP中的路由选择</strong></h4><p>&emsp;&emsp;大多数基本形式中，路由器是负责<code>根据逻辑地址对通信流量进行过滤的设备</code>。路由器一本工作于网际层（OSI模型的网络层）也建成为OSI的第三层，因此路由器也称为第3层设备。<br>近年来，硬件厂商已经开发出了可以工作在OSI协议栈更高层的路由器。本章会介绍第4到第7层的路由器，就目前而言只考虑工作于网际层（第3层，和IP寻址位于同一层）的路由器。</p>
+<p>&emsp;&emsp;当路由器将数据从一个网络传输到下一个网络时，它会<code>替换</code>网络访问层报头信息,因此路由器可以连接不同类型的网络。很多路由器还维护关于最佳路径的详细信息，这是根据<code>距离</code>、<code>带宽</code>和<code>时间</code>综合考虑而得到的。<br><strong>8.1.1 什么是路由器</strong><br>&emsp;&emsp;路由器看上去就像一台具备两款网络适配器的计算机。早期的路由器实际上就是具有两块或多块网络适配器的计算机（也成多宿主计算机）。如图8.1<br>IP地址属于网络适配器的，不属于计算机。图8.1的计算机有两个IP地址，一个适配器各一个。实际上，这两个适配器可以具有完全不同的IP子网对应于完全不同的的物理网络。多宿主计算机上的协议软件能够从网段A接收数据，查看IP地址信息来判断数据是否属于网段B。如果是，就将其中的网络访问层<code>报头信息</code>替换为<code>包含网段B物理地址</code>信息的报头,再把数据传递网路B。</p>
+<p>&emsp;&emsp;路由器的复杂特性：</p>
+<blockquote>
+<ul>
+<li>路由器的端口（适配器）超过两个，也就是同时连接两个以上的网络。决定向那哪里转发数据就变得更复杂了，而且很可能增加冗余路由（事实上，终端用户在大多数LAN中见到的路由器用于连接两个网段，但是在Internet结构内可以存在更为复杂的场景）</li>
+<li>由路由器连接起来的网络还分贝与其他网络连接。换句话说，路由器观察到的网络地址可能并不属于它直接连接的网络，它必须具备某种策略把数据转发到这些非直接网络上。</li>
+<li>路由器网络提供了冗余的路由，每台路由器必须能够以某种方式决定使用哪个路径。</li>
+</ul>
+</blockquote>
+<p>&emsp;&emsp;图8.1所示的简单配置加上前面的这几条复杂性。就可以得到路由器功能更详细的描述。如图8.2。</p>
+<p><strong>8.1.2 路由选择过程</strong><br>&emsp;&emsp;对路由器功能的全面介绍如下所述：</p>
+<blockquote>
+<ol>
+<li>路由器从所连接的网络之一接收数据。</li>
+<li>路由器把数据传递到协议栈的网际层。换句话说，路由器抛弃网络访问层层报头信息，并重组IP数据报（如果有必要）。</li>
+<li>路由器检查IP报头中的目的地址。</li>
+<li>如果数据的目的在其他网络，路由器就根据路由表决定向哪里转发数据。</li>
+<li>在路由器决定了它的哪个适配器要接收这个数据后，就把数据传递给适当的网络访问测软件，让数据通过适配器进行传输。</li>
+</ol>
+</blockquote>
+<p>&emsp;&emsp;这个路由选择如图8.3，有人觉得第4步是关键。但事实上<code>路由表</code>和<code>建立路由表的协议</code>是路由器具有的两个显著特性。对于路由器的大多数讨论都是关于<code>建立路由表</code>、<code>汇集路由表的路由协议</code>如何让所有的路由器像一个整体一样提供服务。</p>
+<p>&emsp;&emsp;路由的类型主要有两种，它们的名称就源自于其从何处获取路由表信息。</p>
+<blockquote>
+<p><strong>静态路由：</strong>要求网络管理员手动输入路由信息。<br><strong>动态路由：</strong>根据使用路由协议获取的路由信息来动态建立路由表。</p>
+</blockquote>
+<p><strong>注意：</strong>预配置路由</p>
+<blockquote>
+<p>大多数动态路由器允许路由器覆盖动态路由，并且对特定的地址配置静态路径。预配置的静态路由有时可以用于网络排错，有时也可以用于强制使用快速网络连接或平衡网络流量。</p>
+</blockquote>
+<p><strong>8.1.3 路由表的概念</strong><br>&emsp;&emsp;路由表和网际层其他路由元素的用途在于把数据传递到正确的本地网络。当数据到达本地网络之后，网络访问协议就会知道它的目的地。因此路由表不需要存储完整的IP地址，只需要列出网络ID即可。<br>&emsp;&emsp;图8.4为一个非常基本的路由表内容。从本质上讲，路由表就是把<code>目的网络ID映射到下一跳的IP地址</code>，即数据报通往目的网络的下一站。路由表会区分直接连接到路由器本身的网络和通过其他路由器间接连接过来的网络。下一跳可以是目的网络（如果是直接连接），也可以是通向目的网络的下一个下游路由器。图8.4中路由器端口接口是指转发数据的路由器端口。<br>&emsp;&emsp;路由表中的“下一跳”条目是理解动态路由的关键，在复杂的网络中，可能存在着通向目的的多条路径，路由器必须决定下一跳沿着哪条路径前进。动态路由器就与使用路由协议获取的信息来做出决定。<br><strong>注意：路由表</strong></p>
+<blockquote>
+<p>主机计算机可以向像路由器一样具有路由表，但由于主机不需要执行路由功能，它的路由表通常不会那么复杂。主机通常会使用默认路由或默认网关。当数据报不能再本地网络上传输或传递到另一台路由器时，它会被传递到充当默认网关的路由器。</p>
+</blockquote>
+<p><strong>8.1.4 IP转发</strong><br>&emsp;&emsp;主机和路由器都有路由表，相对于路由器，主机路由表简单多了，可能只包含两行，一个条目用于本地网络，另一个用于默认路由（处理不能在本地网段上传输的数据包）</p>
+<p>&emsp;&emsp;第4章，TCP/IP软件利用ARP将IP地址解析成本地网段上的物理地址，如果IP地址不在本地网段上会怎么样？IP不在本地网段，主机会把数据报发送到路由器。实际上不是这么简单。<br>&emsp;&emsp;IP报头（图4.3）只包含了源和目的IP地址，它没有足够空间来列出传输数据报的中间路由器地址。<br>&emsp;&emsp;IP转发过程实际上不会再IP报头中写入路由器地址，而是由主机把数据报和路由器的IP地址向下传递到网络访问层，该层的协议软件会使用一个独立的查询过程把数据报封装到一个帧中，通过本地网段传递给路由器。换句话说，被转发的数据报里的IP地址指向最终要接收数据的主机。而被转发数据报的帧中的物理地址指向路由器上的本地适配器地址。<br>&emsp;&emsp;下面介绍整个过程（图8.5）</p>
+<blockquote>
+<ol>
+<li>以太主机准备放一个IP数据报，它查看自己的路由表</li>
+<li>如果数据报不能再本地网络上发送，主机就会从路由表里获取与目的地址相关联的路由器的IP地址（对于本地网段上的主机来说，这个路由器的IP地址一般都是默认网关的地址）。路由器的IP地址被ARP协议解析为物理地址。</li>
+<li>数据报（目的是远程主机）和路由器的物理地址一起被传递给网络访问层。</li>
+<li>路由器的网络适配器会接收到这个帧，因此帧的目的物理地址与路由器的物理地址相匹配。</li>
+<li>路由器对帧进行拆包，把数据报传递给网际层。</li>
+<li>路由器查看数据报的IP地址，如果这个地址匹配路由器自己的IP地址，就表示数据是要发给路由器本身；否则，路由器会查看自己的路由表，找到与数据报目的地址相关联的路由器，尝试转发这个数据报。</li>
+<li>如何不能把数据报发送到与路由器相连接的任何网段，路由器就把数据报发送给另一台路由器，上述过程就会车功夫进行（从第1步开始），知道最后一个路由器就能过把数据报直接传输给目的主机。</li>
+</ol>
+</blockquote>
+<p>&emsp;&emsp;此过程的第6步是路由器的一个重要特性。需要记住的是，并不是具有两块网卡的设备就能充当路由器。如果没有必要的软件来支持IP转发，就不能把数据从一个接口传递到另一个。当不具备IP转发功能的计算机接收到目标是其他计算机的数据报时，它只会忽略收到的数据。</p>
+<p><strong>8.1. 直接路由与间接路由</strong><br>&emsp;&emsp;如果一台路由器只连接了两个子网，路由表就会相对简单。图8.6所示的路由器不会看到没有与其端口相关联的IP地址，而且它是直接连接在全部子网上。换句话说，图中的路由器能够直接利用直接路由传递任何数据报。</p>
+<p>&emsp;&emsp;再来看图8.7，更复杂一点的网络。路由A没有连接到网段3,而且在没有任何帮助的情况下也不能发现网段3，这种情况为间接路由。大多数路由式网络都在某种程度上依赖于间接路由。关于图8.7,最大的问题是路由器A如何发现网段3？路由器A如何知道发往网段3的数据报应该转发给路由器B而不是路由器C呢？</p>
+<p>&emsp;&emsp;路由器了解间接路由器的方式有两种：从系统管理员和从其他路由器。<br>&emsp;&emsp;这两种方式分别对应静态路由和动态路由。系统管理员可以直接从路由表中输入网络路由（静态路由），或者路由器B可以直接告诉路由器A关于网段3的信息（动态路由）。动态路由具有一个优点，首先，它不需要人工干预。其次，它可以对网络的改变做出相应。如果一个新的网段连接到了路由器B，路由器B就能把这个改变通知路由器A。</p>
+<p><strong>注意：</strong>静态路由和动态路由</p>
+<blockquote>
+<p>路由器有时会同时使用静态路由和动态路由。系统管理员可以配置一些静态路由，让其他路径动态分配。静态路由有时可以用于强制流量经过特定路径。例如：系统管理员通过配置路由器可以把流量导向带宽较大的链接。</p>
+</blockquote>
+<p><strong>8.1.6 动态路由算法</strong><br>&emsp;&emsp;路由器的行为完全依赖于路由表。目前使用的路由协议有很多种，其中很多是围绕着这两种路由方法之一设计的。这两种方法分别是<code>距离矢量路由</code>和<code>链路状态路由</code>。<br>这令中方法其实就是路由器<code>相互通信</code>和<code>收集路由信息</code>所采用的不同方法。<br>使用两种方法的一堆路由协议：<code>RIP</code>(距离矢量路由协议)和<code>OSPF</code>(链路状态路由协议)<br><strong>说明：</strong>协议和实现<br>距离矢量和链路状态是路由协议的累呗，实际协议的具体实现还包括其他特定和细节。另外，很多路由器支持启动脚本，静态路由条目等功能，使对距离矢量和链路状态路由的理想化描述变得非常复杂。</p>
+<h4 id="1、距离矢量路由"><a href="#1、距离矢量路由" class="headerlink" title="1、距离矢量路由"></a><strong>1、距离矢量路由</strong></h4><p>&emsp;&emsp;距离矢量路由（也称为贝尔曼-福特路由）是一种高效、简单的路由方法，被很多路由协议所采用。它曾经在路由界占统治地位，虽然最近几年一些更复杂的路由方法（比如链路状态路由）逐渐流行起来，但距离矢量路由仍然相当常见。<br>&emsp;&emsp;距离矢量路由设计目标：路由器之间所需通信最少，路由表中必须保留的数据最少。这种设计理念认为路由器不必知道通向每个网段的完整路径，而是只需知道向哪个方法方数据报即可（这也是术语“矢量”的由来）。网段之间的距离以数据报在两个网络之间传输必须经过的路由器的数量来表示，而使用距离矢量路由的路由器优化路径的方式是让数据报必须经过的路由器达到最少。这个距离参数被称为“跳数”、<br>&emsp;&emsp;距离矢量路由的工作方式如下：</p>
+<blockquote>
+<ol>
+<li>当路由器A初始化时，它感知到直接连接的网段，并把这些网段写入到自己的路由表中。这些直连网段的跳数为0，因此数据报从这台路由器到达这些网段不需要经过其他路由器，</li>
+<li>在周期性的时间间隔中，路由器器接收到来自邻居路由器的报告，其中包含了邻居路由器所感知的网段和相应的跳数。</li>
+<li>当路由器A从邻居路由器收到报告后，按照如下方法把新的路由信息添加到自己的路由表中。</li>
+</ol>
+<ul>
+<li>如果路由器B的信息中包含一个路由器A目前还不知道的网段，路由器A就把这个网段添加到自己的路由表中。去往这个新网段的路由就是路由器B，也就是说，如果路由器A收到发向这个新网段的数据报，它会转发给路由器B。对于路由器A来说，这个新网段的跳数是路由器B的信息中列出的跳数再加1，因此它与路由器B相比，到达这个网段需要多一跳。</li>
+<li>如果路由器B的信息中包含的网段已经存在路由器A的路由表中，路由器A就会把收到的跳数+1，把得到的值与自己路由表中的值相比较，如果经过路由器B的路由比路由器A已经掌握的路径更有效率（跳数更小），路由器A就更新自己的路由表，把路由器B作为通向相应网段的路径。</li>
+<li>如果通过路由器B的跳数比路由器A路由表中的当前路由跳数大，经过路由器B的路由就不会被使用，路由器A继续使用自己路由表中保存咋路径。</li>
+</ul>
+</blockquote>
+<p>&emsp;&emsp;随着每一轮路由表的更新，路由器对网络的了解越来越全面。关于路由的信息逐渐散步到只整个网络。假设网络不发生改变，路由器就会最终了解到通向每个网段的最高效的路径。</p>
+<p>&emsp;&emsp;图8.8所示为一个距离矢量路由更新的例子。主要到在这一时刻，已经发生一些更新。因为路由器A和路由器B都已经了解到没有直接的网段。在这种情况下，路由器B具有通向网络14的更优路径。所以路由器A就会更新自己的路由表，把发往网络14的数据转发给路由器B。对于网络7来说，路由器A已经掌握的路径更好，所以表中相应内容没有改变。</p>
+<h4 id="2、链路状态路由"><a href="#2、链路状态路由" class="headerlink" title="2、链路状态路由"></a><strong>2、链路状态路由</strong></h4><p>&emsp;&emsp;在假设路径效率等同于经过路由器数量时，距离矢量路由是个很好的方法。这种假设的初衷很多啊，但在有些情况下过于简单了（即使在跳数一样的情况下，经过低速链路的路由也会比经过高速链路的慢）。另外，距离矢量路由并不特别使用与具有大量路由器的环境，因为没太路由器为每个目的网关都必须维护一个路由条目，而这些条目不过是矢量和跳数。路由器无法充分利用对网络结构的更多了解来提高其效率。而且，即使在大量信息都不必要的情况下，包含距离和跳数的完整表格必须在路由器之间进行传输。计算机科学开始思考能否做的更好，由此诞生了链路状态路由，而且它已经成为距离矢量路由器的主要对手。</p>
+<p>&emsp;&emsp;连接状态路由背后的理念在于每个路由器都尝试建立关于网络拓扑的内部映射。每台路由器定期向网络发送状态信息，其中列出了自己直连的其他路由器以及链路的状态（链路在当前是否可用）。路由器利用从其他路由器收到的状态消息建立网络拓扑的映射，当它需要转发数据报时，会根据现有条件选择最佳路径。<br>&emsp;&emsp;连接状态路由在每台路由器上都需要更多的处理时间。但带宽消耗减少，因为没太路由器不需要传播完整的路由表。另外通过网络追踪故障更容易了，因为特定路由器发出的状态消息在网络上传输时不会被改变（而在另一方面，即使距离矢量路由方法的路由器会在收到路由器消息时修改其中的跳数）。</p>
+<h4 id="8-2-复杂网络上的路由"><a href="#8-2-复杂网络上的路由" class="headerlink" title="8.2 复杂网络上的路由"></a><strong>8.2 复杂网络上的路由</strong></h4><p>&emsp;&emsp;大型网络上包含数以百计的路由器，Internet则包含数以千计的路由器。在像Internet这样的大型网络上，让全部路由器都共享前面所述路由方法的所有信息是不可能的。如果每台路由器都处理Internet上其他路由器的路由信息，路由协议的流量和路由表的规模很快就会让整个系统崩溃。<br>&emsp;&emsp;对于Internet上的路由器，并不是每一台路由器都需要知道其他所有路由器的信息。<br>&emsp;&emsp;在网络有效组织环境下，大多数路由器只需要与相邻路由器交互协议信息即可。</p>
+<p>&emsp;&emsp;在孕育了Internet的ARPAnet系统中，一小组核心路由器作为网络互联的中央骨干网，把自动配置和管理的独立网络连接在一起。核心路由器了解每个网络。但不必知道每个子网。只要数据报能够找到到达核心路由器的路径，就能够到达整个网络的任何位置。附属网络的路由器不必了解世界的全部网络。这个系统的发展为复杂的现代Internet(详见第17章)。</p>
+<p>&emsp;&emsp;Internet由各个独自管理的网络组成，这些网络成为<code>自治系统</code>。自治系统可以是个公司网络，但目前更常见的是与Internet服务供应商（ISP）相关联的网络。自治系统的所有者管理每台路由器的配置细节。大多数路由器按照如下的通用分类进行指责划分，尽管以太路由器可以充当多重职责，但是路由器所使用的硬件，尤其是协议，确定了它在网络中的职责。</p>
+<blockquote>
+<p><strong>外部路由器：</strong>外部路由器在自治网络之间交换路由信息，他们维护自己及邻居自治网络的路由信息。边界路由器传统上使用外部网关协议（EGP）,实际的RGP现在已经过时，但外部路由器使用新路由协议一般也称为EGP。现在流行的一种EGP是边界网关协议（BGP）。外部路由器通常也作为自治网络的内部路由器。<br><strong>内部路由器：</strong>自治网络内部<code>共享路由信息</code>的路由器被称为<code>内部网关</code>，它们使用被称为内部网关协议（IGP）的一组路由协议，包括路由信息协议（RIP）、开放最短路经优先（OSPF）。详见本章后续。<br><strong>核心路由器：</strong>尽管最初APRAnet骨干网不再作为Internet的中心而出现，但是自治系统有时会构建自己的骨干结构，以细分和隔离流量。核心路由器支持骨干系统。核心路由器使用的路由协议包括网关到网关协议（GGP），以及新出现的SPREAD协议。</p>
+</blockquote>
+<p>说明：自治网络内部的路由器也可能分层次进行配置，一个大型自治网络可能包含多组内部路由，并利用内部路由器传递这些内部组之间的路由信息。自治网络管理者可以根据需要设计路由器配置，并且相应地选择路由协议。</p>
+<h4 id="8-3-内部路由器"><a href="#8-3-内部路由器" class="headerlink" title="8.3 内部路由器"></a><strong>8.3 内部路由器</strong></h4><p>&emsp;&emsp;内部路由器工作于自治网络的内部，它会掌握自己组内全部路由器所连接的网段信息，但不需要完整了解自治系统之外的网络。<br>&emsp;&emsp;内部路由协议有多种，网络管理员必须根据网络情况和网络硬件兼容性选择内部路由协议。<br>&emsp;&emsp;两种重要的内部路由协议：路由信息协议（RIP）和开放最短路由优先（OSPF）；<br>RIP是一种距离矢量协议，而OSPF是一种链路状态协议。实际的协议实现都需要解决一些细节问题。<br><strong>注意：</strong>多协议</p>
+<blockquote>
+<p>当今大多数路由器都支持多种路由协议。</p>
+</blockquote>
+<p><strong>8.3.1 路由信息协议（RIP）</strong><br>&emsp;&emsp;RIP是一种距离矢量协议，这表示它根据跳数来判断到达目的的最佳路径。RIP曾经非常流利，虽然现在有些过时，但仍然被广泛使用。RIP Ⅱ标准的出现解决了RIP Ⅰ的一些问题。现在很多都有其都支持RIP 和RIP Ⅰ。RIPⅡ 针对于IPv6网络的扩展被称为RIPng。</p>
+<p><strong>注意：</strong> RIP路由</p>
+<blockquote>
+<p>RIP在UNIX和Linux上是通过routed daemon实现的。</p>
+</blockquote>
+<p>&emsp;&emsp;作为一种距离矢量协议，RIP需要路由器收听和集成来自其他路由器上的路由和跳数信息。RIP的参与者被划分为主动和被动两种。<br>&emsp;&emsp;主动RIP节点通常是参与正常的距离矢量数据交换过程的路由器，它会把自己的路由表发送给其他路由器，并且收听来自其他路由器的更新信息。<br>被动RIP节点只收听路由更新信息。不传播自己的路由表，其典型代表就是普通计算机（主机也需要路由表）。</p>
+<p>&emsp;&emsp;如果接收到的跳数进行处理后正好和路由表中保存的跳数一样，会如何处理?对于RIF来说，如果到达同一目的的两个路径具有相同的跳数，则会使用路由表现有的路径。这样会避免由于跳数相同而导致路由表条目不断被修改。</p>
+<p>&emsp;&emsp;RIP路由器每30秒广播一次更新消息，它还可以要求立即更新。像其他距离矢量协议一样，当网络处于平衡状态时，RIP工作效果最好。如果路由器数量变得非常大。路由表的缓慢收敛可能导致问题。处于这个原因，RIP设置了从第一台路由器到达目的的最大跳数限制，其值是15,。这个规定限制了路由组的数量，但如果以层级方式组织路由器，15跳范围之内也可以组成大型网络。</p>
+<p>&emsp;&emsp;虽然距离矢量发方没有特别考虑线路速度和物理类型的问题，但RIP允许网络管理员以手动方式把低俗路径的跳数设置得很大，从而影响事假的路由选择。<br>古老的RIP协议逐渐被新的路由协议所取代，比如OSFP</p>
+<p><strong>8.3.2 开发最短路径优先（OSPF）</strong><br>&emsp;&emsp;OSPF比较新的内部协议，正在逐步取代RIP，OSPF是链路状态协议。<br>&emsp;&emsp;OSPF路由器组中的没太路由器都被指定一个路由器ID,通常是与路由器相关联的最大IP地址（如果路由器使用了一个环回接口，路由器ID就是最大的回环地址）<br>&emsp;&emsp;本章前面讲过，链路状态路由器会建立网络拓扑的一个内部映射，利用路由器ID来鉴别拓扑里的路由器。每台路由器都把网络描绘为一个树形，自己位于树的根部。这个网络树被称为最短路径树(SPT)，通过网络的路径就对应于通过SPT的路径，路由器计算每一个路由的开销。开销度量包括跳数和其他一些因素，比如链路速度和链路的可靠性。</p>
+<h4 id="8-4、外部路由器：BGP"><a href="#8-4、外部路由器：BGP" class="headerlink" title="8.4、外部路由器：BGP"></a><strong>8.4、外部路由器：BGP</strong></h4><p>&emsp;&emsp;Internet是由大量的自治系统的内部路径，自治系统之间的路径，以及穿越自治系统的冗余路径组成即可。</p>
+<p>&emsp;&emsp;外部路由在自治系统网络中传输流量时发挥了重要的作用。如今Internet上的外部路由器所以使用的最常见协议是边界网关协议（BGP）。<br>&emsp;&emsp;实际上，BGP用途很广泛，可以用作自治系统内的内部协议，将网络细分为更小的区域，在自治系统的边缘使用的BGP版本被称为外部边界网关路由协议（eBGP）,它将消息从一个自治系统传输到另外一个自治系统。在自治系统内部使用的BGP称为内部边界网关协议（iBGP）。<br>&emsp;&emsp;IANA为每一个自治系统分派了一个唯一的数值，称之为AS号或ASN。BGP使用这些AS号来构建Internet的映射，并将基于CIDR的无类别IP地址与穿越自治系统的路由关联起来。ASN提供了一种方法来识别网络是否独立于特定的IP地址（或地址范围）。该方法提供了去往自治系统的冗余路径（与通过IP地址控件的单条路径相对）但是由于ASN不是分层次的，因此BGP路由器必须知道网络中的所有其他BGP路由器。</p>
+<p><strong>注意：公共ASN和私有ASN</strong></p>
+<blockquote>
+<p>iBGP主要用于在自治系统的内部来路由流量，它不需要IANA分配的公共ASN。内部BGP路由器使用私有ASN来转发流量，因此不会将流量转发到自治系统之外。</p>
+</blockquote>
+<p>&emsp;&emsp;BGP路由器使用可靠地TCP连接来传递与地址范围相关的信息，并构建用来买搜狐网络路径的ASN链。BGP协议包括大量用于路径发现的条款，以及从多个选择中选取最高效路径的技术。</p>
+<h4 id="8-5-无类别路由"><a href="#8-5-无类别路由" class="headerlink" title="8.5 无类别路由"></a><strong>8.5 无类别路由</strong></h4><p>&emsp;&emsp;TCP/IP路由系统是围绕网络ID的概念设计的，而网络ID时基于IP地址的地址类别（A、B和C）。在第5章讲到，这个地址分类系统有一些局限性，有时并不能有效的把一段地址指定给一个供应商。“无类别域间路由（CIDR）”提供了指定地址和确定路由的另一种方法。CIDR系统利用地址/掩码对来指定主机，比如204.24.128.0/17,掩码数字表示地址中多少位属于网络ID。<br>&emsp;&emsp;如果路由协议支持CIDR，它会提供更有效的路由，CIDR让路由器能把多累网络同等对待，从而减少了路由器之间要传输的信息。最近一些路由协议，比如OSPF和BGP4，都支持无类别寻址。最初RIP不支持CIDR,随后的RIP II 更新支持了CIDR。</p>
+<h4 id="8-6-协议栈中的更高层"><a href="#8-6-协议栈中的更高层" class="headerlink" title="8.6 协议栈中的更高层"></a><strong>8.6 协议栈中的更高层</strong></h4><p>&emsp;&emsp;协议占中的每一层都提供了不同的服务，并且在其包邮中封装了不同的信息。能够访问更高层协议的路由器可以根据更多的信息来决定路由。例如：工作于传输层的路由器能够根据源端口和目的端口推断数据的特性，而工作于应用成的路由器可以更详细的了解发送数据的应用程序和应用程序所使用的协议。</p>
+<p>&emsp;&emsp;工作于更高层的路由器有很多优点，比如更好的安全型，使用这种技术的另一个重要原因是服务质量（Qos）的概念。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">自治系统：参与到更大网络的网络，由自治实体进行维护</span><br><span class="line">边界路由协议（BGP）：用来在自治系统之间路由流量的协议。BGP也用作自治系统内的内部协议。</span><br><span class="line">动态路由：一种路由技术，路由器基于该技术获得的信息来构建路由表。</span><br><span class="line">外部路由器：自治系统中的一种路由器，与其他自治系统传递路由信息。</span><br><span class="line">非直连路由：位于两个不能直接连接的网络中的路由。</span><br><span class="line">内部路由器：自治系统内部的路由器，与系统内的其他路由器交换路由信息。</span><br><span class="line">IP转发：把IP数据报从同一台设备的一个网络接口传递到另一网络接口的过程。</span><br><span class="line">OSPF(开发最短路径优先)：一种常见的链路状态内部路由协议。</span><br><span class="line">RIP(路由信息协议)：一种常见的距离失灵内部路由协议。</span><br><span class="line">路由协议：路由器用于汇聚路由信息的协议。</span><br><span class="line">SPT(最短路径树)：OSFP路由器生成的一种树形网络映射。</span><br><span class="line">静态路由：需要网络管理员手动输入路由信息的一种路由技术。</span><br></pre></td></tr></table></figure>
+
+<h2 id="第9章-连网"><a href="#第9章-连网" class="headerlink" title="第9章 连网"></a><strong>第9章 连网</strong></h2><p>拨号连接<br>宽带技术，比如电缆和DSL<br>广域网<br>无线网络连接<br>连接设备</p>
+<p>&emsp;&emsp;网络访问层管理与物理网络的接口，但是物理网络到底是什么？在位、字节、端口和协议层这些概念之后，Internet连接需要某种形式的设备把计算机或本地网段连接到更大的网络上。本章介绍访问TCP/IP网络所用到的一些设备和过程。</p>
+<h4 id="9-1-拨号连接"><a href="#9-1-拨号连接" class="headerlink" title="9.1 拨号连接"></a><strong>9.1 拨号连接</strong></h4><p>&emsp;&emsp;以前，连接TCP/IP网络（比如Internet）的一种最常的方式是通过电话线，二在最近几年，像电缆调制解调器和DSL这样的宽带技术降低了拨号连接的重要性，但很多计算机仍然支持拨号连接，而且电话调制解调器在很多领域仍然是重要的连接工具，<br>调制解调器（modem）通过电话线提供网络访问，它是Modulate/DEMoudlate(调制器和解调器)，调制解调器的作用在于把来自于计算机的数字传输转化为能够通过电话系统的端口进行传输的模拟信号，同时也把来自电话线的模拟信号转化为计算机能够理解的数字信号。</p>
+<p><strong>9.1.1 点到点连接</strong><br>&emsp;&emsp;第3章讲过，像以太网这样的局域网使用精致的访问策略让计算机共享互联网介质。与之相反的是，电话线两端的计算机不需要与其他计算机争用传输介质，它们只需彼此之间共享介质就可以了。这种连接方式被称为点到点连接（图9.1）</p>
+<p>&emsp;&emsp;点到点连接比局域网的配置简单，因为它不需要具备让多台计算机共享传输介质的方法。同时，通过电话线的连接也有一些局限性，最大的局限之一是电话连接的传输速率比局域网（比如以太网）要低得多，这导致他使用的协议相当简单,越简单越好。但是，随着调制解调器的速度越来越高，调制解调器的协议应急承担了额外的职责。</p>
+<p>&emsp;&emsp;拨号协议的另一巨大挑战是要支持大量不同类型的硬件和软件配置。在局域网上，系统管理员监视和控制每台计算机的配置，协议系统依赖于通信设备之间的高度一致性。拨号连接却与之不同，它几乎可能发生在世界上的任何地点，拨号协议必须适应通信设备的硬件和软件更广泛的差异性。</p>
+<p><strong>9.1.2 调制解调器协议</strong><br>&emsp;&emsp;这种只涉及两台计算机的点到点连接也需要复杂的TCP/IP栈来建立连接吗？答案是“不”。</p>
+<p>&emsp;&emsp;早期的调制解调器协议只不过是一种在电话线传输信息的方法，在这种情况下，TCP/IP的逻辑寻址和网间错误控制就是没有必要的。随着局域网和Internet的出现，工程师开始考虑让拨号连接作为提供网络访问的一种方式。这样远程网络访问概念的第一个是实现是对早期调制解调器协议的扩展，在这种最初的主机拨号方案中，连接到网络的计算机负责为网络准备数据。无论和显示的还是隐式的，远程计算机都像是个终端（图9.2），通过一个完整的独立的过程让连网主机利用调制解调器线路执行连网任务、发送和接收数据。</p>
+<p>&emsp;&emsp;然而，这些早期主机拨号方案有一些局限性。它们反应了早期的中心化计算机模式，对提供网络连接的计算机要求过多，（图9.2配置中，想象如果多台计算机同步连接到拨号服务器会怎么样），而且也不能充分发挥远程计算机的处理能力。<br>随着TCP/IP和其他路由器协议的实现，设计人员构想出另一种解决方案，让远程计算机负责更多的连网任务，而让拨号服务器发挥类似路由器的作用，这种方案（图9.3）与新式的、弱中心画的计算机网络模式更一致，也接近与TCP/IP的本质特征。在这种安排下，远程计算机运行自己的协议栈，让调制解调器协议工作于网络访问层，拨号服务器接收数据并路由到更大的网络。</p>
+<p>&emsp;&emsp;这样一来，拨号协议直接与TCP/IP配合工作，并成为协议中的集成部分。最常见的两个TCP/IP调制解调器协议如下所示：</p>
+<blockquote>
+<p><strong>串行线路网际协议（SLIP）：</strong>基于TCP/IP的早期调制解调器的协议，相对简单，有很多局限性。<br><strong>点到点协议（PPP）：</strong>最初当前用于调制解调器连接的最流行协议，是对SLIP的细化，具有SLIP所不具备的很多重要特定。</p>
+</blockquote>
+<p>PPP已经取代SLIP成为拨号Internet连接的协议。</p>
+<blockquote>
+<p><strong>注意：</strong>底层协议<br>SLIP和PPP都建立与更低级的串行通信协议上，后者负责信号调制和解调的具体细节。这些串行通信协议提供了OSI模型中物理层的功能。</p>
+</blockquote>
+<p><strong>9.1.3 点到点协议（PPP）</strong><br>&emsp;&emsp;PPP设计目标是解决SLIP存在的一些缺点。<br>&emsp;&emsp;PPP设计人员还希望PPP能够在连接建立初期进行动态协商配置，并且能够在会话过程中管理通信计算机之间的链路。<br>&emsp;&emsp;PPP实际上式交互作用的一组协议，实现基于调制解调器连网所需的全部功能。RFC 1661把PPP组件划分为3大类：</p>
+<blockquote>
+<p><strong>封装多协议数据报的方法：</strong> SLIP和PPP都接受数据报，转换为适合Internet的形式。但PPP与SLIP不同的是，它还必须准备接受来自不同协议系统的数据报。<br><strong>建立、配置和测试连接的链接控制协议（LCP）：</strong> PPP能够通过协商方式进行配置，从而消除了SLIP连接遇到的兼容问题。<br><strong>支持高层协议系统的网络控制协议（NCP）簇：</strong> PPP可以包含不同的子层，从而为TCP/IP和其他网络协议提供单独的接口。</p>
+</blockquote>
+<p>PPP的大部分功能来自于建立、管理和终止连接的LCP功能。<br><strong>1. PPP数据</strong><br>&emsp;&emsp;PPP（以及SLIP）的主要用途是转发数据报，其难点在与它必须能够转发多重类型的数据报，也就是说，数据报可能是IP数据报或OSI模型中网络层的其他数据报。</p>
+<blockquote>
+<p><strong>注意：</strong>数据包<br>&emsp;&emsp;PPP RFC使用术语“数据包（packet）”来描述在PPP帧中传输的数据。数据包可以有IP（或其他高层协议）数据报组成，也可以由通告PPP进行操作的额其他按协议的数据组成。“数据包”这个词在整个网络界用于表示经过网络传输的数据，它并不是很严密的术语。本书中爱不分内容会使用更精确的术语，比如“数据报（datagram）”。但是，并不是所有的PPP数据包都是数据报，所以为与RFC保持一致，本章课程用术语“数据包”表示经过PPP传输的数据。</p>
+</blockquote>
+<p>&emsp;&emsp;PPP也要转发与自己协议相关的信息，这些协议的作用是建立和管理调制解调器连接。通信设备在PPP连接过程中，会交换多重类型的消息和请求。通信计算机必须交换用于建立、管理和关闭连接的LCP数据包，支持PPP身份验证功能（可选）的验证数据包，与各种协议簇通信的NCP数据包。在连接初期交换LCP数据配置用于全部协议共同的连接参数，NCP协议配置与特定协议簇相关的参数。<br>PPP帧的数据格式如图9.4</p>
+<blockquote>
+<p><strong>协议：</strong> 1或2字节的字段，提供代表被封装数据包协议类型的标识号。可能的类型包括LCP数据包、NCP数据包、IP数据包和OSI模型网络层协议数据包。ICANN负责规定各种协议类型的标准标识号码。</p>
+</blockquote>
+<blockquote>
+<p><strong>封装的数据（零或多个字节）：</strong>帧中传输的控制数据包或高层数据报。<br><strong>填充（可选，长度不定）：</strong>协议字段指定的协议所需的额外字节。每个协议自己负责区分填充字节与被封装的数据报。</p>
+</blockquote>
+<p><strong>2 PPP连接</strong><br>PPP连接的过程如下：</p>
+<blockquote>
+<ol>
+<li>使用LCP协商过程建立连接。</li>
+<li>如果第1步的协商过程指定了身份验证要求，通信计算机就进入身份验证阶段。RFC 1661提供了密码验证协议（PAP）和挑战握手验证协议（CHAP）这两个可选的验证选项。PPP还支持其他身份验证协议。</li>
+<li>PPP利用NCP数据包指定与特定协议相关的配置信息。</li>
+<li>PPP传输从高层协议接收到的数据。如果第1步的协商过程指定了链接质量监视，监视协议就会传输监视信息。NCP还可能传输与特定协议相关的信息。</li>
+<li>PPP交换LCP终止数据包来关闭连接。</li>
+</ol>
+</blockquote>
+<h4 id="9-2-电缆宽带"><a href="#9-2-电缆宽带" class="headerlink" title="9.2 电缆宽带"></a><strong>9.2 电缆宽带</strong></h4><p>&emsp;&emsp;Internet服务的要求，以及不断增强计算机系统的能力，促进业界寻找新的连接方式来取代速度慢的电话调制解调器。处于成本的考虑，服务提供商并不是提供一个全新的布线体系，而是利用现有线路提供Internet服务。<br>一种分布到每家每户兵器嗯可以支持Internet服务的布线系统就是优先电视网络。基于电缆的宽带目前在世界很多地方都很常见了，典型的电缆调制解调器连接如图9.5所示。</p>
+<p>&emsp;&emsp;电缆调制解调器直接连接到一条同轴电缆，后者被连接到有线电视服务网络上。这个调制解调器通常具有一个以太网接口，可以连接到单台计算机或小型局域网中的交换机或者路由器。<br>&emsp;&emsp;前面讲到，术语“调制解调器”是由“调制器”和“解调器”的缩写。与电话调制解调器相同，电缆调制解调器实现数字数字信号与模拟信号的转换，从而让数据能够通过电缆连接高速运行。<br>&emsp;&emsp;名为电缆解调器终端系统（CMTS）的设备，在优先电视提供商网络的接口，接收来自电缆调制解调器的订好，把它转换回数字形式。有线电视提供商再从上游ISP租用宽带线路，利用路由器把用于与Internet连接起来。提供商还可以提供其他服务，比如用DHCP给网络上的用户动态分配IP地址。<br>&emsp;&emsp;虽然电缆调制解调器起到了两种不同传输介质的接口和作用，但它并不是一个指针的路由器，更像是一个网桥。电缆调制解调器根据物理（MAC）地址在网络访问层过滤通信。然而近几年来，有些厂商在一些家用路由器设备中内置了电缆调制解调器，所以我们可能会看到一些组合设备，它们同时具有路由器和电缆调制解调器的功能。</p>
+<p>&emsp;&emsp;为防止盗用服务，有线电视公司通常要求用户预先注册电缆调制解调器的MAC地址才能连接网络。</p>
+<h4 id="9-3-数字用户线路（DSL）"><a href="#9-3-数字用户线路（DSL）" class="headerlink" title="9.3 数字用户线路（DSL）"></a><strong>9.3 数字用户线路（DSL）</strong></h4><p>&emsp;&emsp;另一种适合实现家用宽带传输介质电话网。当然，传统的电话调制解调器使用的就是电话网。但电话公司认为使用不同的方法可以得到更好的性能，这就是数字用户线路（DSL）。<br>&emsp;&emsp;事实上，电话网使用的而双绞线能够提供的容量远超过语音通信的需求。DSL收发器作为局域网与电话网的接口，其工作频率不会影响线路的语音通信，因此DSL工作时不会占用线路或影响电话服务。<br>&emsp;&emsp;与电缆网络一样的是，DSL网络要求在线路另一端也有一台设备接收信号，并且通过服务提供商的网络连接到Internet，这种设备就是“数字服务线路访问多路复用（DSLAM）”,该设备充当DSL连接的另一端（图9.6）。与电缆网络上一个网段的全部用户共享介质不同，每个DSL用户在收发器与DSLAM之间都是专线连接，所以性能受通信量的影响比较小。读者可能觉得，电缆网络和LAN类似，而DSL线路则是点对点电话连接类似。</p>
+<p>&emsp;&emsp;DSL具有多种形式，包括ADSL（非对称DSL，用于小型办公室和家庭的最流行方式）、HDSL（高速DSL）、VDSL（甚高速DSL）、SDSL(对称DSL上下行带宽相等)和IDSL（基于DLS的ISDN）。从协议层来看，DSL根据装置和实现有多种变化。有些DSL设备集成到了交换机或路由器。有写则充当了网桥（类似于电缆调制解调器），在网络访问层根据物理（MAC）地址过滤流量。DSL设备通常用点到点协议（比如PPP）封装数据，比如最流行的基于以太网的PPP（PPPoe）协议。</p>
+<h4 id="9-4广域网"><a href="#9-4广域网" class="headerlink" title="9.4广域网"></a><strong>9.4广域网</strong></h4><p>&emsp;&emsp;大量计算机的公司和大型机构对网络访问的需求不能像拨号和DSL这样的小型技术所满足的，关键问题在于如何利用专有连接把分散在不同地点的分支部门连接起来，还有具有类似于局域网的私密性，并且在高级应用层面提供足够的性能。这个问题促进了广域网的发展。</p>
+<p>&emsp;&emsp;广域网技术能够在远距离提供高速率带宽连网。虽然广域网的性能不是像局域网那样快，但通常比利用标准连网技术通过Internet连接远程主机的速度要快（而且更安全）。广域网风格的连接通常会以某种方式提供对大容量公司网络的访问，从某种意义上来说，广域网就是Internet本事的核心。</p>
+<p>广域网的一些形式包括：</p>
+<blockquote>
+<p>帧中继<br>综合业务数字网（ISDN）<br>高级数据链路控制（HDLC）<br>异步传输模式（ATM）</p>
+</blockquote>
+<p>&emsp;&emsp;虽然这些看上去非常复杂，有些吓人（实际上也是），但实际上它们也是由于工作于TCP/IP网络访问层协议进行管理的物理网络规范的另一种形式（广域网协议几乎一直是OSI模型的中心，所以一定记住网络访问层对应OSI模型的物理层和数据链路层，也就是所谓的第1层和第2层）。</p>
+<p>&emsp;&emsp;典型的广域网场景如图9.7所示。服务提供商运行一个广域网，提供对Internet的访问，也提供对用户分支机构的访问。一个本地环路把服务商的办公室连接到所谓的边界点，也就是客户连接到网络的点。客户提供路由器过其他必要的专用设备，从而通过局域网连接到广域网。</p>
+<p>&emsp;&emsp;提供商确保从边界点之后的专用宽带和服务级别。服务的安排是多种多样的，可以用租借线路组成，也可以基于电路或包交换计量收费。</p>
+<h4 id="9-5-无线网络连接"><a href="#9-5-无线网络连接" class="headerlink" title="9.5 无线网络连接"></a><strong>9.5 无线网络连接</strong></h4><blockquote>
+<p>802.11网络<br>移动IP<br>蓝牙</p>
+</blockquote>
+<p>这些技术<code>集成</code>到<code>产品</code>和<code>服务的方式</code>取决于厂商。<br><strong>9.5.1 802.11网络</strong><br>&emsp;&emsp;物理网络的细节存在于TCP/IP协议栈的网络访问层。对无线TCP/IP网络的最简单理解就是在网络访问层使用无线方式连接到普通网络。流行的IEEE &emsp;&emsp;802.11规范为网络访问层进行无线网络连接提供了一个模型。<br>&emsp;&emsp;802.11协议栈如图9.8所示。网络访问层的无线组件与以前学习的其他网络体系是同等的。事实上，802.11因为与IEEE 802.3以太网标桩的相似性和兼容性，经常被称为无线以太网。</p>
+<p>&emsp;&emsp;从图看出，802.11规范位于OSI参考模型的MAC子层。MAC子层属于OSI模型的数据联络层。从第2章中可以知道，OSI模型数据联络层和物理层对应于TCP/IP的网络访问层。物理层的各种选项分别代表了不同的无线广播形式，包括跳频扩频（FHSS）、直接序列扩频（DSSS）、正交频分复用（OFDM）和高速率直接序列复用（HR/DSSS）。<br>&emsp;&emsp;无线网络与优先网络的主要区别就是节点时移动的，换句话说，网络必须能够适应设备位置的改变。但前面的学习可以知道，TCP/IP网络的原始传输系统是建立在这样一种假设上：每台设备都位于固定位置。如果一台计算机移动到另一个网段，它必须配置为不同的地址，否则将无法工作。但无线网络上的设备会持续移动，而且在这个环境中虽然保留了以太网的很多传统，但情况可定会复杂的多，要求使用新的不同策略。<br><strong>注意：</strong>802.11家族</p>
+<blockquote>
+<p>&emsp;&emsp;802.11实际上是一系列标准的统称，最初的802.11标准（1997）支持在2.4GHz频率范围内最高速率2Mbit/s。802.11a标准支持5GHz频率范围内最高速率54Mbit/s。802.11b标准支持2.4GHz频率范围内传输速率5.5Mbit/s和11Mbit/s。最后出现的标准有802.11g(在2003年被采纳)和802.11n（2009）。</p>
+</blockquote>
+<p><strong>1. 独立网络和网络基础</strong><br>&emsp;&emsp;无线网络的最简单形式就是两台或多台具有无线王珂的而蛇币直接相互通信，这种类型的网络的正式名称为独立基本服务集（独立BBS或IBBS），通常被称为ad hoc网络。独立BSS对于小范围内少量计算机来说就够用了。独立BSS网络。独立BSS网络有一定局限性，因为它主要依赖参与连网的计算机，没有提供管理连接的基础设备，也就不能链接更大的网络，比如局域网或Internet。<br>&emsp;&emsp;另一种无线网络被称为基础基本服务集（基础BBS），在公司网络和其他机构是很常见的。基础BBS依赖于一个被称为访问点（Acess Point,AP）的固定设备与无线设备实现通信（图9.10）。AP利用无线广播与无线网络通信，它还通过传统连接方式连接到普通以太网。无线设备通过AP进行通信。如果一台无线设备想与同一区域中的其他无线设备进行通信，它把帧发送给AP，让AP把消息转发给目的。对于与传统网络的通信，AP就充当网桥的作用，把发给传统网络上设备的帧进行转发，并且把无线网络的通信隔离在无线区域中。<br>&emsp;&emsp;图9.10所示的网络让计算机像有线以太网络上那样工作。而且多个访问点通过传统以太网连接在一起来为较大区域提供服务时（见图9.11）基础BBS的配置也有很多好处。<br>&emsp;&emsp;802.11d的设计目标就是满足图9.11所示的网络需求，其里面是让移动设备在网络服务区域中漫游时保持连接。首先说明：如果设备需要接受全部网络传输，网络必须知道通过哪个AP能到达该设备，这当然要考虑到设备是可移动的，而且适合的AP也可能为未加提示的情况下发送改变。另外要说明的是，源地址和目的地址的传统概念对于在无线网络传输数据来说已经不够用了，802.11帧具有如下4中地址：</p>
+<blockquote>
+<p><strong>目的地址：</strong>帧传输的目的设备。<br><strong>源地址：</strong>发送帧的设备。<br><strong>接收者的地址：</strong>应该处理这个802.11帧的无线设备。如果帧要传输到无线设备，接收者地址就与目的地址是一致的。如果帧要传输到无线网络之外，接收者地址就是某个AP的地址，该AP会接收这个帧并且把它转发给以太网络。<br><strong>发射者地址：</strong>把帧转发给无线网络的设备地址。</p>
+</blockquote>
+<p>802.11的帧格式如图9.12所示，其中一些重要字段如下所示：</p>
+<blockquote>
+<p><strong>帧控制：</strong>一些较小字段的集合，描述了协议版本、帧类型和解释帧内容所需的其他值。<br><strong>期限/ID：</strong>设置传输大致应该持续多长的时间。还可以请求AP缓存的帧。<br><strong>地址字段：</strong>48位的物理地址。由于802.11有时需要最多4中不同的地址，所有会根据不同类型的帧使用不同的地址字段。第1个字段通常是接收者地址，第2个字段通常是发射者的地址。<br><strong>序列控制：</strong>片选序列（用于重组片选）以及帧的序列号。<br><strong>帧主体：</strong>帧中传输的数据。第2章中已经介绍过，帧中传输的数据还包括上层协议的报头歇息。<br><strong>帧校验序列（FCS）：</strong>一个循环冗余校验值，用于检查传输错误并验证帧在传输过程中没有改变。</p>
+</blockquote>
+<p>由于802.11是个网络访问层的协议集，所以802.11帧中使用的地址是48位物理地址，而不是IP地址。当设备在无线网络中移动时，它会向最近可用的P进行注册（从技术上讲，它会向信号最强、干扰性最小的AP注册）。这个注册过程被称为关联（association）。当设备漫游到另一个访问点附近时，它会重新关联到新的AP。这个关联过程让网络能够知道到达任何一设备应该使用哪个AP.</p>
+<p><strong>注意：</strong> WiFi联盟</p>
+<blockquote>
+<p>为了确保802.11设备的兼容性，名为无线以太网兼容联盟（WECA成立于1991年）的组织提供了一个针对无线产品的认证项目。该组织后来将其名字命名为WiFi联盟，如果想得到Wi-Fi（无线保真）认证，必须对产品进行测试，已验证它与其他无线设备之间具有互操作性。有关WiFi联盟的更多信息，请访问<a href="http://www.wi-if.org。" target="_blank" rel="noopener">www.wi-if.org。</a></p>
+</blockquote>
+<p><strong>2. 802.11安全</strong><br>&emsp;&emsp;很明显，没有保护的无线网络时很不安全的。在对传统网络进行窃听时，至少需要连接到传输介质上。而对于无线网络来说，在其广播范围之内就可以进行攻击。如果网络没有设党的保证措施，不仅容易被窃听，而且很容易就让非法用户进入网络。<br>为了解决这些问题。IEEE制定了一个可选的安全协议标准用于802.11；有线等效保密（Wired Equivalent Privacy,WEP）标准，其目的是提供与传统优先网络大致相同的保密界别。<br>WEP的目标在于解决如下问题：</p>
+<blockquote>
+<p><strong>机密性：</strong>防止窃听<br><strong>完整性：</strong>仿真数据被篡改<br><strong>身份验证：</strong>对连接团队进行验证，确保他们有操作网络的必要权限。</p>
+</blockquote>
+<p>WEP使用RC4算法进行加密来实现<code>机密性</code>和<code>完整性</code>的目标。发送设备会生成一个完整性校验值（Integrity Check Value,ICV）,这个值是基于帧内容进行标准计算而得到的，它使用RC4算法进行加密，传输给接收方。接收设备对帧进行解密，计算ICV的值，如果计算后的ICV值与帧中传输的数值相同，就表示帧没有被修改。<br>&emsp;&emsp;然而,WEP受到了安全专家们的反对。大多数转接任务WEP是无效的。有些对于WEP的之一实际上是反对RC4加密算法的实现。WEP在理论上使用64为密钥，但其中24位是用于初始化的，只有40位用作共享密钥。专家认为40位的密钥太短了，所以WEP不能实现有效的宝华。专家还执泥密钥管理系统和用于启动加密的24位初始化矢量。<br>&emsp;&emsp;WEP2是对WEP的升级，把初始化矢量增加的128位，并且使用Kerberos身份验证来管理密钥的使用与分发。然而，WEP2并没有解决WEP的全部问题，因此出现了其他一些协议，比如可扩展身份验证协议(Extensible Authentication Protocol,EAP),可以解决WEP面临的难题。<br>&emsp;&emsp;作为一个更好的无线安全协议，802.11i标准草案出现于2004年，并在2007年收入802,11标准。这个新方法也被吃呢改为WiFi保护访问2(WiFi Protected AcessII,WPA2),使用AES块密码而不是RC4进行加密，而且具有更安全的身份验证和密码分发过程，WPA2是无线安全领域的一大进步，而且作为无线网络连接使用的首选安全方法对WEP进行替换。</p>
+<p>&emsp;&emsp;其他安全方法：无线路由器设置允许访问网络计算的MAC地址。可有效的防止邻居盗用带宽，但有经验的入侵者能够绕过这种控制。</p>
+<p><strong>9.5.2 移动IP</strong><br>&emsp;&emsp;世界各地移动设备给应答机制提出了一个问题。Internet 寻址系统是分级组织的，其前提是目标设备位于由IP地址定义的网段中。由于移动设备可能位于任何一个位置，所以通信规则就变得复杂多路。为了维护一个TCP连接，设备必须具有固定IP地址，这意味着漫游设备不能简单地使用一个由最近发射器分配的地址。另外由于这个问题与Internet寻址相关，它不能网络访问层得以解决，需要对网际成的IP协议进行拓展。移动IP拓展在RFC 3220中定义，之后又进行过多次更新，最新的IPv4移动标准是RFC5944。<br>&emsp;&emsp;移动IP给固定IP地址关联上一个辅助地址来解决寻址问题。移动IP环境如图8.13所示，设备具有属于家乡网络的固定地址。家乡网络上有一个被称为“家乡代理（Home Agent）”的专用路由器，它维护一个表格，把设备的当前位置与固定地址绑定。当涉笔进入到一个新网络时，它将注册到该网络中运行的外地代理（Foreign Agent）中。外地代理就把移动设备添加到访问者列表，并且把设备当前位置的信息发送给家乡代理，家乡代理就会用设备当前位置信息更新自己的移动性绑定表。当发往这台设备的数据报到达家乡网络时，它被封装到一个目标为外地网络的数据包，最终到达该设备。</p>
+<p><strong>9.5.3 蓝牙</strong><br>&emsp;&emsp;蓝牙协议是无线设备的另一种规范。与802.11一样，蓝牙标准定义了OSI模型中数据链路层的物理层（等效于TCP/IP网络访问层）。在某种情况下802.11可以代替蓝牙，但是蓝牙的支持者总是很愿意表明蓝牙没有802.11的一些安全问题，然而蓝牙和802.11被看做是互补技术。802.11是为提供与以太网同等的无线网络，而蓝牙致力于在短距离范围之内为无线设备提供可靠的，高性能的环境。蓝牙的设计目标是实现一个小工作区域内一组无线交互设备的通信。在蓝牙的规范中，这个小区域被称为个域网（Personal Area Netwoek,PAN）.<br>&emsp;&emsp;像其他无线形式一样，蓝牙使用AP把无线网络连接到传统网络（在蓝牙属于中，这个AP被称为“网络AP”或NAP）。蓝牙封装协议能够对进行TCP/IP数据包进行封装，从而在蓝牙网络进行传输。<br>&emsp;&emsp;当然，如果一个蓝牙设备可以通过Internet访问，则它必须能通过TCP/IP访问。厂商预想生产一类兼容Internet的蓝牙设备，通过具有蓝牙功能的Internet网桥连接到Internet(图9.14)。蓝牙NAP设备充当网桥，通过具有蓝牙功能的Internet网桥，接收输入的TCP/IP数据，然后用蓝牙网络访问协议替换输入的网络访问层协议。从而把数据传输到接收设备。</p>
+<h4 id="9-6-连接设备"><a href="#9-6-连接设备" class="headerlink" title="9.6 连接设备"></a><strong>9.6 连接设备</strong></h4><p>&emsp;&emsp;前面介绍了TCP/IP网络中与路由器相关的重要主题，虽然路由器时非常重要和基础的概念，但TCP/IP网络还有其他很多连接设备。<br>&emsp;&emsp;各种各样的连接设备都在TCP/IP网络<code>流量管理</code>中扮演不同的角色，下面将分贝介绍网桥、HUB和交换机。</p>
+<p><strong>9.6.1 网桥</strong><br>&emsp;&emsp;网桥是根据物理地址过滤和转发数据包的连接设备，它工作于OSI模型的数据链路层（对应于TCP/IP网络的网络访问层）。近些年来，网络倾向于使用功能更强的设备，比如交换机，所以网桥的使用越来越少。但网桥的集散单性敲好适合作为讨论连接设备的触发点。<br>&emsp;&emsp;虽然网桥不是路由器，但仍然被使用一个路由表作为传输信息的根据。这个机遇物理地址的路由表与后面要介绍的路由表相比，不仅具有不同的形式，而且也简单得多。<br>&emsp;&emsp;网桥监听它所连接的每一个网段，建立一个表来反应物理地址位于哪个网段。当数据在一个网段上传输时，网桥会查看数据的目的地址，与路由表进行比较。如果目的地址属于发送数据的网段，网桥就忽略这个数据。如果目的地址在不同的网段，网桥就把数据转发到是的网段。如果目的地址不在路由表中，网桥就会把数据转发到除网段之外的全部网段。<br><strong>注意：</strong>网络地址 vs 逻辑地址</p>
+<blockquote>
+<p>要记住，网桥使用在基于硬件d物理地址与逻辑IP地址不同，这两者之前的去呗，详见第1~第4章，</p>
+</blockquote>
+<p>&emsp;&emsp;网桥层作为局域网上过滤流量的一种廉价设备大量使用，用于增加网络上能够融安的计算机数量。前面已经介绍过，现在一些网络访问设备都集成了网桥的功能。比如电缆调制解调器和某些DSL设备。由于网桥值使用网络访问层的物理地址，不检查IP数据报头的逻辑地址信息，所以不适合连接非同类网络。网桥也不能用于在大型网络（比如Internet）上实现数据转发的IP路由和传输方案。</p>
+<p><strong>9.6.2 HUB</strong><br>&emsp;&emsp;以太网出现的早期，大多数网络的连接方式是用一条连续的同轴电缆把计算机连接起来，然而，随后几年，工程师看到了使用中心设备将计算机连接在一起所具有的优势（图9.15）。<br>&emsp;&emsp;在第3章讲过，经典的以太网概念是让全部计算机共享传输介质。每次传输都会被全部网络适配器监听。以太网HUB作为一个物理设备<code>从一个端口接收数据，然后把数据重复到区域全部端口</code>(见图9.15)。换句话说，全部计算机都好像是被一条连续线路连接在一起的。HUB不会过来或路由任何数据，只是接收和重新发送信号。<br>&emsp;&emsp;智能HUB，比如检测线路故障和关闭端口。目前HUB基本上已经被交换机取代了。<br><strong>9.3 交换机</strong><br>&emsp;&emsp;基于HUB的以太网，仍然面临传统以太网的问题：性能岁流量的上升而下降。只有当线路空闲时，计算机才能进行传输。而且每个网络适配器都必须接受和处理网络上的每个帧。为解决这个问题比HUB更智能的设备—交换机—出现了。在其最基本形式下，交换机类似于图9.15中所示的HUB，每台计算机也是通过一条线路连接到交换机。但是，交换机知道应该接收到发送给哪个端口。大多数叫交换机把端口与所连接设备器的物理地址关联起来。当一个端口所连接的计算机发送数据帧时，交换机会查看帧的目的地址。把帧发送给与目的地址相关联的端口。换句话说，交换机只向应该接收数据的适配器发送数据帧。这样一来，每个适配器就不需查看网络上传输的全部帧。因此交换机减少了多余的传输。从而改善了网络性能。</p>
+<p>&emsp;&emsp;注意，前面描述的1类交换机制操作物理地址，不处理IP地址。交换机不是路由器，实际上他更像网桥，准确地说像多个网桥结合在一起。交换机对每个网络连接进行隔离，从而只让针对特定计算机的数据进行特定线路（图9.17）。<br>&emsp;&emsp;现在的交换方式有多种，最常见的两种交换方法如下所示：</p>
+<blockquote>
+<p><strong>直通式：</strong>交换机一获得目的地址就转发帧。<br><strong>存储转发：</strong>叫混迹在转发之前接收整个帧。这种法法会减缓转发过程，但有时可以改善整体性能。因为可以过滤出碎片和其他无效的帧。</p>
+</blockquote>
+<p>&emsp;&emsp;交换机在今年来变得非常流行。公司局域网通常会使用分层式的交换机和互连式的交换机来优化性能。</p>
+<p><strong>注意：</strong>交换机和分层</p>
+<blockquote>
+<p>&emsp;&emsp;厂商现在把前面介绍这种基础交换机概念看做是一个更大类别交换设备的俄译中特例。更负责的交换机工作于更高的协议层，能够根据各种参数决定如何转发。更复杂的交换机工作于更高的协议层，能够根据各种参数决定如何转发，载这种更通用的交换方法中，设备根据其工作的OSI协议层进行分类。前面介绍的基本交换机工作于OSI模型的数据链路层，被称为第2层交换机。根据IP地质信息进行转发的交换机工作于OSI模型的数据链路层，被称为第2层交换机。根据IP地质信息进行转发的额交换机工作于OSI模型的网络层，被称为第3层交换机（显然，第3层交换基础上就是某种路由器）如果本节没有明确说明交换机是工作于哪一层的，它一般就是工作于第2层的，根据物理（MAC）地址进行过滤。</p>
+</blockquote>
+<h2 id="第10章-名称解析"><a href="#第10章-名称解析" class="headerlink" title="第10章 名称解析"></a><strong>第10章 名称解析</strong></h2><p>&emsp;&emsp;最初的名称解析是在每台主机上保存一份host或host.txt数据表。需要手动更新，比较负责。之后出现DNS服务器，所有的名称由专门的DNS服务器，进行解析名称，DNS服务器并且进行分层。另外DNS名称空间是个多次排序的域名（图10.4）。TLD(Top Level Domain)顶级域名，是世界上最著名的DNS名称空间。域名可以包含主机名,这种域名被吃呢改为完全限定域名（FQDN）。<br>&emsp;&emsp;NetBIOS Microsoft网络中常用的名称解析系统。<br>&emsp;&emsp;DNS实现，DNS必须被实现为服务或后台程序。Windows服务器自带一个DNS服务，当然，有些管理员会倾向于使用第三方的DNS实现。在UNIX/Linux上则很多DNS实现，其中最长用的Berkeley Internet Name Domain(BIND)。</p>
+<p><strong>DNS安全扩展（DNNSEC）</strong><br>&emsp;&emsp;DNS数据是公共的，在这种情况下，安全型不在意味着私密性。但是客户端仍然需要一些方法来确保对DNS请求的<code>答复是来自于真实的DNS服务器</code>,而且这个服务器应该由区域进行监管。攻击者已经开发了集中技术来针对DNS查询发送伪造的响应。截获了DNS请求的攻击者可以发送伪造的响应，将可短端重定向到秘密的DNS服务器，该服务器充当启动攻击的一种手段。只是伪造的回复先于真是的回复达到DNS客户端，则该客户端就落入了圈套。这个问题的解决方案是提供一种方式来<code>验证返回的DNS数据源的有效性</code>。DNS安全扩展（DNSSEC）提供了验证DNS数据有效性的系统，如今很多操作系统都提供了DNSSEC选项，但是该DNSSEC仍然没有大范围的实现。但是有些高性能（high-profile）的域已经全面支持DNSSEC，是的DNSSEC慢慢被公众所接收。DNSSEC使用<code>加密密钥</code>和<code>数字签名</code>来提供安全。详见（第11章）。DNSSEC需要支持DNS扩展机制（EDNS）。ENDS的DO报头位表示一个DNSSEC查询。<br>&emsp;&emsp;DNSSEC添加了一个验证过程来确保DNS查询的结果是可信的。与基本的DNS名称解析过程相似，DNSSEC从一系列步骤到达与给定查询中的名称相关联的区域。但是DNSSEC增加了一个信任链(chain-of-trust)类型的验证，其理念是<code>从一个受信任的来时，将球球沿着一系列一直的和验证过的步骤向下传输，直到到达这样一个服务器；该服务器拥有一个用用来验证DNS数据来源的签名。</code>为了实现该目标，DNSSEC添加了4个新的NDS资源记录类型。</p>
+<blockquote>
+<p>DNSKEY: 用来签名和验证DNS资源记录集的公共密钥。<br>DS:指向（并验证）子区域DNSKEY的资源记录。</p>
+</blockquote>
+<p><strong>DNS 工具</strong><br>&emsp;&emsp;1.使用ping检查名称解析<br>&emsp;&emsp;2.使用NSLookup检查名称解析<br>使用NSLookup工具查询NDS服务器，查看资源记录等信息。在需要对DNS问题进行<code>排错</code>时这个工具也十分有用，NSLookup工具可以按照下面两个模式进行操作。</p>
+<blockquote>
+<p><strong>批处理模式：</strong>在壁橱里模式中，用户可以启动NSLookup提供一些输入参数，NSLookup会根据参数执行被请求的功能，显示结果，最终关闭自己。<br><strong>交互式模式：</strong>在交互式模式下中，用户启动NSLookup时不需要提供输入参数。NSLookup会提示用户输入参数。在用户输入参数后，NSLookup将执行被请求的操作，显示结构并重新返回提示符状态，等待接下来被输入的参数。大多数管理员都会使用交互式模式，这是因为在需要执行一系列操作时，这种模式更方便。</p>
+</blockquote>
+<p><strong>域名信息搜索(DIG)</strong><br>&emsp;&emsp;Linux（在服务器机房中很常见）上一个留学的DNS命令工具是域名信息搜索（Domain Information Groper，DIG）许多管理员认为DIG要比NSLookup更灵活。（dig ）</p>
+<p><strong>动态DNS</strong>：<br>&emsp;&emsp;上述所介绍的DNS都是用于主机名和IP地址永久（半永久）关联情况下。计算机每次启动时，DHCP都会分配一个新的IP地址。这意味着,DNS服务器必须通过某种法法获悉该计算机正在使用的IP地址。<br>&emsp;&emsp;由于动态IP地址的逐渐流行，DNS厂商必须加以适应，现在，一些IP实现（包括BIND）提供了动态更新DNS记录的功能。在图10.9所示典型场景中，主机从DHCP服务器获得IP地址，必须使用这个新地址更新DNS服务器。（DHCP详见第12章）<br>&emsp;&emsp;企业目录系统（比如Microsoft的活动目录）在目录结构中使用动态DNS来管理DHCP客户端系统。懂台DNS服务在Internet上也是常见。有些在线服务提供了一种方法，可以让使用动态地址的计算机注册一个永久的DNS名称。用户可以访问这些服务，来远程连接到使用DNS名称的家庭网络中，或者是运行没有静态地址的个人站点。<br><strong>注意：</strong> DNS服务发现</p>
+<blockquote>
+<p>&emsp;&emsp;DNS最近的另外一个创新是DNS服务发现，有关DNS服务发现的详情觉其他零配置技术介绍，详见12章。</p>
+</blockquote>
+<p><strong>NetBIOS名称解析</strong><br>&emsp;&emsp;NetBIOS是一个API和名称解析系统，最初是由IBM开发，如今在Microsoft的Windows网络中很常见。NetBIOS被开发出来的目的是将其用于不使用TCP/IP的网络。，流行和Samba文件服务和其他独立的工具也都支持NetBIOS名称解析。<br>1.NetBIOS名称的解析方法<br>&emsp;&emsp;在TCP/IP网络上，NetBIOS名称即系的最终目的是为一个给定的NetBIOS名称提供IP地址。<br>&emsp;&emsp;NetBIOS名称是由15个字符组成的。例如Workstation1、HBServer和CorpServer。NetBIOS不允许在网络上由重复的计算机名。<br><strong>注意：</strong>NetBIOS名称</p>
+<blockquote>
+<p>&emsp;&emsp;从技术角度讲，NetBIOS名称由16个字符。但是，第16个字符是由底层应用程序使用的，通常不用用户直接配置。随扈的内容将讨论这些字符。</p>
+</blockquote>
+<p>&emsp;&emsp;NetBIOS名称与主机名类似，没有层次。集中将NetBIOS名称解析为相应IP地址的方法：</p>
+<blockquote>
+<p>基于广播的名称解析<br>LMHosts文件名称解析<br>WINS名称解析</p>
+</blockquote>
+<p>（1）、基于广播的名称解析<br>&emsp;&emsp;NetBIOS名称解析可以通过广播完成。计算机会使用广播与本网段中其他所有机器联系，要求返回特定计算机的地址。网段上的计算机监听到广播后，只有指定的计算机才会响应这个请求。这种名称解析的方法被称为B-Node名称解析。它可以在LAN环境中很好工作，但如果网络不仅仅局限于LAN，这种方法就无法工作（由于路由器会阻止广播传递）。<br>（2）、LMHosts文件名称解析<br>&emsp;&emsp;Windows系统还可以使用LMHosts文件将NetBIOS名称解析成IP地址。LMHosts文件与主机文件很相似，会将NetBIOS名称与IP地址关联。</p>
+<h2 id="第11章-TCP-IP-安全"><a href="#第11章-TCP-IP-安全" class="headerlink" title="第11章 TCP/IP 安全"></a><strong>第11章 TCP/IP 安全</strong></h2><h5 id="1-什么是防火墙"><a href="#1-什么是防火墙" class="headerlink" title="1. 什么是防火墙"></a><strong>1. 什么是防火墙</strong></h5><p>&emsp;&emsp;早期的防火墙只是包过滤，许多包过滤防火墙会查看封装在传输层报头中的TCP和UDP端口号。因为大多数Internet服务都与端口号相关联，因此通过检查数据包的目的端口号可以确定数据包的企图。这种形式的数据包过滤可以让管理员声称“外部的客户端无法访问内部往来上的Telnet服务”。存在问题，端口重置配置<br>&emsp;&emsp;在防火墙的进化过程中，出现了另外一种称之为有状态防火墙的设备。有状态防火墙不仅仅是单独价差每一个数据包，还会检查数据包包含在哪个通信会话新序列中。这种状态敏感性有助于有状态防火墙监视诸如无效数据包、会话劫持企图，以及某些拒绝服务攻击这样的攻击手段。<br>&emsp;&emsp;应用层防火墙是最新一代防火墙。在TCP/IP应用层。可以更全面地理解与协议和服务相关联的数据报。</p>
+<p><strong>DMZ</strong><br>&emsp;&emsp;防火墙为内部网络提供了一种受保护的空间，是网络很难从外部进行访问，这个概念对于Web客户端工作组（其中包含烧录满足内部需要的文件服务器）是很适合的。不过在很多情况下，一个公司通常不会禁止外部网络访问自己的所有资源。例如，需要从外部访问公共Web服务器，许多公司还安装了FTP服务器、E-mail服务器和其他需要从Internet访问的系统。尽管从理论上讲，只要开发防火墙的端口就可以允许外部客户访问特定系统上的特定服务，但是，这也就是说，服务器可以从外部进行操作，其结果是导致一系列网络管理员不希望看到的流量和安全型问题。<br>&emsp;&emsp;一种方法是将服务器放在防火墙之外（Internet—-服务器—-防火墙）（图11.2）。使之与内部网络的客户端隔离。另外替换方案（相对于图11.2所示方案）图11.3。使用两个防火墙。另个防火墙之前的空间被称为DMZ(一种军事术语—-Demilitarized Zone非军事地带)。与开放的Internet相比，DMZ可能提供更好的安全性，但是其安全性比内部网络低<br>&emsp;&emsp;图11.3所示的场景还可能出现下面的情况；只使用一个能够连接多个网段中的防火墙，如图11.4所示，如果防火墙/路由器有3个或更多的接口，可以将内部网络和DMZ分别连接到这些接口上，同时为每个接口应用不同的过滤规则。</p>
+<p><strong>防火墙规则</strong><br>&emsp;&emsp;通常允许网络管理员创建的内容包括：</p>
+<blockquote>
+<p>资源地址或地址范围<br>目的地址范围<br>服务<br>行为</p>
+</blockquote>
+<p>这些参数提供了大量选项，用户可以关闭所有来自获取网特定地址范围的流量。可以关闭来自于特定地址的特定服务，例如Telnet或FTP。</p>
+<p><strong>代理服务</strong><br>&emsp;&emsp;所有用来保护和简化内部网络，将潜在不安全Internet活动限制在边界之外的技术中心，防火墙是核心技术。另一种相关的技术是<code>代理服务</code>。代理服务器可以接货对Internet资源的请求，并替换客户端转发这些请求，它在客户端和请求目的的服务器之间扮演了一个中介的角色（图11.6）。尽管代理服务器不足以通过自己包含网络，但是它通常被用于与防火墙联合使用（尤其是在网络地址转换环境中）。<br>&emsp;&emsp;代理服务器可以使得客户端免于直接与恶意网站联系。一些代理还可以执行<code>内容过滤</code>。查看信息是否来自于<code>黑名单的服务器</code>，或者内容是否带有潜在的危险。代理服务器还常被用来<code>限制</code>内部网络客户端的<code>浏览范围</code>。<br>&emsp;&emsp;在很多情况下，使用代理服务器的主要目的是<code>性能</code>，而非安全性。代理服务器还可以执行对服务器的<code>内容缓存</code>。内容缓存代理服务器会保存被访问过网页的拷贝。对这些网页的再次请求将直接用本地拷贝响应。</p>
+<p><strong>逆向代理</strong><br>&emsp;&emsp;传统意义上的代理服务器（在一节中描述）代理的是对向外发送到Internet上的请求。另一种形式的代理服务器被称为<code>逆向代理</code>，它接收来自外部资源请求，将这些请求转发给内部网络。与常规代理服务器相同，逆向代理也提供缓存和内容过滤特性。因为逆向代理主要用于<code>保证</code>计算机能够在<code>Internet上提供服务</code>，因此<code>安全性</code>特别重要。</p>
+<h4 id="2-攻击技术"><a href="#2-攻击技术" class="headerlink" title="2. 攻击技术"></a><strong>2. 攻击技术</strong></h4><p>&emsp;&emsp;有若干个方法来获得入口和取得足够的权限，尽管不可能描述全它们，但是可以把这些技术分为3个基本的类别。</p>
+<blockquote>
+<p>&emsp;&emsp;<strong>证书攻击：</strong>这些高攻击集中在获得证书以正常进入系统。在本质上，这些攻击甚至发生在入侵者渗入安全系统之前。这一技术 的一种变型是权限提升，即攻击者先获得低级别的访问权，然后再设法获得更高的权限级别。<br>&emsp;&emsp;<strong>网络层攻击：</strong>攻击者通过找到一个开放的端口、无保护的服务或者是防火墙中的缺口偷偷进入。其他网络层攻击技术利用TCP/IP协议系统的席位差别，以获得信息或重新路由连接。<br>&emsp;&emsp;<strong>应用层攻击：</strong>攻击者利用系统上运行的某个应用程序（例如Web服务器）的代码中的已知缺陷，欺骗该应用程序执行任意命令，或者是以一种程序设计人员从未想到的方式运行。</p>
+</blockquote>
+<p>&emsp;&emsp;一次全面的而忘了入侵，通常组合使用这些攻击技术。典型情况下，攻击者可能会使用应用层攻击作为最初的图片，然后把权限逐步提升至管理员级地位，再接着打开一个隐藏的后门，以便无限制的访问整个系统。”后门”常用的技术是安装一个rootkit来在系统上找到一个立足点，然后再掩盖入侵。<br>1、证书攻击：<br>常用的密码攻击方法包括：</p>
+<blockquote>
+<p>看看机箱外面；<br>特洛伊木马<br>猜测<br>窃听</p>
+</blockquote>
+<p>2、特洛伊木马<br>&emsp;&emsp;早期的特洛伊木马是，伪造登录屏幕。这种偷取密码的技术针对公共设置而设计。并不是所有的特洛伊木马都捕捉密码，而且并不是所有密码特洛伊都像本节所描述的那个示例那样木马张胆。许多木马程序，有些表现为游戏或假的系统工具。<br>3、猜测<br>4、窃听<br>&emsp;&emsp;包嗅探器（Packet Sniffer）和其他监视网络流量的工具，可以轻松地捕获以明文形式在网络上传输的密码。许多经典的TCP/IP实用程序；例如Telnet和r*工具，或者是SNMP,都被设计为明文形式传输密码。加密SSL和IPSec。</p>
+<p><strong>网络层攻击</strong><br>&emsp;&emsp;通过端口来进行攻击。一般使用Nmap和Nessus之类的扫描工具，可以自动完成查找开发端口的过程。<br><strong>应用层攻击</strong><br>&emsp;&emsp;缓存区溢出。如果用户的而输入溢出该缓冲区，奇怪的事就会发生。如果输入没有被适当管理，那么溢出缓冲区的数据就可能边长为驻留在CPU的执行区域中，那以为这经过缓冲区溢出发送给计算机的命令，可能会被实际执行（图11.8）。避免缓冲区溢出问题，应用程序必须提供一种方法，在将数据写入应用程序一出去之前，接收并检查数据的大小。较好的解决办法是在养成良好的程序设计习惯。<br><strong>root访问</strong><br>&emsp;&emsp;在入侵者进入网络之后，首要任务是上传一个rookit,用于在系统上建立一个更加稳固的立足点。rootkit还具有额外特性，Key loggers能够捕获和记录键盘输入。<br><strong>网络钓鱼</strong><br>&emsp;&emsp;超文本链接，以指向一个不同的网站。不仔细检查URL，很容易上当。最好策略，不要点击不明链接。还有一种被称为<code>跨站脚本策略</code>，利用代码注入，绕过浏览器安全措施，以发起用户正在查看的页面不易追踪的某个恶意脚本。<br><strong>拒绝服务攻击</strong><br>&emsp;&emsp;进来，一种狂热的Internet入侵是拒绝服务（Denial of Service,DoS）攻击。DoS一旦发起，几乎不可能停止，因为它并不要求攻击者在系统上拥有特定权限。DoS攻击的关键是用大量的请求阻塞系统，使系统资源全部耗尽，性能降低。最危险的DoS攻击是分布式DoS攻击。在分布式DoS攻击中，攻击者利用若干台远程计算机，只会其他远程计算机发起一场协同攻击。有时，几百台或几千台计算机可能参与到针对某个IP地址的攻击。</p>
+<p><strong>防范措施</strong></p>
+<blockquote>
+<p>使用正确配置的防火墙<br>使用安全的密码。尽管具体策略不同，但是大多数专家都建立密码的最短长度为6~8个字符，而且面中要包含字符、数字和标点符号。<br>不要单击可疑的链接<br>使用最低的权限来操作<br>windows系统，安装病毒防护软件<br>关闭不需要的服务<br>如果必须要访问内部网络，请使用VPN来进行加密通信。<br>使用防火墙，关闭所有端口，关闭所有网络服务，除非你是真的需要的这些服务。<br>在沙箱环境中运行服务，<br>无线网络中使用加密<br>经常安全更新</p>
+</blockquote>
+<h4 id="4-加密和保密"><a href="#4-加密和保密" class="headerlink" title="4. 加密和保密"></a><strong>4. 加密和保密</strong></h4><p>&emsp;&emsp;本节先讨论了机密性的目的（确保数据的秘密）。安全系统还必须满足如下需求：</p>
+<blockquote>
+<p><strong>身份验证：</strong>确保数据来自产生它的源头。<br><strong>完整性：</strong>确保数据在传输过程中未被篡改。</p>
+</blockquote>
+<p>本章后续内容重点关注如何保护TCP/IP免受<code>窃听</code>、<code>截获</code>和<code>操纵</code>。</p>
+<p><strong>算法和密钥</strong><br>对称加密，非对称加密，数字签名，数字证书。<br><strong>保护TCP/IP</strong><br>（1）、SSL和TLS<br>&emsp;&emsp;安全套接层（Secure Sockets Layer,SSL）是美国Netscape公司为保护Web通信而引入的一个TCP/IP安全协议集。SSL的<code>目的</code>，在<code>传输层</code>的<code>套接字</code>和<code>提供那些套接字访问网络的应用程序</code>之间提供一层安全。<br>图11.15显示了SSL在TCP/IP协议栈中的位置。理念是，在SSL被激活时，网络服务（例如FTP和HTTP）便将受到安全的SSL协议的保护，以免遭攻击，传输层安全（Transport Layer Security TLS）。以SSL3.0为基础，所以通常被认为是SSL的后续产品，现在它已成为业界标准。但是，在产品名称和真是的软件中，仍然称其为SSL。TLS协议与SSL类似。<br>&emsp;&emsp;仔细查看SSL层，可以发现它包含两个子层（见图11.16）。SSL记录协议（Record Protocol）是访问TCP的一个标准库。在这个记录协议之上，是一组执行特定服务的SSL相关协议。</p>
+<blockquote>
+<p>SSL握手协议（Handshake Protocol）：用来访问TCP的基础协议。<br>SSL更改密文规范协议（Change Cipher Spec Protocol）:支持对加密套件设置的更改。<br>SSL告密协议（Alert Protocol）：发出告警。</p>
+</blockquote>
+<p>SSL采用公开密钥加密，并提供对数字证书的支持，带有SSL加密的HTTP Web协议版本被称为HTTPS。SSL在传输层之上。</p>
+<blockquote>
+<p><strong>注意：</strong> SSL和TLS都是用于面向连接的TCP连接，称之为数据报报传输协议安全（Datagram Transport Protocol Security,DTLS）的另外一种协议提供了类似于TLS的安全，它可以支持使用UDP的无连接通信。</p>
+</blockquote>
+<p>（2）IPSec<br>&emsp;&emsp;IP安全（IPSec）是TCP/IP网络上使用的另一种安全协议系统。。IPSec在TCP/IP协议栈中运行，位于传输层之下。IPSec提供对<code>机密性</code>、<code>访问控制</code>、<code>身份验证</code>和<code>数据完整性</code>支持。IPSec还可<code>防护重放攻击</code>。相互通信的两台计算机的协议栈都必须支持IPSec。IPSec非常适用于为像路由器和防火墙之类的网络设备提供安全。IPSec可以以下面两种模式之一运行。</p>
+<blockquote>
+<p>传送模式为IP数据包的载荷提供加密。该载荷然后被封装进一个正常的IP数据包中进行传送。<br>隧道模式加密整个IP数据包。加密后的数据包，然后被作为载荷封装到进另一个外部数据包。</p>
+</blockquote>
+<p>IPSec隧道模式通常用于虚拟专用网络（VPN)产品,它们用来在公共网络中创建一个完全专用的通信隧道。<br>&emsp;&emsp;IPSec使用许多加密算法和密钥分发技术，数据使用像AES、RC5或Blowfish这样的常规加密算法进行加密，身份验证后密钥分发可能会使用公开密钥技术。</p>
+<p>（3）、虚拟专用网络（VPN）<br>&emsp;&emsp;虚拟访问这个问题实际上已经是贯穿TCP/IP发展的一个重要问题。如何连接距离不是很近，不够采用LAN样式电缆连接的计算机呢？系统管理员总是依赖以下两种重要的方法进行远程连接。</p>
+<blockquote>
+<p>拨号：远程用用通过调制解调器连接到某个拨号服务器，后者充当到网络的一个网关。<br>广域网（WAN）：两个网络通过租用电话公司或Internet服务提供商的专用线路连接在一起。</p>
+</blockquote>
+<p>&emsp;&emsp;这两种方式都有缺点。拨号连接速度慢，而且他们依赖于电话连接的质量。WAN连接有时也比较慢，最重要的是，构建和维护WAN会比较昂贵，而且它不可移动。针对这些问题的一种解决方法是：通过开放式的Internet直接连接到远程网络。这个方法快速、方便，但是Internet上充满敌意和不安全因素，如果不提供某种防止窃听的方式，那么这样的选择完全不可行。专家考虑是否有某种方式可以利用加密工具来创建一个穿过公用网络的专用隧道。这个解决方便便形成了我们现在所知道的虚拟专用网络（Vitural Private Network,VPN）。VPN建立一个横穿网络的点对点“隧道”。</p>
+<blockquote>
+<p><strong>注意：</strong> VPN协议<br>&emsp;&emsp;本章前面所讲的IPSec是一种支持安全网络连接的协议，而VPN就是连接的本身。VPN应用程序就是创建和维护这些专用远程连接的程序。有些VPN工具利用IPSec进行加密，有些则依赖于其他SSL或其他加密技术。Microsoft的系统通过“点对点隧道协议”（源自PPP调制解调器协议）提供VPN隧道功能；比较新的Microsoft系统为VPN会话采用“第2层隧道协议”（L2TP）。</p>
+</blockquote>
+<p>&emsp;&emsp;如果传输链中的每一台路由器都需要知道加密密钥，那么本章前面所描述的加密技术将无法很好地发挥作用。加密是<code>针对点对点连接的</code>。这里的理念是：远程服务器上VPN客户端软件与一台充当所有网络网关的VPN服务器建立连接（图11.17）。VPN客户端和服务器交换通过Internet政策传递的、可路由的明文TCP/IP数据报。不过，通过VPN连接发送的载荷（即数据），实际上就是加密后的数据报。加密后的数据报（在开发的Internet上是不可读的）被封装入可读取明文的数据报中，在转发给VPN服务器。VPN服务器软件接着提取加密后的数据报，利用加密密钥解密该数据报，然后将封装数据转发至受保护网络上的目的地址。</p>
+<p>（4）、Kerberos<br>&emsp;&emsp;Kerberos是一种基于网络的<code>身份验证</code>和<code>访问控制</code>系统。用于支持<code>跨敌意</code>网络的安全访问。对于敌意网络的安全通信问题，较简洁的回答就是加密。较长的回答则是提供一种手段，来保护加密密钥的安全。Kerberos提供一种系统的方法，用于向通信主机分发密钥，并检验情书访问某一服务的客户端的证书。<br>&emsp;&emsp;Kerberos系统使用被称为<code>密钥分发中心（Key Distribution Center,KDC）</code>的服务器来管理密钥分发过程。Kerberos身份验证过程涉及以下<code>3个实体的关系</code>。</p>
+<blockquote>
+<p><strong>客户端：</strong>请求访问服务器的计算机<br><strong>服务器：</strong>在网络上提供服务的计算机<br><strong>KDC：</strong>指定为网络通信提供密钥的计算机</p>
+</blockquote>
+<p>&emsp;&emsp;Kerberos身份验证过程如图11.18，<code>注意</code>,这个过程假设KDC已经有一个共性的密钥可以用来与这里的客户端进行通信，还有一个共享的密钥可以用来与这里的服务器进行通信。这些密钥用来加密一个新的会话密钥，客户端和服务器将使用它进行相互通信。KDC用来为客户端和服务器加密数据的那两个单独密钥被称为<code>长期密钥</code>。长期密钥通常产生于KDC和另一台计算机共享的一个秘密。一般而言，客户端长期密钥尝试与客户端和KDC都知道的用户登录密码的一个哈希。<br>                            图11.18<br>&emsp;&emsp;具体过程如下。记住，Kerberos一般<code>使用</code>常规的<code>（对称）加密</code>技术，而不是公开密钥的（非对称）加密技术。</p>
+<blockquote>
+<ol>
+<li>这里的客户端想要访问服务器A上的额某个服务。它向KDC放放松一个请求来访问服务器A上的服务（在某些情况下，客户端已经经过身份验证，并接收到一个单独的会话密钥，用于加密与KDC上票证授予服务的通信）。</li>
+<li>这里的KDC执行以下步骤</li>
+</ol>
+<ul>
+<li>a. KDC生成一个会话密钥，该密钥用于加密客户端和服务器A之间的通信。</li>
+<li>b. KDC创建一个会话票证（session ticket）,它包括步骤2a中所生成的会话密钥的一个副本。该票证还包含时间戳信息以及有关正在请求访问的客户端的信息，例如客户端安全设置。</li>
+<li>c. KDC使用服务器A的长期密钥加密刚创建爱你的会话票证</li>
+<li>d. KDC为客户端绑定加密后的会话票证、会话密钥的一个副本以及其他响应参数，并使用客户端的密钥加密整个数据包。该响应然后被发送给客户端。</li>
+</ul>
+<ol start="3">
+<li>客户端接收来自KDC的响应并解密。客户端将获得与服务器A通信所需的会话密钥。它所接收的密钥加密整个数据包，还包括KDC创建的会话票证，那是使用所请求的服务器的长期密钥加密的。客户端无法读取该会话票证，但是它知道必须将此票证发送给相应的服务器，才能通过身份验证，客户端创建一个鉴别码（一串身份验证参数），并使用这里的会话票证对它进行加密。</li>
+<li>客户端向服务器A发送一个访问请求。该请求包括上述会话票证（已使用所情书服务器的长期密钥进行加密）和鉴别码（已使用会话密钥进行加密）。这里的鉴别码包括用户的名称、网络地址和时间戳信息等。</li>
+<li>服务器A接收上述请求。服务器A使用其长期密钥解密上述会话票证（见步骤2c）。服务器A从会话票证中提取会话密钥，并使用该会话密钥解密鉴别码。服务器A检验鉴别码中的信息是否与包括在会话票证中的信息相匹配。如果是，则授予对所请求服务的访问权。</li>
+<li>作为可选的最后一步，如果客户端想要检验服务器A的整数，服务器A将用会话密钥加密一个鉴别码，并将这个鉴别码返回客户端。</li>
+</ol>
+</blockquote>
+<p>作为一种为网络提供统一标准登录系统的手段，Kerberos系统正越来越流行。Kerberos 4使用DES加密技术，前面讲过，许多加密领域的专家认为该技术不安全。Kerberos 5则支持AES和其他加密类型。</p>
+<blockquote>
+<p><strong>注意：</strong> 3个头?<br>&emsp;&emsp;Kerberos（也称Cerberus）。三个头就是Kerberos身份验证过程的3个要素（客户端、服务器和KDC）。Kerberos系统最初设计使用身份验证、账户管理和审核这三个头，守护网络的入口，但是其中的后两个头（账户管理和审核）从未实施。安全界很轻易地发现。相对于把相应的协议重新命名为相当单头犬来说。</p>
+</blockquote>
+<p>关键术语：<br><strong><code>高级加密标准（Advanced Encryption Standard,AES）:</code></strong>一种对称加密，支持128,192和256为密钥长度<br><strong><code>非对称加密：</code></strong>使用不用密钥进行加密和解密的加密方法<br><strong><code>后门：</code></strong>可以进入计算机系统的一条隐藏路径。<br><strong><code>Blowfish：</code></strong>一种对唱加密算法，支持最多448位密钥长度<br><strong><code>缓冲区溢出：</code></strong>一种攻击方法，攻击者向系统发生恶意的命令，从而导致应用程序的缓冲区超出限度。<br><strong><code>认证中心（Certificate Authority,CA）:</code></strong>监视证书床啊进和递送过程的中央权威。<br><strong><code>拒绝服务攻击（Denial of Service,DOS）:</code></strong>通过消耗系统资源来使受害者的系统无法提供政策服务的一种攻击手段。<br><strong><code>数字证书：</code></strong>一种加密的额数据结构，用来分发公安密钥。<br><strong><code>数字签名：</code></strong>用来校验发送方身份和数据完整性的加密字符串。<br><strong><code>DMZ：</code></strong>安置Internet服务器的一个中间地带，位于前端防火墙之后，但是在具有更严格限制的而后段防火墙（用于保护内部网）之前。<br><strong><code>加密：</code></strong>系统地修改数据的万国城，使得未授权的用户无法读取它们。<br><strong><code>加密密钥：</code></strong>和加密算法一起用来加密或解密数据的一个值（通常秘密保管）。<br><strong><code>防火墙：</code></strong>一种用于限制网络访问内部网段额设备或应用程序。<br><strong><code>IPSec(IP安全)：</code></strong>一种有多个IP协议扩展组成的安全协议系统。<br><strong><code>KDC（密钥分发中心）：</code></strong>在Kerberos网络上管理密钥分发过程的服务器。<br><strong><code>Kerberos：</code></strong>一种网络身份验证系统，用来保证通过第一网络访问服务的安全性。<br><strong><code>包过滤器：</code></strong>一种防火墙，可以通过端口号或洽谈能够标明包目的的协议信息过滤数据包。<br><strong><code>网络钓鱼：</code></strong>利用某个伪造的链接、消息或网页来诱使用户主动连接到某个欺诈网站。<br><strong><code>私有密钥：</code></strong>非对称加密中使用的一种密钥，它被秘密保管，并且不在网络上分发。<br><strong><code>代理服务器：</code></strong>用于代表客户端对服务发出请求的计算机或应用程序。<br><strong><code>公开密钥：</code></strong>非对称加密中使用的一种密钥，它在网络上分发。<br><strong><code>Rootkit：</code></strong>入侵者永凯扩展和伪造其对某一系统的控制的一组工具。<br><strong><code>会话劫持：</code></strong>一种攻击方法，允许攻击者在现有TCP会话中插入恶意数据包。<br><strong><code>SSL（安全套接字）：</code></strong>一种最初由Netscape公司开发的安全协议系统，它在TCP协议的上方运行。SSL已经被TLC正式取代。<br><strong><code>有状态防火墙：</code></strong>能够感知连接状态的防火墙。<br><strong><code>TLS(传输层安全)：</code></strong>基于SSL的一种安全的传输层协议。<br><strong><code>X.509：</code></strong>一种描述数字证书过程和格式的标准。</p>
+
+        <div class="div_qrcode">
+            <div id="combine"></div>
+        </div>
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/BlogCode/2018/05/14/笔记/03UDP和TCP/" class="pre-post btn btn-default" title='TCP和UDP'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">TCP和UDP</span>
+        </a>
+    
+    
+        <a href="/BlogCode/2018/05/13/笔记/02搭建个人博客/" class="next-post btn btn-default" title='搭建个人博客'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">搭建个人博客</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+<div id="vcomments"></div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+  <div class="widget">
+    <div >
+        <h3>FLIPPED</h3>
+<div>
+<div style="float:left; clear: both;" align="center">
+<img src="/img/about.jpg" style="width: 80%;">
+</div>
+<p style="align:center;line-height: 25px;font-size: 13.6px;min-height:250px">The higher I got, the more amazed I was by the view.Some of us get dipped in flat, some in satin, some in gloss. But every once in a while you find someone who's iridescent, and when you do, nothing will ever compare.And I realized Garrett was right about one thing: I had flipped. Completely.人性的美具有纷繁的多面性，无论是男女之爱还是亲人之情，所有的美都会令人向往和感动!</p>
+</div>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/心记/"><i class="fa" aria-hidden="true">心记</i></a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/杂读/"><i class="fa" aria-hidden="true">杂读</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/笔记/"><i class="fa" aria-hidden="true">笔记</i></a><span class="category-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/12/"><i class="fa" aria-hidden="true">December 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/11/"><i class="fa" aria-hidden="true">November 2019</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/07/"><i class="fa" aria-hidden="true">July 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/06/"><i class="fa" aria-hidden="true">June 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/05/"><i class="fa" aria-hidden="true">May 2019</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/09/"><i class="fa" aria-hidden="true">September 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/08/"><i class="fa" aria-hidden="true">August 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/07/"><i class="fa" aria-hidden="true">July 2018</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/06/"><i class="fa" aria-hidden="true">June 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/05/"><i class="fa" aria-hidden="true">May 2018</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/BlogCode/tags/Gerrit/" style="font-size: 15px;">Gerrit</a> <a href="/BlogCode/tags/Luci/" style="font-size: 10px;">Luci</a> <a href="/BlogCode/tags/cpu/" style="font-size: 10px;">cpu</a> <a href="/BlogCode/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/BlogCode/tags/linux工具/" style="font-size: 20px;">linux工具</a> <a href="/BlogCode/tags/netfilter/" style="font-size: 10px;">netfilter</a> <a href="/BlogCode/tags/ping/" style="font-size: 10px;">ping</a> <a href="/BlogCode/tags/samba/" style="font-size: 10px;">samba</a> <a href="/BlogCode/tags/shell脚本/" style="font-size: 10px;">shell脚本</a> <a href="/BlogCode/tags/socket/" style="font-size: 15px;">socket</a> <a href="/BlogCode/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/BlogCode/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/BlogCode/tags/win工具/" style="font-size: 10px;">win工具</a> <a href="/BlogCode/tags/win脚本/" style="font-size: 10px;">win脚本</a> <a href="/BlogCode/tags/前端/" style="font-size: 10px;">前端</a> <a href="/BlogCode/tags/套接字/" style="font-size: 10px;">套接字</a> <a href="/BlogCode/tags/技术书/" style="font-size: 10px;">技术书</a> <a href="/BlogCode/tags/文件/" style="font-size: 10px;">文件</a> <a href="/BlogCode/tags/文章/" style="font-size: 10px;">文章</a> <a href="/BlogCode/tags/电影/" style="font-size: 10px;">电影</a> <a href="/BlogCode/tags/算法/" style="font-size: 10px;">算法</a> <a href="/BlogCode/tags/线程/" style="font-size: 10px;">线程</a> <a href="/BlogCode/tags/网站/" style="font-size: 10px;">网站</a> <a href="/BlogCode/tags/网络/" style="font-size: 15px;">网络</a> <a href="/BlogCode/tags/转载/" style="font-size: 15px;">转载</a> <a href="/BlogCode/tags/进程控制/" style="font-size: 10px;">进程控制</a> <a href="/BlogCode/tags/锁/" style="font-size: 10px;">锁</a>
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/BlogCode/js/jquery-3.3.1.js?rev=@@hash"></script>
+
+	<script src="/BlogCode/js/search.js?rev=@@hash"></script>
+
+
+<script src="/BlogCode/js/app.js?rev=@@hash"></script>
+<script src="/BlogCode/js/menu.js?rev=@@hash"></script>
+<script src="/BlogCode/js/qart.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/clipboard.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/av-min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/Valine.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/web_tools.js?rev=@@hash"></script>
+
+
+
+</body>
+</html>

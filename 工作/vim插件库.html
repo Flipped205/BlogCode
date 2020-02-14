@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Flipped205">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://Flipped205.github.io/BlogCode">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+
+<title>vim插件库 | Flipped205</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Flipped205" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/BlogCode/css/bootstrap.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/font-awesome.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/style.css?rev=2020-02-14[09]">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <div class="box_bk"></div>
+<div class="box_center">
+    <div class="box_i"><img src=""></div>
+    <div class="box_close"><img src="/img/close.png"></div>
+</div>
+<button class="btn" style="display:none"></button>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/笔记/"><i class="fa "></i>笔记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/杂读/"><i class="fa "></i>杂读</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/心记/"><i class="fa "></i>心记</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content ">
+                    <div class="about">
+	
+	    <article class="post">
+	        <h1 class="post-head">关于我</h1>
+	        <div class="post-body">
+	            <p>你用VIM就不能不知道这个网站（不是很稳定，有时候需要翻墙）</p>
+<p><a href="http://vimawesome.com/" target="_blank" rel="noopener">http://vimawesome.com/</a></p>
+<p>这个网站是干什么的？</p>
+<blockquote>
+<p>Vim Awesome is a directory of Vim plugins sourced from GitHub, Vim.org, and user submissions. Plugin usage data is extracted from dotfiles repos on GitHub.</p>
+</blockquote>
+<p>最后记得用vundle来管理你的VIM插件</p>
+<h2 id="开发环境的搭建"><a href="#开发环境的搭建" class="headerlink" title="开发环境的搭建"></a><strong>开发环境的搭建</strong></h2><p>附件中有个压缩包，包含了我自己当前正在使用的开发环境。说白了，就是一些配置文件，如：vimrc的配置，tmux的配置，markdown的配置等等。这些配置也是之前steal from 欧神的，我个人觉得对于提高生产力还是挺有帮助的，有需要的同事可以安装一下，已经做到了比较好的自动化。<br>安装方法：</p>
+<ul>
+<li>１．随便在home目录下建立一个目录，如：dev_env</li>
+<li>２．cd ~/dev_env</li>
+<li>３．将dotfiles.tar拷贝到该目录下，tar xvf dotfiles.tar</li>
+<li>４．cd dotfiles/</li>
+<li>５．修改git/gitconfig文件如下user部分，替换成自己的名字就可以了<br>  [user]<br>  email = <a href="mailto:ming.xing@feixun.com.cn" target="_blank" rel="noopener">ming.xing@feixun.com.cn</a><br>  name = ming.xing</li>
+<li>6．sudo apt-get install tmux//如果没有安装tmux，则执行该命令安装一下</li>
+<li>7．./setup.sh　执行该文件就OK了</li>
+</ul>
+<p>PS.需要注意的是，执行shell的过程中可能会从网上拉一些文件，要求是你的环境能上网，可以执行sudo apt-get install命令。<br>如果环境不能上网，大家可以自己根据shell的内容，自定义安装某些工具。<br><a href="file/work_10/dotfiles.tar">dotfiles.tar</a></p>
+<p>常用快捷键（根据如上配置完成）：</p>
+<p>vim自身集成的快捷键有很多，在这里也不好一一列举，还是看别人分享的吧：<a href="http://www.cnblogs.com/tianyajuanke/archive/2012/04/25/2470002.html" target="_blank" rel="noopener">http://www.cnblogs.com/tianyajuanke/archive/2012/04/25/2470002.html</a></p>
+<p>下面有一些根据自己的配置，设置的一些快捷键，想到几个写几个，以后慢慢更新吧……</p>
+<p>如果大家有用到上一个帖子里的配置的话，需要先对系统上的键盘快捷键做些设置如：</p>
+<p>１．去掉系统自身的ALT快捷键的功能：</p>
+<p>点击右上角设置按钮-&gt;打开system settings-&gt;Keyboard-&gt;Shortcuts</p>
+<div align="center">![](/img/work_10/01.png)</div>
+
+<p>鼠标移动到Key to show the HUD选项，敲击退格键（backspace)，值会变成Disabled.然后退出即可。</p>
+<p>２．随便打开一个终端，点击左上角Terminal，下拉菜单中选择Preferences,去掉第二项“Enable mnemonics(xxxx……）”，如下图：</p>
+<div align="center">![](/img/work_10/02.png)</div>
+
+<p>PS.这各选项在不同的ubuntu版本中的位置可能会不一样。</p>
+<p>F4:vim随便打开一个Ｃ文件，按下F4，会调出function list，如：</p>
+<div align="center">![](/img/work_10/03.png)</div>
+跳转到左侧窗口，移动鼠标到相应的function，点击'o'即可跳转到相应的函数定义的地方。
+
+<p>F8:此时，按下F8，会调出当前目录下的目录树，如：</p>
+<div align="center">![](/img/work_10/04.png)</div>
+将鼠标移动到'▸'上，键盘敲击o打开展开或折叠目录；鼠标移动到文件上，敲击ｏ会打开相应的文件。
+
+<p>CTRL+[h,j,k,l]：各窗口之间切换，[h,j,k,l]分别映射方向键[←，↓，↑，→]。PS.大家要强迫自己慢慢的适应这几个字母，而不是去按“上下左右”</p>
+<p>VIM复制＆粘贴：</p>
+<p>简单的复制和粘贴，通过y和p，以及各种衍生的组合键即可完成。这里介绍一下，如何从vim打开的文件，复制选中的内容到”系统的”剪切板（不是vim内置的buffer哦）：</p>
+<p>1.复制：vim随便打开一个文件，通过v或者shift v等快捷键，选中想要复制的内容，按下【’,’ + ‘y’】，即“逗号＋y”组合。此时buffer已经在系统剪切板中了。</p>
+<p>2.粘贴：如果想要将系统剪贴板中的内容复制到terminal窗口下，或者其他vim打开的文件中，可以同时按下:CTRL+SHIFT+v组合键；粘贴到其他位置（如搜索引擎），直接CTRL+v即可</p>
+<p>如果是实在万不得已，一定要用鼠标选中要复制的内容，也是有办法的：在鼠标选中要复制的内容前，按下shift键不松手就行了。（为什么变得复杂了？答：为了彻底抛弃鼠标！）</p>
+<p>阅读代码相关的快捷键：</p>
+<p>想要比较方便的在各个函数调用之间来回穿越，离不开cscope工具。</p>
+<p>举例：可能会花大量的时间阅读某一块代码，如内核代码。</p>
+<p>1：打TAG。进入kernel目录，执行cscope -Rb，完成后该目录下会多出个cscope.out文件</p>
+<div align="center">![](/img/work_10/05.png)</div>
+2：打开一个文件，如drivers/gpio/gpio-xrx500.c，阅读到了285行，想要知道pinctrl_xrx500_get_range_size函数是如何实现的。鼠标移动到该函数上，按下CTRL+']'，即可跳转到函数定义处。（跳转到宏定义处，方法相同）
+<div align="center">![](/img/work_10/06.png)</div>
+跳转回来：CTRL+'t'。
+
+<p>3：如上图第296行，想要知道都有哪些地方调用了该函数。鼠标移动到该函数任意位置—&gt;按下CTRL+’&#39;+c组合键—-&gt;出现函数调用列表—-&gt;选择对应数字即可打开</p>
+<p>4：想要打开某个引用的头文件。将光标移动到该头文件的引用处—–&gt;按下按下CTRL+’&#39;+f组合键—–&gt;文件列表</p>
+<p>tmux相关：</p>
+<p>打开一个terminal，输入tmux命令即可进入tmux的shell环境</p>
+<p>ALT + ‘=’：可以创建多个tmux窗口,如上图中最下边的状态栏（中间）１,2,3—6</p>
+<p>ALE+E＋’number’：ALE+E是tmux快捷建中的一个“前导键”（tmux默认前导键是CTRL+b，太不人性了，所以才有了上边对keyboard的设置），也就是说，绝大多数的tmux快捷键都要一个ALE+E开头，然后再加上一个功能键</p>
+<div align="center">![](/img/work_10/07.png)</div>
+
+<p>ALE+E执行完后，左下角会出现PREFIX（如左图）的阴影。接下来，就可以按下功能键了，如果此时按下”2”，则会打开第二个tmux pannel。</p>
+<p>ALE+’w’：向前打开一个window</p>
+<p>ALE+’q’：向后打开一个window</p>
+<p>ALT+’&#39;：打开上一次打开的window</p>
+<p>ALE+’x’:删除当前pannel</p>
+<p>ALT+’-‘:删除当前window</p>
+<p>下边说明tmux快捷键的时候，统统用PRE代指“ALT+E”</p>
+<p>在同一个tmux窗口下创建多个pannel的方法：</p>
+<p>1.pannel上下分布：PRE+’<em>‘，这里的’</em>‘指下划线</p>
+<p>2.pannel左右分布：PRE+’|’</p>
+<p>3.</p>
+<div align="center">![](/img/work_10/08.png)</div>
+如图：执行了PRE+'_'和PRE+'|'后，会把窗口分割成３各pannel。
+
+<p>跳转：假设当前光标在２号pannel</p>
+<p>　　　跳转到１号pannel：PRE+k（↑）</p>
+<p>　　　跳转到３号pannel：PRE+l（→）</p>
+<p>　　　跳回来则进行相反的操作即可。</p>
+<p>如果窗口较多，如：</p>
+<div align="center">![](/img/work_10/09.png)</div>
+想要从９号调到１号的话，如果利用上面的方法，显然就太拙劣了。tmux提供了自然是提供了更方便的办法：
+
+<p>按下PRE+q后，tmux会对每一个pannel进行编号，此时按下数字几，就会跳转到相应的pannel。</p>
+<p>删除当前的pannel：CTRL+d。暂时，我没有找到删掉“除当前pannel之外的其他pannel”的办法，有谁想到了，告诉我……</p>
+<p>tmux复制＆粘贴：</p>
+<p>PRE+’[‘：进入tmux的浏览模式下，此时的光标移动跟打开vim时一样，”↑↓←→“通用。光标移动到”leds-rb532.c“，点击’v’进入visual模式（跟vim一样），选中该字符串，点击’y’。此时会自动退出该浏览模式，字符串已经保存在了tmux相关buffer里。如：</p>
+<div align="center">![](/img/work_10/10.png)</div>
+
+
+	        </div>
+	    </article>
+	
+</div>
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+  <div class="widget">
+    <div >
+        <h3>FLIPPED</h3>
+<div>
+<div style="float:left; clear: both;" align="center">
+<img src="/img/about.jpg" style="width: 80%;">
+</div>
+<p style="align:center;line-height: 25px;font-size: 13.6px;min-height:250px">The higher I got, the more amazed I was by the view.Some of us get dipped in flat, some in satin, some in gloss. But every once in a while you find someone who's iridescent, and when you do, nothing will ever compare.And I realized Garrett was right about one thing: I had flipped. Completely.人性的美具有纷繁的多面性，无论是男女之爱还是亲人之情，所有的美都会令人向往和感动!</p>
+</div>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/心记/"><i class="fa" aria-hidden="true">心记</i></a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/杂读/"><i class="fa" aria-hidden="true">杂读</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/笔记/"><i class="fa" aria-hidden="true">笔记</i></a><span class="category-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/12/"><i class="fa" aria-hidden="true">December 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/11/"><i class="fa" aria-hidden="true">November 2019</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/07/"><i class="fa" aria-hidden="true">July 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/06/"><i class="fa" aria-hidden="true">June 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/05/"><i class="fa" aria-hidden="true">May 2019</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/09/"><i class="fa" aria-hidden="true">September 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/08/"><i class="fa" aria-hidden="true">August 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/07/"><i class="fa" aria-hidden="true">July 2018</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/06/"><i class="fa" aria-hidden="true">June 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/05/"><i class="fa" aria-hidden="true">May 2018</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/BlogCode/tags/Gerrit/" style="font-size: 15px;">Gerrit</a> <a href="/BlogCode/tags/Luci/" style="font-size: 10px;">Luci</a> <a href="/BlogCode/tags/cpu/" style="font-size: 10px;">cpu</a> <a href="/BlogCode/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/BlogCode/tags/linux工具/" style="font-size: 20px;">linux工具</a> <a href="/BlogCode/tags/netfilter/" style="font-size: 10px;">netfilter</a> <a href="/BlogCode/tags/ping/" style="font-size: 10px;">ping</a> <a href="/BlogCode/tags/samba/" style="font-size: 10px;">samba</a> <a href="/BlogCode/tags/shell脚本/" style="font-size: 10px;">shell脚本</a> <a href="/BlogCode/tags/socket/" style="font-size: 15px;">socket</a> <a href="/BlogCode/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/BlogCode/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/BlogCode/tags/win工具/" style="font-size: 10px;">win工具</a> <a href="/BlogCode/tags/win脚本/" style="font-size: 10px;">win脚本</a> <a href="/BlogCode/tags/前端/" style="font-size: 10px;">前端</a> <a href="/BlogCode/tags/套接字/" style="font-size: 10px;">套接字</a> <a href="/BlogCode/tags/技术书/" style="font-size: 10px;">技术书</a> <a href="/BlogCode/tags/文件/" style="font-size: 10px;">文件</a> <a href="/BlogCode/tags/文章/" style="font-size: 10px;">文章</a> <a href="/BlogCode/tags/电影/" style="font-size: 10px;">电影</a> <a href="/BlogCode/tags/算法/" style="font-size: 10px;">算法</a> <a href="/BlogCode/tags/线程/" style="font-size: 10px;">线程</a> <a href="/BlogCode/tags/网站/" style="font-size: 10px;">网站</a> <a href="/BlogCode/tags/网络/" style="font-size: 15px;">网络</a> <a href="/BlogCode/tags/转载/" style="font-size: 15px;">转载</a> <a href="/BlogCode/tags/进程控制/" style="font-size: 10px;">进程控制</a> <a href="/BlogCode/tags/锁/" style="font-size: 10px;">锁</a>
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/BlogCode/js/jquery-3.3.1.js?rev=@@hash"></script>
+
+	<script src="/BlogCode/js/search.js?rev=@@hash"></script>
+
+
+<script src="/BlogCode/js/app.js?rev=@@hash"></script>
+<script src="/BlogCode/js/menu.js?rev=@@hash"></script>
+<script src="/BlogCode/js/qart.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/clipboard.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/av-min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/Valine.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/web_tools.js?rev=@@hash"></script>
+
+
+
+</body>
+</html>

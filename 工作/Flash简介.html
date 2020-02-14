@@ -1,0 +1,326 @@
+<!DOCTYPE HTML>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Flipped205">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://Flipped205.github.io/BlogCode">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+
+<title>Flash简介 | Flipped205</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Flipped205" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/BlogCode/css/bootstrap.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/font-awesome.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/style.css?rev=2020-02-14[09]">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <div class="box_bk"></div>
+<div class="box_center">
+    <div class="box_i"><img src=""></div>
+    <div class="box_close"><img src="/img/close.png"></div>
+</div>
+<button class="btn" style="display:none"></button>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/笔记/"><i class="fa "></i>笔记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/杂读/"><i class="fa "></i>杂读</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/心记/"><i class="fa "></i>心记</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content ">
+                    <div class="about">
+	
+	    <article class="post">
+	        <h1 class="post-head">关于我</h1>
+	        <div class="post-body">
+	            <p>Flash是路由器、手机等手持式电子设备最常用的存储器。像手机用的eMMC、电脑用的SSD，其存储单元还是NAND Flash。</p>
+<p><strong>硬件简介</strong></p>
+<p>从原理上看，Flash分为NAND和NOR两类。即NOT+AND、NOT+OR，NOT是存储单元的特性、非门，AND/OR是连接方式、串联/并联。</p>
+<p>这一点从阵列结构可以看得清楚。</p>
+<div align="center">![](/img/work_08/01.png)</div>
+从接口上看，Flash接口通常有并行、串行两种。串行通常为SPI接口。
+
+<p>SPI NOR Flash，引脚少、易布线，应用广泛。</p>
+<div align="center">![](/img/work_08/02.png)</div>
+Parallel NOR Flash，采用RAM接口，允许随机读取，可以直接供CPU运行代码，而不必拷贝到RAM。
+<div align="center">![](/img/work_08/03.png)</div>
+SPI NAND Flash，少见，不了解。
+
+<p>Parallel NAND Flash，采用标准接口，8位I/O，复用传输指令、地址、数据等。</p>
+<div align="center">![](/img/work_08/04.png)</div>
+
+<h2 id="NAND-vs-NOR"><a href="#NAND-vs-NOR" class="headerlink" title="NAND vs NOR"></a><strong>NAND vs NOR</strong></h2><p>Flash有些共通的特点：按块写入，按块擦除，先擦后写。擦除后默认值是0xFF，写入1-&gt;0，0-&gt;1需要擦除。</p>
+<p>NAND与NOR对比，有以下主要差异：</p>
+<ul>
+<li><ol>
+<li>访问方式：NOR Flash支持随机读取，NAND必须按页读取；</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>访问速度：NOR Flash读取稍快，写入和擦除巨慢（2个数量级的差距）；</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>可靠性：NAND Flash需要坏块处理，除主存储区域，还有OOB（out-of-band）；NOR Flash不需要。</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>寿命：NOR Flash十万次擦写；NAND Flash百万次擦写。</li>
+</ol>
+</li>
+</ul>
+<h2 id="存储单元的组织结构"><a href="#存储单元的组织结构" class="headerlink" title="存储单元的组织结构"></a><strong>存储单元的组织结构</strong></h2><p>NAND和NOR Flash都是按阵列结构组织的，但稍有不同。</p>
+<p>NAND Flash是Block-Page的阵列结构，最小访问单元是Page，每个Page从512Byte/1K/2K等不同。每个Page对应一块OOB，一般每512Byte对应16Byte的OOB。</p>
+<div align="center">![](/img/work_08/05.png)</div>
+
+<p>NOR Flash一般是Block-Sector-Page-Byte的阵列结构，最小访问单元是Byte/Page，允许按Byte读取。</p>
+<h2 id="Flash的基本操作"><a href="#Flash的基本操作" class="headerlink" title="Flash的基本操作"></a><strong>Flash的基本操作</strong></h2><p>Flash有读写擦三个基本操作，Read/Program/Erase，对应型号的datasheet有详细描述。</p>
+<p>所有Flash都支持Read ID操作，通过该ID可以判断厂商、芯片型号等，软件可以据此匹配多Flash芯片。该操作可能是厂商自定义的，也可能是JEDEC（JESD216）定义的。</p>
+<h2 id="使用注意事项"><a href="#使用注意事项" class="headerlink" title="使用注意事项"></a><strong>使用注意事项</strong></h2><ul>
+<li><ol>
+<li>寿命<br>Flash寿命是有限的，NAND百万次，NOR十万次，应避免对同一地址频繁擦写。<br>举个例子：比如4G流量统计需要15s记录一次，如此计算，NOR Flash 半月损坏，NAND Flash 半年损坏。显然无法满足要求。<br>改善方案：<ul>
+<li>a）使用针对Flash专门设计的FS，比如yaffs、jffs，有擦写均衡。均衡效果一般受剩余空间约束，剩余空间过小时仍需要评估。</li>
+<li>b）无FS的情况，高频访问的参数，可以开辟一段空间，轮流写入。比如1Byte的数据，给予256的一个Page，寿命几乎延长256倍。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>数据完整性<br>因为不能随机写入、先擦后写等原因，操作不当容易造成数据丢失，需要注意。<br>比如，修改1个字节，至少需要重写一个Page，甚至擦除1个Block，就需要先备份原有数据，然后修改，然后写入。中间人和环节断电，数据会丢失。<br>有几种方式保证完整性，或者出错后纠错：<ul>
+<li>a）yaffs、jffs等系统，一定程度有这方面的考虑。</li>
+<li>b）设计备份纠错机制，上电自检恢复。比如K2S nvram做了这方面的改进，nvram分区写之前，先备份到nvram_backup备份分区，上电时检查nvram_backup分区的备份标记，执行回复。</li>
+<li>c）应用程序自身做容错设计，可以检错纠错。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p>参考资料：<br><a href="/file/work_08/Flash存储器简介.ppt">【Flash存储器简介.ppt】讨论PPT</a><br><a href="/file/work_08/Benchmarking_Flash_NOR_and_Flash_NAND_memories_for_Code_and_Data-Storage.pdf">【Benchmarking_Flash_NOR_and_Flash_NAND_memories_for_Code_and_Data Storage.pdf】Flash芯片级原理介绍</a><br><a href="/file/work_08/GD25Q128C-Rev1.2.pdf">【GD25Q128C-Rev1.2.pdf】SPI NOR Flash Datasheet</a><br><a href="/file/work_08/am29lv160.pdf">【am29lv160.pdf】Parellel NOR Flash Datasheet</a><br><a href="/file/work_08/K9F2G08U0.pdf">【K9F2G08U0.pdf】Parellel NAND Flash Dataseet</a></p>
+
+	        </div>
+	    </article>
+	
+</div>
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+  <div class="widget">
+    <div >
+        <h3>FLIPPED</h3>
+<div>
+<div style="float:left; clear: both;" align="center">
+<img src="/img/about.jpg" style="width: 80%;">
+</div>
+<p style="align:center;line-height: 25px;font-size: 13.6px;min-height:250px">The higher I got, the more amazed I was by the view.Some of us get dipped in flat, some in satin, some in gloss. But every once in a while you find someone who's iridescent, and when you do, nothing will ever compare.And I realized Garrett was right about one thing: I had flipped. Completely.人性的美具有纷繁的多面性，无论是男女之爱还是亲人之情，所有的美都会令人向往和感动!</p>
+</div>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/心记/"><i class="fa" aria-hidden="true">心记</i></a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/杂读/"><i class="fa" aria-hidden="true">杂读</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/笔记/"><i class="fa" aria-hidden="true">笔记</i></a><span class="category-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/12/"><i class="fa" aria-hidden="true">December 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/11/"><i class="fa" aria-hidden="true">November 2019</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/07/"><i class="fa" aria-hidden="true">July 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/06/"><i class="fa" aria-hidden="true">June 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/05/"><i class="fa" aria-hidden="true">May 2019</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/09/"><i class="fa" aria-hidden="true">September 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/08/"><i class="fa" aria-hidden="true">August 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/07/"><i class="fa" aria-hidden="true">July 2018</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/06/"><i class="fa" aria-hidden="true">June 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/05/"><i class="fa" aria-hidden="true">May 2018</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/BlogCode/tags/Gerrit/" style="font-size: 15px;">Gerrit</a> <a href="/BlogCode/tags/Luci/" style="font-size: 10px;">Luci</a> <a href="/BlogCode/tags/cpu/" style="font-size: 10px;">cpu</a> <a href="/BlogCode/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/BlogCode/tags/linux工具/" style="font-size: 20px;">linux工具</a> <a href="/BlogCode/tags/netfilter/" style="font-size: 10px;">netfilter</a> <a href="/BlogCode/tags/ping/" style="font-size: 10px;">ping</a> <a href="/BlogCode/tags/samba/" style="font-size: 10px;">samba</a> <a href="/BlogCode/tags/shell脚本/" style="font-size: 10px;">shell脚本</a> <a href="/BlogCode/tags/socket/" style="font-size: 15px;">socket</a> <a href="/BlogCode/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/BlogCode/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/BlogCode/tags/win工具/" style="font-size: 10px;">win工具</a> <a href="/BlogCode/tags/win脚本/" style="font-size: 10px;">win脚本</a> <a href="/BlogCode/tags/前端/" style="font-size: 10px;">前端</a> <a href="/BlogCode/tags/套接字/" style="font-size: 10px;">套接字</a> <a href="/BlogCode/tags/技术书/" style="font-size: 10px;">技术书</a> <a href="/BlogCode/tags/文件/" style="font-size: 10px;">文件</a> <a href="/BlogCode/tags/文章/" style="font-size: 10px;">文章</a> <a href="/BlogCode/tags/电影/" style="font-size: 10px;">电影</a> <a href="/BlogCode/tags/算法/" style="font-size: 10px;">算法</a> <a href="/BlogCode/tags/线程/" style="font-size: 10px;">线程</a> <a href="/BlogCode/tags/网站/" style="font-size: 10px;">网站</a> <a href="/BlogCode/tags/网络/" style="font-size: 15px;">网络</a> <a href="/BlogCode/tags/转载/" style="font-size: 15px;">转载</a> <a href="/BlogCode/tags/进程控制/" style="font-size: 10px;">进程控制</a> <a href="/BlogCode/tags/锁/" style="font-size: 10px;">锁</a>
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/BlogCode/js/jquery-3.3.1.js?rev=@@hash"></script>
+
+	<script src="/BlogCode/js/search.js?rev=@@hash"></script>
+
+
+<script src="/BlogCode/js/app.js?rev=@@hash"></script>
+<script src="/BlogCode/js/menu.js?rev=@@hash"></script>
+<script src="/BlogCode/js/qart.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/clipboard.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/av-min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/Valine.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/web_tools.js?rev=@@hash"></script>
+
+
+
+</body>
+</html>

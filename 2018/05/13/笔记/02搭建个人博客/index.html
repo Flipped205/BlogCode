@@ -1,0 +1,570 @@
+<!DOCTYPE HTML>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Flipped205">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://Flipped205.github.io/BlogCode">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+
+<title>搭建个人博客 | Flipped205</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Flipped205" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/BlogCode/css/bootstrap.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/font-awesome.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/style.css?rev=2020-02-14[09]">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+<link rel="stylesheet" href="/BlogCode/assets/css/APlayer.min.css" class="aplayer-style-marker">
+<script src="/BlogCode/assets/js/APlayer.min.js" class="aplayer-script-marker"></script>
+<link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"></script></head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <div class="box_bk"></div>
+<div class="box_center">
+    <div class="box_i"><img src=""></div>
+    <div class="box_close"><img src="/img/close.png"></div>
+</div>
+<button class="btn" style="display:none"></button>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/笔记/"><i class="fa "></i>笔记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/杂读/"><i class="fa "></i>杂读</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/心记/"><i class="fa "></i>心记</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="搭建个人博客">
+            
+	            搭建个人博客
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/笔记">
+            笔记
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-calendar-o"></i>
+            <span class="date-meta">发表于:&nbsp;2018/05/13</span>
+        </span>
+        <span class="fa-wrap">
+            
+            <i class="fa fa-calendar-check-o"></i>
+            <span class="date-meta">更新于:&nbsp;2020/02/14</span>
+            
+        </span>
+    
+</div>
+
+            
+
+           
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>最近比较空闲，之前收藏了很多文章，一直保存在收趣上，最近对其进行了分类，然后工作中有整理了一些笔记(.md)，一直想自己写个网站保存一下。然后最近刚好接触了一下将markdown文章转为html，又在网上搜了一些资料，对其整理一下供大家学习。</p>
+<p>这里主要使用的Hexo博客框架。开始配置的是linux环境，不知怎么一直没有成功。启动服务后，web一直出错。在解决问题时无意看到windows环境，以下介绍给大家。</p>
+<p>本文windowns环境搭建参考：<a href="https://blog.csdn.net/AinUser/article/details/77609180" target="_blank" rel="noopener">https://blog.csdn.net/AinUser/article/details/77609180</a></p>
+<h2 id="一、下载工具（git-node-js-hexo"><a href="#一、下载工具（git-node-js-hexo" class="headerlink" title="一、下载工具（git  node.js hexo)"></a>一、下载工具（git  node.js hexo)</h2><p><strong>window 下环境搭建：</strong></p>
+<h3 id="1、git"><a href="#1、git" class="headerlink" title="1、git"></a>1、<code>git</code></h3><p>(1)下载<br>官网：<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">https://git-scm.com/download/win</a><br>(2)安装</p>
+<div align="left">
+
+<p><img src="/img/note_02/01.png" alt></p></div><p></p>
+<div align="left">
+
+<p><img src="/img/note_02/02.png" alt></p></div><p></p>
+<div align="left">
+
+<p><img src="/img/note_02/03.png" alt></p></div><p></p>
+<div align="left">
+
+<p><img src="/img/note_02/04.png" alt></p></div><p></p>
+<p>中间未说明安装过程，按照默认选择。</p>
+<h3 id="2、node-js"><a href="#2、node-js" class="headerlink" title="2、node.js"></a>2、<code>node.js</code></h3><p>(1)、下载<br>官网：<a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a><br>(2)、安装<br>nodejs的安装不需要注意任何问题，最多修改安装路径，其他一直点击next，直到finish。</p>
+<h3 id="3、hexo"><a href="#3、hexo" class="headerlink" title="3、hexo"></a>3、<code>hexo</code></h3><p>hexo 安装不同于git和node.js，这里使用git命令行模式下安装<br>首先创建一个文件夹<code>Hexo</code></p>
+<div align="left">
+
+<p><img src="/img/note_02/05.png" alt></p></div><p></p>
+<p>点击<code>Git Bash Here</code>之后，出现命令行模式窗口，命令行窗口安装hexo;</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
+
+<p>如下图：</p>
+<div align="left">
+
+<p><img src="/img/note_02/06.png" alt></p></div><p></p>
+<p>以上基本的需要的软件就安装完成了，接下来就开始使用<code>hexo</code>建站了.</p>
+<p>** ubuntu下环境搭建： **<br>暂无</p>
+<h2 id="二、Hexo建站"><a href="#二、Hexo建站" class="headerlink" title="二、Hexo建站"></a>二、Hexo建站</h2><p>使用<code>hexo</code>建站可参考<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">官方网站</a>,这里以案例说明。</p>
+<h3 id="1、初始化文件夹"><a href="#1、初始化文件夹" class="headerlink" title="1、初始化文件夹"></a>1、初始化文件夹</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<p>通过<code>ls</code>可以看到，<code>hexo</code>初始化创建的所需要的文件。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── mode_modules   // 该文件夹不需要考虑</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── <span class="built_in">source</span></span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
+
+<div align="left">
+
+<p><img src="/img/note_02/07.png" alt></p></div><p></p>
+<p><code>_config.yml</code>:<br>网站的<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">配置</a>信息,一般默认不需要修改什么，这里我只对<code>theme</code>进行修改，不使用默认主题，使用<code>snippet</code>。主题<a href="https://hexo.io/themes/" target="_blank" rel="noopener">下载</a>。</p>
+<p><code>source</code>:<br>资源文件夹是存放用户资源的地方。除 _posts 文件夹之外，开头命名为 _ (下划线)的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 public 文件夹，而其他文件会被拷贝过去。<code>public</code>文件夹，为编译后产生的Web,完整代码。</p>
+<p><code>themes</code>:<br>主题 文件夹。Hexo 会根据主题来生成静态页面。</p>
+<h3 id="2、主题下载"><a href="#2、主题下载" class="headerlink" title="2、主题下载"></a>2、主题下载</h3><p><code>snippet</code><a href="https://github.com/shenliyang/hexo-theme-snippet" target="_blank" rel="noopener">主题下载</a></p>
+<div align="left">
+
+<p><img src="/img/note_02/08.png" alt></p></div><br>下载后解压，复制到<code>Hexo-&gt;theme</code>文件夹下，并修改<code>hexo-theme-snippet-master</code>为<code>snippet</code>。<p></p>
+<div align="left">
+
+<p><img src="/img/note_02/09.png" alt></p>
+</div>
+
+<h3 id="3、使用主题"><a href="#3、使用主题" class="headerlink" title="3、使用主题"></a>3、使用主题</h3><p>修改<code>Hexo-&gt;_config.yml</code>文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: landscape  ---&gt; 修改为: theme: snippet</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、启动服务"><a href="#4、启动服务" class="headerlink" title="4、启动服务"></a>4、启动服务</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line">hexo generate</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<div align="left">
+
+<p><img src="/img/note_02/10.png" alt></p>
+</div>
+
+<h3 id="5、查看网站"><a href="#5、查看网站" class="headerlink" title="5、查看网站"></a>5、查看网站</h3><p><code>http://localhost:4000/</code></p>
+<div align="left">
+
+<p><img src="/img/note_02/11.png" alt></p></div><p></p>
+<p>如果浏览器输入<code>http://localhost:4000/</code>不能够正常显示页面<code>Cannot GET /***</code>时。<br>命令行窗口<code>ctrl+c</code>停止服务。解决方法:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-devlover-git --save</span><br></pre></td></tr></table></figure>
+
+<p>随后重新启动服务：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<h3 id="6、其他修改"><a href="#6、其他修改" class="headerlink" title="6、其他修改"></a>6、其他修改</h3><p>对比[<a href="https://www.91h5.cc/" target="_blank" rel="noopener">snippet主题demo</a>]发现，自己的博客没有<code>分类</code>和<code>标签</code>。只有以时间归档。如何添加文章<code>分类</code>和<code>标签</code>。可参考[<a href="https://github.com/shenliyang/hexo-theme-snippet/blob/master/README.md#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98" target="_blank" rel="noopener">教程</a>]。</p>
+<p>snippet主题demo网站:</p>
+<div align="left">
+
+<p><img src="/img/note_02/12.png" alt></p></div><p></p>
+<p>添加<code>分类</code>和<code>标签</code>，主要在文章中添加<code>categories</code>和<code>tags</code> .<br>eg: <code>source-&gt;_posts-&gt;hello-world.md</code>文件中<code>添加</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">title: Hello World  </span><br><span class="line">categories:    //添加</span><br><span class="line">- 前端</span><br><span class="line">- 资源</span><br><span class="line">tags:          //添加</span><br><span class="line">- <span class="built_in">test</span></span><br><span class="line">- 测试</span><br></pre></td></tr></table></figure>
+
+<p>添加后效果如下：</p>
+<div align="left">
+
+<p><img src="/img/note_02/13.png" alt></p></div><p></p>
+<h3 id="7、其他技巧"><a href="#7、其他技巧" class="headerlink" title="7、其他技巧"></a>7、其他技巧</h3><p>文章中添加图片<code>source</code>下新建<code>img</code>文件夹,该文件夹下放入图片,可针对不同文章，进行创建文件夹。</p>
+<div align="left">
+
+<p><img src="/img/note_02/14.png" alt></p></div><p></p>
+<p>markdown文件中，图片使用（div 是为了图片居左/居中/居右）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">"left"</span>&gt;</span></span><br><span class="line">![](/img/note_01/01.png)</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>站内搜索</strong><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-search --save</span><br><span class="line">npm install hexo-generator-json-content --save</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>项目下的<code>_config.yml</code>文件添加</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br></pre></td></tr></table></figure>
+
+<p>评论使用Valine。也使用了一下[GitHub Issues][<a href="https://imsun.net/posts/gitment-introduction/]" target="_blank" rel="noopener">https://imsun.net/posts/gitment-introduction/]</a> 显示效果不是很好。还有[来必力][<a href="https://livere.com/]，注册好了一直登录不了，也导致没用过。" target="_blank" rel="noopener">https://livere.com/]，注册好了一直登录不了，也导致没用过。</a></p>
+<ul>
+<li><strong>添加音乐与视频</strong><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-tag-dplayer --save</span><br><span class="line">npm install hexo-tag-aplayer --save</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>音乐：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% aplayer <span class="string">"歌曲名称"</span> <span class="string">"作者"</span> <span class="string">"音乐_url"</span> <span class="string">"封面图片_url"</span> <span class="string">"autoplay"</span> %&#125;</span><br></pre></td></tr></table></figure>
+
+
+        <div id="aplayer-VCTamLhc" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+            <pre class="aplayer-lrc-content"></pre>
+        </div>
+        <script>
+          var ap = new APlayer({
+            element: document.getElementById("aplayer-VCTamLhc"),
+            narrow: false,
+            autoplay: false,
+            showlrc: false,
+            music: {
+              title: "静下来",
+              author: "大乔小乔",
+              url: "/audio/静下来-大乔小乔.mp3",
+              pic: "/audio/大乔小乔.png",
+              lrc: ""
+            }
+          });
+          window.aplayers || (window.aplayers = []);
+          window.aplayers.push(ap);
+        </script>
+<p>歌单：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% aplayerlist %&#125;&#123;<span class="string">"narrow"</span>: <span class="literal">false</span>,<span class="string">"autoplay"</span>: <span class="literal">true</span>,<span class="string">"showlrc"</span>: <span class="number">3</span>,<span class="string">"mode"</span>: <span class="string">"random"</span>,<span class="string">"music"</span>: [&#123;<span class="string">"title"</span>: <span class="string">"歌名"</span>,<span class="string">"author"</span>: <span class="string">"作者"</span>,<span class="string">"url"</span>: <span class="string">"音乐_url"</span>,<span class="string">"pic"</span>: <span class="string">"封面图片_url"</span>,<span class="string">"lrc"</span>: <span class="string">"歌词_url"</span>&#125;,&#123;<span class="string">"title"</span>: <span class="string">"我的未来不是梦"</span>,<span class="string">"author"</span>: <span class="string">"张雨生"</span>,<span class="string">"url"</span>: <span class="string">"/audio/我的未来不是梦-张雨生.mp3"</span>,<span class="string">"pic"</span>: <span class="string">"/audio/张雨生.png"</span>,<span class="string">"lrc"</span>: <span class="string">"/audio/我的未来不是梦-张雨生.txt"</span>&#125;]&#125;&#123;% endaplayerlist %&#125;</span><br></pre></td></tr></table></figure>
+
+
+        <div id="aplayer-vVxWNdqG" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+			  <script>
+				  var options = {"narrow":false,"autoplay":false,"showlrc":3,"mode":"random","music":[{"title":"静下来","author":"大乔小乔","url":"/audio/静下来-大乔小乔.mp3","pic":"/audio/大乔小乔.png","lrc":"/audio/静下来-大乔小乔.txt"},{"title":"我的未来不是梦","author":"张雨生","url":"/audio/我的未来不是梦-张雨生.mp3","pic":"/audio/张雨生.png","lrc":"/audio/我的未来不是梦-张雨生.txt"}]};
+				  options.element = document.getElementById("aplayer-vVxWNdqG");
+				  var ap = new APlayer(options);
+			    window.aplayers || (window.aplayers = []);
+				  window.aplayers.push(ap);
+			  </script>
+
+<p>网易云音乐：<br>借助网易云音乐外链</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe frameborder=<span class="string">"no"</span> border=<span class="string">"0"</span> marginwidth=<span class="string">"0"</span> marginheight=<span class="string">"0"</span> width=<span class="number">330</span> height=<span class="number">86</span> src=<span class="string">"//music.163.com/outchain/player?type=2&amp;id=1312734832&amp;auto=1&amp;height=66"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=1312734832&auto=0&height=66"></iframe>
+
+<p>视频</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% dplayer <span class="string">"url=/video/大圣娶亲.mkv"</span> <span class="string">"api=http://dplayer.daoapp.io"</span> <span class="string">"pic=/video/大圣娶亲.png"</span> <span class="string">"id="</span> <span class="string">"loop=yes"</span> <span class="string">"theme=#FADFA3"</span> <span class="string">"autoplay=false"</span> <span class="string">"token=tokendemo"</span> %&#125;</span><br></pre></td></tr></table></figure>
+
+<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","loop":true,"video":{"url":"/video/大圣娶亲.mkv","pic":"/video/大圣娶亲.png"},"danmaku":{"api":"http://dplayer.daoapp.io","token":"tokendemo"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+
+
+<p>优酷：<br>优酷分享：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe height=<span class="number">498</span> width=<span class="number">510</span> src=<span class="string">'http://player.youku.com/embed/XNDAxNzI5MDE0MA=='</span> frameborder=<span class="number">0</span> <span class="string">'allowfullscreen'</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<iframe height="498" width="100%" src="http://player.youku.com/embed/XNDAxNzI5MDE0MA==" frameborder="0" 'allowfullscreen'></iframe>
+
+<p>爱奇艺：<br>爱奇艺分享：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe src=<span class="string">"http://open.iqiyi.com/developer/player_js/coopPlayerIndex.html?vid=71dc8be37ccbecc77685d8c1619d51fb&amp;tvId=414197600&amp;accessToken=2.f22860a2479ad60d8da7697274de9346&amp;appKey=3955c3425820435e86d0f4cdfe56f5e7&amp;appId=1368&amp;height=100%&amp;width=100%"</span> frameborder=<span class="string">"0"</span> allowfullscreen=<span class="string">"true"</span> width=<span class="string">"100%"</span> height=<span class="number">498</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<iframe src="http://open.iqiyi.com/developer/player_js/coopPlayerIndex.html?vid=71dc8be37ccbecc77685d8c1619d51fb&tvId=414197600&accessToken=2.f22860a2479ad60d8da7697274de9346&appKey=3955c3425820435e86d0f4cdfe56f5e7&appId=1368&height=100%&width=100%" frameborder="0" allowfullscreen="true" width="100%" height="498"></iframe>
+
+<p>更多技巧可参考hexo api文档</p>
+<h2 id="三、代码管理"><a href="#三、代码管理" class="headerlink" title="三、代码管理"></a>三、代码管理</h2><p>这里的代码包括两部分，一部分为编写代码，另一部分为generate后的个人博客web代码。</p>
+<div align="left">
+
+<p><img src="/img/note_02/15.png" alt></p></div><p></p>
+<h3 id="1、注册github"><a href="#1、注册github" class="headerlink" title="1、注册github"></a>1、注册github</h3><p>官网网站:<a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a></p>
+<div align="left">
+
+<p><img src="/img/note_02/16.png" alt></p></div><p></p>
+<h3 id="2、创建项目"><a href="#2、创建项目" class="headerlink" title="2、创建项目"></a>2、创建项目</h3><p>这里建议创建两个项目。<code>BlogCode</code>和<code>Blog</code>项目。此处只说明<code>Blog</code>创建过程</p>
+<div align="left">
+
+<p><img src="/img/note_02/17.png" alt></p></div><p></p>
+<div align="left">
+
+<p><img src="/img/note_02/18.png" alt></p></div><p></p>
+<div align="left">
+
+<p><img src="/img/note_02/19.png" alt></p></div><p></p>
+<h3 id="3、上传代码"><a href="#3、上传代码" class="headerlink" title="3、上传代码"></a>3、上传代码</h3><p>（1）、BlogCode</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">hexo clean   // 删除public文件夹，此操作可有可无 </span><br><span class="line">git init</span><br><span class="line">git status</span><br><span class="line">git add .</span><br><span class="line">git status</span><br><span class="line">git commit</span><br><span class="line">git <span class="built_in">log</span></span><br><span class="line">git remote add origin http://github.com/****/Blog.git</span><br><span class="line">git push orgin master</span><br></pre></td></tr></table></figure>
+
+<p><code>git init</code>初始化仓库<br><code>git status .</code>查看需要提交的文件及文件夹</p>
+<div align="left">
+
+<p><img src="/img/note_02/20.png" alt></p></div><br><code>git add .</code> add 所有文件<p></p>
+<div align="left">
+
+<p><img src="/img/note_02/21.png" alt></p></div><br><code>git status .</code> 查看已add的文件<p></p>
+<div align="left">
+
+<p><img src="/img/note_02/22.png" alt></p></div><br><code>git commit</code>提交文件<p></p>
+<div align="left">
+
+<p><img src="/img/note_02/23.png" alt></p></div><br>输入提交记录<p></p>
+<div align="left">
+
+<p><img src="/img/note_02/24.png" alt></p></div><br><code>git remote add orgin https://gitbub.com/***/BlogCode.git</code><br><code>git push origin master</code><br>输入git 用户名和密码<p></p>
+<div align="left">
+
+<p><img src="/img/note_02/25.png" alt></p></div><br>之后可在github 上看到已入库的代码<p></p>
+<div align="left">
+
+<p><img src="/img/note_02/26.png" alt></p></div><br>（2）、Blog<br>Blog需要上传的代码主要为<code>public</code>目录下的文件<p></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+<div align="left">
+
+<p><img src="/img/note_02/27.png" alt></p></div><br>Blog上传方式比较简单，需要修改<code>Hexo-&gt;_config.yml</code>文件<p></p>
+<div align="left">
+
+<p><img src="/img/note_02/28.png" alt></p></div><br>之后操作<p></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<div align="left">
+
+<p><img src="/img/note_02/29.png" alt></p></div><p></p>
+<h2 id="四、发布博客"><a href="#四、发布博客" class="headerlink" title="四、发布博客"></a>四、发布博客</h2><h3 id="1、购买域名-可不购买，使用github账号名-github-io访问"><a href="#1、购买域名-可不购买，使用github账号名-github-io访问" class="headerlink" title="1、购买域名 (可不购买，使用github账号名.github.io访问)"></a>1、购买域名 (可不购买，使用<code>github账号名.github.io</code>访问)</h3><p><a href="https://wanwang.aliyun.com/domain/newgtld/?spm=5176.8006371.772226.domainshowtop.50277e63zHRWjy#.top" target="_blank" rel="noopener">阿里域名</a>,这里选用top域名，购买后需实名认证，没认证无法使用。</p>
+<h3 id="2、使用github-io访问"><a href="#2、使用github-io访问" class="headerlink" title="2、使用github.io访问"></a>2、使用github.io访问</h3><p>（1）、修改github上修改Repository name<code>Blog</code>为<code>账户名.github.io</code>。</p>
+<div align="left">
+
+<p><img src="/img/note_02/30.png" alt></p></div><p></p>
+<div align="left">
+
+<p><img src="/img/note_02/31.png" alt></p></div><br>（2）浏览器<code>账户名.github.io</code><p></p>
+<div align="left">
+
+<p><img src="/img/note_02/32.png" alt></p></div><p></p>
+<h3 id="3、使用购买域名-top-访问"><a href="#3、使用购买域名-top-访问" class="headerlink" title="3、使用购买域名(.top)访问"></a>3、使用购买域名(.top)访问</h3><p>可为购买的域名添加前缀比如“<code>blog</code>”。CNAME 记录 将“blog.xx.top”重定向到“xx.github.io”。<br>在阿里域名解析添加：</p>
+<div align="left">
+
+<p><img src="/img/note_02/33.png" alt></p></div><p></p>
+
+        <div class="div_qrcode">
+            <div id="combine"></div>
+        </div>
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/BlogCode/2018/05/14/笔记/05TCP-IP入门经典/" class="pre-post btn btn-default" title='TCP/IP入门经典'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">TCP/IP入门经典</span>
+        </a>
+    
+    
+</div>
+<div id="vcomments"></div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+  <div class="widget">
+    <div >
+        <h3>FLIPPED</h3>
+<div>
+<div style="float:left; clear: both;" align="center">
+<img src="/img/about.jpg" style="width: 80%;">
+</div>
+<p style="align:center;line-height: 25px;font-size: 13.6px;min-height:250px">The higher I got, the more amazed I was by the view.Some of us get dipped in flat, some in satin, some in gloss. But every once in a while you find someone who's iridescent, and when you do, nothing will ever compare.And I realized Garrett was right about one thing: I had flipped. Completely.人性的美具有纷繁的多面性，无论是男女之爱还是亲人之情，所有的美都会令人向往和感动!</p>
+</div>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/心记/"><i class="fa" aria-hidden="true">心记</i></a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/杂读/"><i class="fa" aria-hidden="true">杂读</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/笔记/"><i class="fa" aria-hidden="true">笔记</i></a><span class="category-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/12/"><i class="fa" aria-hidden="true">December 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/11/"><i class="fa" aria-hidden="true">November 2019</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/07/"><i class="fa" aria-hidden="true">July 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/06/"><i class="fa" aria-hidden="true">June 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/05/"><i class="fa" aria-hidden="true">May 2019</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/09/"><i class="fa" aria-hidden="true">September 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/08/"><i class="fa" aria-hidden="true">August 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/07/"><i class="fa" aria-hidden="true">July 2018</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/06/"><i class="fa" aria-hidden="true">June 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/05/"><i class="fa" aria-hidden="true">May 2018</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/BlogCode/tags/Gerrit/" style="font-size: 15px;">Gerrit</a> <a href="/BlogCode/tags/Luci/" style="font-size: 10px;">Luci</a> <a href="/BlogCode/tags/cpu/" style="font-size: 10px;">cpu</a> <a href="/BlogCode/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/BlogCode/tags/linux工具/" style="font-size: 20px;">linux工具</a> <a href="/BlogCode/tags/netfilter/" style="font-size: 10px;">netfilter</a> <a href="/BlogCode/tags/ping/" style="font-size: 10px;">ping</a> <a href="/BlogCode/tags/samba/" style="font-size: 10px;">samba</a> <a href="/BlogCode/tags/shell脚本/" style="font-size: 10px;">shell脚本</a> <a href="/BlogCode/tags/socket/" style="font-size: 15px;">socket</a> <a href="/BlogCode/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/BlogCode/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/BlogCode/tags/win工具/" style="font-size: 10px;">win工具</a> <a href="/BlogCode/tags/win脚本/" style="font-size: 10px;">win脚本</a> <a href="/BlogCode/tags/前端/" style="font-size: 10px;">前端</a> <a href="/BlogCode/tags/套接字/" style="font-size: 10px;">套接字</a> <a href="/BlogCode/tags/技术书/" style="font-size: 10px;">技术书</a> <a href="/BlogCode/tags/文件/" style="font-size: 10px;">文件</a> <a href="/BlogCode/tags/文章/" style="font-size: 10px;">文章</a> <a href="/BlogCode/tags/电影/" style="font-size: 10px;">电影</a> <a href="/BlogCode/tags/算法/" style="font-size: 10px;">算法</a> <a href="/BlogCode/tags/线程/" style="font-size: 10px;">线程</a> <a href="/BlogCode/tags/网站/" style="font-size: 10px;">网站</a> <a href="/BlogCode/tags/网络/" style="font-size: 15px;">网络</a> <a href="/BlogCode/tags/转载/" style="font-size: 15px;">转载</a> <a href="/BlogCode/tags/进程控制/" style="font-size: 10px;">进程控制</a> <a href="/BlogCode/tags/锁/" style="font-size: 10px;">锁</a>
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/BlogCode/js/jquery-3.3.1.js?rev=@@hash"></script>
+
+	<script src="/BlogCode/js/search.js?rev=@@hash"></script>
+
+
+<script src="/BlogCode/js/app.js?rev=@@hash"></script>
+<script src="/BlogCode/js/menu.js?rev=@@hash"></script>
+<script src="/BlogCode/js/qart.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/clipboard.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/av-min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/Valine.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/web_tools.js?rev=@@hash"></script>
+
+
+
+</body>
+</html>

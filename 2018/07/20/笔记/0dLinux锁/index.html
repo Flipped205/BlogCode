@@ -1,0 +1,566 @@
+<!DOCTYPE HTML>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Flipped205">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://Flipped205.github.io/BlogCode">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+
+<title>Linux 锁 | Flipped205</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Flipped205" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/BlogCode/css/bootstrap.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/font-awesome.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/style.css?rev=2020-02-14[09]">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <div class="box_bk"></div>
+<div class="box_center">
+    <div class="box_i"><img src=""></div>
+    <div class="box_close"><img src="/img/close.png"></div>
+</div>
+<button class="btn" style="display:none"></button>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/笔记/"><i class="fa "></i>笔记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/杂读/"><i class="fa "></i>杂读</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/心记/"><i class="fa "></i>心记</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Linux 锁">
+            
+	            Linux 锁
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/Linux">
+            Linux
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/锁" title='锁'>
+                        锁
+                    </a>
+                
+                    <a href="/tags/文件" title='文件'>
+                        文件
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-calendar-o"></i>
+            <span class="date-meta">发表于:&nbsp;2018/07/20</span>
+        </span>
+        <span class="fa-wrap">
+            
+        </span>
+    
+</div>
+
+            
+
+           
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>574</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="记录锁（fcntl）"><a href="#记录锁（fcntl）" class="headerlink" title="记录锁（fcntl）"></a><strong>记录锁（fcntl）</strong></h2><p>　两个进程同时对文件进行操作：当一个进程正在读或者修改文件的某个部分时，使用记录锁可以阻止其他进程修改同一文件区。另一术语<code>字节范围锁</code>。<br>fcntl函数原型</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fcntl</span><span class="params">(<span class="keyword">int</span> fd,<span class="keyword">int</span> cmd, ...<span class="comment">/*struct flock *flockptr */</span>)</span></span>;  <span class="comment">// 返回值：若成功，依赖于cmd,否则，返回-1</span></span><br></pre></td></tr></table></figure>
+
+<p>　　对于记录锁，cmd是F_GETLK,F_SETLK或F_SETLKW。第三个参数（我们将调用flockptr）是一个指向flock结构的指针。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">flock</span>&#123;</span></span><br><span class="line">    <span class="keyword">short</span> l_type;           <span class="comment">/* F_RDLCK, F_WRLCK, or F_UNLCK */</span></span><br><span class="line">    <span class="keyword">short</span> l_whence;         <span class="comment">/* SEEK_SET, SEEK_CUR or SEEK_END */</span></span><br><span class="line">    <span class="keyword">short</span> l_start;          <span class="comment">/* offset in bytes, relative to l_whence */</span></span><br><span class="line">    <span class="keyword">short</span> l_len;            <span class="comment">/* length, in bytes, 0 means lock to EOF */</span></span><br><span class="line">    <span class="keyword">short</span> l_pid;            <span class="comment">/* returned with F_GETLK */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>flock结构说明如下：</p>
+<ul>
+<li>锁类型：F_RDLCK(共享读锁)、F_WRLCK(独占性写锁)或F_UNLCK(解锁一个区域)</li>
+<li>要加锁或解锁区域的起始字节偏移量(l_start和l_whence)</li>
+<li>区域字节长度(l_len)</li>
+<li>进程ID(l_pid)持有的锁能阻塞当前进程(仅由F_GETLK)返回</li>
+</ul>
+<p>关于锁区域说明：</p>
+<ul>
+<li>区域起始偏移量的两个元素与lseek函数中最后的两个参数类似。l_whence可选的值是SEEK_SET、SEEK_CUR和SEEK_END。</li>
+<li>锁可以在文件尾端处开始或越过尾端处开始，但不能在文章起始位置之前开始。</li>
+<li>如l_len=0，则表示锁的范围可以扩展到最大可能的偏移量。这意味着不管向该文件追加多少数据。它们都可以处于锁的范围内。</li>
+<li>为了对整个文件加锁，我们设置l_start和l_whence指向文件的起始位置，并指定l_len=0。（常用的指定文件起始位置，l_start=0,l_whence为SEEK_SET）。</li>
+</ul>
+<p>两种锁类型：共享读锁（L_RDLCK）和独占性写锁（L_WRLCK）。<br>不同进程下，不同类型锁彼此之间的兼容性：</p>
+<div align="center">
+
+<p><img src="/img/note_0d/01.png" alt="不同类型锁批次之间的兼容性"></p></div><p></p>
+<p>　　共享读锁和独占性写锁的原则：多个进程，如果在一个给定字节上有一个或多个读锁时，则不能在该字节上加写锁；如果在一个字节上已经有一把独占性写锁，则不能再对它加任意读锁。<br>　　以上情况只针对于多个进程。如果一个进程中对一个文件区域有一把锁，后来进程又企图在同一文件再加一把锁，那么新锁将<code>替换</code>已有锁。<br>　　加读锁时，该描述符必须是读打开。加锁时，该描述符必须是写打开。</p>
+<p>fcntl的3个命令：</p>
+<ul>
+<li>F_GETLK: 是否存在一把锁。如存在，则将现有锁信息重写flockptr指向的信息。如果不存在，则除了l_type设置为F_UNLCK之外，其他信息保存不变。</li>
+<li>F_SETLK: 设置由flockptr所描述的锁。获取一把读锁（l_type=F_RDLCK）或者写锁（l_type=F_WRLCK）。而兼容性规则，阻止系统给出这把锁，那么fcntl就会立即出错返回。此时errno设置为EACCES和EAGAIN（一般不能满足，都返回该值）。此命令也可用于清除由flockptr指定锁（l_type=F_UNLCK）。</li>
+<li>F_SETLKW: 是F_SETLK的阻塞版本，（W=wait）。所以在请求的读锁或写锁因另一个进程当前已经对请求区域的某个部分进行加锁而不能授予，那么调用就会被置为休眠。如果请求创建的锁已经可用，或者休眠由信号中断，则该进程被唤醒。</li>
+</ul>
+<p><strong>demo:</strong><br>通用头部代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通用code</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lock_reg</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">int</span> cmd, <span class="keyword">int</span> type, <span class="keyword">off_t</span> offset, <span class="keyword">int</span> whence, <span class="keyword">off_t</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">flock</span> <span class="title">lock</span>;</span></span><br><span class="line"></span><br><span class="line">    lock.l_type = type;</span><br><span class="line">    lock.l_start = offset;</span><br><span class="line">    lock.l_whence = whence;</span><br><span class="line">    lock.l_len = len;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (fcntl(fd, cmd, &amp;lock));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> read_lock(fd, offset, whence, len) \</span></span><br><span class="line">            lock_reg((fd), F_SETLK, F_RDLCK, (offset), (whence), (len))</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> readw_lock(fd, offset, whence, len) \</span></span><br><span class="line">            lock_reg((fd), F_SETLKW, F_RDLCK, (offset), (whence), (len))</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> write_lock(fd, offset, whence, len) \</span></span><br><span class="line">            lock_reg((fd), F_SETLK, F_WRLCK, (offset), (whence), (len))</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> writew_lock(fd, offset, whence, len) \</span></span><br><span class="line">            lock_reg((fd), F_SETLKW, F_WRLCK, (offset), (whence), (len))</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> un_lock(fd, offset, whence, len) \</span></span><br><span class="line">            lock_reg((fd), F_SETLK, F_UNLCK, (offset), (whence), (len))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span>* <span class="title">getRandomString</span><span class="params">(<span class="keyword">int</span> length)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> j, i;</span><br><span class="line">    <span class="keyword">char</span>* <span class="built_in">string</span>;</span><br><span class="line">    <span class="keyword">char</span> tmp[<span class="number">4</span>]=<span class="string">"Aa0"</span>;</span><br><span class="line">    srand((<span class="keyword">unsigned</span>) time(<span class="literal">NULL</span> ));</span><br><span class="line">    <span class="keyword">if</span> ((<span class="built_in">string</span> = (<span class="keyword">char</span>*) <span class="built_in">malloc</span>( <span class="keyword">sizeof</span>(<span class="keyword">char</span>)*length)) == <span class="literal">NULL</span> )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d,malloc error\n"</span>,__LINE__);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; length - <span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        j = rand() % <span class="number">3</span>;</span><br><span class="line">        <span class="built_in">string</span>[i] = tmp[j] + rand()%<span class="number">10</span>;</span><br><span class="line">        <span class="keyword">if</span> (j!=<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="built_in">string</span>[i] += rand()%<span class="number">16</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">string</span>[length - <span class="number">1</span>] = <span class="string">'\0'</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d,write_buf:  %s\n"</span>,__LINE__, <span class="built_in">string</span> );</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>写文件 a.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.c  写文件</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> fd = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        srand(time(<span class="number">0</span>));</span><br><span class="line">        sleep(<span class="number">10</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"start\n"</span>);</span><br><span class="line">        fd = open(<span class="string">"./a.txt"</span>, O_WRONLY | O_CREAT | O_TRUNC, S_IWUSR | S_IRUSR | S_IWGRP| S_IRUSR | S_IWOTH | S_IROTH);</span><br><span class="line">        <span class="keyword">if</span> (fd != <span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (write_lock(fd, <span class="number">0</span>, SEEK_SET, <span class="number">0</span>))&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%d,%d,%s\n"</span>,__LINE__,errno,(<span class="keyword">char</span> *)strerror(errno));</span><br><span class="line">                close(fd);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            len = rand()%<span class="number">200</span> + <span class="number">50</span>;</span><br><span class="line">            <span class="keyword">if</span> (len == write(fd, getRandomString(len), len)) &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%d,write success\n"</span>, __LINE__);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%d,write fail\n"</span>, __LINE__);</span><br><span class="line">            &#125;</span><br><span class="line">            close(fd);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>读文件 b.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// b.c 读文件</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> fd = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">char</span> buf[<span class="number">256</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        sleep(<span class="number">5</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"start\n"</span>);</span><br><span class="line">        fd = open(<span class="string">"./a.txt"</span>, O_RDONLY);</span><br><span class="line">        <span class="keyword">if</span> (fd != <span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (read_lock(fd, <span class="number">0</span>, SEEK_SET, <span class="number">0</span>))&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%d,%d,%s\n"</span>,__LINE__,errno,(<span class="keyword">char</span> *)strerror(errno));</span><br><span class="line">                close(fd);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            len = read(fd, buf, <span class="number">256</span>);</span><br><span class="line">            <span class="keyword">if</span> (<span class="number">-1</span> == len)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%d,read failed\n"</span>, __LINE__);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%d,read success\n"</span>,__LINE__);</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%d,%s\n\n"</span>,__LINE__, buf);</span><br><span class="line">            &#125;</span><br><span class="line">            close(fd);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a><strong>文件描述符</strong></h2><p><strong>open 函数</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//函数头文件</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//函数原型</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">open</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">int</span> flags)</span></span>;                  <span class="comment">/* 打开现有文件 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">open</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">int</span> flags, <span class="keyword">mode_t</span> mode)</span></span>;     <span class="comment">/* 打开的文件不存在，则先创建它 */</span></span><br></pre></td></tr></table></figure>
+
+<p>返回-1,则出错。成功，则返回文件描述符</p>
+<p>参数说明：</p>
+<table>
+<thead>
+<tr>
+<th align="left">flags</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">O_RDONLY</td>
+<td align="left">以只读方式打开文件</td>
+</tr>
+<tr>
+<td align="left">O_WRONLY</td>
+<td align="left">以只写方式打开文件</td>
+</tr>
+<tr>
+<td align="left">O_RDWR</td>
+<td align="left">以读写方式打开文件</td>
+</tr>
+<tr>
+<td align="left">O_CREAT</td>
+<td align="left">若所打开文件不存在则创建此文件。使用此选项时，需同时使用第三个参数mode说明该新文件的存取许可权位。</td>
+</tr>
+<tr>
+<td align="left">O_EXCL</td>
+<td align="left">如果同时指定了O_CREATE,而文件已经存在，则导致调用出错</td>
+</tr>
+<tr>
+<td align="left">O_TRUNC</td>
+<td align="left">如果文件存在，而且为只读或只写方式打开，则将其长度截短为0</td>
+</tr>
+<tr>
+<td align="left">O_NOCTTY</td>
+<td align="left">如果pathname指定的是终端设备(tty)，则不将此设备分配作为进程的控制终端</td>
+</tr>
+<tr>
+<td align="left">O_APPEND</td>
+<td align="left">每次写时都加到文件的尾端</td>
+</tr>
+<tr>
+<td align="left">O_NONBLOCK</td>
+<td align="left">如果pathname指定的是一个FIFO、一个块特殊文件或一个字符特殊文件，则此选择项为此文件的本次打开操作和后续的I/O操作设备为非阻塞方式</td>
+</tr>
+<tr>
+<td align="left">O_NONELAY</td>
+<td align="left">O_NONBLOCK</td>
+</tr>
+<tr>
+<td align="left">O_SYNC</td>
+<td align="left">只在数据被写入外存或其他设备之后操作才返回</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">mode取值</th>
+<th align="left">对应八进制数</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">S_SVTX</td>
+<td align="left">01000</td>
+<td align="left">粘贴位</td>
+</tr>
+<tr>
+<td align="left">S_IRUSR</td>
+<td align="left">00400</td>
+<td align="left">文件所有者的读权限位</td>
+</tr>
+<tr>
+<td align="left">S_IWUSR</td>
+<td align="left">00200</td>
+<td align="left">文件所有者的写权限位</td>
+</tr>
+<tr>
+<td align="left">S_IXUSR</td>
+<td align="left">00100</td>
+<td align="left">文件所有者的执行权限位</td>
+</tr>
+<tr>
+<td align="left">S_IRGRP</td>
+<td align="left">00040</td>
+<td align="left">所有者同组用户的读权限位</td>
+</tr>
+<tr>
+<td align="left">S_IWGRP</td>
+<td align="left">00020</td>
+<td align="left">所有者同组用户的写权限位</td>
+</tr>
+<tr>
+<td align="left">S_IXGRP</td>
+<td align="left">00010</td>
+<td align="left">所有者同组用户的执行权限位</td>
+</tr>
+<tr>
+<td align="left">S_IROTH</td>
+<td align="left">00004</td>
+<td align="left">其他组用户的读权限位</td>
+</tr>
+<tr>
+<td align="left">S_IWOTH</td>
+<td align="left">00002</td>
+<td align="left">其他组用户的写权限位</td>
+</tr>
+<tr>
+<td align="left">S_IXOTH</td>
+<td align="left">00001</td>
+<td align="left">其他组用户的执行权限位</td>
+</tr>
+</tbody></table>
+<h2 id="文件流"><a href="#文件流" class="headerlink" title="文件流"></a><strong>文件流</strong></h2><p><strong>fopen 函数</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//头文件</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//函数原型</span></span><br><span class="line"><span class="function">FILE *<span class="title">fopen</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *path, <span class="keyword">const</span> <span class="keyword">char</span> *mode)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>返回值：失败返回NULL</p>
+<table>
+<thead>
+<tr>
+<th align="left">mode取值</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">r</td>
+<td align="left">以只读方式打开文件，该文件必须存在。</td>
+</tr>
+<tr>
+<td align="left">r+</td>
+<td align="left">以读/写方式打开文件，该文件必须存在。</td>
+</tr>
+<tr>
+<td align="left">rb+</td>
+<td align="left">以读/写方式打开一个二进制文件，只允许读/写数据。</td>
+</tr>
+<tr>
+<td align="left">rt+</td>
+<td align="left">以读/写方式打开一个文本文件，允许读和写。</td>
+</tr>
+<tr>
+<td align="left">w</td>
+<td align="left">打开只写文件，若文件存在则长度清为 0，即该文件内容消失，若不存在则创建该文件。</td>
+</tr>
+<tr>
+<td align="left">w+</td>
+<td align="left">打开可读/写文件，若文件存在则文件长度清为零，即该文件内容会消失。若文件不存在则建立该文件。</td>
+</tr>
+<tr>
+<td align="left">a</td>
+<td align="left">以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留（EOF 符保留）。</td>
+</tr>
+<tr>
+<td align="left">a+</td>
+<td align="left">以附加方式打开可读/写的文件。若文件不存在，则会建立该文件，如果文件存在，则写入的数据会被加到文件尾后，即文件原先的内容会被保留（原来的 EOF 符不保留）。</td>
+</tr>
+<tr>
+<td align="left">wb</td>
+<td align="left">以只写方式打开或新建一个二进制文件，只允许写数据。</td>
+</tr>
+<tr>
+<td align="left">wb+</td>
+<td align="left">以读/写方式打开或建立一个二进制文件，允许读和写。</td>
+</tr>
+<tr>
+<td align="left">wt+</td>
+<td align="left">以读/写方式打开或建立一个文本文件，允许读写。</td>
+</tr>
+<tr>
+<td align="left">at+</td>
+<td align="left">以读/写方式打开一个文本文件，允许读或在文本末追加数据。</td>
+</tr>
+<tr>
+<td align="left">ab+</td>
+<td align="left">以读/写方式打开一个二进制文件，允许读或在文件末追加数据。</td>
+</tr>
+</tbody></table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取某个文件流的文件描述符</span></span><br><span class="line"><span class="keyword">int</span> i_fp = <span class="number">-1</span>;</span><br><span class="line">FILE *fp = fopen(<span class="string">"/tmp/test.txt"</span>,<span class="string">"r+"</span>);</span><br><span class="line">i_fp = fileno(fp);</span><br><span class="line">fclose(fp);</span><br></pre></td></tr></table></figure>
+        <div class="div_qrcode">
+            <div id="combine"></div>
+        </div>
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/BlogCode/2018/08/01/杂读/02网站收藏/" class="pre-post btn btn-default" title='网站收藏'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">网站收藏</span>
+        </a>
+    
+    
+        <a href="/BlogCode/2018/07/19/前端/02前端小工具/" class="next-post btn btn-default" title='前端小工具'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">前端小工具</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+<div id="vcomments"></div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+  <div class="widget">
+    <div >
+        <h3>FLIPPED</h3>
+<div>
+<div style="float:left; clear: both;" align="center">
+<img src="/img/about.jpg" style="width: 80%;">
+</div>
+<p style="align:center;line-height: 25px;font-size: 13.6px;min-height:250px">The higher I got, the more amazed I was by the view.Some of us get dipped in flat, some in satin, some in gloss. But every once in a while you find someone who's iridescent, and when you do, nothing will ever compare.And I realized Garrett was right about one thing: I had flipped. Completely.人性的美具有纷繁的多面性，无论是男女之爱还是亲人之情，所有的美都会令人向往和感动!</p>
+</div>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/心记/"><i class="fa" aria-hidden="true">心记</i></a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/杂读/"><i class="fa" aria-hidden="true">杂读</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/笔记/"><i class="fa" aria-hidden="true">笔记</i></a><span class="category-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/12/"><i class="fa" aria-hidden="true">December 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/11/"><i class="fa" aria-hidden="true">November 2019</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/07/"><i class="fa" aria-hidden="true">July 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/06/"><i class="fa" aria-hidden="true">June 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/05/"><i class="fa" aria-hidden="true">May 2019</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/09/"><i class="fa" aria-hidden="true">September 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/08/"><i class="fa" aria-hidden="true">August 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/07/"><i class="fa" aria-hidden="true">July 2018</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/06/"><i class="fa" aria-hidden="true">June 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/05/"><i class="fa" aria-hidden="true">May 2018</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/BlogCode/tags/Gerrit/" style="font-size: 15px;">Gerrit</a> <a href="/BlogCode/tags/Luci/" style="font-size: 10px;">Luci</a> <a href="/BlogCode/tags/cpu/" style="font-size: 10px;">cpu</a> <a href="/BlogCode/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/BlogCode/tags/linux工具/" style="font-size: 20px;">linux工具</a> <a href="/BlogCode/tags/netfilter/" style="font-size: 10px;">netfilter</a> <a href="/BlogCode/tags/ping/" style="font-size: 10px;">ping</a> <a href="/BlogCode/tags/samba/" style="font-size: 10px;">samba</a> <a href="/BlogCode/tags/shell脚本/" style="font-size: 10px;">shell脚本</a> <a href="/BlogCode/tags/socket/" style="font-size: 15px;">socket</a> <a href="/BlogCode/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/BlogCode/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/BlogCode/tags/win工具/" style="font-size: 10px;">win工具</a> <a href="/BlogCode/tags/win脚本/" style="font-size: 10px;">win脚本</a> <a href="/BlogCode/tags/前端/" style="font-size: 10px;">前端</a> <a href="/BlogCode/tags/套接字/" style="font-size: 10px;">套接字</a> <a href="/BlogCode/tags/技术书/" style="font-size: 10px;">技术书</a> <a href="/BlogCode/tags/文件/" style="font-size: 10px;">文件</a> <a href="/BlogCode/tags/文章/" style="font-size: 10px;">文章</a> <a href="/BlogCode/tags/电影/" style="font-size: 10px;">电影</a> <a href="/BlogCode/tags/算法/" style="font-size: 10px;">算法</a> <a href="/BlogCode/tags/线程/" style="font-size: 10px;">线程</a> <a href="/BlogCode/tags/网站/" style="font-size: 10px;">网站</a> <a href="/BlogCode/tags/网络/" style="font-size: 15px;">网络</a> <a href="/BlogCode/tags/转载/" style="font-size: 15px;">转载</a> <a href="/BlogCode/tags/进程控制/" style="font-size: 10px;">进程控制</a> <a href="/BlogCode/tags/锁/" style="font-size: 10px;">锁</a>
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/BlogCode/js/jquery-3.3.1.js?rev=@@hash"></script>
+
+	<script src="/BlogCode/js/search.js?rev=@@hash"></script>
+
+
+<script src="/BlogCode/js/app.js?rev=@@hash"></script>
+<script src="/BlogCode/js/menu.js?rev=@@hash"></script>
+<script src="/BlogCode/js/qart.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/clipboard.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/av-min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/Valine.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/web_tools.js?rev=@@hash"></script>
+
+
+
+</body>
+</html>

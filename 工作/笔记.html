@@ -1,0 +1,295 @@
+<!DOCTYPE HTML>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Flipped205">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://Flipped205.github.io/BlogCode">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+
+<title>笔记 | Flipped205</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Flipped205" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/BlogCode/css/bootstrap.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/font-awesome.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/style.css?rev=2020-02-14[09]">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <div class="box_bk"></div>
+<div class="box_center">
+    <div class="box_i"><img src=""></div>
+    <div class="box_close"><img src="/img/close.png"></div>
+</div>
+<button class="btn" style="display:none"></button>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/笔记/"><i class="fa "></i>笔记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/杂读/"><i class="fa "></i>杂读</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/心记/"><i class="fa "></i>心记</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content ">
+                    <div class="about">
+	
+	    <article class="post">
+	        <h1 class="post-head">关于我</h1>
+	        <div class="post-body">
+	            <h2 id="一、-linux-处理-Excel-的方法"><a href="#一、-linux-处理-Excel-的方法" class="headerlink" title="一、 linux 处理 Excel 的方法"></a><strong>一、 linux 处理 Excel 的方法</strong></h2><p>将 excel 另存为逗号分隔符文件（csv），然后在 linux 下， 使用 sed 命令将文件中的逗号换成空格。这样在 C 里面或者 shell 里面，对文件处理起来就比较容易了。</p>
+<p>——————————————————————————————————————————————————————————————————————————————————</p>
+<h2 id="二、一个定时器的实现分享"><a href="#二、一个定时器的实现分享" class="headerlink" title="二、一个定时器的实现分享"></a><strong>二、一个定时器的实现分享</strong></h2><p>定时执行一个动作，是常见的一种功能需求，简单的定时器实现用signal()、setitimer()可以做，但是这样的简易实现，与sleep()会有冲突，因为它们俩都是靠SIG_ALRM来工作的，甚至有些CPU方案+编译器，SIG_ALRM都不支持线程独立。</p>
+<p>分享一套比较强大的定时器实现，timer_create()、timer_settime()、timer_delete()<br>** 首先来看timer_create()：**</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">timer_create</span><span class="params">(<span class="keyword">clockid_t</span> clock_id, struct sigevent *evp, <span class="keyword">timer_t</span> *timerid)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>它可以创建一个可控制的定时器，并且通过参数timer_t *timerid返回创建的定时器id</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">clockid_t</span> clockid</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">记时时钟类型，取值范围：</span></span><br><span class="line"><span class="comment">CLOCK_REALTIME</span></span><br><span class="line"><span class="comment">A settable system-wide real-time clock.</span></span><br><span class="line"><span class="comment">（相对时间，从1970.1.1到目前的时间，更改系统时间会更改获取的值，它以系统时间为坐标。）</span></span><br><span class="line"><span class="comment">CLOCK_MONOTONIC</span></span><br><span class="line"><span class="comment"> A nonsettable monotonically increasing clock that measures time from some unspecified point in the past that does not change after system startup.</span></span><br><span class="line"><span class="comment">（单调时间，表示系统启动后流逝的时间，由变量jiffies来记录的，更改系统时间对它没有影响。）</span></span><br><span class="line"><span class="comment">CLOCK_PROCESS_CPUTIME_ID (since Linux 2.6.12)</span></span><br><span class="line"><span class="comment">A clock that measures  (user  and system) CPU time consumed by (all of the threads in) the calling process.</span></span><br><span class="line"><span class="comment">（本进程到当前代码，系统CPU花费的时间）</span></span><br><span class="line"><span class="comment">CLOCK_THREAD_CPUTIME_ID (since Linux 2.6.12)</span></span><br><span class="line"><span class="comment"> A clock that measures (user and system) CPU time consumed by the calling thread.</span></span><br><span class="line"><span class="comment">（本线程到当前代码，系统CPU花费的时间）</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sigevent</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> sigev_notify;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    SIGEV_NONE：定时到期后什么都不发生，只提供通过timer_gettime和timer_getoverrun查询超时信息。</span></span><br><span class="line"><span class="comment">    SIGEV_SIGNAL: 当定时器到期，内核将sigev_signo指定的信号传送给进程。</span></span><br><span class="line"><span class="comment">    SIGEV_THREAD: 当定时器到期，在此进程范围内，内核会以sigev_notify_attributes为线程属性创建一个线程，并且让它执行sigev_notify_function，传入sigev_value作为一个参数。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">int</span> sigev_signo;</span><br><span class="line">    <span class="keyword">union</span> sigval sigev_value;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    union sigval</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        int sival_int; 整型数值  </span></span><br><span class="line"><span class="comment">        void *sival_ptr; 指针（强大就在这）</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">void</span> (*sigev_notify_function) (<span class="keyword">union</span> sigval);</span><br><span class="line">    <span class="keyword">void</span> *sigev_notify_attributes;</span><br><span class="line">    <span class="keyword">pid_t</span> sigev_notify_thread_id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建好了定时器，就需要启动它，来看timer_settime()</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">timer_settime</span><span class="params">(<span class="keyword">timer_t</span> timerid, <span class="keyword">int</span> flags, <span class="keyword">const</span> struct itimerspec *value, struct itimerspect *ovalue)</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">flags</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">0 或 TIMER_ABSTIME</span></span><br><span class="line"><span class="comment">如果flags的值为TIMER_ABSTIME，则value所指定的时间值会被解读成绝对值。</span></span><br><span class="line"><span class="comment">比如clockid如果是CLOCK_MONOTONIC，value-&gt;it_value设定为60，意思是系统启动后的绝对60S超时；</span></span><br><span class="line"><span class="comment">如果系统启动很久以后（超过60S）才运行程序，会发现这个value-&gt;it_value根本没用，会马上超时。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">itimerspec</span> *<span class="title">value</span>  /*用它来控制定时器的各种时间*/</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">timespec</span> &#123;</span></span><br><span class="line">  <span class="comment">/* 又一处强大，支持纳秒精度 */</span></span><br><span class="line">  <span class="keyword">time_t</span> tv_sec;                <span class="comment">/* Seconds */</span></span><br><span class="line">  <span class="keyword">long</span>   tv_nsec;               <span class="comment">/* Nanoseconds */</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">itimerspec</span> &#123;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timespec</span> <span class="title">it_interval</span>;</span>  <span class="comment">/* Timer interval */</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timespec</span> <span class="title">it_value</span>;</span>     <span class="comment">/* Initial expiration */</span></span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  it_value用于指定当前的定时器到期时间，当定时器到期，it_value的值会被更新成it_interval的值，从而实现循环定时。</span></span><br><span class="line"><span class="comment">  如果it_interval置0，则该定时器只会到期一次，一旦it_value到期就会回到未启动状态。</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">itimerspect</span> *<span class="title">ovalue</span></span></span><br><span class="line"><span class="class">/*</span></span><br><span class="line"><span class="class">如果<span class="title">ovalue</span>不是<span class="title">NULL</span>，那么之前的定时器到期时间会被存入其所提供的<span class="title">itimerspec</span>。如果定时器处于在未启动状态，则此结构的成员全都会被设定成0。</span></span><br><span class="line"><span class="class">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>获得一个活动定时器的剩余时间</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">timer_gettime</span><span class="params">(<span class="keyword">timer_t</span> timerid,struct itimerspec *value)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>这个就不用解释了，结果通过参数value返回。<br>删除一个定时器：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">timer_delete</span> <span class="params">(<span class="keyword">timer_t</span> timerid)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>下面来看个例程，定时执行一个函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">timeout_fn</span><span class="params">(<span class="keyword">union</span> sigval v)</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">time_t</span> t;  </span><br><span class="line">    <span class="keyword">char</span> p[<span class="number">32</span>];  </span><br><span class="line">  </span><br><span class="line">    time(&amp;t);</span><br><span class="line">    strftime(p, <span class="keyword">sizeof</span>(p), <span class="string">"%T"</span>, localtime(&amp;t));</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s thread %ul, param is [%s]\n"</span>, p, pthread_self(), (<span class="keyword">char</span>*)v.sival_ptr);  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sigevent</span> <span class="title">evp</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">itimerspec</span> <span class="title">ts</span>;</span></span><br><span class="line">    <span class="keyword">timer_t</span> timer;</span><br><span class="line">    <span class="keyword">int</span> ret;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">char</span>* str = <span class="string">"TIMER EXAMPLE"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(&amp;evp, <span class="number">0</span>, <span class="keyword">sizeof</span> (evp));</span><br><span class="line">    evp.sigev_notify = SIGEV_THREAD;</span><br><span class="line">    <span class="comment">/* evp.sigev_signo is useless if SIGEV_THREAD*/</span></span><br><span class="line">    evp.sigev_notify_function = timeout_fn;  </span><br><span class="line">    evp.sigev_value.sival_ptr = str; <span class="comment">/* pass str to timeout_fn() */</span></span><br><span class="line"></span><br><span class="line">    ret = timer_create(CLOCK_MONOTONIC, &amp;evp, &amp;timer);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (ret)</span><br><span class="line">        perror(<span class="string">"timer_create"</span>);  </span><br><span class="line"></span><br><span class="line">    ts.it_interval.tv_sec = <span class="number">2</span>;</span><br><span class="line">    ts.it_interval.tv_nsec = <span class="number">0</span>;</span><br><span class="line">    ts.it_value.tv_sec = <span class="number">5</span>;</span><br><span class="line">    ts.it_value.tv_nsec = <span class="number">0</span>;  </span><br><span class="line"></span><br><span class="line">    ret = timer_settime(timer, <span class="number">0</span>, &amp;ts, <span class="literal">NULL</span>);  </span><br><span class="line">    <span class="keyword">if</span> (ret)  </span><br><span class="line">        perror(<span class="string">"timer_settime"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        pause();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>——————————————————————————————————————————————————————————————————————————————————</p>
+<h2 id="三、有意思的小程序"><a href="#三、有意思的小程序" class="headerlink" title="三、有意思的小程序"></a><strong>三、有意思的小程序</strong></h2><p>之前在上学的时候学C语言，会被教导说，程序都是从main函数开始执行的，不过后来看书知道其实可以不从main函数开始执行，又在书上找到了这个例子，修改为支持64位Linux的版本，编译方式在后面，跟大家分享，图个乐儿：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// tinyhello_64.c</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> *str = <span class="string">"hello world!\n"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">asm</span>( <span class="string">"movq $13,%%rdx \n\t"</span></span><br><span class="line">        <span class="string">"movq %0,%%rcx \n\t"</span></span><br><span class="line">        <span class="string">"movq $0,%%rbx \n\t"</span></span><br><span class="line">        <span class="string">"movq $4,%%rax \n\t"</span></span><br><span class="line">        <span class="string">"int $0x80 \n\t"</span></span><br><span class="line">        ::<span class="string">"r"</span>(str):<span class="string">"rdx"</span>,<span class="string">"rcx"</span>,<span class="string">"rbx"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exit</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">asm</span>( <span class="string">"movq $42,%rbx    \n\t"</span></span><br><span class="line">        <span class="string">"movq $1,%rax    \n\t"</span></span><br><span class="line">        <span class="string">"int $0x80        \n\t"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nomain</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    print();</span><br><span class="line">    <span class="built_in">exit</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -c -fno-builtin tinyhello_64.c</span><br><span class="line">ld -static -e nomain -o tinyhello_64 tinyhello_64.o</span><br></pre></td></tr></table></figure>
+
+<p>——————————————————————————————————————————————————————————————————————————————————</p>
+
+	        </div>
+	    </article>
+	
+</div>
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+  <div class="widget">
+    <div >
+        <h3>FLIPPED</h3>
+<div>
+<div style="float:left; clear: both;" align="center">
+<img src="/img/about.jpg" style="width: 80%;">
+</div>
+<p style="align:center;line-height: 25px;font-size: 13.6px;min-height:250px">The higher I got, the more amazed I was by the view.Some of us get dipped in flat, some in satin, some in gloss. But every once in a while you find someone who's iridescent, and when you do, nothing will ever compare.And I realized Garrett was right about one thing: I had flipped. Completely.人性的美具有纷繁的多面性，无论是男女之爱还是亲人之情，所有的美都会令人向往和感动!</p>
+</div>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/心记/"><i class="fa" aria-hidden="true">心记</i></a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/杂读/"><i class="fa" aria-hidden="true">杂读</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/笔记/"><i class="fa" aria-hidden="true">笔记</i></a><span class="category-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/12/"><i class="fa" aria-hidden="true">December 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/11/"><i class="fa" aria-hidden="true">November 2019</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/07/"><i class="fa" aria-hidden="true">July 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/06/"><i class="fa" aria-hidden="true">June 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/05/"><i class="fa" aria-hidden="true">May 2019</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/09/"><i class="fa" aria-hidden="true">September 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/08/"><i class="fa" aria-hidden="true">August 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/07/"><i class="fa" aria-hidden="true">July 2018</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/06/"><i class="fa" aria-hidden="true">June 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/05/"><i class="fa" aria-hidden="true">May 2018</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/BlogCode/tags/Gerrit/" style="font-size: 15px;">Gerrit</a> <a href="/BlogCode/tags/Luci/" style="font-size: 10px;">Luci</a> <a href="/BlogCode/tags/cpu/" style="font-size: 10px;">cpu</a> <a href="/BlogCode/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/BlogCode/tags/linux工具/" style="font-size: 20px;">linux工具</a> <a href="/BlogCode/tags/netfilter/" style="font-size: 10px;">netfilter</a> <a href="/BlogCode/tags/ping/" style="font-size: 10px;">ping</a> <a href="/BlogCode/tags/samba/" style="font-size: 10px;">samba</a> <a href="/BlogCode/tags/shell脚本/" style="font-size: 10px;">shell脚本</a> <a href="/BlogCode/tags/socket/" style="font-size: 15px;">socket</a> <a href="/BlogCode/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/BlogCode/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/BlogCode/tags/win工具/" style="font-size: 10px;">win工具</a> <a href="/BlogCode/tags/win脚本/" style="font-size: 10px;">win脚本</a> <a href="/BlogCode/tags/前端/" style="font-size: 10px;">前端</a> <a href="/BlogCode/tags/套接字/" style="font-size: 10px;">套接字</a> <a href="/BlogCode/tags/技术书/" style="font-size: 10px;">技术书</a> <a href="/BlogCode/tags/文件/" style="font-size: 10px;">文件</a> <a href="/BlogCode/tags/文章/" style="font-size: 10px;">文章</a> <a href="/BlogCode/tags/电影/" style="font-size: 10px;">电影</a> <a href="/BlogCode/tags/算法/" style="font-size: 10px;">算法</a> <a href="/BlogCode/tags/线程/" style="font-size: 10px;">线程</a> <a href="/BlogCode/tags/网站/" style="font-size: 10px;">网站</a> <a href="/BlogCode/tags/网络/" style="font-size: 15px;">网络</a> <a href="/BlogCode/tags/转载/" style="font-size: 15px;">转载</a> <a href="/BlogCode/tags/进程控制/" style="font-size: 10px;">进程控制</a> <a href="/BlogCode/tags/锁/" style="font-size: 10px;">锁</a>
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/BlogCode/js/jquery-3.3.1.js?rev=@@hash"></script>
+
+	<script src="/BlogCode/js/search.js?rev=@@hash"></script>
+
+
+<script src="/BlogCode/js/app.js?rev=@@hash"></script>
+<script src="/BlogCode/js/menu.js?rev=@@hash"></script>
+<script src="/BlogCode/js/qart.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/clipboard.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/av-min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/Valine.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/web_tools.js?rev=@@hash"></script>
+
+
+
+</body>
+</html>

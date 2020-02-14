@@ -1,0 +1,451 @@
+<!DOCTYPE HTML>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Flipped205">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://Flipped205.github.io/BlogCode">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+
+<title>Linux CPU使用率 | Flipped205</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Flipped205" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/BlogCode/css/bootstrap.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/font-awesome.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/style.css?rev=2020-02-14[09]">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <div class="box_bk"></div>
+<div class="box_center">
+    <div class="box_i"><img src=""></div>
+    <div class="box_close"><img src="/img/close.png"></div>
+</div>
+<button class="btn" style="display:none"></button>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/笔记/"><i class="fa "></i>笔记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/杂读/"><i class="fa "></i>杂读</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/心记/"><i class="fa "></i>心记</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Linux CPU使用率">
+            
+	            Linux CPU使用率
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/Linux">
+            Linux
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/cpu" title='cpu'>
+                        cpu
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-calendar-o"></i>
+            <span class="date-meta">发表于:&nbsp;2018/06/26</span>
+        </span>
+        <span class="fa-wrap">
+            
+        </span>
+    
+</div>
+
+            
+
+           
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>598</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>内核版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/version</span><br></pre></td></tr></table></figure>
+
+<div align="left">
+
+<p><img src="/img/note_0c/00.png" alt></p>
+</div>
+
+<p>CPU活动信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/<span class="built_in">stat</span></span><br></pre></td></tr></table></figure>
+
+<div align="left">
+
+<p><img src="/img/note_0c/01.png" alt></p>
+</div>
+
+<p>jiffies是内核中的一个全局变量，用来记录自系统启动以来产生的节拍书，在linux中，一个节拍大致可以立即为操作系统进程调度的最小时间片，不同的linux内核可能值有所不同，通常在1ms到10ms之间。</p>
+<p><strong>参数说明:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释(jiffies)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">user（<code>6001460</code>）</td>
+<td align="left">从系统启动开始累计到当前时刻，处于用户态的运行时间，不包含nice值为负进程</td>
+</tr>
+<tr>
+<td align="left">nice（<code>37043</code>）</td>
+<td align="left">从系统启动开始累计到当前时刻，nice值为负的进程所占用的CPU时间</td>
+</tr>
+<tr>
+<td align="left">system（<code>95525758</code>）</td>
+<td align="left">从系统启动开始累计到当前时刻，核心时间</td>
+</tr>
+<tr>
+<td align="left">idle（<code>277280659</code>）</td>
+<td align="left">从系统启动开始累计到当前时刻，除IO等待时间以外其它等待时间</td>
+</tr>
+<tr>
+<td align="left">iowait（<code>904849</code>）</td>
+<td align="left">从系统启动开始累计到当前时刻，IO等待时间</td>
+</tr>
+<tr>
+<td align="left">irq（<code>0</code>）</td>
+<td align="left">从系统启动开始累计到当前时刻，硬中断时间</td>
+</tr>
+<tr>
+<td align="left">softirq（<code>200629</code>）</td>
+<td align="left">从系统启动开始累计到当前时刻，软中断时间</td>
+</tr>
+<tr>
+<td align="left">stealstolen（<code>0</code>）</td>
+<td align="left">which is the time spent in other operating systems when running in a virtualized environment(since 2.6.11)</td>
+</tr>
+<tr>
+<td align="left">guest（<code>0</code>）</td>
+<td align="left">which is the time spent running a virtual  CPU  for  guest operating systems under the control of the Linux kernel(since 2.6.24)</td>
+</tr>
+</tbody></table>
+<h2 id="总的CPU使用率计算"><a href="#总的CPU使用率计算" class="headerlink" title="总的CPU使用率计算"></a><strong>总的CPU使用率计算</strong></h2><p>计算方法：</p>
+<ul>
+<li>1、采用两个足够用段的时间间隔的CPU快照，t1,t2。（user,nice,system,idle）</li>
+<li>2、计算总的CPU时间片totalCPUTime<ul>
+<li>a)、t1的CPU使用情况，求和s1;</li>
+<li>b)、t2的CPU使用情况，求和s2;</li>
+<li>c)、s2-s1得到时间间隔的所有时间片，即totalCPUTime = s2-s1;</li>
+</ul>
+</li>
+<li>3、计算使用时间(usr+system)<ul>
+<li>a)、t1的使用情况，u1 = (user+system).</li>
+<li>b)、t2的使用情况，u2 = (user+system).</li>
+<li>c)、u2-u1得到时间间隔的使用时间片，即useCPUTime = u2-u1;</li>
+</ul>
+</li>
+<li>4、计算使用率<ul>
+<li>pcpu = 100*(userCPUTime)/totalCPUTime;</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">CPU_JIFFIES</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">20</span>];</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> user;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> nice;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> system;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> idle;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_cpu_jiffies</span><span class="params">(struct CPU_JIFFIES *jiffies)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    FILE *fp = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">char</span> buff[<span class="number">1024</span>] =&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    fp = fopen(<span class="string">"/proc/stat"</span>,<span class="string">"r"</span>);</span><br><span class="line">    <span class="keyword">if</span> (!fp)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"error\n"</span>);</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    fgets(buff, <span class="keyword">sizeof</span>(buff), fp);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">sscanf</span>(buff, <span class="string">"%s %u %u %u %u"</span>,jiffies-&gt;name, &amp;(jiffies-&gt;user), &amp;(jiffies-&gt;nice), &amp;(jiffies-&gt;system), &amp;(jiffies-&gt;idle));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s %u %u %u %u\n"</span>, jiffies-&gt;name, jiffies-&gt;user, jiffies-&gt;nice, jiffies-&gt;system, jiffies-&gt;idle);</span><br><span class="line">    fclose(fp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">float</span>  <span class="title">cal_pcpu</span><span class="params">(struct CPU_JIFFIES e, struct CPU_JIFFIES s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> et, st;</span><br><span class="line">    <span class="keyword">double</span> eu, su;</span><br><span class="line">    <span class="keyword">double</span> idle ; </span><br><span class="line"></span><br><span class="line">    et = (<span class="keyword">double</span>)(e.user + e.nice + e.system + e.idle);</span><br><span class="line">    st = (<span class="keyword">double</span>)(s.user + s.nice + s.system + s.idle);</span><br><span class="line"></span><br><span class="line">    idle = (<span class="keyword">double</span>)(e.idle-s.idle);</span><br><span class="line"></span><br><span class="line">    eu = (<span class="keyword">double</span>)(e.user + e.system);</span><br><span class="line">    su = (<span class="keyword">double</span>)(s.user + s.system);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"et:%f st:%f eu:%f su:%f\n"</span>,et, st, eu,su );</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%f\n"</span>,(<span class="number">100</span>*(eu-su))/(et-st));</span><br><span class="line">    <span class="keyword">return</span> (<span class="number">100</span>*(et-st-idle))/(et-st);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">CPU_JIFFIES</span> <span class="title">s</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">CPU_JIFFIES</span> <span class="title">e</span>;</span></span><br><span class="line">    <span class="keyword">int</span> pcpu=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    sleep(<span class="number">1</span>);</span><br><span class="line">    get_cpu_jiffies(&amp;s);</span><br><span class="line">    sleep(<span class="number">1</span>);</span><br><span class="line">    get_cpu_jiffies(&amp;e);</span><br><span class="line">    </span><br><span class="line">    pcpu = (<span class="keyword">int</span>)cal_pcpu(e,s);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, pcpu);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>TOP 命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure>
+
+<div align="left">
+
+<p><img src="/img/note_0c/02.png" alt></p>
+</div>
+
+<p>内存使用<br>free命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free</span><br></pre></td></tr></table></figure>
+
+<div align="left">
+
+<p><img src="/img/note_0c/03.png" alt></p>
+</div>
+
+
+
+<p>备注：</p>
+<ul>
+<li>1．不同内核版本/proc/stat文件格式不大一致。/proc/stat文件中第一行为总的cpu使用情况。<br>  各个版本都有的4个字段: <code>user</code>、<code>nice</code>、<code>system</code>、<code>idle</code><br>  2.5.41版本新增字段：<code>iowait</code><br>  2.6.0-test4新增字段：<code>irq</code>、<code>softirq</code><br>  2.6.11新增字段：<code>stealstolen</code>：which is the time spent in other operating systems when running in a virtualized environment<br>  2.6.24新增字段：<code>guest</code>：which is the time spent running a virtual  CPU  for  guest operating systems under the control of the Linux kernel</li>
+<li>2．/proc/pid/task目录是Linux 2.6.0-test6之后才有的功能。</li>
+<li>3．关于出现cpu使用率为负的情况，目前想到的解决方案是如果出现负值，连续采样计算cpu使用率直到为非负。</li>
+<li>4．有些线程生命周期较短,可能在我们采样期间就已经死掉了.</li>
+</ul>
+
+        <div class="div_qrcode">
+            <div id="combine"></div>
+        </div>
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/BlogCode/2018/07/05/笔记/01ping原理/" class="pre-post btn btn-default" title='PING原理'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">PING原理</span>
+        </a>
+    
+    
+        <a href="/BlogCode/2018/06/04/笔记/04socket函数/" class="next-post btn btn-default" title='socket函数 几种不同的套接字使用'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">socket函数 几种不同的套接字使用</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+<div id="vcomments"></div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+  <div class="widget">
+    <div >
+        <h3>FLIPPED</h3>
+<div>
+<div style="float:left; clear: both;" align="center">
+<img src="/img/about.jpg" style="width: 80%;">
+</div>
+<p style="align:center;line-height: 25px;font-size: 13.6px;min-height:250px">The higher I got, the more amazed I was by the view.Some of us get dipped in flat, some in satin, some in gloss. But every once in a while you find someone who's iridescent, and when you do, nothing will ever compare.And I realized Garrett was right about one thing: I had flipped. Completely.人性的美具有纷繁的多面性，无论是男女之爱还是亲人之情，所有的美都会令人向往和感动!</p>
+</div>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/心记/"><i class="fa" aria-hidden="true">心记</i></a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/杂读/"><i class="fa" aria-hidden="true">杂读</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/笔记/"><i class="fa" aria-hidden="true">笔记</i></a><span class="category-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/12/"><i class="fa" aria-hidden="true">December 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/11/"><i class="fa" aria-hidden="true">November 2019</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/07/"><i class="fa" aria-hidden="true">July 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/06/"><i class="fa" aria-hidden="true">June 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/05/"><i class="fa" aria-hidden="true">May 2019</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/09/"><i class="fa" aria-hidden="true">September 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/08/"><i class="fa" aria-hidden="true">August 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/07/"><i class="fa" aria-hidden="true">July 2018</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/06/"><i class="fa" aria-hidden="true">June 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/05/"><i class="fa" aria-hidden="true">May 2018</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/BlogCode/tags/Gerrit/" style="font-size: 15px;">Gerrit</a> <a href="/BlogCode/tags/Luci/" style="font-size: 10px;">Luci</a> <a href="/BlogCode/tags/cpu/" style="font-size: 10px;">cpu</a> <a href="/BlogCode/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/BlogCode/tags/linux工具/" style="font-size: 20px;">linux工具</a> <a href="/BlogCode/tags/netfilter/" style="font-size: 10px;">netfilter</a> <a href="/BlogCode/tags/ping/" style="font-size: 10px;">ping</a> <a href="/BlogCode/tags/samba/" style="font-size: 10px;">samba</a> <a href="/BlogCode/tags/shell脚本/" style="font-size: 10px;">shell脚本</a> <a href="/BlogCode/tags/socket/" style="font-size: 15px;">socket</a> <a href="/BlogCode/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/BlogCode/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/BlogCode/tags/win工具/" style="font-size: 10px;">win工具</a> <a href="/BlogCode/tags/win脚本/" style="font-size: 10px;">win脚本</a> <a href="/BlogCode/tags/前端/" style="font-size: 10px;">前端</a> <a href="/BlogCode/tags/套接字/" style="font-size: 10px;">套接字</a> <a href="/BlogCode/tags/技术书/" style="font-size: 10px;">技术书</a> <a href="/BlogCode/tags/文件/" style="font-size: 10px;">文件</a> <a href="/BlogCode/tags/文章/" style="font-size: 10px;">文章</a> <a href="/BlogCode/tags/电影/" style="font-size: 10px;">电影</a> <a href="/BlogCode/tags/算法/" style="font-size: 10px;">算法</a> <a href="/BlogCode/tags/线程/" style="font-size: 10px;">线程</a> <a href="/BlogCode/tags/网站/" style="font-size: 10px;">网站</a> <a href="/BlogCode/tags/网络/" style="font-size: 15px;">网络</a> <a href="/BlogCode/tags/转载/" style="font-size: 15px;">转载</a> <a href="/BlogCode/tags/进程控制/" style="font-size: 10px;">进程控制</a> <a href="/BlogCode/tags/锁/" style="font-size: 10px;">锁</a>
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/BlogCode/js/jquery-3.3.1.js?rev=@@hash"></script>
+
+	<script src="/BlogCode/js/search.js?rev=@@hash"></script>
+
+
+<script src="/BlogCode/js/app.js?rev=@@hash"></script>
+<script src="/BlogCode/js/menu.js?rev=@@hash"></script>
+<script src="/BlogCode/js/qart.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/clipboard.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/av-min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/Valine.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/web_tools.js?rev=@@hash"></script>
+
+
+
+</body>
+</html>

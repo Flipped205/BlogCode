@@ -1,0 +1,366 @@
+<!DOCTYPE HTML>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Flipped205">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://Flipped205.github.io/BlogCode">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+
+<title>socket函数 几种不同的套接字使用 | Flipped205</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Flipped205" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/BlogCode/css/bootstrap.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/font-awesome.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/style.css?rev=2020-02-14[09]">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <div class="box_bk"></div>
+<div class="box_center">
+    <div class="box_i"><img src=""></div>
+    <div class="box_close"><img src="/img/close.png"></div>
+</div>
+<button class="btn" style="display:none"></button>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/笔记/"><i class="fa "></i>笔记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/杂读/"><i class="fa "></i>杂读</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/心记/"><i class="fa "></i>心记</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="socket函数 几种不同的套接字使用">
+            
+	            socket函数 几种不同的套接字使用
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/笔记">
+            笔记
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/socket" title='socket'>
+                        socket
+                    </a>
+                
+                    <a href="/tags/套接字" title='套接字'>
+                        套接字
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-calendar-o"></i>
+            <span class="date-meta">发表于:&nbsp;2018/06/04</span>
+        </span>
+        <span class="fa-wrap">
+            
+        </span>
+    
+</div>
+
+            
+
+           
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>620</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>bits/socket.h</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Protocol families.  */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_UNSPEC   0   <span class="comment">/* Unspecified.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_LOCAL    1   <span class="comment">/* Local to host (pipes and file-domain).  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_UNIX     PF_LOCAL <span class="comment">/* POSIX name for PF_LOCAL.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_FILE     PF_LOCAL <span class="comment">/* Another non-standard name for PF_LOCAL.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_INET     2   <span class="comment">/* IP protocol family.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_AX25     3   <span class="comment">/* Amateur Radio AX.25.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_IPX      4   <span class="comment">/* Novell Internet Protocol.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_APPLETALK    5   <span class="comment">/* Appletalk DDP.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_NETROM   6   <span class="comment">/* Amateur radio NetROM.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_BRIDGE   7   <span class="comment">/* Multiprotocol bridge.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_ATMPVC   8   <span class="comment">/* ATM PVCs.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_X25      9   <span class="comment">/* Reserved for X.25 project.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_INET6    10  <span class="comment">/* IP version 6.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_ROSE     11  <span class="comment">/* Amateur Radio X.25 PLP.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_DECnet   12  <span class="comment">/* Reserved for DECnet project.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_NETBEUI  13  <span class="comment">/* Reserved for 802.2LLC project.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_SECURITY 14  <span class="comment">/* Security callback pseudo AF.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_KEY      15  <span class="comment">/* PF_KEY key management API.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_NETLINK  16</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_ROUTE    PF_NETLINK <span class="comment">/* Alias to emulate 4.4BSD.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_PACKET   17  <span class="comment">/* Packet family.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_ASH      18  <span class="comment">/* Ash.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_ECONET   19  <span class="comment">/* Acorn Econet.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_ATMSVC   20  <span class="comment">/* ATM SVCs.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_RDS      21  <span class="comment">/* RDS sockets.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_SNA      22  <span class="comment">/* Linux SNA Project */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_IRDA     23  <span class="comment">/* IRDA sockets.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_PPPOX    24  <span class="comment">/* PPPoX sockets.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_WANPIPE  25  <span class="comment">/* Wanpipe API sockets.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_LLC      26  <span class="comment">/* Linux LLC.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_CAN      29  <span class="comment">/* Controller Area Network.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_TIPC     30  <span class="comment">/* TIPC sockets.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_BLUETOOTH    31  <span class="comment">/* Bluetooth sockets.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_IUCV     32  <span class="comment">/* IUCV sockets.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_RXRPC    33  <span class="comment">/* RxRPC sockets.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_ISDN     34  <span class="comment">/* mISDN sockets.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_PHONET   35  <span class="comment">/* Phonet sockets.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_IEEE802154   36  <span class="comment">/* IEEE 802.15.4 sockets.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_CAIF     37  <span class="comment">/* CAIF sockets.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_ALG      38  <span class="comment">/* Algorithm sockets.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_NFC      39  <span class="comment">/* NFC sockets.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_VSOCK    40  <span class="comment">/* vSockets.  */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PF_MAX      41  <span class="comment">/* For now..  */</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Address families.  */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_UNSPEC   PF_UNSPEC</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_LOCAL    PF_LOCAL</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_UNIX     PF_UNIX</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_FILE     PF_FILE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_INET     PF_INET</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_AX25     PF_AX25</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_IPX      PF_IPX</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_APPLETALK    PF_APPLETALK</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_NETROM   PF_NETROM</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_BRIDGE   PF_BRIDGE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_ATMPVC   PF_ATMPVC</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_X25      PF_X25</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_INET6    PF_INET6</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_ROSE     PF_ROSE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_DECnet   PF_DECnet</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_NETBEUI  PF_NETBEUI</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_SECURITY PF_SECURITY</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_KEY      PF_KEY</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_NETLINK  PF_NETLINK</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_ROUTE    PF_ROUTE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_PACKET   PF_PACKET</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_ASH      PF_ASH</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_ECONET   PF_ECONET</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_ATMSVC   PF_ATMSVC</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_RDS      PF_RDS</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_SNA      PF_SNA</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_IRDA     PF_IRDA</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_PPPOX    PF_PPPOX</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_WANPIPE  PF_WANPIPE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_LLC      PF_LLC</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_CAN      PF_CAN</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_TIPC     PF_TIPC</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_BLUETOOTH    PF_BLUETOOTH</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_IUCV     PF_IUCV</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_RXRPC    PF_RXRPC</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_ISDN     PF_ISDN</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_PHONET   PF_PHONET</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_IEEE802154   PF_IEEE802154</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_CAIF     PF_CAIF</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_ALG      PF_ALG</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_NFC      PF_NFC</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_VSOCK    PF_VSOCK</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AF_MAX      PF_MAX</span></span><br></pre></td></tr></table></figure>
+
+<p>AF_xx地址簇，BF_xx协议簇<br>AF_xx 与 BF_xx值相同</p>
+<p>通常PF_INET表示互联网协议簇（TCP/IP协议簇）；或者PF_PACKET协议栈（底层数据包接口）</p>
+<p>不同的AF_xx或BF_xx需要的目的结构不同</p>
+<p>函数原型<br>int socket(int domain, int type, int protocol);</p>
+<p><code>domain</code>:协议域，又称协议簇(family)。常用的协议簇有AF_INET,AF_INET6，AF_LOCAL(或称AF_UNIX,UNIX域Socket)、AF_ROUTE。协议簇决定Socket的地址类型。在通信中必须采用对应的地址，如AF_INET决定了要用ipv4地址(32位)与端口号(16位)的组合、AF_UNIX决定了要用一个绝对路径名作为地址。</p>
+<p><code>type</code>:指定Socket类型。常用的socket类型有SOCK_STREAM(用于TCP)、SOCK_DGRAM（用于UDP）、SOCK_RAW（ICMP,IGMP）、SOCK_PACKET、SOCK_SEQPACKET、FA_PACKET.</p>
+<p><code>protocol</code>：指定协议。常用的协议有IPPROTO_TCP、IPPROTO_UDP、IPPROTO_STCP、IPPROTO_TIPC。分别对应TCP传输协议、UDP传输协议、STCP传输协议、TIPC传输协议。</p>
+<p>链路层套接字：PF_PACKET<br>该套接字的打开需要用户root权限。</p>
+<p>其中socket type有两种类型SOCK_RAW,SOCK_DGRAM。<br><code>SOCK_RAW</code>:它包含了MAC层头部信息的原始分组，当然这种类型的套接字在发送的时候需要自己加上一个MAC头部（以太网头部，其类型定义在linux/if_ether.h中ethhdr）。应用：dhcpc中接收来自DHCP服务器数据时创建该套接字。portocol为：htons(ETH_P_IP)。 struct sockaddr_ll sock;<br><code>SOCK_DGRAM</code>:它已经进行了MAC层头部处理的，即收到的帧已经去掉了头部。应用：dhcpc在发送Discover等报文时使用该类型创建套接字，可无需添加以太网头部，只需添加IP头部、UDP头部和Data。portocol为：htons(ETH_P_IP)。</p>
+<p><code>protocol</code>是指其送交的上层的协议好，如IP为0x0800.当其为htons(ETH_P_ALL)（其宏定义为0）时表示收发所有协议。</p>
+<p>创建好套接字后，就可以通过UDP一样的recvform和sendto函数进行数据的收发，其目的的地址结构sockaddr_ll。这与传输层的地址结构定义是不一样的，其长度为20字节。（在TCP/IP的链路层地址中使用18字节），而传输层额结构长度为16字节。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_ll</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> sll_family; <span class="comment">// 总是AF_INET</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> sll_protocol; <span class="comment">//物理层的协议</span></span><br><span class="line">    <span class="keyword">int</span> sll_ifindex; <span class="comment">// 接口号</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> sll_hatype; <span class="comment">// 报文类型</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> sll_pkttype; <span class="comment">// 分组类型</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> sll_halen;   <span class="comment">// 地址长度</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> sll_addr[<span class="number">8</span>]; <span class="comment">//物理层地址</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>eg:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAC_BCAST_ADDR (unsigned char *) <span class="meta-string">"\xff\xff\xff\xff\xff\xff"</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// dhcp discover</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dhcp_discover</span><span class="params">(...)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> fd;</span><br><span class="line">    fd = socket(PF_PACKET,SOCK_DGRAM,htons(ETH_P_IP));</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_ll</span> <span class="title">dest</span>;</span></span><br><span class="line">    <span class="built_in">memset</span>(&amp;dest,<span class="number">0</span>,<span class="keyword">sizeof</span>(dest));</span><br><span class="line">    dest.sll_family = AF_PACKET;</span><br><span class="line">    dest.sll_protocol = htons(ETH_P_IP);</span><br><span class="line">    dest.sll_ifindex = ifindex; <span class="comment">// 随机数</span></span><br><span class="line">    dest.sll_halen = <span class="number">6</span>;</span><br><span class="line">    <span class="built_in">memcpy</span>(dest.sll_addr,MAC_BCAST_ADDR,<span class="number">6</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参考资料：<br>1、<a href="http://blog.csdn.net/luchengtao11/article/details/76635669" target="_blank" rel="noopener">raw_socket以及普通socket使用终极总结</a><br>2、<a href="http://blog.csdn.net/ttyttytty12/article/details/8141910" target="_blank" rel="noopener">socket建立</a></p>
+
+        <div class="div_qrcode">
+            <div id="combine"></div>
+        </div>
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/BlogCode/2018/06/26/笔记/0cLinuxCPU使用率/" class="pre-post btn btn-default" title='Linux CPU使用率'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Linux CPU使用率</span>
+        </a>
+    
+    
+        <a href="/BlogCode/2018/05/30/笔记/0bLinux内核Socket实现/" class="next-post btn btn-default" title='Linux内核Socket实现'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Linux内核Socket实现</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+<div id="vcomments"></div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+  <div class="widget">
+    <div >
+        <h3>FLIPPED</h3>
+<div>
+<div style="float:left; clear: both;" align="center">
+<img src="/img/about.jpg" style="width: 80%;">
+</div>
+<p style="align:center;line-height: 25px;font-size: 13.6px;min-height:250px">The higher I got, the more amazed I was by the view.Some of us get dipped in flat, some in satin, some in gloss. But every once in a while you find someone who's iridescent, and when you do, nothing will ever compare.And I realized Garrett was right about one thing: I had flipped. Completely.人性的美具有纷繁的多面性，无论是男女之爱还是亲人之情，所有的美都会令人向往和感动!</p>
+</div>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/心记/"><i class="fa" aria-hidden="true">心记</i></a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/杂读/"><i class="fa" aria-hidden="true">杂读</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/笔记/"><i class="fa" aria-hidden="true">笔记</i></a><span class="category-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/12/"><i class="fa" aria-hidden="true">December 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/11/"><i class="fa" aria-hidden="true">November 2019</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/07/"><i class="fa" aria-hidden="true">July 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/06/"><i class="fa" aria-hidden="true">June 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/05/"><i class="fa" aria-hidden="true">May 2019</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/09/"><i class="fa" aria-hidden="true">September 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/08/"><i class="fa" aria-hidden="true">August 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/07/"><i class="fa" aria-hidden="true">July 2018</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/06/"><i class="fa" aria-hidden="true">June 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/05/"><i class="fa" aria-hidden="true">May 2018</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/BlogCode/tags/Gerrit/" style="font-size: 15px;">Gerrit</a> <a href="/BlogCode/tags/Luci/" style="font-size: 10px;">Luci</a> <a href="/BlogCode/tags/cpu/" style="font-size: 10px;">cpu</a> <a href="/BlogCode/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/BlogCode/tags/linux工具/" style="font-size: 20px;">linux工具</a> <a href="/BlogCode/tags/netfilter/" style="font-size: 10px;">netfilter</a> <a href="/BlogCode/tags/ping/" style="font-size: 10px;">ping</a> <a href="/BlogCode/tags/samba/" style="font-size: 10px;">samba</a> <a href="/BlogCode/tags/shell脚本/" style="font-size: 10px;">shell脚本</a> <a href="/BlogCode/tags/socket/" style="font-size: 15px;">socket</a> <a href="/BlogCode/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/BlogCode/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/BlogCode/tags/win工具/" style="font-size: 10px;">win工具</a> <a href="/BlogCode/tags/win脚本/" style="font-size: 10px;">win脚本</a> <a href="/BlogCode/tags/前端/" style="font-size: 10px;">前端</a> <a href="/BlogCode/tags/套接字/" style="font-size: 10px;">套接字</a> <a href="/BlogCode/tags/技术书/" style="font-size: 10px;">技术书</a> <a href="/BlogCode/tags/文件/" style="font-size: 10px;">文件</a> <a href="/BlogCode/tags/文章/" style="font-size: 10px;">文章</a> <a href="/BlogCode/tags/电影/" style="font-size: 10px;">电影</a> <a href="/BlogCode/tags/算法/" style="font-size: 10px;">算法</a> <a href="/BlogCode/tags/线程/" style="font-size: 10px;">线程</a> <a href="/BlogCode/tags/网站/" style="font-size: 10px;">网站</a> <a href="/BlogCode/tags/网络/" style="font-size: 15px;">网络</a> <a href="/BlogCode/tags/转载/" style="font-size: 15px;">转载</a> <a href="/BlogCode/tags/进程控制/" style="font-size: 10px;">进程控制</a> <a href="/BlogCode/tags/锁/" style="font-size: 10px;">锁</a>
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/BlogCode/js/jquery-3.3.1.js?rev=@@hash"></script>
+
+	<script src="/BlogCode/js/search.js?rev=@@hash"></script>
+
+
+<script src="/BlogCode/js/app.js?rev=@@hash"></script>
+<script src="/BlogCode/js/menu.js?rev=@@hash"></script>
+<script src="/BlogCode/js/qart.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/clipboard.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/av-min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/Valine.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/web_tools.js?rev=@@hash"></script>
+
+
+
+</body>
+</html>

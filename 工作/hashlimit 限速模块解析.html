@@ -1,0 +1,362 @@
+<!DOCTYPE HTML>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Flipped205">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://Flipped205.github.io/BlogCode">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+
+<title>hashlimit 限速模块解析 | Flipped205</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Flipped205" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/BlogCode/css/bootstrap.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/font-awesome.min.css?rev=2020-02-14[09]">
+<link rel="stylesheet" href="/BlogCode/css/style.css?rev=2020-02-14[09]">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <div class="box_bk"></div>
+<div class="box_center">
+    <div class="box_i"><img src=""></div>
+    <div class="box_close"><img src="/img/close.png"></div>
+</div>
+<button class="btn" style="display:none"></button>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/笔记/"><i class="fa "></i>笔记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/杂读/"><i class="fa "></i>杂读</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/心记/"><i class="fa "></i>心记</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content ">
+                    <div class="about">
+	
+	    <article class="post">
+	        <h1 class="post-head">关于我</h1>
+	        <div class="post-body">
+	            <h2 id="1-hashlimit简介"><a href="#1-hashlimit简介" class="headerlink" title="1 hashlimit简介"></a><strong>1 hashlimit简介</strong></h2><h3 id="1-1-令牌桶算法"><a href="#1-1-令牌桶算法" class="headerlink" title="1.1 令牌桶算法"></a><strong>1.1 令牌桶算法</strong></h3><p>hashlimit 的匹配是基于令牌桶 (Token bucket）模型的。<br>令牌桶是一种网络通讯中常见的缓冲区工作原理，它有两个重要的参数，令牌桶容量 n 和令牌产生速率 s。我们可以把令牌当成是门票，而令牌桶则是负责制作和发放门票的管理员，它手里最多有 n 张令牌。一开始，管理员开始手里有 n 张令牌。每当一个数据包到达后，管理员就看看手里是否还有可用的令牌。如果有，就把令牌发给这个数据包，hashlimit 就告诉 iptables，这个数据包被匹配了。而当管理员把手上所有的令牌都发完了，再来的数据包就拿不到令牌了。这时，hashlimit 模块就告诉iptables，这个数据包不能被匹配。除了发放令牌之外，只要令牌桶中的令牌数量少于 n，它就会以速率 s 来产生新的令牌，直到令牌数量到达 n 为止。通过令牌桶机制，即可以有效的控制单位时间内通过（匹配）的数据包数量，又可以容许短时间内突发的大量数据包的通过（只要数据包数量不超过令牌桶n）。</p>
+<h3 id="1-2-使用介绍"><a href="#1-2-使用介绍" class="headerlink" title="1.2 使用介绍"></a><strong>1.2 使用介绍</strong></h3><p>hashlimit 是 iptables 的一个匹配模块，用它结合 iptables 的其它命令可以实现限速的功能。iptables 的基本原理是“匹配–处理”，hashlimit 在这个工作过程中只能起到匹配的作用，它本身是无法对网络数据包进行任何处理的。</p>
+<h4 id="1-2-1-命令使用"><a href="#1-2-1-命令使用" class="headerlink" title="1.2.1 命令使用"></a><strong>1.2.1 命令使用</strong></h4><p>因此，利用hashlimit来限速需要包括两个步骤：1、对符合hashlimit匹配规则包放行，2、丢弃/拒绝未放行的包。下面是一个简单的例子：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">在以字节为单位进行限速的模式</span></span><br><span class="line">iptables -t mangle -w -A limit_chain -d 10.10.10.231/32 -m hashlimit --hashlimit-upto 1mb/s --hashlimit-burst 1mb --hashlimit-mode dstip --hashlimit-name dst_64_51_06_5C_A0_8A -j RETURN</span><br><span class="line">iptables -t mangle -w -A limit_chain -d 10.10.10.231/32 -j DROP</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">在以包为单位进行限速的模式</span></span><br><span class="line">iptables -t mangle -w -A limit_chain -d 10.10.10.125/32 -m hashlimit --hashlimit-name test --hashlimit-upto 16/sec --hashlimit-burst 32 --hashlimit-mode dstip --hashlimit-htable-expire 180000 -j ACCEPT</span><br><span class="line">iptables -t mangle -w -A limit_chain -d 10.10.10.125/32 -j DROP </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">对于两种模式的选择并不需要额外操作，代码会通过解析 --hashlimit-upto/above 参数后的配置值是否包含 b/s 单位，来判断采用哪种模式</span></span><br></pre></td></tr></table></figure>
+
+<p>使用需要了解以下几个参数:<br>–hashlimit-name：定义这条 hashlimit 规则的名称, 所有的条目（entry）都存放在/proc/net/ipt_hashlimit/{hashlimit-name}里<br>–hashlimit-mode：限制的类型，可以是源地址/源端口/目标地址/目标端口<br>–hashlimit-srcmask：当 mode 设置为 srcip 时, 配置相应的掩码表示一个网段<br>–hashlimit-upto: 允许进来的包最大速率<br>–hashlimit-above：允许进来的包最小速率<br>–hashlimit-burst：允许突发的个数(其实就是令牌桶最大容量)<br>–hashlimit-htable-max：hash 的最大条目数<br>–hashlimit-htable-expire：proc 信息记录时间, 用于老化 proc 信息记录，单位毫秒(milliseconds)<br>–hashlimit-htable-gcinterval：垃圾回收器回收的间隔时间，也是用于老化 proc 信息记录，单位毫秒</p>
+<h4 id="1-2-2-查看proc信息"><a href="#1-2-2-查看proc信息" class="headerlink" title="1.2.2 查看proc信息"></a><strong>1.2.2 查看proc信息</strong></h4><p>在以字节为单位进行限速的模式下，查看 /proc/net/ipt_hashlimit/dst_64_51_06_5C_A0_8A 文件:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat /proc/net/ipt_hashlimit/dst_64_51_06_5C_A0_8A</span></span><br><span class="line">59 0.0.0.0:0-&gt;10.10.10.231:0 4194304000 1 63999</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第一个字段是 expire 倒计时时间(单位是秒), 比如这里设置 60000 毫秒, 即 60s, 如果 60s 内没有再次触发这个规则, 则会一直减到0 (此时删除相关链表节点，该记录为空); 如果触发则再次变为 60.</li>
+<li>第二个字段是 dstip:port-&gt;srcip:port, 这里 mode 只设置了 dstip</li>
+<li>第三个字段是当前剩余的令牌数，是实时变化</li>
+<li>第四个字段是允许数据包突发放行的次数, 是一个定值</li>
+<li>第五个字段是每16个字节消耗的令牌数, 是一个定值</li>
+</ul>
+<p>在以包为单位进行限速的模式下，查看 /proc/net/ipt_hashlimit/test 文件:<br>查看 /proc/net/ipt_hashlimit/test 文件:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat /proc/net/ipt_hashlimit/<span class="built_in">test</span></span></span><br><span class="line">179 0.0.0.0:0-&gt;10.10.10.125:0 6400 6400 2000</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第一个字段是 expire 倒计时时间(单位是秒), 比如这里设置 180000 毫秒, 即 180s, 如果 180s 内没有再次触发这个规则, 则会一直减到 0 (见上面关于 expire 解释); 如果触发则再次变为 180.</li>
+<li>第二个字段是 srcip:port-&gt;dstip:port, 这里 mode 只设置了 srcip</li>
+<li>第三个字段是当前剩余的令牌数，是实时变化</li>
+<li>第四个字段是令牌桶最大容量, 是一个定值</li>
+<li>第五个字段是一次触发使用的令牌数, 也是令牌产生速率, 也是一个定值</li>
+</ul>
+<p>这些 proc 信息是内核的 hashlimit 模块完成计算写入的，具体算法过程结合了 iptables 和 netfilter 两部对用户配置数据的转换。</p>
+<h3 id="1-3-原理总结"><a href="#1-3-原理总结" class="headerlink" title="1.3 原理总结"></a><strong>1.3 原理总结</strong></h3><p>为了实现限速功能，可以假定令牌桶中的令牌数的产生速率是一定的（即每秒能够获取的令牌数是一定的），设置的限速值越小（即每秒能够通过的字节或者包数目越小），通过<code>令牌消耗量 = 令牌产生量</code>可以推测，每个字节或者包单位所消耗的令牌数就越大。</p>
+<h4 id="1-3-1-重要宏定义"><a href="#1-3-1-重要宏定义" class="headerlink" title="1.3.1 重要宏定义"></a><strong>1.3.1 重要宏定义</strong></h4><p>先说明一下几个重要的宏定义，xt_hashlimit.c文件中，内核实现令牌桶算法时预先定义了如下几个值：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _POW2_BELOW2(x) ((x)|((x)&gt;&gt;1))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _POW2_BELOW4(x) (_POW2_BELOW2(x)|_POW2_BELOW2((x)&gt;&gt;2))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _POW2_BELOW8(x) (_POW2_BELOW4(x)|_POW2_BELOW4((x)&gt;&gt;4))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _POW2_BELOW16(x) (_POW2_BELOW8(x)|_POW2_BELOW8((x)&gt;&gt;8))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _POW2_BELOW32(x) (_POW2_BELOW16(x)|_POW2_BELOW16((x)&gt;&gt;16))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> POW2_BELOW32(x) ((_POW2_BELOW32(x)&gt;&gt;1) + 1)</span></span><br></pre></td></tr></table></figure>
+
+<p>上面 POW2_BELOW32(x) 宏的作用即是保留 x 在二进制形式下的最高位的 1，其余位置为 0</p>
+<p>下面需要找到一个信息确定的情况来推算令牌产生速率这个定值。在代码运行的时候，32 位系统的整型数最大值为 0xFFFFFFFF，借此限定了每个字节或者包单位最多能够消耗 0xFFFFFFFF 个令牌，而由前面可知单位消耗量最大时限速值最小。通过该情况下的确定信息可以计算出令牌的消耗速率，也就是相应的令牌产生速率。（当然，如果你能神预感到其它的限速值情况下，相应的单位消耗令牌数，你也可以计算到一个类似的令牌产生速率）。</p>
+<ul>
+<li><p>以包为单位的限速模式下，通过应用层 iptables 工具能够设置的最低限速值为 1/day（即每心跳 1/(HZ×60×60×24) 个包），即每心跳消耗 0xFFFFFFFF/(HZ×60×60×24) 个令牌，将该值设为该模式下的令牌产生速率，宏REDITS_PER_JIFFY 的值为 128(0x1000)。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_CPJ (0xFFFFFFFF / (HZ*60*60*24))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CREDITS_PER_JIFFY POW2_BELOW32(MAX_CPJ)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以字节为单位的限速模式下，通过应用层 iptables 工具能够设置的最低限速值为 1B/s（即每心跳 1/HZ 个字节），即每心跳消耗 0xFFFFFFFF/HZ 个令牌，将该值设为该模式下的令牌产生速率，宏 CREDITS_PER_JIFFY_BYTES 的值为 16777216(0x1000000)。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_CPJ_BYTES (0xFFFFFFFF / HZ)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CREDITS_PER_JIFFY_BYTES POW2_BELOW32(MAX_CPJ_BYTES)</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="1-3-2-结论"><a href="#1-3-2-结论" class="headerlink" title="1.3.2 结论"></a><strong>1.3.2 结论</strong></h4><p>上面虽然对 hashlimit 模块使用到的令牌桶算法做了简要介绍，但是追踪分析源码能够发现如下结论：<br>对于以字节为单位的限速模式：</p>
+<ul>
+<li>令牌的产生速率是一定的，为 0x1000000/心跳</li>
+<li>令牌桶的最大容量是一定的，为 0x1000000 * HZ（HZ 为系统每秒心跳数，K2P 路由器配置为 250）</li>
+<li>每16个字节消耗的令牌数和用户配置的限速值 rate 成反比关系，为 0x1000000 * HZ / (rate / 16 + 1)。</li>
+<li>允许数据包突发放行的次数为 burst / rate 向上取整的结果，突发每产生一次相应的值减 1，该值不会增加。</li>
+</ul>
+<p>对于以包为单位的限速模式：</p>
+<ul>
+<li>令牌的产生速率也是一定的，为 128/心跳</li>
+<li>令牌桶的最大容量是不一定的，为根据用户配置的限速值 rate 和 突发值 burst 决定，(32000 / rate) * burst</li>
+<li>每个包消耗的令牌数和用户配置的限速值 rate 也成反比关系，为32000 / rate。</li>
+</ul>
+<h2 id="2-源码解析"><a href="#2-源码解析" class="headerlink" title="2 源码解析"></a><strong>2 源码解析</strong></h2><p>对该模块的探究，最基本的需要了解的是 iptables 是应用层的，其实质仅仅是一个定义规则的配置工具，当中的核心工作，数据包的拦截、转发、修改是在 Netfiler 中实现。</p>
+<p>因此，通过追踪用户空间 iptables 的相关源码和内核空间 netfilter 的相关源码来解析 hashlimit 模块功能，hashlimit 模块在限速上提供了两种模式，一种是以包为单位的限速，一种是以字节为单位的限速。本文主要沿着以字节为单位的限速模式进行解析。</p>
+<h3 id="2-1-用户空间iptables相关代码解析"><a href="#2-1-用户空间iptables相关代码解析" class="headerlink" title="2.1 用户空间iptables相关代码解析"></a><strong>2.1 用户空间iptables相关代码解析</strong></h3><p>通过 xtables_register_matches 函数在用户空间的 iptables 中注册一个匹配模块，用户空间的 match 是用 struct xptables_match{} 结构来表示的，所以需要去实例化一个该对象，然后对其关键成员进行初始化赋值。一般情况需要实现 help 函数、print 和 save 函数、x6_fcheck 函数和 x6_parse 函数就可以满足基本要求了。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">xtables_match</span> <span class="title">hashlimit_mt_reg</span>[] = &#123;</span></span><br><span class="line">    &#123;</span><br><span class="line">        .version       = XTABLES_VERSION,</span><br><span class="line">        .name          = <span class="string">"hashlimit"</span>,</span><br><span class="line">        .revision      = <span class="number">1</span>,</span><br><span class="line">        .family        = NFPROTO_IPV4,</span><br><span class="line">        .size          = XT_ALIGN(<span class="keyword">sizeof</span>(struct xt_hashlimit_mtinfo1)),</span><br><span class="line">        .userspacesize = offsetof(struct xt_hashlimit_mtinfo1, hinfo),</span><br><span class="line">        .help          = hashlimit_mt_help,</span><br><span class="line">        .init          = hashlimit_mt4_init,</span><br><span class="line">        .x6_parse      = hashlimit_mt_parse,</span><br><span class="line">        .x6_fcheck     = hashlimit_mt_check,</span><br><span class="line">        .print         = hashlimit_mt4_print,</span><br><span class="line">        .save          = hashlimit_mt4_save,</span><br><span class="line">        .x6_options    = hashlimit_mt_opts,</span><br><span class="line">        .udata_size    = <span class="keyword">sizeof</span>(struct hashlimit_mt_udata),</span><br><span class="line">    &#125;,</span><br><span class="line">    ...     <span class="comment">//其他协议类型如NFPROTO_UNSPEC、NFPROTO_IPV6</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">xtables_register_matches(hashlimit_mt_reg, ARRAY_SIZE(hashlimit_mt_reg));</span><br></pre></td></tr></table></figure>
+
+<p>模块定义了结构体 hashlimit_cfg1 来保存用户配置的规则参数，规则名保存在 xt_hashlimit_mtinfo1 结构体中的 name 成员中。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">hashlimit_cfg1</span> &#123;</span></span><br><span class="line">    __u32 mode;   <span class="comment">/* bitmask of XT_HASHLIMIT_HASH_* */</span></span><br><span class="line">    __u32 avg;    <span class="comment">/* Average secs between packets * scale */</span></span><br><span class="line">    __u32 burst;  <span class="comment">/* Period multiplier for upper limit. */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* user specified */</span></span><br><span class="line">    __u32 size;     <span class="comment">/* how many buckets */</span></span><br><span class="line">    __u32 max;      <span class="comment">/* max number of entries */</span></span><br><span class="line">    __u32 gc_interval;  <span class="comment">/* gc interval */</span></span><br><span class="line">    __u32 expire;   <span class="comment">/* when do entries expire? */</span></span><br><span class="line"></span><br><span class="line">    __u8 srcmask, dstmask;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">xt_hashlimit_mtinfo1</span> &#123;</span></span><br><span class="line">    <span class="keyword">char</span> name[HASHLIMIT_NAMESIZE];</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">hashlimit_cfg1</span> <span class="title">cfg</span>;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Used internally by the kernel */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">xt_hashlimit_htable</span> *<span class="title">hinfo</span> __<span class="title">attribute__</span>((<span class="title">aligned</span>(8)));</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>hashlimit_mt_help()：当我们在命令行输入 iptables -m hashlimit -h 时，用于显示该模块用法的帮助信息。</p>
+</li>
+<li><p>hashlimit_mt4_print()：当我们在命令行输入 iptables -L 时，该函数用于打印用户输入参数。往该函数中传入了一个 xt_entry_matc h的结构体，模块自定义的 xt_hashlimit_mtinfo1 数据存在这个结构体的data成员中。</p>
+</li>
+<li><p>hashlimit_mt4_save() 和 hashlimit_mt4_print() 类似。</p>
+</li>
+<li><p>hashlimit_mt_parse()：用于解析命令行参数的回调函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">hashlimit_mt_parse</span><span class="params">(struct xt_option_call *cb)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">xt_hashlimit_mtinfo1</span> *<span class="title">info</span> = <span class="title">cb</span>-&gt;<span class="title">data</span>;</span></span><br><span class="line"></span><br><span class="line">  xtables_option_parse(cb);</span><br><span class="line">  <span class="keyword">switch</span> (cb-&gt;entry-&gt;id) &#123;</span><br><span class="line">  <span class="keyword">case</span> O_BURST:</span><br><span class="line">      #解析--hashlimit-burst参数，进行单位转化和合法性校验，可设置最大为 XT_HASHLIMIT_BURST_MAX b/s，配置 burst 值</span><br><span class="line">      info-&gt;cfg.burst = parse_burst(cb-&gt;arg, info);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> O_UPTO:</span><br><span class="line">      #解析--hashlimit-upto参数，后文中所述的 rate 值，配置 avg 值</span><br><span class="line">      <span class="keyword">if</span> (cb-&gt;invert)</span><br><span class="line">          info-&gt;cfg.mode |= XT_HASHLIMIT_INVERT;</span><br><span class="line">      #进行单位转化，调用bytes_to_cost()函数，info-&gt;cfg.avg = <span class="number">2</span>^<span class="number">32</span> / (rate &gt;&gt; <span class="number">4</span> + <span class="number">1</span>)，配置限速模式</span><br><span class="line">      <span class="keyword">if</span> (parse_bytes(cb-&gt;arg, &amp;info-&gt;cfg.avg, cb-&gt;udata))</span><br><span class="line">          info-&gt;cfg.mode |= XT_HASHLIMIT_BYTES;</span><br><span class="line">      #以包为单位限速模式，转化后为 SCALE / rate</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (!parse_rate(cb-&gt;arg, &amp;info-&gt;cfg.avg, cb-&gt;udata))</span><br><span class="line">          xtables_param_act(XTF_BAD_VALUE, <span class="string">"hashlimit"</span>,</span><br><span class="line">                    <span class="string">"--hashlimit-upto"</span>, cb-&gt;arg);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> O_ABOVE:</span><br><span class="line">      #解析--hashlimit-above参数，区别在于对 cb-&gt;invert 判断处理，需要点明的是 cfg.mode 初始化为 <span class="number">0</span></span><br><span class="line">      <span class="keyword">if</span> (!cb-&gt;invert)</span><br><span class="line">          info-&gt;cfg.mode |= XT_HASHLIMIT_INVERT;</span><br><span class="line">      ......  #实现类似于 <span class="keyword">case</span> O_UPTO</span><br><span class="line">  <span class="keyword">case</span> O_MODE:</span><br><span class="line">      #解析--hashlimit-mode参数，配置匹配模式</span><br><span class="line">      <span class="keyword">if</span> (parse_mode(&amp;info-&gt;cfg.mode, cb-&gt;arg) &lt; <span class="number">0</span>)</span><br><span class="line">          xtables_param_act(XTF_BAD_VALUE, <span class="string">"hashlimit"</span>,</span><br><span class="line">                    <span class="string">"--hashlimit-mode"</span>, cb-&gt;arg);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> O_SRCMASK:</span><br><span class="line">      info-&gt;cfg.srcmask = cb-&gt;val.hlen;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> O_DSTMASK:</span><br><span class="line">      info-&gt;cfg.dstmask = cb-&gt;val.hlen;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hashlimit_mt_check()：在调用本模块时，该函数做必须参数的有无校验，同时也对相应的数值范围做校验和转换。如本模块必须设置 –hashlimit-upto 或者 –hashlimit-above，设置的 burst 值一定要大于 avg 值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">hashlimit_mt_check</span><span class="params">(struct xt_fcheck_call *cb)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">hashlimit_mt_udata</span> *<span class="title">udata</span> = <span class="title">cb</span>-&gt;<span class="title">udata</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">xt_hashlimit_mtinfo1</span> *<span class="title">info</span> = <span class="title">cb</span>-&gt;<span class="title">data</span>;</span></span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (info-&gt;cfg.mode &amp; XT_HASHLIMIT_BYTES) &#123;</span><br><span class="line">      <span class="keyword">uint32_t</span> burst = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">if</span> (cb-&gt;xflags &amp; F_BURST) &#123;</span><br><span class="line">          ......</span><br><span class="line">          #重新配置 burst 值，保存 burst 值为输入 burst 值除输入 avg 值的结果（向上取整）</span><br><span class="line">          burst = info-&gt;cfg.burst;</span><br><span class="line">          burst /= cost_to_bytes(info-&gt;cfg.avg);  #此处调用 cost_to_bytes 和解析函数中的 bytes_to_cost 有对齐<span class="number">16</span>字节整数倍的效果。</span><br><span class="line">          <span class="keyword">if</span> (info-&gt;cfg.burst % cost_to_bytes(info-&gt;cfg.avg))</span><br><span class="line">              burst++;</span><br><span class="line">          ......</span><br><span class="line">      &#125;</span><br><span class="line">      info-&gt;cfg.burst = burst;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (info-&gt;cfg.burst &gt; XT_HASHLIMIT_BURST_MAX)</span><br><span class="line">      burst_error();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="2-2-内核空间-netfilter-相关代码解析"><a href="#2-2-内核空间-netfilter-相关代码解析" class="headerlink" title="2.2 内核空间 netfilter 相关代码解析"></a><strong>2.2 内核空间 netfilter 相关代码解析</strong></h3><h4 id="2-2-1-初始化模块注册"><a href="#2-2-1-初始化模块注册" class="headerlink" title="** 2.2.1 初始化模块注册 **"></a>** 2.2.1 初始化模块注册 **</h4><p>内核中用 struct xt_match{} 结构来表示一个 match 模块。开发 match 的内核部分时，也必须去实例化一个 struct xt_match{} 对象，然后对其进行必要的初始化设置，最后通过 xt_register_matchs() 将其注册到 xt[AF_INET].match 全局链表中.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">xt_match</span> <span class="title">hashlimit_mt_reg</span>[] __<span class="title">read_mostly</span> = &#123;</span></span><br><span class="line">    &#123;</span><br><span class="line">        .name           = <span class="string">"hashlimit"</span>,</span><br><span class="line">        .revision       = <span class="number">1</span>,</span><br><span class="line">        .family         = NFPROTO_IPV4,</span><br><span class="line">        .match          = hashlimit_mt,</span><br><span class="line">        .matchsize      = <span class="keyword">sizeof</span>(struct xt_hashlimit_mtinfo1),</span><br><span class="line">        .checkentry     = hashlimit_mt_check,</span><br><span class="line">        .destroy        = hashlimit_mt_destroy,</span><br><span class="line">        .me             = THIS_MODULE,</span><br><span class="line">    &#125;,</span><br><span class="line">    ......</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">err = xt_register_matches(hashlimit_mt_reg, ARRAY_SIZE(hashlimit_mt_reg));</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-2-核心match函数"><a href="#2-2-2-核心match函数" class="headerlink" title="2.2.2 核心match函数"></a><strong>2.2.2 核心match函数</strong></h4><p>最关键的核心函数 hashlimit_mt()：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">bool</span></span><br><span class="line">hashlimit_mt(<span class="keyword">const</span> struct sk_buff *skb, struct xt_action_param *par)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">xt_hashlimit_mtinfo1</span> *<span class="title">info</span> = <span class="title">par</span>-&gt;<span class="title">matchinfo</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">xt_hashlimit_htable</span> *<span class="title">hinfo</span> = <span class="title">info</span>-&gt;<span class="title">hinfo</span>;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> now = jiffies;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">dsthash_ent</span> *<span class="title">dh</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">dsthash_dst</span> <span class="title">dst</span>;</span></span><br><span class="line">    <span class="keyword">bool</span> race = <span class="literal">false</span>;</span><br><span class="line">    u32 cost;</span><br><span class="line">    #创建 dsthash_dst 结构体，并根据匹配模式从 skb 中获取源ip或端口号、目的ip或端口号</span><br><span class="line">    <span class="keyword">if</span> (hashlimit_init_dst(hinfo, &amp;dst, skb, par-&gt;thoff) &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">goto</span> hotdrop;</span><br><span class="line"></span><br><span class="line">    rcu_read_lock_bh();</span><br><span class="line">    #根据 ip 地址查找 xt_hashlimit_htable 表中的 dsthash_dst 节点，获取该 ip 的配置信息</span><br><span class="line">    dh = dsthash_find(hinfo, &amp;dst);</span><br><span class="line">    <span class="keyword">if</span> (dh == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        #表中没有则创建，创建过程中会再次查找，防止其他进程创建，race标记再次查找的结果</span><br><span class="line">        dh = dsthash_alloc_init(hinfo, &amp;dst, &amp;race);</span><br><span class="line">        <span class="keyword">if</span> (dh == <span class="literal">NULL</span>) &#123;</span><br><span class="line">            rcu_read_unlock_bh();</span><br><span class="line">            <span class="keyword">goto</span> hotdrop;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (race) &#123;</span><br><span class="line">            <span class="comment">/* Already got an entry, update expiration timeout */</span></span><br><span class="line">            dh-&gt;expires = now + msecs_to_jiffies(hinfo-&gt;cfg.expire);</span><br><span class="line">            #其他进程创建的节点，则更新桶中令牌数</span><br><span class="line">            rateinfo_recalc(dh, now, hinfo-&gt;cfg.mode);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            dh-&gt;expires = jiffies + msecs_to_jiffies(hinfo-&gt;cfg.expire);</span><br><span class="line">            #本次创建的新节点，则初始化桶中令牌数，并根据设置的限速值设定令牌消耗单位</span><br><span class="line">            rateinfo_init(dh, hinfo);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">/* update expiration timeout */</span></span><br><span class="line">        dh-&gt;expires = now + msecs_to_jiffies(hinfo-&gt;cfg.expire);</span><br><span class="line">        #已有节点，则更新桶中令牌数</span><br><span class="line">        rateinfo_recalc(dh, now, hinfo-&gt;cfg.mode);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (info-&gt;cfg.mode &amp; XT_HASHLIMIT_BYTES)</span><br><span class="line">        #计算当前数据包需要消耗的令牌数</span><br><span class="line">        cost = hashlimit_byte_cost(skb-&gt;len, dh);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        cost = dh-&gt;rateinfo.cost;</span><br><span class="line">    #如果当前桶中令牌数不少于该包消耗的令牌数则则返回 <span class="number">1</span>，表示匹配成功，执行规则的目标动作</span><br><span class="line">    <span class="keyword">if</span> (dh-&gt;rateinfo.credit &gt;= cost) &#123;</span><br><span class="line">        <span class="comment">/* below the limit */</span></span><br><span class="line">        dh-&gt;rateinfo.credit -= cost;</span><br><span class="line">        spin_unlock(&amp;dh-&gt;lock);</span><br><span class="line">        rcu_read_unlock_bh();</span><br><span class="line">        <span class="keyword">return</span> !(info-&gt;cfg.mode &amp; XT_HASHLIMIT_INVERT);</span><br><span class="line">    &#125;</span><br><span class="line">    #如果当前桶中令牌数少于该包消耗的令牌数则返回 <span class="number">0</span>，表示匹配不成功，继续匹配下条规则</span><br><span class="line">    spin_unlock(&amp;dh-&gt;lock);</span><br><span class="line">    rcu_read_unlock_bh();</span><br><span class="line">    <span class="comment">/* default match is underlimit - so over the limit, we need to invert */</span></span><br><span class="line">    <span class="keyword">return</span> info-&gt;cfg.mode &amp; XT_HASHLIMIT_INVERT;</span><br><span class="line"></span><br><span class="line"> hotdrop:</span><br><span class="line">    par-&gt;hotdrop = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-3-令牌计算函数"><a href="#2-2-3-令牌计算函数" class="headerlink" title="2.2.3 令牌计算函数"></a><strong>2.2.3 令牌计算函数</strong></h4><ul>
+<li><p>令牌更新函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">rateinfo_recalc</span><span class="params">(struct dsthash_ent *dh, <span class="keyword">unsigned</span> <span class="keyword">long</span> now, u32 mode)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">long</span> delta = now - dh-&gt;rateinfo.prev;</span><br><span class="line">  u32 cap;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (delta == <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  dh-&gt;rateinfo.prev = now;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (mode &amp; XT_HASHLIMIT_BYTES) &#123;</span><br><span class="line">      u32 tmp = dh-&gt;rateinfo.credit;</span><br><span class="line">      #更新当前令牌数为剩余的令牌数加上这段时间产生的令牌数</span><br><span class="line">      dh-&gt;rateinfo.credit += CREDITS_PER_JIFFY_BYTES * delta;</span><br><span class="line">      cap = CREDITS_PER_JIFFY_BYTES * HZ;</span><br><span class="line">      <span class="keyword">if</span> (tmp &gt;= dh-&gt;rateinfo.credit) &#123;<span class="comment">/* overflow */</span></span><br><span class="line">          dh-&gt;rateinfo.credit = cap;</span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      #更新当前令牌数为剩余的令牌数加上这段时间产生的令牌数</span><br><span class="line">      dh-&gt;rateinfo.credit += delta * CREDITS_PER_JIFFY;</span><br><span class="line">      cap = dh-&gt;rateinfo.credit_cap;</span><br><span class="line">  &#125;</span><br><span class="line">  #桶中最大令牌数限制为 CREDITS_PER_JIFFY_BYTES * HZ 或者 <span class="number">32000</span> * burst / rate</span><br><span class="line">  <span class="keyword">if</span> (dh-&gt;rateinfo.credit &gt; cap)</span><br><span class="line">      dh-&gt;rateinfo.credit = cap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>令牌初始化函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">rateinfo_init</span><span class="params">(struct dsthash_ent *dh,</span></span></span><br><span class="line"><span class="function"><span class="params">            struct xt_hashlimit_htable *hinfo)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  dh-&gt;rateinfo.prev = jiffies;</span><br><span class="line">  <span class="keyword">if</span> (hinfo-&gt;cfg.mode &amp; XT_HASHLIMIT_BYTES) &#123;</span><br><span class="line">      #初始化当前令牌数为桶中最大令牌数，CREDITS_PER_JIFFY_BYTES * HZ，即<span class="number">0x1000000</span> * <span class="number">250</span></span><br><span class="line">      dh-&gt;rateinfo.credit = CREDITS_PER_JIFFY_BYTES * HZ;</span><br><span class="line">      #初始化<span class="number">16</span>个字节的令牌消耗单位为 <span class="number">0x1000000</span> * <span class="number">250</span> / (rate &gt;&gt; <span class="number">4</span> + <span class="number">1</span>)，消耗单位和设置的限速值成反比</span><br><span class="line">      dh-&gt;rateinfo.cost = user2credits_byte(hinfo-&gt;cfg.avg);</span><br><span class="line">      #初始化允许突发次数为 burst(设置的 burst 值除设置的限速值的结果)</span><br><span class="line">      dh-&gt;rateinfo.credit_cap = hinfo-&gt;cfg.burst;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      #以包为单位限速模式，转化后为 (SCALE / SCALE_kernel) * (HZ * <span class="number">128</span> * burst  / rate)，默认为<span class="number">32000</span> * burst / rate</span><br><span class="line">      dh-&gt;rateinfo.credit = user2credits(hinfo-&gt;cfg.avg *</span><br><span class="line">                         hinfo-&gt;cfg.burst);</span><br><span class="line">      #初始化令牌消耗单位为 <span class="number">32000</span> /rate</span><br><span class="line">      dh-&gt;rateinfo.cost = user2credits(hinfo-&gt;cfg.avg);</span><br><span class="line">      #初始化最大令牌数为 <span class="number">32000</span> * burst / rate</span><br><span class="line">      dh-&gt;rateinfo.credit_cap = dh-&gt;rateinfo.credit;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>令牌消耗函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> u32 <span class="title">hashlimit_byte_cost</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> len, struct dsthash_ent *dh)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  #以包为单位来判定去留，计算当前包的<span class="number">16</span>字节长度为 tmp = len &gt;&gt; <span class="number">4</span> + <span class="number">1</span></span><br><span class="line">  u64 tmp = xt_hashlimit_len_to_chunks(len);</span><br><span class="line">  #计算该包需要消耗的令牌数约为 ( len &gt;&gt; <span class="number">4</span> + <span class="number">1</span> ) / (rate &gt;&gt; <span class="number">4</span> + <span class="number">1</span>) * <span class="number">0x1000000</span> * <span class="number">250</span></span><br><span class="line">  tmp = tmp * dh-&gt;rateinfo.cost;</span><br><span class="line">  #如果该包消耗的令牌数大于桶中最大数</span><br><span class="line">  <span class="keyword">if</span> (unlikely(tmp &gt; CREDITS_PER_JIFFY_BYTES * HZ))</span><br><span class="line">      #该种处理方法会导致设置低限速值限制不了大包数据的问题，因为 <span class="number">1</span>s 会允许放行一次大包</span><br><span class="line">      tmp = CREDITS_PER_JIFFY_BYTES * HZ; </span><br><span class="line">  #如果该包消耗的令牌数大于桶中当前令牌数，且当前允许突发次数大于 <span class="number">0</span>，则当作突发数据包处理，突发次数减 <span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span> (dh-&gt;rateinfo.credit &lt; tmp &amp;&amp; dh-&gt;rateinfo.credit_cap) &#123;</span><br><span class="line">      #以包为单位限速模式，</span><br><span class="line">      dh-&gt;rateinfo.credit_cap--;</span><br><span class="line">      dh-&gt;rateinfo.credit = CREDITS_PER_JIFFY_BYTES * HZ;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> (u32) tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h4 id="2-2-4-校验check函数"><a href="#2-2-4-校验check函数" class="headerlink" title="2.2.4 校验check函数"></a><strong>2.2.4 校验check函数</strong></h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">hashlimit_mt_check</span><span class="params">(<span class="keyword">const</span> struct xt_mtchk_param *par)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">net</span> *<span class="title">net</span> = <span class="title">par</span>-&gt;<span class="title">net</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">xt_hashlimit_mtinfo1</span> *<span class="title">info</span> = <span class="title">par</span>-&gt;<span class="title">matchinfo</span>;</span></span><br><span class="line">    <span class="keyword">int</span> ret;</span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (info-&gt;cfg.mode &amp; XT_HASHLIMIT_BYTES) &#123;</span><br><span class="line">        #设置的限速值 rate 令牌消耗单位为 <span class="number">0x1000000</span> * <span class="number">250</span> / (rate &gt;&gt; <span class="number">4</span> + <span class="number">1</span>) &lt; <span class="number">1</span> 时则溢出，该 rate &gt; <span class="number">0x1000000</span> * <span class="number">250</span> *<span class="number">16</span> </span><br><span class="line">        <span class="keyword">if</span> (user2credits_byte(info-&gt;cfg.avg) == <span class="number">0</span>) &#123;</span><br><span class="line">            pr_info(<span class="string">"overflow, rate too high: %u\n"</span>, info-&gt;cfg.avg);</span><br><span class="line">            <span class="keyword">return</span> -EINVAL;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (info-&gt;cfg.burst == <span class="number">0</span> || user2credits(info-&gt;cfg.avg * info-&gt;cfg.burst) &lt; user2credits(info-&gt;cfg.avg)) &#123;</span><br><span class="line">        #设置的 burst 值要大于 <span class="number">1</span></span><br><span class="line">        pr_info(<span class="string">"overflow, try lower: %u/%u\n"</span>, info-&gt;cfg.avg, info-&gt;cfg.burst);</span><br><span class="line">        <span class="keyword">return</span> -ERANGE;</span><br><span class="line">    &#125;</span><br><span class="line">    ......  <span class="meta">#proc文件相关</span></span><br><span class="line"></span><br><span class="line">    mutex_unlock(&amp;hashlimit_mutex);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+	        </div>
+	    </article>
+	
+</div>
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+  <div class="widget">
+    <div >
+        <h3>FLIPPED</h3>
+<div>
+<div style="float:left; clear: both;" align="center">
+<img src="/img/about.jpg" style="width: 80%;">
+</div>
+<p style="align:center;line-height: 25px;font-size: 13.6px;min-height:250px">The higher I got, the more amazed I was by the view.Some of us get dipped in flat, some in satin, some in gloss. But every once in a while you find someone who's iridescent, and when you do, nothing will ever compare.And I realized Garrett was right about one thing: I had flipped. Completely.人性的美具有纷繁的多面性，无论是男女之爱还是亲人之情，所有的美都会令人向往和感动!</p>
+</div>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/心记/"><i class="fa" aria-hidden="true">心记</i></a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/杂读/"><i class="fa" aria-hidden="true">杂读</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/BlogCode/categories/笔记/"><i class="fa" aria-hidden="true">笔记</i></a><span class="category-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/12/"><i class="fa" aria-hidden="true">December 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/11/"><i class="fa" aria-hidden="true">November 2019</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/07/"><i class="fa" aria-hidden="true">July 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/06/"><i class="fa" aria-hidden="true">June 2019</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2019/05/"><i class="fa" aria-hidden="true">May 2019</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/09/"><i class="fa" aria-hidden="true">September 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/08/"><i class="fa" aria-hidden="true">August 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/07/"><i class="fa" aria-hidden="true">July 2018</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/06/"><i class="fa" aria-hidden="true">June 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/BlogCode/archives/2018/05/"><i class="fa" aria-hidden="true">May 2018</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/BlogCode/tags/Gerrit/" style="font-size: 15px;">Gerrit</a> <a href="/BlogCode/tags/Luci/" style="font-size: 10px;">Luci</a> <a href="/BlogCode/tags/cpu/" style="font-size: 10px;">cpu</a> <a href="/BlogCode/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/BlogCode/tags/linux工具/" style="font-size: 20px;">linux工具</a> <a href="/BlogCode/tags/netfilter/" style="font-size: 10px;">netfilter</a> <a href="/BlogCode/tags/ping/" style="font-size: 10px;">ping</a> <a href="/BlogCode/tags/samba/" style="font-size: 10px;">samba</a> <a href="/BlogCode/tags/shell脚本/" style="font-size: 10px;">shell脚本</a> <a href="/BlogCode/tags/socket/" style="font-size: 15px;">socket</a> <a href="/BlogCode/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/BlogCode/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/BlogCode/tags/win工具/" style="font-size: 10px;">win工具</a> <a href="/BlogCode/tags/win脚本/" style="font-size: 10px;">win脚本</a> <a href="/BlogCode/tags/前端/" style="font-size: 10px;">前端</a> <a href="/BlogCode/tags/套接字/" style="font-size: 10px;">套接字</a> <a href="/BlogCode/tags/技术书/" style="font-size: 10px;">技术书</a> <a href="/BlogCode/tags/文件/" style="font-size: 10px;">文件</a> <a href="/BlogCode/tags/文章/" style="font-size: 10px;">文章</a> <a href="/BlogCode/tags/电影/" style="font-size: 10px;">电影</a> <a href="/BlogCode/tags/算法/" style="font-size: 10px;">算法</a> <a href="/BlogCode/tags/线程/" style="font-size: 10px;">线程</a> <a href="/BlogCode/tags/网站/" style="font-size: 10px;">网站</a> <a href="/BlogCode/tags/网络/" style="font-size: 15px;">网络</a> <a href="/BlogCode/tags/转载/" style="font-size: 15px;">转载</a> <a href="/BlogCode/tags/进程控制/" style="font-size: 10px;">进程控制</a> <a href="/BlogCode/tags/锁/" style="font-size: 10px;">锁</a>
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/BlogCode/js/jquery-3.3.1.js?rev=@@hash"></script>
+
+	<script src="/BlogCode/js/search.js?rev=@@hash"></script>
+
+
+<script src="/BlogCode/js/app.js?rev=@@hash"></script>
+<script src="/BlogCode/js/menu.js?rev=@@hash"></script>
+<script src="/BlogCode/js/qart.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/clipboard.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/av-min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/Valine.min.js?rev=@@hash"></script>
+<script src="/BlogCode/js/web_tools.js?rev=@@hash"></script>
+
+
+
+</body>
+</html>
