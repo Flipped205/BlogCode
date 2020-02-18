@@ -1,6 +1,7 @@
 html{
 	font-size: 100px;
 	overflow:hidden;overflow-y:auto;
+	background: #EEE;
 }
 body{
 	font-family: Arial,microsoft yahei,微软雅黑;
@@ -9,13 +10,13 @@ body{
     height: 100%;
     margin: 0;
     overflow:hidden;overflow-y:auto;
+
 }
 em, i {
     font-style: normal;
 }
 .head
 {
-	background-color: #FFFFFF;
 	padding: 0.08rem;
 	padding-left: .2rem; 
 }
@@ -156,4 +157,40 @@ em, i {
     text-align: center;
     font-size: 0.3rem;
     line-height: 0.55rem
+}
+#recods
+{
+	margin: auto;
+	margin-top:20px; 
+	width: 90%;
+	border-radius: 10px;
+	background: #FFF;
+	height: 200px; 
+}
+.recod_item
+{
+	height: 42px;
+	padding: 10px 15px;
+	padding-bottom: 0px;
+	text-align: left;
+}
+.r_msg
+{
+	margin: 0px;
+	height: 28px;
+	line-height: 28px;
+}
+.r_date
+{
+	margin-top:-5px;
+	height: 14px;
+	font-size: 14px;
+	color: #666;
+	line-height: 14px;
+}
+.recod_item img
+{
+	height: 35px;
+	width: 35px;
+	margin-right: 10px; 
 }
