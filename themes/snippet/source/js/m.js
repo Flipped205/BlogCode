@@ -71,7 +71,7 @@ function HandleJD(data)
 		var ds = w_datas[i].split(".");
 		var w = ds[0];
 		var m = ds[1];
-		if(parseInt(obj.w)==parseInt(w))
+		if(parseInt(obj.w)+1==parseInt(w))
 		{
 			html =  '<div class="recod_item"> \
 				<img src="./img/j.png"> \
