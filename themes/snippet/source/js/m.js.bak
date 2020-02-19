@@ -67,7 +67,7 @@ function ParseRecord()
 						break;
 
 				    item = item + '<div class="recod_item"> \
-					<img src="./img/j.png"> \
+					<img src="./images/j.png"> \
 					<div style="display: inline-block;"> \
 					<div class="r_msg"> \
 					<span id="r_i_title">'+ g_records[i].title +'</span>&nbsp;·&nbsp;\
