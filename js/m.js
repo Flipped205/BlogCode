@@ -65,8 +65,9 @@ function HandleJD(data)
 
 	var w_datas = data[2].split(",");
 
-	for(i=0;i<w_datas.length;i++)
+	for(var i=0;i<w_datas.length;i++)
 	{
+		console.log(i);
 		var ds = w_datas[i].split(".");
 		var w = ds[0];
 		var m = ds[1];
@@ -84,10 +85,10 @@ function HandleJD(data)
 				</div> \
 				</div> \
 				</div>';
-			return html;
+			break;
 		} 
 	}
-
+	console.log(html);
 	return html;
 }
 
@@ -103,6 +104,9 @@ function HandleSJD(data)
 	var day1 = data[2];
 	var title = data[3];
 	var msg = data[4];
+
+	if(day1.length<=0)
+		day1 = GetCurday();
 
 	var obj = DateDiff(day1,day0);
 	if(obj.days<=0)
@@ -162,22 +166,23 @@ function ParseRecord()
 	console.log(g_records);
 
 	var records = g_records.split(/[\s\n]/);
-	console.log(records);
-
-	for(i = 0;i<records.length;i++)
+	console.log(records.length);
+	$(recods).html(html);
+	for(var i = 0;i<records.length;i++)
 	{
+		html="";
 		var data = records[i].split(':');
-		console.log(data[0]);
+		//console.log(data[0]);
 		switch(parseInt(data[0]))
 		{
 			case 1:
-				html=html+HandleJNR(data);
+				html=HandleJNR(data);
 				break;
 			case 2:
-				html=html+HandleJD(data);
+				html=HandleJD(data);
 				break;
 			case 3:
-				html = html + HandleSJD(data);
+				html=HandleSJD(data);
 				break;
 			case 4:
 				break;
@@ -185,10 +190,11 @@ function ParseRecord()
 				break;
 
 		}
-		console.log(html);
+		//console.log(html);
+		$(recods).append(html);
 
 	}
-	$(recods).html(html);	
+		
 }
 
 
