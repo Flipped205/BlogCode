@@ -43,11 +43,30 @@ function GetCurday()
 	return year+"-"+month+"-"+day;
 }
 
+function GetToDay()
+{
+	var today=new Date();
+	var today_year = today.getFullYear();
+	var today_month = parseInt(today.getMonth())+1;
+	var today_day = today.getDate();
+
+	return today_year+"-"+today_month+"-"+today_day;
+
+}
+
+
+
 function ChangeDate(day)
 {
+	var today = GetToDay();
 	var d = day.split("-");
 
-	return d[0]+"年"+parseInt(d[1])+"月"+parseInt(d[2])+"日";
+	var s =  d[0]+"年"+parseInt(d[1])+"月"+parseInt(d[2])+"日";
+
+	if(today == day)
+		s="至今";
+	return s;
+
 }
 
 
@@ -100,15 +119,24 @@ function HandleJD(data)
 
 function HandleSJD(data)
 {
+	var curDay = GetCurday();
+	var toDay = GetToDay();
+	console.log("toDay:"+toDay);
+
 	var day0 = data[1];
 	var day1 = data[2];
 	var title = data[3];
 	var msg = data[4];
 
-	if(day1.length<=0)
-		day1 = GetCurday();
+	var obj = DateDiff(curDay,day0);
+	if(obj.days<=0)
+		return ""; 
 
-	var obj = DateDiff(day1,day0);
+	if(day1.length<=0)
+		day1 = toDay;
+
+
+	obj = DateDiff(day1,day0);
 	if(obj.days<=0)
 		return " ";
 	html =  '<div class="recod_item"> \
