@@ -15,6 +15,7 @@ function DateDiff(sDate1, sDate2) {
     iWeek = parseInt(Math.abs(iDays)/7);
     var day = iDays - iWeek*7;
     obj.days = iDays;
+    obj.w = iWeek;
     if (iWeek>0)
     {
     	obj.week = iWeek+"周";
@@ -42,51 +43,152 @@ function GetCurday()
 	return year+"-"+month+"-"+day;
 }
 
+function ChangeDate(day)
+{
+	var d = day.split("-");
+
+	return d[0]+"年"+parseInt(d[1])+"月"+parseInt(d[2])+"日";
+}
+
+
+
+function HandleJD(data)
+{
+	var day0 = GetCurday();
+	var day1=data[1];
+	var html="";
+	var msg = data[3];
+
+	var obj = DateDiff(day0,day1);
+	if(obj.days<=0)
+		return "";
+
+	var w_datas = data[2].split(",");
+
+	for(i=0;i<w_datas.length;i++)
+	{
+		var ds = w_datas[i].split(".");
+		var w = ds[0];
+		var m = ds[1];
+		if(parseInt(obj.w)==parseInt(w))
+		{
+			html =  '<div class="recod_item"> \
+				<img src="./img/j.png"> \
+				<div style="display: inline-block;"> \
+				<div class="r_msg"> \
+				<span id="r_i_title">第'+ w +'周</span>&nbsp;·&nbsp;\
+				<span id="r_i_msg">'+m+'</span>\
+				</div> \
+				<div class="r_date">\
+				<span>'+msg+'&nbsp;|&nbsp;'+ChangeDate(day1)+'</span> \
+				</div> \
+				</div> \
+				</div>';
+			return html;
+		} 
+	}
+
+	return html;
+}
+
+
+
+
+
+
+
+function HandleSJD(data)
+{
+	var day0 = data[1];
+	var day1 = data[2];
+	var title = data[3];
+	var msg = data[4];
+
+	var obj = DateDiff(day1,day0);
+	if(obj.days<=0)
+		return " ";
+	html =  '<div class="recod_item"> \
+	<img src="./img/r.png"> \
+	<div style="display: inline-block;"> \
+	<div class="r_msg"> \
+	<span id="r_i_title">'+ title +'</span>&nbsp;·&nbsp;\
+	<span id="r_i_msg">'+obj.days+'</span>\
+	</div> \
+	<div class="r_date">\
+	<span>'+msg+'&nbsp;|&nbsp;'+ChangeDate(day0)+'~'+ChangeDate(day1)+'</span> \
+	</div> \
+	</div> \
+	</div>';
+
+	return html;
+}
+
+function HandleJNR(data)
+{
+	var day0 = GetCurday();
+	var day = data[1];
+	var title = data[2];
+	var msg = data[3];
+	console.log("day:"+day+",title:"+title+",msg:"+msg);
+
+
+
+	var obj = DateDiff(day0,day);
+	if(obj.days<=0)
+		return "";
+
+	html =  '<div class="recod_item"> \
+	<img src="./img/j.png"> \
+	<div style="display: inline-block;"> \
+	<div class="r_msg"> \
+	<span id="r_i_title">'+ title +'</span>&nbsp;·&nbsp;\
+	<span id="r_i_msg">'+obj.week+'</span>\
+	</div> \
+	<div class="r_date">\
+	<span>'+msg+'&nbsp;|&nbsp;'+ChangeDate(day)+'</span> \
+	</div> \
+	</div> \
+	</div>';
+
+	return html;
+}
+
+
 function ParseRecord()
 {
 	var day0 = GetCurday();
 	
-
+	var html=" ";
 	console.log(g_records);
 
+	var records = g_records.split(/[\s\n]/);
+	console.log(records);
 
-	var i,j;
-	var item="";
-	for(i=0;i<g_records.length;i++)
+	for(i = 0;i<records.length;i++)
 	{
-		switch(g_records[i].type)
+		var data = records[i].split(':');
+		console.log(data[0]);
+		switch(parseInt(data[0]))
 		{
 			case 1:
-				for(j=0;j<g_records[i].dates.length;j++)
-				{
-					var date = g_records[i].dates[j].date;
-					console.log(date);
-					console.log(day0);
-					var obj = DateDiff(day0,date);
-					if(obj.days<=0)
-						break;
-
-				    item = item + '<div class="recod_item"> \
-					<img src="./img/j.png"> \
-					<div style="display: inline-block;"> \
-					<div class="r_msg"> \
-					<span id="r_i_title">'+ g_records[i].title +'</span>&nbsp;·&nbsp;\
-					<span id="r_i_msg">'+obj.week+'</span>\
-					</div> \
-					<div class="r_date">\
-					<span>纪念日|'+date+'</span> \
-					</div> \
-					</div> \
-					</div>';
-					console.log(item);
-					
-				}
+				//html=html+HandleJNR(data);
 				break;
 			case 2:
+				html=html+HandleJD(data);
 				break;
+			case 3:
+				//html = html + HandleSJD(data);
+				break;
+			case 4:
+				break;
+			default:
+				break;
+
 		}
+		console.log(html);
+
 	}
-	$(recods).html(item);
+	$(recods).html(html);	
 }
 
 
