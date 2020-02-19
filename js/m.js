@@ -144,7 +144,7 @@ function HandleSJD(data)
 	<div style="display: inline-block;"> \
 	<div class="r_msg"> \
 	<span id="r_i_title">'+ title +'</span>&nbsp;·&nbsp;\
-	<span id="r_i_msg">'+obj.days+'</span>\
+	<span id="r_i_msg">'+obj.days+'天</span>\
 	</div> \
 	<div class="r_date">\
 	<span>'+msg+'&nbsp;|&nbsp;'+ChangeDate(day0)+'~'+ChangeDate(day1)+'</span> \
