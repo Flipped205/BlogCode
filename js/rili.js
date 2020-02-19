@@ -1090,7 +1090,7 @@ function drawRili(year,month,day)
 }
 $(function(){ 
 	var htmlobj=$.ajax({url:"https://blog.flipped205.top/rili_data/record.data",async:false});
-	g_records = eval(htmlobj.responseText);
+	g_records = htmlobj.responseText;//eval(htmlobj.responseText);
 	var htmlobj=$.ajax({url:"https://blog.flipped205.top/rili_data/sleep.data",async:false});
 	g_sleep = JSON.parse(htmlobj.responseText);
 	htmlobj=$.ajax({url:"https://blog.flipped205.top/rili_data/work.data",async:false});
@@ -1286,8 +1286,8 @@ $(function(){
 
 jQuery.support.cors = true;
 $(function() {
-	var htmlobj=$.ajax({url:"https://blog.flipped205.top/rili_data/record.data",async:false});
-	var record = htmlobj.responseText;
+	//var htmlobj=$.ajax({url:"https://blog.flipped205.top/rili.data",async:false});
+	//var record = htmlobj.responseText;
    // console.log(record);
 
 /*
