@@ -43,8 +43,9 @@ function TimeDiff(date1,date2)
 			}
 			else
 			{
-				var ms = parseInt(12 - new Date(date2).getMonth() + new Date(date1).getMonth() );
-				if(ms>12)
+				var ms = parseInt(12 - new Date(date2).getMonth() + new Date(date1).getMonth() ) + (new Date(date1).getFullYear()-new Date(date2).getFullYear()-1)*12;
+				console.log(ms);
+				if(ms>=12)
 				{
 					if(ms%12==0)
 					{
@@ -52,7 +53,7 @@ function TimeDiff(date1,date2)
 					}
 					else
 					{
-						obj.str2 = parseInt(ms/12)+"年"+parseInt(ms%12)+"月";
+						obj.str2 = parseInt(ms/12)+"年零"+parseInt(ms%12)+"个月";
 					}
 				}
 			}
