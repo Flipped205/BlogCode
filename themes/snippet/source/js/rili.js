@@ -1286,7 +1286,7 @@ $(function(){
 
 jQuery.support.cors = true;
 $(function() {
-	var htmlobj=$.ajax({url:"https://blog.flipped205.top/rili.data",async:false});
+	var htmlobj=$.ajax({url:"https://blog.flipped205.top/rili_data/record.data",async:false});
 	var record = htmlobj.responseText;
    // console.log(record);
 
