@@ -1,7 +1,74 @@
 
+function TimeDiff(date1,date2)
+{
+	console.log(new Date(date1));
+	console.log(new Date(date2));
+	var times = new Date(date1).getTime() - new Date(date2).getTime();
+	console.log("times:"+times);
+	var days = Math.ceil(times/(1000*3600*24));
+	var weeks = parseInt(days/7);
 
-function DateDiff(sDate1, sDate2) {  
 	var obj = new Object();
+
+	obj.days = days;
+	obj.weeks = weeks;
+
+	if(weeks>0)
+	{
+		obj.str1 = weeks+"周";
+		if((days-weeks*7)!=0)
+		{
+			obj.str1 = obj.str1 + "零"+parseInt(days-weeks*7)+"天";
+		}
+
+
+	}
+	else
+	{
+		obj.str1 = days+"天";
+	}
+
+	console.log(new Date(date1).getDate());
+	console.log( new Date(date2).getDate());
+	obj.str2=days+"天";
+	if(parseInt(new Date(date1).getDate()) == parseInt( new Date(date2).getDate()))
+	{
+		
+		if(days>0)
+		{
+			if(new Date(date1).getFullYear()==new Date(date2).getFullYear())
+			{
+				console.log(parseInt(new Date(date1).getMonth()-new Date(date2).getMonth()));
+				obj.str2 = parseInt(new Date(date1).getMonth()-new Date(date2).getMonth())+"月";
+			}
+			else
+			{
+				var ms = parseInt(12 - new Date(date2).getMonth() + new Date(date1).getMonth() );
+				if(ms>12)
+				{
+					if(ms%12==0)
+					{
+						obj.str2  = parseInt(ms/12)+"周年";
+					}
+					else
+					{
+						obj.str2 = parseInt(ms/12)+"年"+parseInt(ms%12)+"月";
+					}
+				}
+			}
+		}
+
+	}
+	console.log(obj);
+	//console.log("days:"+days);
+	return obj;
+}
+
+/*
+function TimeDiff(sDate1, sDate2) {  
+	var obj = new Object();
+
+	TimeDiff(sDate1,sDate2);
 
     var aDate, oDate1, oDate2, iDays,iWeek;
     aDate = sDate1.split("-");
@@ -11,7 +78,7 @@ function DateDiff(sDate1, sDate2) {
    // iDays = parseInt(Math.abs(oDate1 - oDate2) / 1000 / 60 / 60 / 24);
     
     iDays = parseInt((oDate1 - oDate2) / 1000 / 60 / 60 / 24); 
-    console.log("iDays:"+iDays);
+   // console.log("iDays:"+iDays);
     iWeek = parseInt(Math.abs(iDays)/7);
     var day = iDays - iWeek*7;
     obj.days = iDays;
@@ -28,7 +95,7 @@ function DateDiff(sDate1, sDate2) {
     }
     console.log(obj);
     return obj;  
-}
+}*/
 
 function GetCurday()
 {
@@ -78,7 +145,7 @@ function HandleJD(data)
 	var html="";
 	var msg = data[3];
 
-	var obj = DateDiff(day0,day1);
+	var obj = TimeDiff(day0,day1);
 	if(obj.days<=0)
 		return "";
 
@@ -90,7 +157,7 @@ function HandleJD(data)
 		var ds = w_datas[i].split(".");
 		var w = ds[0];
 		var m = ds[1];
-		if(parseInt(obj.w)+1==parseInt(w))
+		if(parseInt(obj.weeks)+1==parseInt(w))
 		{
 			html =  '<div class="recod_item"> \
 				<img src="./img/j.png"> \
@@ -128,7 +195,7 @@ function HandleSJD(data)
 	var title = data[3];
 	var msg = data[4];
 
-	var obj = DateDiff(curDay,day0);
+	var obj = TimeDiff(curDay,day0);
 	if(obj.days<=0)
 		return ""; 
 
@@ -136,7 +203,7 @@ function HandleSJD(data)
 		day1 = toDay;
 
 
-	obj = DateDiff(day1,day0);
+	obj = TimeDiff(day1,day0);
 	if(obj.days<=0)
 		return " ";
 	html =  '<div class="recod_item"> \
@@ -144,7 +211,7 @@ function HandleSJD(data)
 	<div style="display: inline-block;"> \
 	<div class="r_msg"> \
 	<span id="r_i_title">'+ title +'</span>&nbsp;·&nbsp;\
-	<span id="r_i_msg">'+obj.days+'天</span>\
+	<span id="r_i_msg">'+obj.str2+'</span>\
 	</div> \
 	<div class="r_date">\
 	<span>'+msg+'&nbsp;|&nbsp;'+ChangeDate(day0)+'~'+ChangeDate(day1)+'</span> \
@@ -161,11 +228,25 @@ function HandleJNR(data)
 	var day = data[1];
 	var title = data[2];
 	var msg = data[3];
+	var flag = parseInt(data[4]);
+	var tmp1="";
 	console.log("day:"+day+",title:"+title+",msg:"+msg);
 
+	var obj = TimeDiff(day0,day);
 
 
-	var obj = DateDiff(day0,day);
+
+	switch(flag)
+	{
+		case 0:
+			tmp1 = obj.str1;
+			break;
+		case 1:
+			tmp1 = obj.str2;
+			break;
+	}
+
+
 	if(obj.days<=0)
 		return "";
 
@@ -174,7 +255,7 @@ function HandleJNR(data)
 	<div style="display: inline-block;"> \
 	<div class="r_msg"> \
 	<span id="r_i_title">'+ title +'</span>&nbsp;·&nbsp;\
-	<span id="r_i_msg">'+obj.week+'</span>\
+	<span id="r_i_msg">'+tmp1+'</span>\
 	</div> \
 	<div class="r_date">\
 	<span>'+msg+'&nbsp;|&nbsp;'+ChangeDate(day)+'</span> \
