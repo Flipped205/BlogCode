@@ -171,13 +171,13 @@ function ParseRecord()
 		switch(parseInt(data[0]))
 		{
 			case 1:
-				//html=html+HandleJNR(data);
+				html=html+HandleJNR(data);
 				break;
 			case 2:
 				html=html+HandleJD(data);
 				break;
 			case 3:
-				//html = html + HandleSJD(data);
+				html = html + HandleSJD(data);
 				break;
 			case 4:
 				break;
