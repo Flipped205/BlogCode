@@ -94,9 +94,15 @@ em, i {
     display: -webkit-flex;
     display: -ms-flexbox;
     font-size: .1rem;
-    color: #a3a1a1;
+    /*color: #a3a1a1;*/
     justify-content: center
 }
+
+.today>.jieqi
+{
+	color: #fff;
+}
+
 #rili i {
     display: flex;
     display: -webkit-flex;
