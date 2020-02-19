@@ -1323,7 +1323,7 @@ $(function() {
     });*/
 });
 
-
+/*
 $(function(){
 	$.ajax({
 		url:"https://api.github.com/users",
@@ -1333,4 +1333,4 @@ $(function(){
 		}
 
 	})
-})
+})*/
