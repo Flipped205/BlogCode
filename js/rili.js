@@ -1008,7 +1008,7 @@ function drawRili(year,month,day)
 				no_month_day_flag = 0;
 			}
 			var today_flag = 0;
-			str +="<td align='center' year='"+cur_year+"'  month='"+cur_month+"'";
+			str +="<td align='center' year='"+cur_year+"'  month='"+cur_month+"'" +" day='"+cur_day+"'";
 			if((cur_day == today_day)&&(cur_month == today_month)&&(cur_year == today_year))
 			{
 				str += "class='today'";
