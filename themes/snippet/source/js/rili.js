@@ -187,7 +187,7 @@ var g_records;
 
     nStr5: {        "0101": "\u6625\u8282", // 农历正月初一
 
-  		"0115": "\u5143\u5bb5\u8282", // 农历一月十五
+        "0115": "\u5143\u5bb5\u8282", // 农历一月十五
 
         "0505": "\u7aef\u5348\u8282", // 农历五月初五
 
@@ -217,7 +217,7 @@ var g_records;
 
      lYearDays: function (y) {        var i, sum = 348;        for (i = 0x8000; i > 0x8; i >>= 1) {
 
-     	sum += (calendar.lunarInfo[y - 1900] & i) ? 1 : 0;
+        sum += (calendar.lunarInfo[y - 1900] & i) ? 1 : 0;
 
      }        return (sum + calendar.leapDays(y));
 
@@ -233,7 +233,7 @@ var g_records;
 
     leapMonth: function (y) { //闰字编码 \u95f0
 
-    	return (calendar.lunarInfo[y - 1900] & 0xf);
+        return (calendar.lunarInfo[y - 1900] & 0xf);
 
     },    /**
 
@@ -285,7 +285,7 @@ var g_records;
 
         var ms = m - 1;        if (ms == 1) { //2月份的闰平规律测算后确认返回28或29
 
-        	return (((y % 4 == 0) && (y % 100 != 0) || (y % 400 == 0)) ? 29 : 28);
+            return (((y % 4 == 0) && (y % 100 != 0) || (y % 400 == 0)) ? 29 : 28);
 
         } else {            return (calendar.solarMonth[ms]);
 
@@ -420,7 +420,7 @@ var g_records;
 
     toChinaMonth: function (m) { // 月 => \u6708
 
-    	if (m > 12 || m < 1) {            return -1
+        if (m > 12 || m < 1) {            return -1
 
         } //若参数错误 返回-1
 
@@ -442,19 +442,19 @@ var g_records;
 
     toChinaDay: function (d) { //日 => \u65e5
 
-    	var s;        switch (d) {            case 10:
+        var s;        switch (d) {            case 10:
 
-    		s = '\u521d\u5341';                break;            case 20:
+            s = '\u521d\u5341';                break;            case 20:
 
-    		s = '\u4e8c\u5341';                break;                break;            case 30:
+            s = '\u4e8c\u5341';                break;                break;            case 30:
 
-    		s = '\u4e09\u5341';                break;                break;            default :
+            s = '\u4e09\u5341';                break;                break;            default :
 
-    		s = calendar.nStr2[Math.floor(d / 10)];
+            s = calendar.nStr2[Math.floor(d / 10)];
 
-    		s += calendar.nStr1[d % 10];
+            s += calendar.nStr1[d % 10];
 
-    	}        return (s);
+        }        return (s);
 
     },    /**
 
@@ -472,9 +472,9 @@ var g_records;
 
     getAnimal: function (y, m, d) {        var term = calendar.getTerm(y, 3);//返回当年第三个节气[立春]为公历几日
 
-    	if ((m == 2 && d >= term) || m > 2) {            return calendar.Animals[(y - 4) % 12];
+        if ((m == 2 && d >= term) || m > 2) {            return calendar.Animals[(y - 4) % 12];
 
-    	}        return calendar.Animals[(y - 5) % 12];
+        }        return calendar.Animals[(y - 5) % 12];
 
     },    /**
 
@@ -500,11 +500,11 @@ var g_records;
 
         var isTerm = false;        if (firstNode == d) {
 
-        	isTerm = true;
+            isTerm = true;
 
         }        if (secondNode == d) {
 
-        	isTerm = true;
+            isTerm = true;
 
         }        return isTerm;
 
@@ -532,11 +532,11 @@ var g_records;
 
         var term = null;        if (firstNode == d) {
 
-        	term = calendar.solarTerm[m * 2 - 2];
+            term = calendar.solarTerm[m * 2 - 2];
 
         }        if (secondNode == d) {
 
-        	term = calendar.solarTerm[m * 2 - 1];
+            term = calendar.solarTerm[m * 2 - 1];
 
         }        return term;
 
@@ -554,21 +554,21 @@ var g_records;
 
     getWeekOfYear: function (y, m, d) {        // 指定日期是一年中的第几天
 
-    	var days = d;        for (var i = 1; i < m; i++) {
+        var days = d;        for (var i = 1; i < m; i++) {
 
-    		days += calendar.solarDays(y, i);
+            days += calendar.solarDays(y, i);
 
         }        // 指定年份的第一天是星期几
 
         var yearFirstDay = new Date(y, 0, 1).getDay() || 7;        var week = null;        if (yearFirstDay == 1) {
 
-        	week = Math.ceil(days / 7);
+            week = Math.ceil(days / 7);
 
         } else {
 
-        	days -= (7 - yearFirstDay + 1);
+            days -= (7 - yearFirstDay + 1);
 
-        	week = Math.ceil(days / 7) + 1;
+            week = Math.ceil(days / 7) + 1;
 
         }        return week;
 
@@ -600,11 +600,11 @@ var g_records;
 
         var objDate = null;        if (!y) {
 
-        	objDate = new Date();
+            objDate = new Date();
 
         } else {
 
-        	objDate = new Date(y, parseInt(m) - 1, d)
+            objDate = new Date(y, parseInt(m) - 1, d)
 
         }        var i, leap = 0, temp = 0;        //修正ymd参数
 
@@ -614,15 +614,15 @@ var g_records;
 
         d = objDate.getDate();        var offset = (Date.UTC(objDate.getFullYear(), objDate.getMonth(), objDate.getDate()) - Date.UTC(1900, 0, 31)) / 86400000;        for (i = 1900; i < 2101 && offset > 0; i++) {
 
-        	temp = calendar.lYearDays(i);
+            temp = calendar.lYearDays(i);
 
-        	offset -= temp;
+            offset -= temp;
 
         }        if (offset < 0) {
 
-        	offset += temp;
+            offset += temp;
 
-        	i--;
+            i--;
 
         }        //是否今天
 
@@ -630,7 +630,7 @@ var g_records;
 
         isToday = false;        if (isTodayObj.getFullYear() == y && isTodayObj.getMonth() + 1 == m && isTodayObj.getDate() == d) {
 
-        	isToday = true;
+            isToday = true;
 
         }        //星期几
 
@@ -640,7 +640,7 @@ var g_records;
 
             if (nWeek == 0) {
 
-            	nWeek = 7;
+                nWeek = 7;
 
         }        //农历年
 
@@ -650,9 +650,9 @@ var g_records;
 
         for (i = 1; i < 13 && offset > 0; i++) {            //闰月
 
-        	if (leap > 0 && i == (leap + 1) && isLeap == false) {                --i;
+            if (leap > 0 && i == (leap + 1) && isLeap == false) {                --i;
 
-        		isLeap = true;
+                isLeap = true;
 
                 temp = calendar.leapDays(year); //计算农历闰月天数
 
@@ -663,7 +663,7 @@ var g_records;
 
                      if (isLeap == true && i == (leap + 1)) {
 
-                     	isLeap = false;
+                        isLeap = false;
 
                      }
 
@@ -673,17 +673,17 @@ var g_records;
 
         if (offset == 0 && leap > 0 && i == leap + 1) {            if (isLeap) {
 
-        	isLeap = false;
+            isLeap = false;
 
         } else {
 
-        	isLeap = true;                --i;
+            isLeap = true;                --i;
 
         }
 
     }        if (offset < 0) {
 
-    	offset += temp;            --i;
+        offset += temp;            --i;
 
         }        //农历月
 
@@ -699,7 +699,7 @@ var g_records;
 
         var gzM = calendar.toGanZhi((y - 1900) * 12 + m + 11);        if (d >= firstNode) {
 
-        	gzM = calendar.toGanZhi((y - 1900) * 12 + m + 12);
+            gzM = calendar.toGanZhi((y - 1900) * 12 + m + 12);
 
         }        // 指定日期与 1900/1/1 相差天数
 
@@ -709,7 +709,7 @@ var g_records;
 
         var vacation = null;        var month_day = (month > 9 ? "" + month : "0" + month) + (day > 9 ? "" + day : "0" + day);        var m_d = (m > 9 ? "" + m : "0" + m) + (d > 9 ? "" + d : "0" + d);        var vacation_temp = calendar.nStr5[month_day] || calendar.nStr4[m_d];        if (vacation_temp) {
 
-        	vacation = vacation_temp;
+            vacation = vacation_temp;
 
         }        return {            'lYear': year,            'lMonth': month,            'lDay': day,            'Animal': calendar.getAnimal(y, m, d),            'IMonthCn': (isLeap ? "\u95f0" : '') + calendar.toChinaMonth(month),            'IDayCn': calendar.toChinaDay(day),            'cYear': y,            'cMonth': m,            'cDay': d,            'gzYear': gzY,            'gzMonth': gzM,            'gzDay': gzD,            'isToday': isToday,            'isLeap': isLeap,            'nWeek': nWeek,            'ncWeek': "\u661f\u671f" + cWeek,            'weekOfYear': "\u7b2c" + calendar.getWeekOfYear(y, m, d) + "\u5468",            'isTerm': calendar.isTerm(y, m, d),            'Term': calendar.getShowTerm(y, m, d),            'astro': astro,            'vacation': vacation
 
@@ -744,25 +744,25 @@ var g_records;
 
         }        var isLeapMonth = !!isLeapMonth;        var leapMonth = calendar.leapMonth(y);        if (isLeapMonth && (leapMonth != m)) { // 计算得出的闰月与传参的月份不同
 
-        	return -1;
+            return -1;
 
         }        var day = calendar.monthDays(y, m);        var _day = day;        if (isLeapMonth) {
 
-        	_day = calendar.leapDays(y, m);
+            _day = calendar.leapDays(y, m);
 
         }        if (d > _day) { // 传参的日期大于计算得出的农历当月的天数
 
-        	return -1;
+            return -1;
 
         }        //计算传入时间相对于农历1900年正月初一的时间差
 
         var offset = 0;        for (var i = 1900; i < y; i++) {
 
-        	offset += calendar.lYearDays(i);
+            offset += calendar.lYearDays(i);
 
         }        for (var i = 1; i < m; i++) {            if (i == leapMonth) { //处理闰月
 
-        	offset += calendar.leapDays(y);
+            offset += calendar.leapDays(y);
 
         }
 
@@ -772,7 +772,7 @@ var g_records;
 
         if (isLeapMonth) {
 
-        	offset += day;
+            offset += day;
 
         }        // 农历1900年正月初一的公历时间为1900年1月30日0时0分0秒(该时间也是本农历的最开始起始点)
 
@@ -785,497 +785,498 @@ var g_records;
 
 function findArray(array,year,month,day)
 {
-	var a=0,b=0;c=0;
-	for(a=0;a<array.data.length;a++)
-	{
-		if(array.data[a].year == year)
-		{
-			for(b=0;b<array.data[a].month.length;b++)
-			{
-				if(array.data[a].month[b].m == month)
-				{
-					for(c=0;c<array.data[a].month[b].day.length;c++)
-					{
-						if(array.data[a].month[b].day[c] == day)
-							return 1;
-					}
-				}
-			}
-			
-		}
-	}
-	return 0;
+    var a=0,b=0;c=0;
+    for(a=0;a<array.data.length;a++)
+    {
+        if(array.data[a].year == year)
+        {
+            for(b=0;b<array.data[a].month.length;b++)
+            {
+                if(array.data[a].month[b].m == month)
+                {
+                    for(c=0;c<array.data[a].month[b].day.length;c++)
+                    {
+                        if(array.data[a].month[b].day[c] == day)
+                            return 1;
+                    }
+                }
+            }
+            
+        }
+    }
+    return 0;
 }
 
 function getJiaQi(year,month,day)
 {
-	var tmp = ''+year+''+month+''+day;
-	//console.log(tmp);
-	var ret = 0;
-	var val = 0;
+    var tmp = ''+year+''+month+''+day;
+    //console.log(tmp);
+    var ret = 0;
+    var val = 0;
 
-	//var sleep = {"data":[{"year":2018,"month":[{"m":12,"day":[30,31]}]},{"year":2019,"month":[{"m":1,"day":[1]},{"m":2,"day":[4,5,6,7,8,9,10]},{"m":4,"day":[5,6,7]},{"m":5,"day":[1,2,3,4]},{"m":6,"day":[7,8,9]},{"m":9,"day":[13,14,15]},{"m":10,"day":[1,2,3,4,5,6,7]}]}]};
-	
-	//var work = {"data":[{"year":2018,"month":[{"m":12,"day":[29]}]},{"year":2019,"month":[{"m":2,"day":[2,3]},{"m":4,"day":[28]},{"m":5,"day":[5]},{"m":9,"day":[29]},{"m":10,"day":[12]}]}]};
+    //var sleep = {"data":[{"year":2018,"month":[{"m":12,"day":[30,31]}]},{"year":2019,"month":[{"m":1,"day":[1]},{"m":2,"day":[4,5,6,7,8,9,10]},{"m":4,"day":[5,6,7]},{"m":5,"day":[1,2,3,4]},{"m":6,"day":[7,8,9]},{"m":9,"day":[13,14,15]},{"m":10,"day":[1,2,3,4,5,6,7]}]}]};
+    
+    //var work = {"data":[{"year":2018,"month":[{"m":12,"day":[29]}]},{"year":2019,"month":[{"m":2,"day":[2,3]},{"m":4,"day":[28]},{"m":5,"day":[5]},{"m":9,"day":[29]},{"m":10,"day":[12]}]}]};
 
 
-	ret = findArray(g_sleep,year,month,day);
-	val = findArray(g_work,year,month,day);
-	if(val == 1)
-		ret = 2;
+    ret = findArray(g_sleep,year,month,day);
+    val = findArray(g_work,year,month,day);
+    if(val == 1)
+        ret = 2;
 
-	//console.log(ret);
-	
-	return ret;
+    //console.log(ret);
+    
+    return ret;
 }
 
 
 function is_leap(year) {
-	return (year%100==0?res=(year%400==0?1:0):res=(year%4==0?1:0));
+    return (year%100==0?res=(year%400==0?1:0):res=(year%4==0?1:0));
 }
 function get_month_days(year,month) {
-	var m_days=new Array(31,28+is_leap(year),31,30,31,30,31,31,30,31,30,31); //各月份的总天数
-	return m_days[month];
+    var m_days=new Array(31,28+is_leap(year),31,30,31,30,31,31,30,31,30,31); //各月份的总天数
+    return m_days[month];
 } 
 
 
 function drawRili(year,month,day)
 {
-	var today=new Date();
-	var today_year = today.getFullYear();
-	var today_month = today.getMonth();
-	var today_day = today.getDate();
-	console.log(today);
-	
-	var t_day = ''+year+'-'+(month+1)+'-'+day;
+    var today=new Date();
+    var today_year = today.getFullYear();
+    var today_month = today.getMonth();
+    var today_day = today.getDate();
+   // console.log(today);
+    
+    var t_day = ''+year+'-'+(month+1)+'-'+day;
 
-	var t_day1 = new Date(t_day.replace(/\-/g,"\/"));
-	console.log(t_day1);
+    var t_day1 = new Date(t_day.replace(/\-/g,"\/"));
+   // console.log(t_day1);
 
-	var days = today.getTime() - t_day1.getTime();
-	console.log(days);
-	var time = parseInt(days / (1000 * 60 * 60 * 24));
-	console.log(time);
-	var m_day_text = "";
-	if(days<0){
-		time-=1;
-	}
-	if(time<0){
-		time = 0-time;
-		switch(time){
-			case 1:
-			m_day_text +="明天";
-			break;
-			case 2:
-			m_day_text +="后天";
-			break;
-			case 3:
-			m_day_text +="大后天";
-			break;
-			default:
-			if(today_day == day)
-			{
-				if(today_year==year)
-				{
-					m_day_text = (month-today_month)+"个月后";
-				}
-				else{
-					if(month == today_month)
-						m_day_text = (year-today_year)+"年后";
-					else{
-						var t_year = (year-today_year);
-						if(month<today_month)
-						{
-							t_year -=1;
-						}
-						if(t_year>0)
-						{
-							var t_month = 0; 
-							if(month>today_month){
-								t_month = month-today_month;
-							}
-							else{
-								t_month = (month+12-today_month);
-							}
-							m_day_text = t_year+"年零"+t_month+"个月后";
-						}
-						else
-							m_day_text = (month+12-today_month)+"个月后";
+    var days = today.getTime() - t_day1.getTime();
+  //  console.log(days);
+    var time = parseInt(days / (1000 * 60 * 60 * 24));
+    //console.log(time);
+    var m_day_text = "";
+    if(days<0){
+        time-=1;
+    }
+    if(time<0){
+        time = 0-time;
+        switch(time){
+            case 1:
+            m_day_text +="明天";
+            break;
+            case 2:
+            m_day_text +="后天";
+            break;
+            case 3:
+            m_day_text +="大后天";
+            break;
+            default:
+            if(today_day == day)
+            {
+                if(today_year==year)
+                {
+                    m_day_text = (month-today_month)+"个月后";
+                }
+                else{
+                    if(month == today_month)
+                        m_day_text = (year-today_year)+"年后";
+                    else{
+                        var t_year = (year-today_year);
+                        if(month<today_month)
+                        {
+                            t_year -=1;
+                        }
+                        if(t_year>0)
+                        {
+                            var t_month = 0; 
+                            if(month>today_month){
+                                t_month = month-today_month;
+                            }
+                            else{
+                                t_month = (month+12-today_month);
+                            }
+                            m_day_text = t_year+"年零"+t_month+"个月后";
+                        }
+                        else
+                            m_day_text = (month+12-today_month)+"个月后";
 
-					}
-				}
-			}
-			else if(time%7==0)
-			{
-				m_day_text = ""+(time/7)+"周后";
-			}
-			else{
-				m_day_text=""+(time)+"天后";
-			}
-			break;
+                    }
+                }
+            }
+            else if(time%7==0)
+            {
+                m_day_text = ""+(time/7)+"周后";
+            }
+            else{
+                m_day_text=""+(time)+"天后";
+            }
+            break;
 
-		}
+        }
 
-	}
-	else if(time>0){
-		switch(time){
-			case 1:
-			m_day_text +="昨天";
-			break;
-			case 2:
-			m_day_text +="前天";
-			break;
-			default:
-			if(time%7==0)
-			{
-				m_day_text = ""+(time/7)+"周前";
-			}
-			else{
-				m_day_text=""+(time)+"天前";
-			}
-			break;
+    }
+    else if(time>0){
+        switch(time){
+            case 1:
+            m_day_text +="昨天";
+            break;
+            case 2:
+            m_day_text +="前天";
+            break;
+            default:
+            if(time%7==0)
+            {
+                m_day_text = ""+(time/7)+"周前";
+            }
+            else{
+                m_day_text=""+(time)+"天前";
+            }
+            break;
 
-		}
-	}
-	else{
-		m_day_text="今天";
-	}
+        }
+    }
+    else{
+        m_day_text="今天";
+    }
 
 
-	$("#m_moth").html((month+1)+"月");
-	$("#m_day").html(m_day_text);
-	$("#m_year").html(year+"年");
+    $("#m_moth").html((month+1)+"月");
+    $("#m_day").html(m_day_text);
+    $("#m_year").html(year+"年");
 
-	$("#m_day").attr("value",day);
-	$("#m_moth").attr("value",month);
-	$("#m_year").attr("value",year);
+    $("#m_day").attr("value",day);
+    $("#m_moth").attr("value",month);
+    $("#m_year").attr("value",year);
 
-	var today=new Date();
-	var today_year = today.getFullYear();
-	var today_month = today.getMonth();
-	var today_day = today.getDate();
+    var today=new Date();
+    var today_year = today.getFullYear();
+    var today_month = today.getMonth();
+    var today_day = today.getDate();
 
-	var n1str=new Date(year,month,1); //当月第一天Date资讯
-	var firstday=n1str.getDay(); //当月第一天星期几
-	var tr_str=Math.ceil((get_month_days(year,month) + firstday)/7); //表格所需要行数
+    var n1str=new Date(year,month,1); //当月第一天Date资讯
+    var firstday=n1str.getDay(); //当月第一天星期几
+    var tr_str=Math.ceil((get_month_days(year,month) + firstday)/7); //表格所需要行数
 
-	var prev_month_days = 0;
-	var cur_month = month;
-	var cur_year = year;
-	var cur_day = day;
-	if(month == 0)
-	{
-		prev_month_days =get_month_days(year-1,11);
-	}
-	else
-	{
-		prev_month_days = get_month_days(year,month-1);
-	}
-	var no_month_day_flag = 0;
-	var str = 0;
-	for(i=0;i<tr_str;i++)
-	{
-		str+="<tr>";
-		for(k=0;k<7;k++) 
-		{ 
-			idx=i*7+k; 
-			cur_day=idx-firstday+1; 
+    var prev_month_days = 0;
+    var cur_month = month;
+    var cur_year = year;
+    var cur_day = day;
+    if(month == 0)
+    {
+        prev_month_days =get_month_days(year-1,11);
+    }
+    else
+    {
+        prev_month_days = get_month_days(year,month-1);
+    }
+    var no_month_day_flag = 0;
+    var str = 0;
+    for(i=0;i<tr_str;i++)
+    {
+        str+="<tr>";
+        for(k=0;k<7;k++) 
+        { 
+            idx=i*7+k; 
+            cur_day=idx-firstday+1; 
 
-			if(cur_day<=0)
-			{
-				cur_day +=prev_month_days;
-				cur_month = month-1;
-				if(cur_month==-1){
-					cur_month = 11;
-					cur_year = year-1;
-				}
-				no_month_day_flag = 1;
+            if(cur_day<=0)
+            {
+                cur_day +=prev_month_days;
+                cur_month = month-1;
+                if(cur_month==-1){
+                    cur_month = 11;
+                    cur_year = year-1;
+                }
+                no_month_day_flag = 1;
 
-			}
-			else if(cur_day>get_month_days(year,month))
-			{
-				cur_day -=get_month_days(year,month);
-				cur_month = month+1;
-				if(cur_month==12){
-					cur_month = 0;
-					cur_year = year+1;
-				}
-				no_month_day_flag = 1;
+            }
+            else if(cur_day>get_month_days(year,month))
+            {
+                cur_day -=get_month_days(year,month);
+                cur_month = month+1;
+                if(cur_month==12){
+                    cur_month = 0;
+                    cur_year = year+1;
+                }
+                no_month_day_flag = 1;
 
-			}else{
-				cur_month = month;
-				cur_year = year;
-				no_month_day_flag = 0;
-			}
-			var today_flag = 0;
-			str +="<td align='center' year='"+cur_year+"'  month='"+cur_month+"'" +" day='"+cur_day+"'";
-			if((cur_day == today_day)&&(cur_month == today_month)&&(cur_year == today_year))
-			{
-				str += "class='today'";
-				today_flag = 1;
-			}
-			else if((cur_day == day)&&(cur_month == month)&&(cur_year == year))
-			{
-				str +="class='select_day'";
-				today_flag = 0;
-			}
-			else{
-				str +="class='td_default'";
-				today_flag = 0;
-			}
+            }else{
+                cur_month = month;
+                cur_year = year;
+                no_month_day_flag = 0;
+            }
+            var today_flag = 0;
+            str +="<td align='center' year='"+cur_year+"'  month='"+cur_month+"'" +" day='"+cur_day+"'";
+            if((cur_day == today_day)&&(cur_month == today_month)&&(cur_year == today_year))
+            {
+                str += "class='today'";
+                today_flag = 1;
+            }
+            else if((cur_day == day)&&(cur_month == month)&&(cur_year == year))
+            {
+                str +="class='select_day'";
+                today_flag = 0;
+            }
+            else{
+                str +="class='td_default'";
+                today_flag = 0;
+            }
 
-			if(no_month_day_flag == 1)
-			{
-				str+="style='color:#cccccc;'";
-			}
-			else
-			{
-				if(k==0||k==6)
-				{
-					;
-				}
-			}
-			var jia = getJiaQi(cur_year,cur_month+1,cur_day);
+            if(no_month_day_flag == 1)
+            {
+                str+="style='color:#cccccc;'";
+            }
+            else
+            {
+                if(k==0||k==6)
+                {
+                    ;
+                }
+            }
+            var jia = getJiaQi(cur_year,cur_month+1,cur_day);
 
-			str += ("><i>" + cur_day +"</i>" );
-			if(jia==1)
-			{
-				str+='<span class="jiaqi">休</span>';	
-			}
-			else if(jia == 2)
-			{
-				str+='<span class="work">班</span>';
-			}
-			var nl = calendar.solar2lunar(cur_year,cur_month+1,cur_day);
-			var jieqi = nl.vacation;
-			if(!jieqi)
-				jieqi = nl.Term;
+            str += ("><i>" + cur_day +"</i>" );
+            if(jia==1)
+            {
+                str+='<span class="jiaqi">休</span>';    
+            }
+            else if(jia == 2)
+            {
+                str+='<span class="work">班</span>';
+            }
+            var nl = calendar.solar2lunar(cur_year,cur_month+1,cur_day);
+           // console.log(nl);
+            var jieqi = nl.vacation;
+            if(!jieqi)
+                jieqi = nl.Term;
 
-			if(jieqi)	
-				str+=("<em class='jieqi'>"+jieqi+"</em>");
-			else{
-				if(today_flag==1)
-					str +=("<em style='color:#fff'>"+nl.IDayCn+"</em>");
-				else
-					str +=("<em>"+nl.IDayCn+"</em>");
-			}
-			str+="</td>";
+            if(jieqi)   
+                str+=("<em class='jieqi'>"+jieqi+"</em>");
+            else{
+                if(today_flag==1)
+                    str +=("<em style='color:#fff' month="+nl.lMonth+" day="+nl.lDay+" monthcn='"+nl.IMonthCn+"'>"+nl.IDayCn+"</em>");
+                else
+                    str +=("<em month="+nl.lMonth+" day="+nl.lDay+" monthcn='"+nl.IMonthCn+"'>"+nl.IDayCn+"</em>");
+            }
+            str+="</td>";
 
-		}
-		str+="</tr>";
-	}
-	$("#rili").find("table").html(str);
+        }
+        str+="</tr>";
+    }
+    $("#rili").find("table").html(str);
 
-	$("#rili").find("table").find("td").click(function(){
-		var year = Number($(this).attr("year"));
-		var month = Number($(this).attr("month"));
-		console.log(month);
-		var day = Number($(this).children("i").text());
-		drawRili(year,month,day);
+    $("#rili").find("table").find("td").click(function(){
+        var year = Number($(this).attr("year"));
+        var month = Number($(this).attr("month"));
+        console.log(month);
+        var day = Number($(this).children("i").text());
+        drawRili(year,month,day);
 
-	});
-	var str1 = new String($("#m_day").text());
-	console.log($("#m_day").text());
-	if(str1.indexOf("今天") ==0)
-	{
-		console.log("1");
-		$("#ret_jt").hide();
-	}
-	else{
-		$("#ret_jt").show();
-		console.log("0");
-	}
-	
-	ParseRecord();
+    });
+    var str1 = new String($("#m_day").text());
+ //   console.log($("#m_day").text());
+    if(str1.indexOf("今天") ==0)
+    {
+    //    console.log("1");
+        $("#ret_jt").hide();
+    }
+    else{
+        $("#ret_jt").show();
+      //  console.log("0");
+    }
+    
+    ParseRecord();
 }
 $(function(){ 
-	var htmlobj=$.ajax({url:"https://blog.flipped205.top/rili_data/record.data",async:false});
-	g_records = htmlobj.responseText;//eval(htmlobj.responseText);
-	var htmlobj=$.ajax({url:"https://blog.flipped205.top/rili_data/sleep.data",async:false});
-	g_sleep = JSON.parse(htmlobj.responseText);
-	htmlobj=$.ajax({url:"https://blog.flipped205.top/rili_data/work.data",async:false});
-	g_work = JSON.parse(htmlobj.responseText);
+    var htmlobj=$.ajax({url:"https://blog.flipped205.top/rili_data/record.data",async:false});
+    g_records = htmlobj.responseText;//eval(htmlobj.responseText);
+    var htmlobj=$.ajax({url:"https://blog.flipped205.top/rili_data/sleep.data",async:false});
+    g_sleep = JSON.parse(htmlobj.responseText);
+    htmlobj=$.ajax({url:"https://blog.flipped205.top/rili_data/work.data",async:false});
+    g_work = JSON.parse(htmlobj.responseText);
 
-	var bindSwipeEvent = function (dom,leftCallback,rightCallback) {
-		var isMove = false;
-		var startX = 0;
-		var distanceX = 0;
-		dom.addEventListener('touchstart',function (e) {
-			startX = e.touches[0].clientX;
-		});
-		dom.addEventListener('touchmove',function (e) {
-			isMove = true;
-			var moveX = e.touches[0].clientX;
-			distanceX = moveX - startX;
-		});
-		dom.addEventListener('touchend',function (e) {
-			if(isMove && Math.abs(distanceX) > 50){
-				if(distanceX > 0){
-					rightCallback && rightCallback.call(this,e);
-				}else{
-					leftCallback && leftCallback.call(this,e);
-				}
-			}
-			isMove = false;
-			startX = 0;
-			distanceX = 0;
-		});
-	}
-	bindSwipeEvent(document.querySelector('#rili'),function (e) {
-		var year = Number($("#m_year").attr("value"));
-		var month = Number($("#m_moth").attr("value"));
-		var day = Number($("#m_day").attr("value"));
-		//console.log(year+"-"+month+"="+day);
-		month = Number(month)+1;
-		if(month==12){
-			month = 0;
-			year +=1;
-		}
-		var m_day = get_month_days(year,month)
-		if(day>m_day)
-			day = m_day;
-		drawRili(year,month,day);
-		console.log(' 左滑手势');
-	},function (e) {
-		var year = Number($("#m_year").attr("value"));
-		var month = Number($("#m_moth").attr("value"));
-		var day = Number($("#m_day").attr("value"));
-		//console.log(year+"-"+month+"="+day);
-		month -=1;
-		if(month<0){
-			month = 11;
-			year -=1;
-		}
-		var m_day = get_month_days(year,month)
-		if(day>m_day)
-			day = m_day;
-		drawRili(year,month,day);
-		console.log('右滑手势');
-	});
-	//$("#rili").hide();
-	var today=new Date();
-	var today_year = today.getFullYear();
-	var today_month = today.getMonth();
-	var today_day = today.getDate();
-	drawRili(today_year,today_month,today_day);
+    var bindSwipeEvent = function (dom,leftCallback,rightCallback) {
+        var isMove = false;
+        var startX = 0;
+        var distanceX = 0;
+        dom.addEventListener('touchstart',function (e) {
+            startX = e.touches[0].clientX;
+        });
+        dom.addEventListener('touchmove',function (e) {
+            isMove = true;
+            var moveX = e.touches[0].clientX;
+            distanceX = moveX - startX;
+        });
+        dom.addEventListener('touchend',function (e) {
+            if(isMove && Math.abs(distanceX) > 50){
+                if(distanceX > 0){
+                    rightCallback && rightCallback.call(this,e);
+                }else{
+                    leftCallback && leftCallback.call(this,e);
+                }
+            }
+            isMove = false;
+            startX = 0;
+            distanceX = 0;
+        });
+    }
+    bindSwipeEvent(document.querySelector('#rili'),function (e) {
+        var year = Number($("#m_year").attr("value"));
+        var month = Number($("#m_moth").attr("value"));
+        var day = Number($("#m_day").attr("value"));
+        //console.log(year+"-"+month+"="+day);
+        month = Number(month)+1;
+        if(month==12){
+            month = 0;
+            year +=1;
+        }
+        var m_day = get_month_days(year,month)
+        if(day>m_day)
+            day = m_day;
+        drawRili(year,month,day);
+        console.log(' 左滑手势');
+    },function (e) {
+        var year = Number($("#m_year").attr("value"));
+        var month = Number($("#m_moth").attr("value"));
+        var day = Number($("#m_day").attr("value"));
+        //console.log(year+"-"+month+"="+day);
+        month -=1;
+        if(month<0){
+            month = 11;
+            year -=1;
+        }
+        var m_day = get_month_days(year,month)
+        if(day>m_day)
+            day = m_day;
+        drawRili(year,month,day);
+        console.log('右滑手势');
+    });
+    //$("#rili").hide();
+    var today=new Date();
+    var today_year = today.getFullYear();
+    var today_month = today.getMonth();
+    var today_day = today.getDate();
+    drawRili(today_year,today_month,today_day);
 
 
-	$("#ret_jt").click(function(){
-		drawRili(today_year,today_month,today_day);
-	});
+    $("#ret_jt").click(function(){
+        drawRili(today_year,today_month,today_day);
+    });
 });
 
 $(function(){
-	var Base64 = 
-	{
+    var Base64 = 
+    {
     // private property
     _keyStr : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", // public method for encoding
     encode : function (input) 
     {
-    	var output = "";
-    	var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
-    	var i = 0;
-    	input = Base64._utf8_encode(input);
-    	while (i < input.length) 
-    	{
-    		chr1 = input.charCodeAt(i++);
-    		chr2 = input.charCodeAt(i++);
-    		chr3 = input.charCodeAt(i++);
-    		enc1 = chr1 >> 2;
-    		enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-    		enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
-    		enc4 = chr3 & 63;
-    		if (isNaN(chr2)) {
-    			enc3 = enc4 = 64;
-    		}
-    		else if (isNaN(chr3)) {
-    			enc4 = 64;
-    		}
-    		output = output + this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) + this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
-    	}
-    	return output;
+        var output = "";
+        var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+        var i = 0;
+        input = Base64._utf8_encode(input);
+        while (i < input.length) 
+        {
+            chr1 = input.charCodeAt(i++);
+            chr2 = input.charCodeAt(i++);
+            chr3 = input.charCodeAt(i++);
+            enc1 = chr1 >> 2;
+            enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+            enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+            enc4 = chr3 & 63;
+            if (isNaN(chr2)) {
+                enc3 = enc4 = 64;
+            }
+            else if (isNaN(chr3)) {
+                enc4 = 64;
+            }
+            output = output + this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) + this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
+        }
+        return output;
     },
     // public method for decoding
     decode : function (input) 
     {
-    	var output = "";
-    	var chr1, chr2, chr3;
-    	var enc1, enc2, enc3, enc4;
-    	var i = 0;
-    	input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
-    	while (i < input.length) 
-    	{
-    		enc1 = this._keyStr.indexOf(input.charAt(i++));
-    		enc2 = this._keyStr.indexOf(input.charAt(i++));
-    		enc3 = this._keyStr.indexOf(input.charAt(i++));
-    		enc4 = this._keyStr.indexOf(input.charAt(i++));
-    		chr1 = (enc1 << 2) | (enc2 >> 4);
-    		chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
-    		chr3 = ((enc3 & 3) << 6) | enc4;
-    		output = output + String.fromCharCode(chr1);
-    		if (enc3 != 64) {
-    			output = output + String.fromCharCode(chr2);
-    		}
-    		if (enc4 != 64) {
-    			output = output + String.fromCharCode(chr3);
-    		}
-    	}
-    	output = Base64._utf8_decode(output);
-    	return output;
+        var output = "";
+        var chr1, chr2, chr3;
+        var enc1, enc2, enc3, enc4;
+        var i = 0;
+        input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+        while (i < input.length) 
+        {
+            enc1 = this._keyStr.indexOf(input.charAt(i++));
+            enc2 = this._keyStr.indexOf(input.charAt(i++));
+            enc3 = this._keyStr.indexOf(input.charAt(i++));
+            enc4 = this._keyStr.indexOf(input.charAt(i++));
+            chr1 = (enc1 << 2) | (enc2 >> 4);
+            chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+            chr3 = ((enc3 & 3) << 6) | enc4;
+            output = output + String.fromCharCode(chr1);
+            if (enc3 != 64) {
+                output = output + String.fromCharCode(chr2);
+            }
+            if (enc4 != 64) {
+                output = output + String.fromCharCode(chr3);
+            }
+        }
+        output = Base64._utf8_decode(output);
+        return output;
     },
     // private method for UTF-8 encoding
     _utf8_encode : function (string) 
     {
-    	string = string.replace(/\r\n/g, "\n");
-    	var utftext = "";
-    	for (var n = 0; n < string.length; n++) 
-    	{
-    		var c = string.charCodeAt(n);
-    		if (c < 128) {
-    			utftext += String.fromCharCode(c);
-    		}
-    		else if ((c > 127) && (c < 2048)) 
-    		{
-    			utftext += String.fromCharCode((c >> 6) | 192);
-    			utftext += String.fromCharCode((c & 63) | 128);
-    		}
-    		else 
-    		{
-    			utftext += String.fromCharCode((c >> 12) | 224);
-    			utftext += String.fromCharCode(((c >> 6) & 63) | 128);
-    			utftext += String.fromCharCode((c & 63) | 128);
-    		}
-    	}
-    	return utftext;
+        string = string.replace(/\r\n/g, "\n");
+        var utftext = "";
+        for (var n = 0; n < string.length; n++) 
+        {
+            var c = string.charCodeAt(n);
+            if (c < 128) {
+                utftext += String.fromCharCode(c);
+            }
+            else if ((c > 127) && (c < 2048)) 
+            {
+                utftext += String.fromCharCode((c >> 6) | 192);
+                utftext += String.fromCharCode((c & 63) | 128);
+            }
+            else 
+            {
+                utftext += String.fromCharCode((c >> 12) | 224);
+                utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+                utftext += String.fromCharCode((c & 63) | 128);
+            }
+        }
+        return utftext;
     },
     // private method for UTF-8 decoding
     _utf8_decode : function (utftext) 
     {
-    	var string = "";
-    	var i = 0;
-    	var c = c1 = c2 = 0;
-    	while (i < utftext.length) 
-    	{
-    		c = utftext.charCodeAt(i);
-    		if (c < 128) {
-    			string += String.fromCharCode(c);
-    			i++;
-    		}
-    		else if ((c > 191) && (c < 224)) 
-    		{
-    			c2 = utftext.charCodeAt(i + 1);
-    			string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
-    			i += 2;
-    		}
-    		else 
-    		{
-    			c2 = utftext.charCodeAt(i + 1);
-    			c3 = utftext.charCodeAt(i + 2);
-    			string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
-    			i += 3;
-    		}
-    	}
-    	return string;
+        var string = "";
+        var i = 0;
+        var c = c1 = c2 = 0;
+        while (i < utftext.length) 
+        {
+            c = utftext.charCodeAt(i);
+            if (c < 128) {
+                string += String.fromCharCode(c);
+                i++;
+            }
+            else if ((c > 191) && (c < 224)) 
+            {
+                c2 = utftext.charCodeAt(i + 1);
+                string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+                i += 2;
+            }
+            else 
+            {
+                c2 = utftext.charCodeAt(i + 1);
+                c3 = utftext.charCodeAt(i + 2);
+                string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+                i += 3;
+            }
+        }
+        return string;
     }
 }
 
@@ -1286,8 +1287,8 @@ $(function(){
 
 jQuery.support.cors = true;
 $(function() {
-	//var htmlobj=$.ajax({url:"https://blog.flipped205.top/rili.data",async:false});
-	//var record = htmlobj.responseText;
+    //var htmlobj=$.ajax({url:"https://blog.flipped205.top/rili.data",async:false});
+    //var record = htmlobj.responseText;
    // console.log(record);
 
 /*
@@ -1325,12 +1326,12 @@ $(function() {
 
 /*
 $(function(){
-	$.ajax({
-		url:"https://api.github.com/users",
-		type: "GET",
-		success: function(result){
-			console.log(result);
-		}
+    $.ajax({
+        url:"https://api.github.com/users",
+        type: "GET",
+        success: function(result){
+            console.log(result);
+        }
 
-	})
+    })
 })*/
