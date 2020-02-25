@@ -5,7 +5,7 @@ function TimeDiff(date1,date2)
 	console.log(new Date(date2));
 	var times = new Date(date1).getTime() - new Date(date2).getTime();
 	console.log("times:"+times);
-	var days = Math.ceil(times/(1000*3600*24));
+	var days = Math.ceil(times/(1000*3600*24))+1;
 	var weeks = parseInt(days/7);
 
 	var obj = new Object();
