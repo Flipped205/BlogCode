@@ -235,7 +235,12 @@ function HandleJNR(data)
 
 	var obj = TimeDiff(day0,day);
 
+	var s = "td[year="+new Date(day).getFullYear()+"][month="+new Date(day).getMonth()+"][day="+new Date(day).getDate()+"]";
 
+	console.log(s);
+	console.log($(s));
+	var h2 = '<i class="point"></i>';
+	$(s).append(h2);
 
 	switch(flag)
 	{
