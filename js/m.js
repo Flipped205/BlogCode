@@ -1,10 +1,8 @@
 
 function TimeDiff(date1,date2)
 {
-	console.log(new Date(date1));
-	console.log(new Date(date2));
+
 	var times = new Date(date1).getTime() - new Date(date2).getTime();
-	console.log("times:"+times);
 	var days = Math.ceil(times/(1000*3600*24))+1;
 	var weeks = parseInt(days/7);
 
@@ -28,8 +26,8 @@ function TimeDiff(date1,date2)
 		obj.str1 = days+"天";
 	}
 
-	console.log(new Date(date1).getDate());
-	console.log( new Date(date2).getDate());
+//	console.log(new Date(date1).getDate());
+//	console.log( new Date(date2).getDate());
 	obj.str2=days+"天";
 	if(parseInt(new Date(date1).getDate()) == parseInt( new Date(date2).getDate()))
 	{
@@ -38,13 +36,13 @@ function TimeDiff(date1,date2)
 		{
 			if(new Date(date1).getFullYear()==new Date(date2).getFullYear())
 			{
-				console.log(parseInt(new Date(date1).getMonth()-new Date(date2).getMonth()));
+				//console.log(parseInt(new Date(date1).getMonth()-new Date(date2).getMonth()));
 				obj.str2 = parseInt(new Date(date1).getMonth()-new Date(date2).getMonth())+"月";
 			}
 			else
 			{
 				var ms = parseInt(12 - new Date(date2).getMonth() + new Date(date1).getMonth() ) + (new Date(date1).getFullYear()-new Date(date2).getFullYear()-1)*12;
-				console.log(ms);
+			//	console.log(ms);
 				if(ms>=12)
 				{
 					if(ms%12==0)
@@ -60,43 +58,10 @@ function TimeDiff(date1,date2)
 		}
 
 	}
-	console.log(obj);
+	//console.log(obj);
 	//console.log("days:"+days);
 	return obj;
 }
-
-/*
-function TimeDiff(sDate1, sDate2) {  
-	var obj = new Object();
-
-	TimeDiff(sDate1,sDate2);
-
-    var aDate, oDate1, oDate2, iDays,iWeek;
-    aDate = sDate1.split("-");
-    oDate1 = new Date(aDate[1] + '-' + aDate[2] + '-' + aDate[0]);  //转换为yyyy-MM-dd格式
-    aDate = sDate2.split("-");
-    oDate2 = new Date(aDate[1] + '-' + aDate[2] + '-' + aDate[0]);
-   // iDays = parseInt(Math.abs(oDate1 - oDate2) / 1000 / 60 / 60 / 24);
-    
-    iDays = parseInt((oDate1 - oDate2) / 1000 / 60 / 60 / 24); 
-   // console.log("iDays:"+iDays);
-    iWeek = parseInt(Math.abs(iDays)/7);
-    var day = iDays - iWeek*7;
-    obj.days = iDays;
-    obj.w = iWeek;
-    if (iWeek>0)
-    {
-    	obj.week = iWeek+"周";
-    	if(day!=0)
-    		obj.week = obj.week+"零"+day+"天";
-    }	
-    else
-    {
-    	obj.week = iDays+"天";
-    }
-    console.log(obj);
-    return obj;  
-}*/
 
 function GetCurday()
 {
@@ -121,8 +86,6 @@ function GetToDay()
 	return today_year+"-"+today_month+"-"+today_day;
 
 }
-
-
 
 function ChangeDate(day)
 {
@@ -154,7 +117,6 @@ function HandleJD(data)
 
 	for(var i=0;i<w_datas.length;i++)
 	{
-		console.log(i);
 		var ds = w_datas[i].split(".");
 		var w = ds[0];
 		var m = ds[1];
@@ -175,21 +137,14 @@ function HandleJD(data)
 			break;
 		} 
 	}
-	console.log(html);
 	return html;
 }
 
 
-
-
-
-
-
-function HandleSJD(data)
+function HandleSJD(data) // 时间段
 {
 	var curDay = GetCurday();
 	var toDay = GetToDay();
-	console.log("toDay:"+toDay);
 
 	var day0 = data[1];
 	var day1 = data[2];
@@ -223,7 +178,62 @@ function HandleSJD(data)
 	return html;
 }
 
-function HandleJNR(data)
+function HadnleSR(data) 
+{
+	var day = data[1];
+	var title = data[2];
+	var flag = parseInt(data[3]);
+	var msg ="";
+	var s_td;
+	console.log(day);
+	switch(flag)
+	{
+		case 0:
+			title = title+"的农历生日";
+			s_em="em[month='"+parseInt(new Date(day).getMonth()+1)+"'][day='"+new Date(day).getDate()+"']";
+			if($(s_em).length==0)
+				return "";
+			s_td = $(s_em).parent("td");
+			msg = $(s_td).attr("year")+"年"+$(s_em).attr("monthcn")+$(s_em).html();
+			break;
+		case 1:
+			title = title+"的生日";
+			s_td = "td[month="+new Date(day).getMonth()+"][day="+new Date(day).getDate()+"]";
+			if($(s_td).length==0)
+				return "";
+			var m = parseInt($(s_td).attr("month"))+1;
+			var d = $(s_td).attr("year")+"-"+m+"-"+$(s_td).attr("day");
+			msg = ChangeDate(d);
+			break;
+	}
+
+	
+	
+	if($(s_td).length==0)
+	{
+		return "";
+	}
+	var html2 = '<i class="point"></i>';
+	$(s_td).append(html2)
+
+	var html =  '<div class="recod_item"> \
+	<img src="./img/s.png"> \
+	<div style="display: inline-block;"> \
+	<div class="r_msg"> \
+	<span id="r_i_title">'+ title +'</span>\
+	</div> \
+	<div class="r_date">\
+	<span>'+msg+'</span> \
+	</div> \
+	</div> \
+	</div>';
+
+	return html;
+
+}
+
+
+function HandleJNR(data)  // 纪念日
 {
 	var day0 = GetCurday();
 	var day = data[1];
@@ -231,16 +241,16 @@ function HandleJNR(data)
 	var msg = data[3];
 	var flag = parseInt(data[4]);
 	var tmp1="";
-	console.log("day:"+day+",title:"+title+",msg:"+msg);
+	//console.log("day:"+day+",title:"+title+",msg:"+msg);
 
 	var obj = TimeDiff(day0,day);
 
 	var s = "td[year="+new Date(day).getFullYear()+"][month="+new Date(day).getMonth()+"][day="+new Date(day).getDate()+"]";
 
-	console.log(s);
-	console.log($(s));
-	var h2 = '<i class="point"></i>';
-	$(s).append(h2);
+	//console.log(s);
+	//console.log($(s));
+	var html2 = '<i class="point"></i>';
+	$(s).append(html2);
 
 	switch(flag)
 	{
@@ -253,7 +263,7 @@ function HandleJNR(data)
 	}
 
 
-	if(obj.days<=0)
+	if(obj.days<0)
 		return "";
 
 	html =  '<div class="recod_item"> \
@@ -278,10 +288,10 @@ function ParseRecord()
 	var day0 = GetCurday();
 	
 	var html=" ";
-	console.log(g_records);
+	//console.log(g_records);
 
 	var records = g_records.split(/[\s\n]/);
-	console.log(records.length);
+	//console.log(records.length);
 	$(recods).html(html);
 	for(var i = 0;i<records.length;i++)
 	{
@@ -291,15 +301,16 @@ function ParseRecord()
 		switch(parseInt(data[0]))
 		{
 			case 1:
-				html=HandleJNR(data);
+				html=HandleJNR(data); // 纪念日
 				break;
 			case 2:
-				html=HandleJD(data);
+				html=HandleJD(data); // 阶段
 				break;
 			case 3:
-				html=HandleSJD(data);
+				html=HandleSJD(data); // 时间段
 				break;
-			case 4:
+			case 5:
+				html = HadnleSR(data); // 生日
 				break;
 			default:
 				break;
