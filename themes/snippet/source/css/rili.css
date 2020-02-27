@@ -201,6 +201,9 @@ em, i {
 	width: 35px;
 	margin-right: 10px; 
 }
+.today>i.point {
+    background: #FFF;
+}
 .point
 {
 	display: block;
@@ -211,8 +214,4 @@ em, i {
 	top: 2px;
 	left: 24px;
 	position: absolute;
-}
-.tody .point
-{
-	background: #FFF;
 }
