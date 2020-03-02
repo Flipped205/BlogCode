@@ -11,8 +11,8 @@ menu:
 - page: 笔记
   url: /categories/笔记/
   icon: 
-- page: 杂读
-  url: /categories/杂读/
+- page: 收藏
+  url: /categories/收藏/
   icon: 
 - page: 工具
   url: /categories/工具/
